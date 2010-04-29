@@ -219,7 +219,7 @@ Maintained by Joseph Wright
 E-mail: joseph.wright@morningstar2.co.uk
 Originally developed by Mats Dahlgren
  (c) 1996-98 by Mats Dahlgren
- (c) 2007-2008 Joseph Wright
+ (c) 2007-2009 Joseph Wright
 Released under the LaTeX Project Public license v1.3c or later
 See http://www.latex-project.org/lppl.txt
 
@@ -261,7 +261,7 @@ citations after punctuation.
 %</driver>
 % \fi
 %
-%\CheckSum{1700}
+%\CheckSum{1709}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -672,7 +672,7 @@ citations after punctuation.
 \NeedsTeXFormat{LaTeX2e}
 \LoadClass[12pt]{article}
 \ProvidesClass{achemso}
-  [2008/12/18 v3.1 Submissions to ACS journals]
+  [2009/02/03 v3.1a Submissions to ACS journals]
 \RequirePackage[etex=false]{notes2bib}[2008/06/21]
 \RequirePackage[margin=2.54cm]{geometry}
 \RequirePackage[T1]{fontenc}
@@ -803,7 +803,9 @@ citations after punctuation.
 }
 \newcommand*{\acs@affil@ifdup@aux}{%
   \advance\acs@tempcnta\@ne\relax
-  \edef\acs@tempb{\csname @address@\@roman\acs@tempcnta\endcsname}%
+  \expandafter\expandafter\expandafter\def\expandafter\expandafter
+    \expandafter\acs@tempb\expandafter\expandafter\expandafter
+    {\csname @address@\@roman\acs@tempcnta\endcsname}%
   \ifx\acs@tempa\acs@tempb
     \expandafter\acs@switchtrue
   \else
@@ -1401,7 +1403,7 @@ citations after punctuation.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{achemso}
-  [2008/12/18 v3.1 Support for ACS journals]
+  [2009/02/03 v3.1a Support for ACS journals]
 \@ifclassloaded{achemso}{}
   {\PackageInfo{achemso}{When using the achemso bundle
      for\MessageBreak submission of articles to the ACS,
@@ -1870,7 +1872,7 @@ citations after punctuation.
 % files.
 %    \begin{macrocode}
 \ProvidesFile{jacsat.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Am. Chem. Soc.]
 \acs@setkeys{
   abbreviate=true,
@@ -2091,7 +2093,7 @@ citations after punctuation.
 %\subsection{\emph{Acc.\ Chem.\ Res.}}
 %    \begin{macrocode}
 \ProvidesFile{achre4.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Acc. Chem. Res.]
 \acs@setkeys{
   abbreviate=true,
@@ -2110,7 +2112,7 @@ citations after punctuation.
 %\subsection{\emph{ACS Chem.\ Biol.}}
 %    \begin{macrocode}
 \ProvidesFile{acbcct.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    ACS Chem. Biol.]
 \acs@setkeys{
   abbreviate=true,
@@ -2128,7 +2130,7 @@ citations after punctuation.
 %\subsection{\emph{ACS Nano}}
 %    \begin{macrocode}
 \ProvidesFile{acbcct.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    ACS Nano]
 \acs@setkeys{
   abbreviate=true,
@@ -2146,7 +2148,7 @@ citations after punctuation.
 %\subsection{\emph{Anal.\ Chem.}}
 %    \begin{macrocode}
 \ProvidesFile{ancham.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Anal. Chem.]
 \acs@setkeys{
   abbreviate=true,
@@ -2164,7 +2166,7 @@ citations after punctuation.
 %\subsection{\emph{Biochemistry}}
 %    \begin{macrocode}
 \ProvidesFile{biochem.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Biochemistry]
 \acs@setkeys{
   abbreviate=true,
@@ -2182,7 +2184,7 @@ citations after punctuation.
 %\subsection{\emph{Bioconjugate Chem.}}
 %    \begin{macrocode}
 \ProvidesFile{bcches.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Bioconjugate Chem.]
 \acs@setkeys{
   abbreviate=true,
@@ -2200,7 +2202,7 @@ citations after punctuation.
 %\subsection{\emph{Biomacromolecules}}
 %    \begin{macrocode}
 \ProvidesFile{bomaf6.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Biomacromolecules]
 \acs@setkeys{
   abbreviate=true,
@@ -2218,7 +2220,7 @@ citations after punctuation.
 %\subsection{\emph{Biotechnol.\ Prog.}}
 %    \begin{macrocode}
 \ProvidesFile{bipret.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Biotechnol. Prog.]
 \acs@setkeys{
   abbreviate=true,
@@ -2236,7 +2238,7 @@ citations after punctuation.
 %\subsection{\emph{Chem.\ Res.\ Toxicol.}}
 %    \begin{macrocode}
 \ProvidesFile{crtoec.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Chem. Res. Toxicol.]
 \acs@setkeys{
   abbreviate=true,
@@ -2255,7 +2257,7 @@ citations after punctuation.
 % For \emph{Chem.\ Rev.}, the usual start.
 %    \begin{macrocode}
 \ProvidesFile{chreay.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Chem. Rev.]
 \acs@setkeys{
   abbreviate=true,
@@ -2282,7 +2284,7 @@ citations after punctuation.
 %\subsection{\emph{Chem.\ Mater.}}
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Chem. Mater.]
 \acs@setkeys{
   abbreviate=true,
@@ -2305,7 +2307,7 @@ citations after punctuation.
 %\subsection{\emph{Cryst.\ Growth Des.}}
 %    \begin{macrocode}
 \ProvidesFile{cgdefu.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Cryst. Growth Des.]
 \acs@setkeys{
   abbreviate=true,
@@ -2327,7 +2329,7 @@ citations after punctuation.
 %\subsection{\emph{Energy Fuels}}
 %    \begin{macrocode}
 \ProvidesFile{enfuem.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Energy Fuels]
 \acs@setkeys{
   abbreviate=true,
@@ -2345,7 +2347,7 @@ citations after punctuation.
 %\subsection{\emph{Environ.\ Sci.\ Technol.}}
 %    \begin{macrocode}
 \ProvidesFile{esthag.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Environ. Sci. Technol.]
 \acs@setkeys{
   abbreviate=true,
@@ -2363,7 +2365,7 @@ citations after punctuation.
 %\subsection{\emph{Ind.\ Eng.\ Chem.\ Res.}}
 %    \begin{macrocode}
 \ProvidesFile{iecred.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Ind. Eng. Chem. Res.]
 \acs@setkeys{
   abbreviate=true,
@@ -2385,7 +2387,7 @@ citations after punctuation.
 %\subsection{\emph{Inorg.\ Chem.}}
 %    \begin{macrocode}
 \ProvidesFile{inoraj.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Inorg. Chem.]
 \acs@setkeys{
   abbreviate=true,
@@ -2408,7 +2410,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Agric.\ Food Chem.}}
 %    \begin{macrocode}
 \ProvidesFile{jafcau.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Agric. Food Chem.]
 \acs@setkeys{
   abbreviate=true,
@@ -2426,7 +2428,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Chem.\ Eng. Data}}
 %    \begin{macrocode}
 \ProvidesFile{jceaax.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Chem. Eng. Data]
 \acs@setkeys{
   abbreviate=true,
@@ -2444,7 +2446,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Chem.\ Inf.\ Model.}}
 %    \begin{macrocode}
 \ProvidesFile{jcisd8.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Chem. Inf. Model.]
 \acs@setkeys{
   abbreviate=true,
@@ -2464,7 +2466,7 @@ citations after punctuation.
 %  \emph{J.~Chem.\ Theory Comput.}}
 %    \begin{macrocode}
 \ProvidesFile{jctcce.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Chem. Theory Comput.]
 \acs@setkeys{
   abbreviate=true,
@@ -2483,7 +2485,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Comb.\ Chem.}}
 %    \begin{macrocode}
 \ProvidesFile{jcchff.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Comb. Chem.]
 \acs@setkeys{
   abbreviate=true,
@@ -2501,7 +2503,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Med.\ Chem.}}
 %    \begin{macrocode}
 \ProvidesFile{jmcmar.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Med. Chem.]
 \acs@setkeys{
   abbreviate=true,
@@ -2519,7 +2521,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Nat.\ Prod.}}
 %    \begin{macrocode}
 \ProvidesFile{jnprdf.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Nat. Prod.]
 \acs@setkeys{
   abbreviate=true,
@@ -2542,7 +2544,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Org.\ Chem.}}
 %    \begin{macrocode}
 \ProvidesFile{joceah.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Org. Chem.]
 \acs@setkeys{
   abbreviate=true,
@@ -2565,7 +2567,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Phys.\ Chem.~A}}
 %    \begin{macrocode}
 \ProvidesFile{jpcafh.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Phys. Chem. A]
 \acs@setkeys{
   abbreviate=true,
@@ -2583,7 +2585,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Phys.\ Chem.~B}}
 %    \begin{macrocode}
 \ProvidesFile{jpcbfk.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Phys. Chem. B]
 \acs@setkeys{
   abbreviate=true,
@@ -2601,7 +2603,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Phys.\ Chem.~C}}
 %    \begin{macrocode}
 \ProvidesFile{jpccck.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Phys. Chem. C]
 \acs@setkeys{
   abbreviate=true,
@@ -2619,7 +2621,7 @@ citations after punctuation.
 %\subsection{\emph{J.~Proteome Res.}}
 %    \begin{macrocode}
 \ProvidesFile{jprobs.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    J. Proteome Res.]
 \acs@setkeys{
   abbreviate=true,
@@ -2637,7 +2639,7 @@ citations after punctuation.
 %\subsection{\emph{Langmuir}}
 %    \begin{macrocode}
 \ProvidesFile{langd5.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Langmuir]
 \acs@setkeys{
   abbreviate=true,
@@ -2655,7 +2657,7 @@ citations after punctuation.
 %\subsection{\emph{Macromolecules}}
 %    \begin{macrocode}
 \ProvidesFile{mamobx.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Macromolecules]
 \acs@setkeys{
   abbreviate=true,
@@ -2673,7 +2675,7 @@ citations after punctuation.
 %\subsection{\emph{Mol.\ Pharm.}}
 %    \begin{macrocode}
 \ProvidesFile{mamobx.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Mol. Pharm.]
 \acs@setkeys{
   abbreviate=true,
@@ -2691,7 +2693,7 @@ citations after punctuation.
 %\subsection{\emph{Nano Lett.}}
 %    \begin{macrocode}
 \ProvidesFile{nalefd.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Nano Lett.]
 \acs@setkeys{
   abbreviate=true,
@@ -2709,7 +2711,7 @@ citations after punctuation.
 %\subsection{\emph{Org.\ Lett.}}
 %    \begin{macrocode}
 \ProvidesFile{orlef7.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Org. Lett.]
 \acs@setkeys{
   abbreviate=true,
@@ -2727,7 +2729,7 @@ citations after punctuation.
 %\subsection{\emph{Org.\ Proc.\ Res.\ Dev.}}
 %    \begin{macrocode}
 \ProvidesFile{oprdfk.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Org. Proc. Res. Dev.]
 \acs@setkeys{
   abbreviate=true,
@@ -2745,7 +2747,7 @@ citations after punctuation.
 %\subsection{\emph{Organometallics}}
 %    \begin{macrocode}
 \ProvidesFile{orgnd7.cfg}
-  [2008/12/18 v3.1 achemso configuration:
+  [2009/02/03 v3.1a achemso configuration:
    Organometallics]
 \acs@setkeys{
   abbreviate=true,
