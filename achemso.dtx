@@ -174,7 +174,7 @@ This work consists of the file  achemso.dtx
 %</driver>
 % \fi
 %
-%\CheckSum{1965}
+%\CheckSum{1981}
 %
 %\GetFileInfo{\jobname.sty}
 %
@@ -466,6 +466,13 @@ This work consists of the file  achemso.dtx
 % the value of \opt{journal}.  The \opt{manuscript} option determines
 % whether sections and an abstract are valid.  The value
 % \opt{suppinfo} is also available for supporting information.
+% 
+%\DescribeOption{email}
+%\changes{v3.2b}{2009/05/05}{New \texttt{email} option}
+% It may be desirable to omit e-mail addresses from the front page of
+% a manuscript. The printing of e-mail addresses can be disabled using
+% the \opt{email} option, which takes Boolean values only. The default
+% is to print e-mail addresses.
 %
 % Other options are provided by the package, but when used with the
 % class these are silently ignored.
@@ -758,7 +765,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*class>
 \ProvidesClass{achemso}
-  [2009/04/28 v3.2a Submission to ACS journals]
+  [2009/04/28 v3.2b Submission to ACS journals]
 \LoadClass[12pt,letter]{article}
 %    \end{macrocode}
 %    
@@ -778,7 +785,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*package>
 \ProvidesPackage{achemso}
-  [2009/04/28 v3.2a Support for ACS journals]
+  [2009/04/28 v3.2b Support for ACS journals]
 \@ifclassloaded{achemso}{%
   \PackageInfo{achemso}{%
     You have already loaded the `achemso' class:\MessageBreak
@@ -826,15 +833,18 @@ This work consists of the file  achemso.dtx
 \RequirePackage{xkeyval}
 %    \end{macrocode}
 %\begin{macro}{\ifacs@biochem}
+%\begin{macro}{\ifacs@email}
 %\begin{macro}{\ifacs@super}
 %\begin{macro}{\ifacs@usetitle}
 % These are all very trivial definitions: to avoid issues with older
 % versions of \pkg{xkeyval} each definition is done separately.
 %    \begin{macrocode}
 \define@boolkey{acs}[acs@]{biochem}[true]{}
+\define@boolkey{acs}[acs@]{email}[true]{}
 \define@boolkey{acs}[acs@]{super}[true]{}
 \define@boolkey{acs}[acs@]{usetitle}[true]{}
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -964,7 +974,6 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \newcommand*{\acs@niib@text}{%
   \@bsphack
-  \acs@bib@write
   \if@filesw
     \expandafter\acs@niib@write
   \else
@@ -1020,34 +1029,20 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 % 
-%\begin{macro}{\citenumfont}
-% Changes to citations can now be made. The citation styles supplied
-% here require \pkg{natbib}, which is loaded with the appropriate 
-% options.
-%    \begin{macrocode}
-\ifacs@super
-  \RequirePackage[sort&compress,numbers,super]{natbib}
-\else
-  \RequirePackage[sort&compress,numbers,round]{natbib}
-  \def\citenumfont{\textit}
-\fi
-%    \end{macrocode}
-%\end{macro} 
-%    \begin{macrocode}
-\RequirePackage{natmove}
-%    \end{macrocode}
 %\begin{macro}{\nmv@natbib@detect}
 %\begin{macro}{\acs@nmv@activate}
 %\begin{macro}{\acs@autonote}
 % The functionality of \pkg{notes2bib} is combined with the standard
 % \cs{cite} macro, to give automatic note-like data in the bibliography.
 %    \begin{macrocode}
-\renewcommand*{\nmv@natbib@detect}{%
-  \ifNAT@super
-    \expandafter\acs@nmv@activate
-  \else
-    \expandafter\acs@autonote
-  \fi
+\AtBeginDocument{
+  \renewcommand*{\nmv@natbib@detect}{%
+    \ifNAT@super
+      \expandafter\acs@nmv@activate
+    \else
+      \expandafter\acs@autonote
+    \fi
+  }
 }
 \newcommand*{\acs@nmv@activate}{%
   \let\nmv@citex@nat\@citex
@@ -1125,22 +1120,21 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\ifacs@bib@written}
 %\begin{macro}{\acs@bib@write}
+%\changes{v3.2b}{2009/05/05}{Force \cs{AtBeginDocument} so first citation
+%  is for control}
 %\begin{macro}{\acs@bib@write@aux}
 % The control information for \BibTeX\ needs to be written to a special
 % file. The main writing macro is quite simple. Actually writing the
 % information is left to the code for \cs{bibliography}, so that this
 % only happens if needed.
 %    \begin{macrocode}
-\newif\ifacs@bib@written
 \newcommand*{\acs@bib@write}{%
   \if@filesw
-    \ifacs@bib@written\else
-      \expandafter\expandafter\expandafter\acs@bib@write@aux
-    \fi
+    \expandafter\acs@bib@write@aux
   \fi
 }
+\AtBeginDocument{\acs@bib@write}
 \newcommand*{\acs@bib@write@aux}{%
   \immediate\openout\acs@bib@file\acs@bib@name\relax
   \immediate\write\acs@bib@file{\acs@bib@message}%
@@ -1159,13 +1153,11 @@ This work consists of the file  achemso.dtx
   \immediate\write\@auxout{%
     \string\citation\string{achemso-control\string}%
   }%
-  \global\acs@bib@writtentrue
   \AtEndDocument{%
     \immediate\closeout\acs@bib@file\relax
   }%
 }
 %    \end{macrocode}
-%\end{macro}
 %\end{macro}
 %\end{macro}
 %
@@ -1182,13 +1174,11 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@bibliography}
 %\begin{macro}{\bibliography}
 % The \cs{bibliography} macro is now patched so that everything works
-% correctly. There are two things to do, the patch itself and a citation
-% for the control file.
+% correctly. 
 %    \begin{macrocode}
 \AtBeginDocument{%
   \let\acs@bibliography\bibliography
   \renewcommand*{\bibliography}[1]{%
-    \acs@bib@write
     \acs@bibliography{acs-\jobname,#1}%
   }%
 }
@@ -1522,11 +1512,21 @@ This work consists of the file  achemso.dtx
     }%
     \vskip 1em\relax
     {%
-      \sffamily E-mail: \acs@email@list
+      \ifacs@email
+        \expandafter\acs@title@email
+      \fi
     }%
   \end{center}
   \par
   \vskip 1.5em\relax
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\acs@title@email}
+% A short spin-out.
+%    \begin{macrocode}
+\newcommand*{\acs@title@email}{%
+  \sffamily E-mail: \acs@email@list
 }
 %    \end{macrocode}
 %\end{macro}
@@ -2053,12 +2053,15 @@ This work consists of the file  achemso.dtx
 %\end{environment}
 %\begin{macro}{\acknowledgementname}
 %\begin{macro}{\bibsection}
+%\changes{v3.2b}{2009/05/05}{Move redefinition to \cs{AtEndOfClass}}
 %\begin{macro}{\suppinfoname}
 % A few macros need to get around the changes.
 %    \begin{macrocode}
 \newcommand*{\acknowledgementname}{Acknowledgement}
-\renewcommand*{\bibsection}{%
-  \acs@subsection*{\refname}%
+\AtEndOfClass{%
+  \renewcommand*{\bibsection}{%
+    \acs@subsection*{\refname}%
+  }%
 }
 \newcommand*{\suppinfoname}{Supporting Information Available}
 %    \end{macrocode}
@@ -2295,6 +2298,18 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %    
+%\changes{v3.2b}{2009/05/05}{Some back-compatibility functions added}
+% A few bits for older versions.
+%    \begin{macrocode}
+\newcommand*{\acs@setkeys}{\setkeys{acs}}
+\let\acs@killabstract\AbstractOff
+\let\acs@killsecs\SectionsOff
+\newcommand*{\acs@validtype}[2][article]{%
+  \renewcommand*{\acs@type@default}{#1}%
+  \renewcommand*{\acs@type@list}{#2}%
+}
+%    \end{macrocode}   
+%    
 % With all of the standard settings done, the journal configuration can
 % be loaded.    
 %    \begin{macrocode}
@@ -2329,6 +2344,28 @@ This work consists of the file  achemso.dtx
 %</class>
 %    \end{macrocode}   
 %\end{macro}    
+%
+%\subsection{Late shared code}
+%
+%\changes{v3.2b}{2009/05/05}{Moved loading of \textsf{natbib} to end of 
+%  class}    
+%\begin{macro}{\citenumfont}
+% Changes to citations can now be made. The citation styles supplied
+% here require \pkg{natbib}, which is loaded with the appropriate 
+% options. This part applies to the package as well as the class: it is
+% here so that the load order is correct.
+%    \begin{macrocode}
+%<*class|package>
+\ifacs@super
+  \RequirePackage[sort&compress,numbers,super]{natbib}
+\else
+  \RequirePackage[sort&compress,numbers,round]{natbib}
+  \def\citenumfont{\textit}
+\fi
+\RequirePackage{natmove}
+%</class|package>
+%    \end{macrocode}  
+%\end{macro} 
 %    
 %\subsection{Late package-only code}
 %
@@ -2554,7 +2591,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*achre4>
 \ProvidesFile{achre4.cfg}
-  [2009/04/28 v3.2a achemso configuration: Acc. Chem. Res.]
+  [2009/04/28 v3.2b achemso configuration: Acc. Chem. Res.]
 \setkeys{acs}{
   biblabel = plain
 }
@@ -2563,7 +2600,7 @@ This work consists of the file  achemso.dtx
 %</achre4>
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
-  [2009/04/28 v3.2a achemso configuration: ACS Chem. Biol.]
+  [2009/04/28 v3.2b achemso configuration: ACS Chem. Biol.]
 \setkeys{acs}{
   biblabel = fullstop,
   biochem  = true,
@@ -2575,7 +2612,7 @@ This work consists of the file  achemso.dtx
 %</acbcct>
 %<*ancac3>
 \ProvidesFile{acbcct.cfg}
-  [2009/04/28 v3.2a achemso configuration: ACS Nano]
+  [2009/04/28 v3.2b achemso configuration: ACS Nano]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -2585,13 +2622,13 @@ This work consists of the file  achemso.dtx
 %</ancac3>
 %<*ancham>
 \ProvidesFile{ancham.cfg}
-  [2009/04/28 v3.2a achemso configuration:  Anal. Chem.]
+  [2009/04/28 v3.2b achemso configuration:  Anal. Chem.]
 \renewcommand*{\acs@type@list}{article,note,suppinfo}
 \SectionNumbersOff
 %</ancham>
 %<*bichaw>
 \ProvidesFile{biochem.cfg}
-  [2009/04/28 v3.2a achemso configuration: Biochemistry]
+  [2009/04/28 v3.2b achemso configuration: Biochemistry]
 \setkeys{acs}{
   biblabel = fullstop,
   biochem  = true,
@@ -2602,7 +2639,7 @@ This work consists of the file  achemso.dtx
 %</bichaw>
 %<*bcches>
 \ProvidesFile{bcches.cfg}
-  [2009/04/28 v3.2a achemso configuration: Bioconjugate Chem.]
+  [2009/04/28 v3.2b achemso configuration: Bioconjugate Chem.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -2612,7 +2649,7 @@ This work consists of the file  achemso.dtx
 %</bcches>
 %<*bomaf6>
 \ProvidesFile{bomaf6.cfg}
-  [2009/04/28 v3.2a achemso configuration: Biomacromolecules]
+  [2009/04/28 v3.2b achemso configuration: Biomacromolecules]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -2621,7 +2658,7 @@ This work consists of the file  achemso.dtx
 %</bomaf6>
 %<*bipret>
 \ProvidesFile{bipret.cfg}
-  [2009/04/28 v3.2a achemso configuration: Biotechnol. Prog.]
+  [2009/04/28 v3.2b achemso configuration: Biotechnol. Prog.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -2631,7 +2668,7 @@ This work consists of the file  achemso.dtx
 %</bipret>
 %<*crtoec>
 \ProvidesFile{crtoec.cfg}
-  [2009/04/28 v3.2a achemso configuration: Chem. Res. Toxicol.]
+  [2009/04/28 v3.2b achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -2644,7 +2681,7 @@ This work consists of the file  achemso.dtx
 %</crtoec>
 %<*chreay>
 \ProvidesFile{chreay.cfg}
-  [2009/04/28 v3.2a achemso configuration: Chem. Rev.]
+  [2009/04/28 v3.2b achemso configuration: Chem. Rev.]
 \renewcommand*{\acs@type@default}{review}
 \renewcommand*{\acs@type@list}{review}
 %    \end{macrocode}
@@ -2655,7 +2692,7 @@ This work consists of the file  achemso.dtx
 %<*cmatex>
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
-  [2009/04/28 v3.2a achemso configuration: Chem. Mater.]
+  [2009/04/28 v3.2b achemso configuration: Chem. Mater.]
 \SectionNumbersOff
 \def\@tempa{communication}
 \ifx\acs@manuscript\@tempa
@@ -2665,7 +2702,7 @@ This work consists of the file  achemso.dtx
 %</cmatex>
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
-  [2009/04/28 v3.2a achemso configuration: Cryst. Growth Des.]
+  [2009/04/28 v3.2b achemso configuration: Cryst. Growth Des.]
 \renewcommand*{\acs@type@list}{%
   article,communication,perspective,suppinfo%
 }
@@ -2677,13 +2714,13 @@ This work consists of the file  achemso.dtx
 %</cgdefu>
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
-  [2009/04/28 v3.2a achemso configuration: Energy Fuels]
+  [2009/04/28 v3.2b achemso configuration: Energy Fuels]
 \renewcommand*{\acs@type@list}{article,review,suppinfo}
 \SectionNumbersOff
 %</enfuem>
 %<*esthag>
 \ProvidesFile{esthag.cfg}
-  [2009/04/28 v3.2a achemso configuration: Environ. Sci. Technol.]
+  [2009/04/28 v3.2b achemso configuration: Environ. Sci. Technol.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -2693,7 +2730,7 @@ This work consists of the file  achemso.dtx
 %</esthag>
 %<*iecred>
 \ProvidesFile{iecred.cfg}
-  [2009/04/28 v3.2a achemso configuration: Ind. Eng. Chem. Res.]
+  [2009/04/28 v3.2b achemso configuration: Ind. Eng. Chem. Res.]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -2702,7 +2739,7 @@ This work consists of the file  achemso.dtx
 %</iecred>
 %<*inoraj>
 \ProvidesFile{inoraj.cfg}
-  [2009/04/28 v3.2a achemso configuration: Inorg. Chem.]
+  [2009/04/28 v3.2b achemso configuration: Inorg. Chem.]
 \SectionNumbersOff
 \def\@tempa{communication}
 \ifx\acs@manuscript\@tempa
@@ -2719,7 +2756,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jacsat>
 \ProvidesFile{jacsat.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Am. Chem. Soc.]
+  [2009/04/28 v3.2b achemso configuration: J. Am. Chem. Soc.]
 \SectionNumbersOff
 \def\@tempa{communication}
 \ifx\acs@manuscript\@tempa\else
@@ -2729,6 +2766,9 @@ This work consists of the file  achemso.dtx
 % Everything from here onward applies only to communications. Some
 % adjustments are now made using the existing tools.
 %    \begin{macrocode}
+\setkeys{
+  email = true
+}
 \AbstractOff
 \SectionsOff
 \AtBeginDocument{\singlespacing}
@@ -2973,7 +3013,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 % The bibliography has to be adjusted.
 %    \begin{macrocode}
-\AtBeginDocument{
+\AtBeginDocument{%
   \renewcommand*{\bibsection}{%
     \@startsection
       {section}
@@ -2993,7 +3033,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jafcau>
 \ProvidesFile{jafcau.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Agric. Food Chem.]
+  [2009/04/28 v3.2b achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3003,7 +3043,7 @@ This work consists of the file  achemso.dtx
 %</jafcau>
 %<*jceaax>
 \ProvidesFile{jceaax.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Chem. Eng. Data]
+  [2009/04/28 v3.2b achemso configuration: J. Chem. Eng. Data]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3012,7 +3052,7 @@ This work consists of the file  achemso.dtx
 %</jceaax>
 %<*jcisd8>
 \ProvidesFile{jcisd8.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Chem. Inf. Model.]
+  [2009/04/28 v3.2b achemso configuration: J. Chem. Inf. Model.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3021,18 +3061,18 @@ This work consists of the file  achemso.dtx
 %</jcisd8>
 %<*jctcce>
 \ProvidesFile{jctcce.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Chem. Theory Comput.]
+  [2009/04/28 v3.2b achemso configuration: J. Chem. Theory Comput.]
 \renewcommand*{\acs@type@list}{article,suppinfo}
 %</jctcce>
 %<*jcchff>
 \ProvidesFile{jcchff.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Comb. Chem.]
+  [2009/04/28 v3.2b achemso configuration: J. Comb. Chem.]
 \renewcommand*{\acs@type@list}{article,report,perspective,suppinfo}
 \SectionNumbersOff
 %</jcchff>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Med. Chem.]
+  [2009/04/28 v3.2b achemso configuration: J. Med. Chem.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3041,7 +3081,7 @@ This work consists of the file  achemso.dtx
 %</jmcmar>
 %<*jnprdf>
 \ProvidesFile{jnprdf.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Nat. Prod.]
+  [2009/04/28 v3.2b achemso configuration: J. Nat. Prod.]
 \def\@tempa{communication}
 \ifx\acs@manuscript\@tempa
   \AbstractOff
@@ -3050,7 +3090,7 @@ This work consists of the file  achemso.dtx
 %</jnprdf>
 %<*joceah>
 \ProvidesFile{joceah.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Org. Chem.]
+  [2009/04/28 v3.2b achemso configuration: J. Org. Chem.]
 \def\@tempa{communication}
 \ifx\acs@manuscript\@tempa
   \AbstractOff
@@ -3059,7 +3099,7 @@ This work consists of the file  achemso.dtx
 %</joceah>
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Phys. Chem. A]
+  [2009/04/28 v3.2b achemso configuration: J. Phys. Chem. A]
 \renewcommand*{\acs@type@list}{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3070,7 +3110,7 @@ This work consists of the file  achemso.dtx
 %</jpcafh>
 %<*jpcbfk>
 \ProvidesFile{jpcbfk.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Phys. Chem. B]
+  [2009/04/28 v3.2b achemso configuration: J. Phys. Chem. B]
 \renewcommand*{\acs@type@list}{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3078,7 +3118,7 @@ This work consists of the file  achemso.dtx
 %</jpcbfk>
 %<*jpccck>
 \ProvidesFile{jpccck.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Phys. Chem. C]
+  [2009/04/28 v3.2b achemso configuration: J. Phys. Chem. C]
 \renewcommand*{\acs@type@list}{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3086,7 +3126,7 @@ This work consists of the file  achemso.dtx
 %</jpccck>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
-  [2009/04/28 v3.2a achemso configuration: J. Proteome Res.]
+  [2009/04/28 v3.2b achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3095,18 +3135,18 @@ This work consists of the file  achemso.dtx
 %</jprobs>
 %<*langd5>
 \ProvidesFile{langd5.cfg}
-  [2009/04/28 v3.2a achemso configuration: Langmuir]
+  [2009/04/28 v3.2b achemso configuration: Langmuir]
 \renewcommand*{\acs@type@list}{article,letter,suppinfo}
 \SectionNumbersOff
 %</langd5>
 %<*mamobx>
 \ProvidesFile{mamobx.cfg}
-  [2009/04/28 v3.2a achemso configuration: Macromolecules]
+  [2009/04/28 v3.2b achemso configuration: Macromolecules]
 \SectionNumbersOff
 %</mamobx>
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
-  [2009/04/28 v3.2a achemso configuration: Mol. Pharm.]
+  [2009/04/28 v3.2b achemso configuration: Mol. Pharm.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3115,27 +3155,27 @@ This work consists of the file  achemso.dtx
 %</mpohbp>
 %<*nalefd>
 \ProvidesFile{nalefd.cfg}
-  [2009/04/28 v3.2a achemso configuration: Nano Lett.]
+  [2009/04/28 v3.2b achemso configuration: Nano Lett.]
 \renewcommand*{\acs@type@default}{letter}
 \renewcommand*{\acs@type@list}{letter}
 \SectionNumbersOff
 %</nalefd>
 %<*orlef7>
 \ProvidesFile{orlef7.cfg}
-  [2009/04/28 v3.2a achemso configuration: Org. Lett.]
+  [2009/04/28 v3.2b achemso configuration: Org. Lett.]
 \renewcommand*{\acs@type@default}{letter}
 \renewcommand*{\acs@type@list}{letter}
 \SectionNumbersOff
 %</orlef7>
 %<*oprdfk>
 \ProvidesFile{oprdfk.cfg}
-  [2009/04/28 v3.2a achemso configuration: Org. Proc. Res. Dev.]
+  [2009/04/28 v3.2b achemso configuration: Org. Proc. Res. Dev.]
 \renewcommand*{\acs@type@list}{article,highlight,review,suppinfo}
 \SectionNumbersOff
 %</oprdfk>
 %<*orgnd7>
 \ProvidesFile{orgnd7.cfg}
-  [2009/04/28 v3.2a achemso configuration: Organometallics]
+  [2009/04/28 v3.2b achemso configuration: Organometallics]
 \SectionNumbersOff
 %</orgnd7>
 %    \end{macrocode}
