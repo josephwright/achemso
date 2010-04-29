@@ -78,7 +78,7 @@
 % TDS-ready files:
 %    The compressed file achemso.tds.zip contains an unpacked version
 %    of all of the files included here, and pre-compiled
-%    documentation in PDF format.  Simply decompress achemso.tds.dtx
+%    documentation in PDF format.  Simply decompress achemso.tds.zip
 %    in your local TeX directory, run your hash program (texhash,
 %    initexmf --update-fndb, etc.) and everything will be ready to
 %    go.  The user documentation for the package is called
@@ -261,7 +261,7 @@ citations after punctuation.
 %</driver>
 % \fi
 %
-%\CheckSum{1290}
+%\CheckSum{1371}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -319,6 +319,8 @@ citations after punctuation.
 %\DoNotIndex{\textsuperscript,\textwidth,\the,\thepage,\truncate}
 %\DoNotIndex{\tw@,\unskip,\url,\UrlFont,\value,\vskip,\wd,\write}
 %\DoNotIndex{\xdef,\z@}
+%
+%\DoNotIndex{\@firstofone,\aftergroup}
 %
 %\DoNotIndex{\nmv@citetrue,\nmv@citex,\nmv@ifmtarg}
 %
@@ -425,18 +427,18 @@ citations after punctuation.
 %    Ind.\ Eng.\ Chem.\ Res.  & iecred \\
 %    Inorg.\ Chem.            & inoraj \\
 %    J.~Agric.\ Food Chem.    & jafcau \\
-%    J.~Chem.\ Eng.\ Data     & jacsat \\
-%    J.~Chem.\ Inf.\ Model.   & jceaax \\
-%    J.~Chem.\ Theory Comput. & jcisd8 \\
-%    J.~Comb.\ Chem.          & jctcce \\
-%    J.~Med.\ Chem.           & jcchff \\
-%    J.~Nat.\ Prod.           & jmcmar \\
-%    J.~Org.\ Chem.           & jnprdf \\
-%    J.~Phys.\ Chem.~A        & joceah \\
-%    J.~Phys.\ Chem.~B        & jpcafh \\
-%    J.~Phys.\ Chem.~C        & jpcbfk \\
-%    J.~Proteome Res.         & jpccck \\
-%    J.~Am.\ Chem.\ Soc.      & jprobs \\
+%    J.~Chem.\ Eng.\ Data     & jceaax \\
+%    J.~Chem.\ Inf.\ Model.   & jcisd8 \\
+%    J.~Chem.\ Theory Comput. & jctcce \\
+%    J.~Comb.\ Chem.          & jcchff \\
+%    J.~Med.\ Chem.           & jmcmar \\
+%    J.~Nat.\ Prod.           & jnprdf \\
+%    J.~Org.\ Chem.           & joceah \\
+%    J.~Phys.\ Chem.~A        & jpcafh \\
+%    J.~Phys.\ Chem.~B        & jpcbfk \\
+%    J.~Phys.\ Chem.~C        & jpccck \\
+%    J.~Proteome Res.         & jprobs \\
+%    J.~Am.\ Chem.\ Soc.      & jacsat \\
 %    Langmuir                 & langd5 \\
 %    Macromolecules           & mamobx \\
 %    Mol.\ Pharm.             & mpohbp \\
@@ -803,9 +805,8 @@ citations after punctuation.
     \expandafter\gdef
       \csname @altaffil@\@roman\acs@authorcnt\endcsname{#1}%
     \expandafter\xdef
-      \csname @author@altaffil@%
-        \@roman\acs@authorcnt\endcsname{%
-        \the\acs@altaffilcnt}
+      \csname @author@altaffil@\@roman\acs@authorcnt\endcsname
+        {\the\acs@altaffilcnt}
   \else
     \ClassWarning{achemso}
       {Affiliation with no author}%
@@ -828,6 +829,8 @@ citations after punctuation.
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\@maketitle}
+%\changes{v3.0a}{2008/08/21}{Skips footnotes for a single
+%  institution}
 % With the changes outlined above in place, a new \cs{@maketitle}
 % macro is needed.  This is partially a copy of the existing, but
 % rather heavily modified.
@@ -851,7 +854,13 @@ citations after punctuation.
       {\large\sffamily\frenchspacing \acs@authorlist}%
       \vskip 1em%
       {\itshape\acs@addresslist}%
-      \acs@affilfoot
+      \ifnum\acs@affilcnt>\tw@\relax
+        \acs@affilfoot
+      \else
+        \ifnum\acs@altaffilcnt>\@ne\relax
+          \acs@affilfoot
+        \fi
+      \fi
       \vskip 1em\relax
       {\sffamily E-mail: \acs@emaillist}%
     \end{center}
@@ -862,6 +871,8 @@ citations after punctuation.
 %\end{macro}
 %\begin{macro}{\acs@authorlist}
 %\begin{macro}{\acs@author@list}
+%\changes{v3.0a}{2008/08/21}{Skips footnotes for a single
+%  institution}
 % Two similar macros to enumerate the authors and their affiliations.
 % The total number of affiliations (main and alternative) tracked
 % using \cs{acs@tempcntc}.
@@ -883,31 +894,45 @@ citations after punctuation.
       ,%
     \fi
 %    \end{macrocode}
-% The superscript string is built up into \cs{acs@tempb}.
-%    \begin{macrocode}
-    \def\acs@tempb{}%
-    \ifnum\acs@affilcnt>\tw@\relax
-      \def\acs@tempb{,}%
-    \fi
-%    \end{macrocode}
 % The check for a star uses the e-mail address.  The literal star is
 % avoided as this gives an easier method to swap the symbol if
 % needed.\footnote{For example, \emph{J.\ Am.\ Chem.\ Soc.} uses a
 % sans serif font, whereas \emph{Organometallics} is serif.}
 %    \begin{macrocode}
-    \@ifundefined{@email@\@roman\acs@tempcnta}
+    \begingroup
+      \@ifundefined{@email@\@roman\acs@tempcnta}
+        {\aftergroup\@firstoftwo}
+        {\aftergroup\@secondoftwo}%
+    \endgroup
       {\def\acs@tempb{}}
       {\protected@edef\acs@tempb{%
-         \acs@fnsymbol{\@ne}\acs@tempb}}%
+         \acs@fnsymbol{\@ne}%
+         \ifnum\acs@affilcnt>\tw@\relax
+           ,%
+         \else
+           \ifnum\acs@altaffilcnt>\@ne\relax
+           ,%
+           \fi
+         \fi}}%
     \ifnum\acs@affilcnt>\tw@\relax
       \protected@edef\acs@tempb{\acs@tempb\@fnsymbol{%
-        \csname @author@affil@%
-          \@roman\acs@tempcnta\endcsname}}%
+        \csname @author@affil@\@roman\acs@tempcnta
+          \endcsname}}%
+    \else
+      \ifnum\acs@altaffilcnt>\@ne\relax
+        \protected@edef\acs@tempb{\acs@tempb\@fnsymbol{%
+          \csname @author@affil@\@roman\acs@tempcnta
+            \endcsname}}%
+      \fi
     \fi
-    \@ifundefined{@author@altaffil@\@roman\acs@tempcnta}{}
+    \begingroup
+      \@ifundefined{@author@altaffil@\@roman\acs@tempcnta}
+        {\aftergroup\@gobble}
+        {\aftergroup\@firstofone}%
+    \endgroup
       {\global\advance\acs@tempcntc\@ne\relax
        \advance\acs@tempcntc\acs@affilcnt
-       \ifnum\acs@affilcnt>\tw@\relax
+       \ifnum\acs@affilcnt>\@ne\relax
          \protected@edef\acs@tempb{\acs@tempb,}%
        \fi
        \protected@edef\acs@tempb{%
@@ -935,7 +960,7 @@ citations after punctuation.
 %\end{macro}
 %\begin{macro}{\acs@addresslist}
 %\begin{macro}{\acs@address@list}
-% A similar recursive approach is used for the addresses.  note that
+% A similar recursive approach is used for the addresses.  Note that
 % the loop starts at one (due to the footnote symbol issue).
 %    \begin{macrocode}
 \newcommand*{\acs@addresslist}{%
@@ -1006,7 +1031,10 @@ citations after punctuation.
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@affilfoot}
+%\changes{v3.0a}{2008/08/21}{Fixed bugs in printing affiliations
+%  correctly}
 %\begin{macro}{\acs@affil@foot}
+%\begin{macro}{\acs@altaffil@foot}
 % The various affiliation markers need to be explained.
 % \cs{acs@tempcntb} is used to count the total number (affiliations
 % plus alternative affiliations), so that the signs are correct.
@@ -1014,23 +1042,36 @@ citations after punctuation.
 \newcommand*{\acs@affilfoot}{%
   \acs@tempcnta\@ne\relax
   \acs@tempcntb\@ne\relax
-  \acs@affil@foot{}%
-  \acs@tempcnta\@ne
-  \acs@affil@foot{alt}}
-\newcommand*{\acs@affil@foot}[1]{%
-  \expandafter\acs@tempcntc\csname acs@#1affilcnt%
-    \endcsname\relax
+  \acs@affil@foot
+  \acs@tempcnta\z@\relax
+  \acs@altaffil@foot}
+\newcommand*{\acs@affil@foot}{%
   \advance\acs@tempcnta\@ne\relax
-  \ifnum\acs@tempcnta>\acs@tempcntc\relax\else
+  \ifnum\acs@tempcnta>\acs@affilcnt\relax\else
     \advance\acs@tempcntb\@ne\relax
     \footnotetext[\acs@tempcntb]
-      {\csname @#1affil@\@roman\acs@tempcnta\endcsname}%
-    \acs@affil@foot{#1}%
+      {\csname @affil@\@roman\acs@tempcnta\endcsname}%
+    \acs@affil@foot
+  \fi}
+\newcommand*{\acs@altaffil@foot}{%
+  \advance\acs@tempcnta\@ne\relax
+  \ifnum\acs@tempcnta>\acs@authorcnt\relax\else
+    \begingroup
+      \@ifundefined{@altaffil@\@roman\acs@tempcnta}
+        {\aftergroup\@gobble}
+        {\aftergroup\@firstofone}%
+    \endgroup
+      {\advance\acs@tempcntb\@ne\relax
+       \footnotetext[\acs@tempcntb]
+         {\csname @altaffil@\@roman\acs@tempcnta\endcsname}}%
+    \acs@altaffil@foot
   \fi}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
+%\end{macro}
 %\begin{macro}{\acs@emaillist}
+%\changes{v3.0a}{2008/08/21}{Fixed error if only one address is given}
 %\begin{macro}{\acs@email@list}
 % The final piece of meta-data to print is the e-mail address list.
 % The total number of e-mail addresses given it counted in
@@ -1043,7 +1084,8 @@ citations after punctuation.
     \acs@tempcnta\z@\relax
     \acs@tempcntb\z@\relax
     \acs@email@list
-  \endgroup
+    \expandafter\endgroup\expandafter\acs@tempcntb\number
+      \acs@tempcntb\relax
   \ifnum\acs@tempcntb=\z@\relax
     \ClassError{achemso}{No e-mail given}
       {At lest one author must have a contact e-mail}%
@@ -1051,7 +1093,11 @@ citations after punctuation.
 \newcommand*{\acs@email@list}{%
   \advance\acs@tempcnta\@ne\relax
   \ifnum\acs@tempcnta>\acs@authorcnt\relax\else
-    \@ifundefined{@email@\@roman\acs@tempcnta}{}
+    \begingroup
+      \@ifundefined{@email@\@roman\acs@tempcnta}
+        {\aftergroup\@gobble}
+        {\aftergroup\@firstofone}%
+    \endgroup
       {\advance\acs@tempcntb\@ne\relax
        \ifnum\acs@tempcntb>\@ne\relax
 %    \end{macrocode}
@@ -1311,8 +1357,8 @@ citations after punctuation.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \def\acs@id$#1: #2.#3 #4 #5-#6-#7 #8 #9${%
-  \def\acs@ver{#5/#6/#7\space v3.0\space}}
-\acs@id$Id: achemso.dtx 26 2008-07-20 13:17:58Z joseph $
+  \def\acs@ver{#5/#6/#7\space v3.0a\space}}
+\acs@id$Id: achemso.dtx 32 2008-08-22 08:09:56Z joseph $
 \ProvidesPackage{achemso}
   [\acs@ver Support for ACS journals]
 \@ifclassloaded{achemso}{}
@@ -2048,6 +2094,8 @@ citations after punctuation.
 %<*jctcce>
 %\fi
 %\subsection{\emph{J.~Chem.\ Theory Comput.}}
+%\changes{v3.0a}{2008/08/21}{Added section numbers for
+%  \emph{J.~Chem.\ Theory Comput.}}
 %    \begin{macrocode}
 \ProvidesFile{jctcce.cfg}
   [\acs@ver achemso configuration: J. Chem. Theory Comput.]
@@ -2059,6 +2107,7 @@ citations after punctuation.
   super=true,
   usetitle=false}
 \acs@validtype{article,suppinfo}
+\AtBeginDocument{\acs@restsecnums}
 %    \end{macrocode}
 %\iffalse
 %</jctcce>
@@ -4224,7 +4273,7 @@ EXECUTE {end.bib}
     {\aftergroup\@gobble}
     {\aftergroup\@firstofone}
 \endgroup
-{\usepackage{etoolbox}}
+  {\usepackage{etoolbox}}
 \floatstyle{plaintop}
 \restylefloat{table}
 \labelformat{figure}{\figurename~#1}
@@ -4288,24 +4337,13 @@ EXECUTE {end.bib}
         \hbox to\linewidth{\box\lst@samplebox\hss}%
       \end{minipage}%
   \end{list}}
-\let\LaTeXcodenoexample\LaTeXcodeexample
-\newcommand*{\LaTeXcodenoexampleend}{%
-  \egroup
-  \setlength\LaTeXwidth{\wd\lst@samplebox}%
-  \begin{list}{}{%
-    \setlength\itemindent{0pt}
-    \setlength\leftmargin{0pt}
-    \setlength\rightmargin{0pt}}%
-    \item
-      \begin{minipage}[c]{\LaTeXwidth}
-        \hbox to\linewidth{\box\lst@samplebox\hss}%
-      \end{minipage}%
-  \end{list}}
 \newcommand*{\LaTeXcodefloat}{%
   \setkeys{lst}{tabsize=4,gobble=3,breakindent=0pt,
     basicstyle=\small\ttfamily,basewidth=0.51em,
     keywordstyle=\color{blue}}%
   \lst@BeginAlsoWriteFile{\LaTeXexamplefile}}
+\let\LaTeXcodenoexample\LaTeXcodefloat
+\let\LaTeXcodenoexampleend\@empty
 \newcommand*{\LaTeXcodefloatend}{%
   \MakePercentComment\catcode`\^^M=10\relax
   \small

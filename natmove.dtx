@@ -21,7 +21,7 @@
 % and version 1.3c or later is part of all distributions of
 % LaTeX version 2005/12/01 or later.
 %
-% This work has the LPPL maintenance status `maintained.'
+% This work has the LPPL maintenance status `maintained'.
 %
 % The current maintainer of this work is Joseph Wright.
 %
@@ -33,13 +33,13 @@
 %                                       jawltxdoc.sty
 %
 % TDS-ready files:
-%    The compressed file natmove.tds.zip contains an unpacked version
+%    The compressed file achemso.tds.zip contains an unpacked version
 %    of all of the files included here, and pre-compiled
-%    documentation in PDF format.  Simply decompress natmove.tds.dtx
+%    documentation in PDF format.  Simply decompress achemso.tds.zip
 %    in your local TeX directory, run your hash program (texhash,
 %    initexmf --update-fndb, etc.) and everything will be ready to
 %    go.  The user documentation for the package is called
-%    natmove-manual.pdf; the file achemso.pdf includes the user
+%    natmove-manual.pdf; the file natmove.pdf includes the user
 %    manual and the fully-indexed source code.
 %
 % Unpacking:
@@ -235,7 +235,7 @@
 \def\nmv@id$#1: #2.#3 #4 #5-#6-#7 #8 #9${%
   #5/#6/#7\space v1.0\space}
 \ProvidesPackage{natmove}
-  [\nmv@id$Id: natmove.dtx 22 2008-06-22 09:02:23Z joseph $
+  [\nmv@id$Id: natmove.dtx 29 2008-08-22 07:47:26Z joseph $
    Automatic citation moving with natbib]
 %    \end{macrocode}
 %\end{macro}
@@ -431,8 +431,14 @@
 \usepackage[scaled=0.95]{helvet}
 \usepackage[version=3]{mhchem}
 \usepackage[osf]{mathpazo}
-\usepackage{booktabs,array,url,courier,xspace,etoolbox,varioref}
+\usepackage{booktabs,array,url,courier,xspace,varioref}
 \usepackage{upgreek,ifpdf,float,caption,longtable,babel}
+\begingroup
+  \@ifundefined{eTeXversion}
+    {\aftergroup\@gobble}
+    {\aftergroup\@firstofone}
+\endgroup
+  {\usepackage{etoolbox}}
 \floatstyle{plaintop}
 \restylefloat{table}
 \labelformat{figure}{\figurename~#1}
@@ -496,24 +502,13 @@
         \hbox to\linewidth{\box\lst@samplebox\hss}%
       \end{minipage}%
   \end{list}}
-\let\LaTeXcodenoexample\LaTeXcodeexample
-\newcommand*{\LaTeXcodenoexampleend}{%
-  \egroup
-  \setlength\LaTeXwidth{\wd\lst@samplebox}%
-  \begin{list}{}{%
-    \setlength\itemindent{0pt}
-    \setlength\leftmargin{0pt}
-    \setlength\rightmargin{0pt}}%
-    \item
-      \begin{minipage}[c]{\LaTeXwidth}
-        \hbox to\linewidth{\box\lst@samplebox\hss}%
-      \end{minipage}%
-  \end{list}}
 \newcommand*{\LaTeXcodefloat}{%
   \setkeys{lst}{tabsize=4,gobble=3,breakindent=0pt,
     basicstyle=\small\ttfamily,basewidth=0.51em,
     keywordstyle=\color{blue}}%
   \lst@BeginAlsoWriteFile{\LaTeXexamplefile}}
+\let\LaTeXcodenoexample\LaTeXcodefloat
+\let\LaTeXcodenoexampleend\@empty
 \newcommand*{\LaTeXcodefloatend}{%
   \MakePercentComment\catcode`\^^M=10\relax
   \small
@@ -588,8 +583,19 @@
 \DeclareRobustCommand*{\XeTeX}
   {X\kern-.125em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\TeX}
 \providecommand*{\CTAN}{\textsc{ctan}}
-\patchcmd{\@addmarginpar}
-  {\@latex@warning@no@line {Marginpar on page \thepage\space moved}}
-  {\relax}{}{}
+\@ifpackageloaded{etoolbox}
+  {\patchcmd{\@addmarginpar}
+    {\@latex@warning@no@line {Marginpar on page \thepage\space moved}}
+    {\relax}{}{}}
+  {}
+\newcounter{argument}
+\g@addto@macro\endmacro{\setcounter{argument}{0}}
+\newcommand*\darg[1]{%
+  \stepcounter{argument}%
+  {\ttfamily\char`\#\theargument~:~}#1\par\noindent\ignorespaces}
+\newcommand*\doarg[1]{%
+  \stepcounter{argument}%
+  {\ttfamily\makebox[0pt][r]{[}%
+   \char`\#\theargument]:~}#1\par\noindent\ignorespaces}
 %</jawltxdoc>
 %\fi
