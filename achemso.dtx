@@ -1,157 +1,88 @@
 % \iffalse meta-comment
-%
-% Portions copyright (C) 1989-2003 by
-%    Donald Arseneau
-% Copyright (C) 1996-98 by
-%    Mats Dahlgren
-% Copyright (C) 2007-08 by
-%    Joseph Wright <joseph.wright@morningstar2.co.uk>
-%
-% Part of this bundle is derived from cite.sty, to which the following
-% license applies:
-%--------------------------------------------------------------------
-%     Copyright (C) 1989-2003 by Donald Arseneau
-%     These macros may be freely transmitted, reproduced, or modified
-%     provided that this notice is left intact.
-%--------------------------------------------------------------------
-%
-% This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either
-% version 1.3c of this license or (at your option) any later
-% version. The latest version of this license is in
-%    http://www.latex-project.org/lppl.txt
-% and version 1.3c or later is part of all distributions of
-% LaTeX version 2005/12/01 or later.
-%
-% This work has the LPPL maintenance status `maintained'.
-%
-% The current maintainer of this work is Joseph Wright.
-%
-% This work consists of the source file achemso.dtx
-%                 and the derived files achemso.ins,
-%                                       achemso.cls,
-%                                       achemso.sty,
-%                                       achemso.pdf,
-%                                       achemso-manual.pdf,
-%                                       achemso-demo.ltx,
-%                                       achemso.bst,
-%                                       biochem.bst,
-%                                       achre4.cfg,
-%                                       acbcct.cfg,
-%                                       ancac3.cfg,
-%                                       ancham.cfg,
-%                                       bichaw.cfg,
-%                                       bcches.cfg,
-%                                       bomaf6.cfg,
-%                                       bipret.cfg,
-%                                       crtoec.cfg,
-%                                       chreay.cfg,
-%                                       cmatex.cfg,
-%                                       cgdefu.cfg,
-%                                       enfuem.cfg,
-%                                       esthag.cfg,
-%                                       iecred.cfg,
-%                                       inoraj.cfg,
-%                                       jafcau.cfg,
-%                                       jacsat.cfg,
-%                                       jceaax.cfg,
-%                                       jcisd8.cfg,
-%                                       jctcce.cfg,
-%                                       jcchff.cfg,
-%                                       jmcmar.cfg,
-%                                       jnprdf.cfg,
-%                                       joceah.cfg,
-%                                       jpcafh.cfg,
-%                                       jpcbfk.cfg,
-%                                       jpccck.cfg,
-%                                       jprobs.cfg,
-%                                       langd5.cfg,
-%                                       mamobx.cfg,
-%                                       mpohbp.cfg,
-%                                       nalefd.cfg,
-%                                       orlef7.cfg,
-%                                       oprdfk.cfg,
-%                                       orgnd7.cfg,
-%                                       jawltxdoc.sty and
-%                                       README
-%
-% TDS-ready files:
-%    The compressed file achemso.tds.zip contains an unpacked version
-%    of all of the files included here, and pre-compiled
-%    documentation in PDF format.  Simply decompress achemso.tds.zip
-%    in your local TeX directory, run your hash program (texhash,
-%    initexmf --update-fndb, etc.) and everything will be ready to
-%    go.  The user documentation for the package is called
-%    achemso-manual.pdf; the file achemso.pdf includes the user
-%    manual and the fully-indexed source code.
-%
-% Unpacking:
-%    (a) If achemso.ins is present:
-%           tex achemso.ins
-%    (b) Without achemso.ins:
-%           tex achemso.dtx
-%    (c) If you use LaTeX to generate files:
-%           latex \let\install=y\input{achemso.dtx}
-%
-% Documentation:
-%    (a) Without write18 enabled:
-%          pdflatex achemso.dtx
-%          bibtex8 --wolfgang achemso
-%          makeindex -s gind.ist achemso.idx
-%          makeindex -s gglo.ist -o achemso.gls achemso.glo
-%          pdflatex achemso.dtx
-%          pdflatex achemso.dtx
-%    (b) With write18 enabled:
-%          pdflatex achemso.dtx
-%          pdflatex achemso.dtx
-%          pdflatex achemso.dtx
-%
-% Installation:
-%     Copy achemso.cls, the .sty files, the .bst files and the .cfg
-%     files to a location searched by TeX, and if required by your
-%     TeX installation, run the appropriate command to build a hash
-%     of files (texhash, initexmf --update-fndb, etc.)
-%
-% Note:
-%     The jawltxdoc.sty file is not needed for installation,
-%     only for building the documentation; it may be deleted
-%     after producing the documentation (if necessary).
-%
-%<*ignore>
-% This is all taken verbatim from Heiko Oberdiek's packages
-\begingroup
-  \def\x{LaTeX2e}%
-\expandafter\endgroup
-\ifcase 0\ifx\install y1\fi\expandafter
-         \ifx\csname processbatchFile\endcsname\relax\else1\fi
-         \ifx\fmtname\x\else 1\fi\relax
-\else\csname fi\endcsname
-%</ignore>
+% !TEX program  = pdflatex
+% !TEX encoding = ISO-8859-1
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+----------------------------------------------------------------
+achemso --- Support for submissions to American Chemical Society
+  journals
+E-mail: joseph.wright@morningstar2.co.uk
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+
+The achemso bundle provides a LaTeX class file and BibTeX style
+file in accordance with the requirements of the American
+Chemical Society (ACS).  The files can be used for any documents, 
+but have been carefully designed and tested to be suitable for
+submission to ACS journals.
+
+The bundle also includes the natmove package.  This package is
+loaded by achemso, and provides automatic moving of superscript
+citations after punctuation.
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
 %<*install>
 \input docstrip.tex
 \keepsilent
 \askforoverwritefalse
 \preamble
- ----------------------------------------------------------------
- achemso --- Support for submissions to American  Chemical
-   Society journals
- Maintained by Joseph Wright
- E-mail: joseph.wright@morningstar2.co.uk
- Released under the LaTeX Project Public License v1.3c or later
- See http://www.latex-project.org/lppl.txt
- ----------------------------------------------------------------
+----------------------------------------------------------------
+achemso --- Support for submissions to American Chemical Society
+  journals
+E-mail: joseph.wright@morningstar2.co.uk
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
 
 \endpreamble
-\Msg{Generating achemso files:}
-\generate{\file{jawltxdoc.sty}{\from{\jobname.dtx}{jawltxdoc}}
-}
+\postamble
+
+Originally developed by Mats Dahlgren
+Copyright (C) 1996-1998 by Mats Dahlgren 
+Copyright (C) 2008-2009 by
+  Joseph Wright <joseph.wright@morningstar2.co.uk>
+  
+Part of this bundle is derived from cite.sty, to which the
+following license applies:
+  Copyright (C) 1989-2003 by Donald Arseneau
+  These macros may be freely transmitted, reproduced, or
+  modified provided that this notice is left intact.
+
+It may be distributed and/or modified under the conditions of
+the LaTeX Project Public License (LPPL), either version 1.3c of
+this license or (at your option) any later version.  The latest
+version of this license is in the file:
+
+   http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+  Joseph Wright.
+
+This work consists of the file  achemso.dtx
+          and the derived files achemso.pdf,
+                                achemso.bib,
+                                achemso.cls,
+                                achemso.ins,
+                                achemso.sty,
+                                achemso-demo.tex,
+                                natmove.sty and
+                                a number of configuration files.
+                                
+\endpostamble
 \usedir{tex/latex/achemso}
-\generate{\file{\jobname.sty}{\from{\jobname.dtx}{package}}
-          \file{\jobname.cls}{\from{\jobname.dtx}{class}}
-          \file{natmove.sty}{\from{natmove.dtx}{package}}
-}
-\usedir{source/latex/achemso}
-\generate{\file{\jobname.ins}{\from{\jobname.dtx}{install}}
+\generate{
+  \file{\jobname.cls}{\from{\jobname.dtx}{class}}
+  \file{\jobname.sty}{\from{\jobname.dtx}{package}}
+  \file{natmove.sty}{\from{\jobname.dtx}{natmove}}
 }
 \usedir{tex/latex/achemso/config}
 \generate{\file{achre4.cfg}{\from{\jobname.dtx}{achre4}}
@@ -172,8 +103,8 @@
           \file{iecred.cfg}{\from{\jobname.dtx}{iecred}}
           \file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
 }
-\generate{\file{jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
-          \file{jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
+\generate{\file{jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
+          \file{jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
           \file{jceaax.cfg}{\from{\jobname.dtx}{jceaax}}
           \file{jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
           \file{jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
@@ -195,165 +126,207 @@
           \file{oprdfk.cfg}{\from{\jobname.dtx}{oprdfk}}
           \file{orgnd7.cfg}{\from{\jobname.dtx}{orgnd7}}
 }
-\nopreamble\nopostamble
 \usedir{bibtex/bst/achemso}
-\generate{\file{achemso.bst}{\from{\jobname.dtx}{bst}}
-          \file{biochem.bst}{\from{\jobname.dtx}{bst,bio}}
+\generate{
+  \file{achemso.bst}{\from{\jobname.dtx}{bst}}
+  \file{biochem.bst}{\from{\jobname.dtx}{bst,bio}}
 }
-\nopreamble\nopostamble
-\usedir{doc/latex/achemso}
-\generate{\file{achemso.bib}{\from{\jobname.dtx}{refs}}
-}
-\nopreamble\nopostamble
-\usedir{doc/latex/achemso}
-\generate{\file{README.txt}{\from{\jobname.dtx}{readme}}
-          \file{achemso-demo.tex}{\from{\jobname.dtx}{demo}}
-}
-\endbatchfile
 %</install>
-%<*readme>
-----------------------------------------------------------------
-achemso --- Support for submissions to American Chemical
- Society journals
-Maintained by Joseph Wright
-E-mail: joseph.wright@morningstar2.co.uk
-Originally developed by Mats Dahlgren
- (c) 1996-98 by Mats Dahlgren
- (c) 2007-2009 Joseph Wright
-Released under the LaTeX Project Public license v1.3c or later
-See http://www.latex-project.org/lppl.txt
-
-Part of this bundle is derived from cite.sty, to which the
-following license applies:
-  Copyright (C) 1989-2003 by Donald Arseneau
-  These macros may be freely transmitted, reproduced, or
-  modified provided that this notice is left intact.
-----------------------------------------------------------------
-
-The achemso bundle provides a LaTeX class file and BibTeX style
-file in accordance with the requirements of the American
-Chemical Society.  The files can be used for any documents, but
-have been carefully designed and tested to be suitable for
-submission to ACS journals.
-
-The bundle also includes the natmove package.  This package is
-loaded by achemso, and provides automatic moving of superscript
-citations after punctuation.
-%</readme>
-%<*ignore>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/achemso}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/achemso}
+\generate{
+  \file{README.txt}{\from{\jobname.dtx}{readme}}
+  \file{achemso-demo.tex}{\from{\jobname.dtx}{demo}}
+  \file{achemso.bib}{\from{\jobname.dtx}{bib}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
 \fi
-% Will Robertson's trick
-\immediate\write18{bibtex8 --wolfgang \jobname}
-\immediate\write18{makeindex -s gind.ist -o \jobname.ind  \jobname.idx}
-\immediate\write18{makeindex -s gglo.ist -o \jobname.gls  \jobname.glo}
-%</ignore>
+\immediate\write18{bibtex8 --wolfgang achemso}
+\immediate\write18{makeindex -s gglo.ist -o achemso.gls achemso.glo}
+\immediate\write18{makeindex -s gind.ist -o achemso.ind achemso.idx}
+%</internal>
+%<*package|class|natmove>
+\NeedsTeXFormat{LaTeX2e}
+%</package|class|natmove>
 %<*driver>
-\PassOptionsToClass{a4paper}{article}
-\documentclass[german,english,UKenglish]{ltxdoc}
+\documentclass[a4paper]{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage{achemso,array,booktabs,lmodern}
+\usepackage[osf]{mathpazo}
+\usepackage[scaled=0.95]{helvet}
+\usepackage[final]{listings,microtype}
+\usepackage[numbered]{hypdoc}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-%\OnlyDescription
-\usepackage{jawltxdoc}
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
 % \fi
 %
-%\CheckSum{1709}
-%
-% \CharacterTable
-%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-%   Digits        \0\1\2\3\4\5\6\7\8\9
-%   Exclamation   \!     Double quote  \"     Hash (number) \#
-%   Dollar        \$     Percent       \%     Ampersand     \&
-%   Acute accent  \'     Left paren    \(     Right paren   \)
-%   Asterisk      \*     Plus          \+     Comma         \,
-%   Minus         \-     Point         \.     Solidus       \/
-%   Colon         \:     Semicolon     \;     Less than     \<
-%   Equals        \=     Greater than  \>     Question mark \?
-%   Commercial at \@     Left bracket  \[     Backslash     \\
-%   Right bracket \]     Circumflex    \^     Underscore    \_
-%   Grave accent  \`     Left brace    \{     Vertical bar  \|
-%   Right brace   \}     Tilde         \~}
+%\CheckSum{1964}
 %
 %\GetFileInfo{\jobname.sty}
 %
-%\DoNotIndex{\@Esphack,\@afterindentfalse,\@afterindenttrue}
-%\DoNotIndex{\@author@i,\@auxout,\@biblabel,\@bsphack,\@citex}
-%\DoNotIndex{\@currenvir,\@empty,\@evenfoot,\@evenhead,\@firstoftwo}
-%\DoNotIndex{\@floatboxreset,\@fnsymbol,\@for,\@gobble}
-%\DoNotIndex{\@ifclassloaded,\@ifmtarg,\@ifpackageloaded,\@ifstar}
-%\DoNotIndex{\@ifundefined,\@ignorefalse,\@m,\@maketitle,\@ne}
-%\DoNotIndex{\@oddfoot,\@oddhead,\@onlypreamble,\@roman}
-%\DoNotIndex{\@secondoftwo,\@secpenalty,\@shorttitle,\@ssect}
-%\DoNotIndex{\@startsection,\@tempskipa,\@title,\active,\addpenalty}
-%\DoNotIndex{\addvspace,\advance,\AtBeginDocument,\begin}
-%\DoNotIndex{\begingroup,\bfseries,\bot,\catcode,\centering}
-%\DoNotIndex{\citation,\cite,\citenum,\citenumfont,\ClassError}
-%\DoNotIndex{\ClassInfo,\ClassWarning,\csname,\dagger,\ddagger}
-%\DoNotIndex{\def,\define@boolkeys,\define@choicekey,\define@cmdkeys}
-%\DoNotIndex{\do,\document,\doublespacing,\edef,\else,\end}
-%\DoNotIndex{\endcsname,\endgroup,\endinput,\ensuremath,\everypar}
-%\DoNotIndex{\expandafter,\fi,\figurename,\floatname}
-%\DoNotIndex{\floatplacement,\floatstyle,\footnotetext}
-%\DoNotIndex{\frenchspacing,\futurelet,\g@addto@macro,\gdef}
-%\DoNotIndex{\global,\hbox,\hfil,\if@filesw,\if@ignore,\if@nobreak}
-%\DoNotIndex{\if@noskipsec,\ifcase,\ifcsname,\ifdim,\iffalse,\ifnum}
-%\DoNotIndex{\ifx,\ignorespaces,\immediate,\InputIfFileExists}
-%\DoNotIndex{\itshape,\jobname,\kv@set@family@handler,\kvsetkeys}
-%\DoNotIndex{\labelformat,\LARGE,\large,\lastskip,\leavevmode}
-%\DoNotIndex{\let,\LoadClass,\lowercase,\m@ne,\maketitle}
-%\DoNotIndex{\mathchardef,\mathsection,\MessageBreak,\NeedsTeXFormat}
-%\DoNotIndex{\newcommand,\newcount,\newfloat,\newif,\newpage}
-%\DoNotIndex{\newwrite,\nocite,\null,\openout,\or,\PackageError}
-%\DoNotIndex{\PackageInfo,\PackageWarning,\pagestyle,\par}
-%\DoNotIndex{\ProcessOptionsX,\protected@edef,\ProvidesClass}
-%\DoNotIndex{\ProvidesFile,\ProvidesPackage,\relax}
-%\DoNotIndex{\renewcommand,\RequirePackage,\reset@font}
-%\DoNotIndex{\restylefloat,\schemename,\section,\setbox,\setkeys}
-%\DoNotIndex{\sf,\sfcode,\sffamily,\skip@,\space,\spacefactor}
-%\DoNotIndex{\string,\subsection,\subsubsection,\tablename,\textit}
-%\DoNotIndex{\textsuperscript,\textwidth,\the,\thepage,\truncate}
-%\DoNotIndex{\tw@,\unskip,\url,\UrlFont,\value,\vskip,\wd,\write}
-%\DoNotIndex{\xdef,\z@}
+%\makeatletter
 %
-%\DoNotIndex{\@firstofone,\aftergroup}
+%^^A \DescribeOption is in l3doc but not ltxdoc
+%\newcommand*{\DescribeOption}{^^A
+%  \leavevmode
+%  \@bsphack
+%  \begingroup
+%    \MakePrivateLetters
+%    \Describe@Option
+%}
+%\newcommand*{\Describe@Option}[1]{^^A
+%    \endgroup
+%  \marginpar{^^A
+%    \raggedleft
+%    \PrintDescribeEnv{#1}^^A
+%  }%
+%  \SpecialOptionIndex{#1}^^A
+%  \@esphack
+%  \ignorespaces
+%}
+%\newcommand*{\SpecialOptionIndex}[1]{^^A
+%  \@bsphack
+%  \index{^^A
+%    #1\actualchar{\protect\ttfamily#1} (option)\encapchar usage^^A
+%  }^^A
+%  \index{^^A
+%    options:\levelchar#1\actualchar{\protect\ttfamily#1}
+%    \encapchar usage^^A
+%  }^^A
+%  \@esphack
+%}
 %
-%\DoNotIndex{\nmv@citetrue,\nmv@citex,\nmv@ifmtarg}
+%^^A For creating examples with nice highlighting of code, and so
+%^^A on; based on the system used in the listings source (lstsample).
+%\lst@RequireAspects{writefile}
+%\newsavebox{\LaTeXdemo@box}
+%\lstnewenvironment{LaTeXdemo}[1][code and example]{^^A
+%  \global\let\lst@intname\@empty
+%  \expandafter\let\expandafter\LaTeXdemo@end
+%    \csname LaTeXdemo@#1@end\endcsname
+%  \@nameuse{LaTeXdemo@#1}^^A
+%}{^^A
+%  \LaTeXdemo@end
+%}
+%\newcommand*\LaTeXdemo@new[3]{^^A
+%  \expandafter\newcommand\expandafter*\expandafter
+%    {\csname LaTeXdemo@#1\endcsname}{#2}^^A
+%  \expandafter\newcommand\expandafter*\expandafter
+%    {\csname LaTeXdemo@#1@end\endcsname}{#3}^^A
+%}
+%\newcommand*\LaTeXdemo@common{^^A
+%  \setkeys{lst}{
+%    basicstyle   = \small\ttfamily,
+%    basewidth    = 0.51em,
+%    gobble       = 3,
+%    keywordstyle = \color{blue},
+%    language     = [LaTeX]{TeX},
+%    moretexcs    = {
+%      affiliation,
+%      alsoaffiliation,
+%      altaffiliation,
+%      natmovechars
+%    }
+%  }^^A 
+%}
+%\newcommand*\LaTeXdemo@input{^^A
+%  \MakePercentComment
+%  \catcode`\^^M=10\relax
+%  \small
+%  \begingroup
+%    \setkeys{lst}{
+%      SelectCharTable=\lst@ReplaceInput{\^\^I}{\lst@ProcessTabulator}
+%    }^^A
+%    \leavevmode 
+%      \input{\jobname.tmp}^^A
+%  \endgroup
+%  \MakePercentIgnore
+%}
+%\LaTeXdemo@new{code and example}{^^A
+%  \setbox\LaTeXdemo@box=\hbox\bgroup
+%    \lst@BeginAlsoWriteFile{\jobname.tmp}^^A
+%    \LaTeXdemo@common
+%}{^^A
+%    \lst@EndWriteFile
+%  \egroup
+%  \begin{center}
+%    \ifdim\wd\LaTeXdemo@box>0.48\linewidth\relax
+%      \hbox to\linewidth{\box\LaTeXdemo@box\hss}^^A
+%        \begin{minipage}{\linewidth}
+%          \LaTeXdemo@input
+%        \end{minipage}
+%    \else
+%      \begin{minipage}{0.48\linewidth}
+%        \LaTeXdemo@input
+%      \end{minipage}
+%      \hfill
+%      \begin{minipage}{0.48\linewidth}
+%        \hbox to\linewidth{\box\LaTeXdemo@box\hss}^^A
+%      \end{minipage}
+%    \fi
+%  \end{center}
+%}
+%\LaTeXdemo@new{code only}{^^A
+%  \LaTeXdemo@common
+%}{^^A
+%}
 %
-%\changes{v1.0}{1998/06/01}{Initial release of package by Mats
-%   Dahlgren}
-%\changes{v2.0}{2007/01/17}{Re-write of package by Joseph Wright}
-%\changes{v3.0}{2008/07/20}{Second re-write, converting to a class
-%  and giving much tighter integration with \textsc{acs} submission
-%  system}
+%\providecommand*{\eTeX}{\ensuremath{\varepsilon}-\TeX}
+%\providecommand*{\file}{\texttt}
+%\providecommand*{\opt}{\texttt}
+%\providecommand*{\pkg}{\textsf}
 %
-%\setkeys{lst}{language=[LaTeX]{TeX},moretexcs={bibnote,email,%
-%  affiliation,altaffiliation,alsoaffiliation}}
+%\newcommand*{\ACS}{\textsc{acs}}
 %
-%\title{\currpkg\ ---  Support for submissions to American
-%  Chemical Society journals^^A
-%  \thanks{This file describes version \fileversion, last revised
-%    \filedate.}}
-%\author{Joseph Wright^^A
-%  \thanks{E-mail: joseph.wright@morningstar2.co.uk}}
+%\makeatother
+%
+%\title{^^A
+%  \textsf{achemso} --- Support for submissions to American Chemical
+%    Society journals\thanks{^^A
+%    This file describes version \fileversion, last revised 
+%    \filedate.^^A
+%  }^^A
+%}
+%\author{^^A
+%  Joseph Wright\thanks{E-mail: joseph.wright@morningstar2.co.uk}^^A
+%}
 %\date{Released \filedate}
 %
 %\maketitle
 %
-%\newcommand*{\ACS}{\textsc{acs}}
-%\begin{abstract}
-% The \currpkg bundle provides a \LaTeX\ class file and \BibTeX\
-% style file in accordance with the requirements of the American
-% Chemical Society.  The files can be used for any documents, but
-% have been carefully designed and tested to be suitable for
-% submission to \ACS\ journals.
+%\changes{v1.0}{1998/06/01}{Initial release of package by Mats Dahlgren}
+%\changes{v2.0}{2007/01/17}{Re-write of package by Joseph Wright}
+%\changes{v3.0}{2008/07/20}{
+%  Second re-write, converting to a class and giving much tighter 
+%  integration with \textsc{acs} submission system
+%}
+%\changes{v3.1}{2009/04/21}{
+%  Re-ordered code to reduce or remove dependency on other packages
+%}
 %
-% The bundle also includes the \pkg{natmove} package.  This package
-% is loaded by \currpkg, and provides automatic moving of superscript
+%\begin{abstract}
+% The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\ 
+% style file in accordance with the requirements of the American 
+% Chemical Society (\ACS).  The files can be used for any documents, but
+% have been carefully designed and tested to be suitable for submission 
+% to \ACS\ journals.
+% 
+% The bundle also includes the \pkg{natmove} package.  This package is
+% loaded by \pkg{achemso}, and provides automatic moving of superscript
 % citations after punctuation.
 %\end{abstract}
 %
@@ -362,28 +335,53 @@ citations after punctuation.
 %\end{multicols}
 %
 %\section{Introduction}
-%\newcommand*{\REVTeX}{REV\TeX4}
 % Support for \BibTeX\ bibliography following the requirements of the
 % American Chemical Society (\ACS), along with a package to make
-% these easy to  have been available since version one of \currpkg.
+% these easy to  have been available since version one of \pkg{achemso}.
 % The re-write from version 1 to version 2 made a number of
 % improvements to the package, and also added a number of new
 % features.  However, neither version one nor version two of the
 % package was targeted directly at use for submissions to \ACS\
-% journals.  This new release of \currpkg addresses this issue.
+% journals.  This new release of \pkg{achemso} addresses this issue.
 %
 % The bundle consists of four parts.  The first is a \LaTeXe\ class,
 % intended for use in submissions.  It is based on the standard
 % \pkg{article} class, but makes various changes to facilitate ease
-% of use.  The second part is the \LaTeX\ package, which is loaded by
-% the class.  The package contains the parts of the bundle which
-% might be appropriate for use with other document
-% classes.\footnote{For example, when writing a thesis.}  Thirdly,
-% two \BibTeX\ style files are included.  These are used by both the
-% class and the package, but can be used directly if desired.
+% of use.  The second part is the \LaTeX\ package.  The package contains
+% the parts of the bundle which are appropriate for use with other 
+% document classes.\footnote{For example, when writing a thesis.}  
+% Thirdly, two \BibTeX\ style files are included.  These are used by 
+% both the class and the package, but can be used directly if desired.
 % Finally, an example document is included; this is intended to act a
 % potential template for submission, and illustrates the use of the
 % class file.
+%
+%\section{Installation}
+%
+% The entire bundle is supplied with the TDS-ready ZIP file,
+% \file{achemso.tds.zip}.  Simply unzip this into your local texmf
+% tree and run your hash program (\texttt{texhash} for \TeX{}Live or
+% \texttt{initextmf -u} for MiK\TeX).
+%
+% To extract the bundle of files from \file{achemso.dtx}, run 
+% (pdf)\TeX\ on \file{achemso.dtx}. This will produce all of the package
+% files, and also \file{README.txt}.  To extract the
+% files and build the documentation, run (pdf)\LaTeX\ on 
+% \texttt{achemso.dtx}.  The files can then be installed as above.
+%
+%\section{Requirements}
+%
+% The \pkg{achemso} class requires the following packages:
+%\begin{itemize}
+%  \item \pkg{caption}
+%  \item \pkg{float}
+%  \item \pkg{natbib}
+%  \item \pkg{setspace}
+%  \item \pkg{xkeyval}
+%\end{itemize} 
+% These are normally present in the current major \TeX\ distributions,
+% but are also available from \href{http://www.ctan.org}{The 
+% Comprehensive TeX Archive Network}.
 %
 %\section{The class file}
 % The class file has been designed for use in submitting journals to
@@ -400,6 +398,7 @@ citations after punctuation.
 % effect.
 %
 %\subsection{Class options}
+%
 %\DescribeOption{journal}
 % The class supports a limited number of options, which are
 % specifically-targeted at submission.  The class uses the
@@ -408,55 +407,55 @@ citations after punctuation.
 % target journal for the publication.  The package is designed such
 % that the choice of journal will set up the correct bibliography
 % style and so on.  The journals currently recognised by the package
-% are summarised in \ref{tbl:journal}.  If an unknown journal
+% are summarised in \ref{tab:journal}.  If an unknown journal
 % is specified, the package will fall-back on the
 % \opt{journal=jacsat} option.
 %\begin{table}
 %  \centering
 %  \begin{tabular}{>{\itshape}l>{\ttfamily}l}
 %    \toprule
-%    Journal & Setting \\
+%      Journal                  & Setting \\
 %    \midrule
-%    Acc.\ Chem.\ Res.        & achre4 \\
-%    ACS Chem.\ Biol.         & acbcct \\
-%    ACS Nano                 & ancac3 \\
-%    Anal.\ Chem.             & ancham \\
-%    Biochemistry             & bichaw \\
-%    Bioconjugate Chem.       & bcches \\
-%    Biomacromolecules        & bomaf6 \\
-%    Biotechnol.\ Prog.       & bipret \\
-%    Chem.\ Res.\ Toxicol.    & crtoec \\
-%    Chem.\ Rev.              & chreay \\
-%    Chem.\ Mater.            & cmatex \\
-%    Cryst.\ Growth Des.      & cgdefu \\
-%    Energy Fuels             & enfuem \\
-%    Environ.\ Sci.\ Technol. & esthag \\
-%    Ind.\ Eng.\ Chem.\ Res.  & iecred \\
-%    Inorg.\ Chem.            & inoraj \\
-%    J.~Agric.\ Food Chem.    & jafcau \\
-%    J.~Chem.\ Eng.\ Data     & jceaax \\
-%    J.~Chem.\ Inf.\ Model.   & jcisd8 \\
-%    J.~Chem.\ Theory Comput. & jctcce \\
-%    J.~Comb.\ Chem.          & jcchff \\
-%    J.~Med.\ Chem.           & jmcmar \\
-%    J.~Nat.\ Prod.           & jnprdf \\
-%    J.~Org.\ Chem.           & joceah \\
-%    J.~Phys.\ Chem.~A        & jpcafh \\
-%    J.~Phys.\ Chem.~B        & jpcbfk \\
-%    J.~Phys.\ Chem.~C        & jpccck \\
-%    J.~Proteome Res.         & jprobs \\
-%    J.~Am.\ Chem.\ Soc.      & jacsat \\
-%    Langmuir                 & langd5 \\
-%    Macromolecules           & mamobx \\
-%    Mol.\ Pharm.             & mpohbp \\
-%    Nano Lett.               & nalefd \\
-%    Org.\ Lett.              & orlef7 \\
-%    Org.\ Proc.\ Res.\ Dev.  & oprdfk \\
-%    Organometallics          & orgnd7 \\
+%      Acc.\ Chem.\ Res.        & achre4  \\
+%      ACS Chem.\ Biol.         & acbcct  \\
+%      ACS Nano                 & ancac3  \\
+%      Anal.\ Chem.             & ancham  \\
+%      Biochemistry             & bichaw  \\
+%      Bioconjugate Chem.       & bcches  \\
+%      Biomacromolecules        & bomaf6  \\
+%      Biotechnol.\ Prog.       & bipret  \\
+%      Chem.\ Res.\ Toxicol.    & crtoec  \\
+%      Chem.\ Rev.              & chreay  \\
+%      Chem.\ Mater.            & cmatex  \\
+%      Cryst.\ Growth Des.      & cgdefu  \\
+%      Energy Fuels             & enfuem  \\
+%      Environ.\ Sci.\ Technol. & esthag  \\
+%      Ind.\ Eng.\ Chem.\ Res.  & iecred  \\
+%      Inorg.\ Chem.            & inoraj  \\
+%      J.~Agric.\ Food Chem.    & jafcau  \\
+%      J.~Chem.\ Eng.\ Data     & jceaax  \\
+%      J.~Chem.\ Inf.\ Model.   & jcisd8  \\
+%      J.~Chem.\ Theory Comput. & jctcce  \\
+%      J.~Comb.\ Chem.          & jcchff  \\
+%      J.~Med.\ Chem.           & jmcmar  \\
+%      J.~Nat.\ Prod.           & jnprdf  \\
+%      J.~Org.\ Chem.           & joceah  \\
+%      J.~Phys.\ Chem.~A        & jpcafh  \\
+%      J.~Phys.\ Chem.~B        & jpcbfk  \\
+%      J.~Phys.\ Chem.~C        & jpccck  \\
+%      J.~Proteome Res.         & jprobs  \\
+%      J.~Am.\ Chem.\ Soc.      & jacsat  \\
+%      Langmuir                 & langd5  \\
+%      Macromolecules           & mamobx  \\
+%      Mol.\ Pharm.             & mpohbp  \\
+%      Nano Lett.               & nalefd  \\
+%      Org.\ Lett.              & orlef7  \\
+%      Org.\ Proc.\ Res.\ Dev.  & oprdfk  \\
+%      Organometallics          & orgnd7  \\
 %    \bottomrule
 %  \end{tabular}
 %  \caption{Values for \opt{journal} option}
-%  \label{tbl:journal}
+%  \label{tab:journal}
 %\end{table}
 %
 %\DescribeOption{manuscript}
@@ -472,20 +471,14 @@ citations after punctuation.
 % class these are silently ignored.
 %
 %\subsection{Manuscript meta-data}
-%\DescribeMacro{\title}
-% When using the \currpkg class, the \cs{title} macro takes an
-% optional argument.  This is intended for a short version of the
-% title, for use in running headers.  The title in the running
-% headers is designed to ensure that print-outs of the manuscript are
-% easily identified.
 %
 %\DescribeMacro{\author}
 %\DescribeMacro{\affiliation}
 %\DescribeMacro{\alsoaffiliation}
-%\changes{2008/11/08}{v3.1}{Added \cs{alsoaffiliation} macro}
+%\changes{v3.1}{2008/11/08}{Added \cs{alsoaffiliation} macro}
 %\DescribeMacro{\altaffiliation}
 %\DescribeMacro{\email}
-% Inspired by \REVTeX, the \currpkg class alters the method for
+% Inspired by REV\TeX, the \pkg{achemso} class alters the method for
 % adding author information to the manuscript.  Each author should be
 % given as a separate \cs{author} command.  These should be followed
 % by an \cs{affiliation}, which applies to the preceding authors. The
@@ -501,7 +494,7 @@ citations after punctuation.
 % \cs{affiliation} applies to multiple authors: both 
 % \cs{alsoaffiliation} and \cs{altaffiliation} are set on a per
 % author basis.
-%\begin{LaTeXexample}[noexample]
+%\begin{LaTeXdemo}[code only]
 %  \author{Author Person}
 %  \author{Second Bloke}
 %  \email{second.bloke@some.place}
@@ -514,46 +507,62 @@ citations after punctuation.
 %  \affiliation[SponsoCo]
 %    {Research Department, SponsorCo, BigCity, USA}
 %  \alsoaffiliation{University of Somewhere, Sometown, USA}
-%\end{LaTeXexample}
+%\end{LaTeXdemo}
 %
 %\DescribeMacro{\and}
 %\DescribeMacro{\thanks}
 % The method used for setting the meta-data means that the normal
-% \cs{and} and \cs{thanks} macros are not appropriate in the \currpkg
-% class.  Both produce a warning if used.
+% \cs{and} and \cs{thanks} macros are not appropriate in the \
+% pkg{achemso} class.  Both produce a warning if used.
 %
 % The meta-data items should be given in the preamble to the \LaTeX\
 % file, and no \cs{maketitle} macro is required in the document body.
 % This is all handled by the class file directly.  At least one
 % author, affiliation and e-mail address must be specified.
 %
-%\subsection{Bibliography notes}
-%\DescribeMacro{\bibnote}
-% By loading the \pkg{notes2bib} package, the class provides the
-% \cs{bibnote} macro.  This is intended for addition of notes to the
-% bibliography (references).  The macro accepts a single argument,
-% which is transferred to the bibliography by \BibTeX.
-%\begin{LaTeXexample}
-%  Some text \bibnote{This note text will be in
-%    the bibliography}.
-%\end{LaTeXexample}
-%
 %\subsection{Floats}
 %\DescribeEnv{scheme}
 %\DescribeEnv{chart}
 %\DescribeEnv{graph}
 % The class defines three new floating environments: \texttt{scheme},
-% \texttt{chart} and \texttt{graph}.\footnote{This is done in the
-% class as life is complex for packages due to differing mechanisms
-% in \pkg{memoir} and \textsc{koma}-script.}  These can be used as
-% expected to include graphical content.  The placement of these new
-% floats and the standard \texttt{table} and \texttt{figure} floats
-% is altered to be ``here'' if possible.  The contents of all floats
-% is automatically horizontally centred on the page.
+% \texttt{chart} and \texttt{graph}. These can be used as expected to 
+% include graphical content.  The placement of these new floats and the 
+% standard \texttt{table} and \texttt{figure} floats is altered to be 
+% ``here'' if possible.  The contents of all floats is automatically 
+% horizontally centred on the page.
 %
 % Cross-referencing to floats automatically includes the name of the
-% floating environment.  For example, \texttt{\cs{ref}\{table:one\}}
+% floating environment.  For example, |\ref{table:one}|
 % will yield ``Table~1'' without the user adding the ``Table'' part.
+% 
+%\subsection{Section headers}
+%
+%\DescribeMacro{\SectionNumbersOff}
+%\DescribeMacro{\SectionNumbersOn}
+%\changes{v3.2}{2009/04/20}{
+%  New functions \cs{SectionsOff}, \cs{SectionsOn}, 
+%  \cs{SectionNumbersOff} and \cs{SectionNumbersOn}
+%}
+% Some journals have no section numbering by default. This can be
+% set up in the appropriate configuration file, but it may be that
+% individual users need to change the decision. The macros
+% \cs{SectionNumbersOff} and \cs{SectionNumbersOn} are therefore
+% available: these should be given in the preamble.
+% 
+%\DescribeMacro{\SectionsOff}
+%\DescribeMacro{\SectionsOn}
+% More radically, the entire availability of sections can be turned on
+% and of. This is functionality is available to the user \emph{via} the
+% \cs{SectionsOn} and \cs{SectionsOff} macros, which again are 
+% preamble-only.
+% 
+%\DescribeMacro{\AbstractOff} 
+%\DescribeMacro{\AbstractOn}
+%\changes{v3.2}{2009/04/20}{
+%  New functions \cs{AbstractOff} and \cs{AbstractOn}
+%}
+% Similar functions are available for the abstract: \cs{AbstractOff} and
+% \cs{AbstractOn}.
 %
 %\subsection{Special sections}
 %
@@ -562,46 +571,46 @@ citations after punctuation.
 % The sections for acknowledgements and supporting information
 % have dedicated environments available.  These ensure that
 % the section headings are generated, and that the text is
-% sized corrected when using creating a JACS Communication.
-%\begin{LaTeXexample}[noexample]
+% sized corrected when using creating a Communication.
+%\begin{LaTeXdemo}[code only]
 %  \begin{acknowldegment}
 %    The authors thank A.N.~Other.
-%   \end{acknowldegment}
+%  \end{acknowldegment}
 %
-%   \begin{suppinfo}
-%     Full characterization data for all new compounds.
-%     This material is available for download from
-%     \url{http://pubs.acs.org}
-%   \end{suppinfo}
-%\end{LaTeXexample}
+%  \begin{suppinfo}
+%    Full characterization data for all new compounds.
+%    This material is available for download from
+%    \url{http://pubs.acs.org}
+%  \end{suppinfo}
+%\end{LaTeXdemo}
+%
+%\DescribeEnv{tocentry}
+%\changes{v3.2}{2009/04/21}{New \texttt{tocentry} section}
+% For generating an entry for the graphical table of content, required
+% by some journals, the environment \texttt{tocentry} is available. This
+% prints its content in an appropriately sized box on a separate page.
+% In contrast to the rest of the manuscript, this section is intended to
+% be ``print ready'' in appearance.
+
+%\begin{LaTeXdemo}[code only]
+%  \begin{tocentry}
+%    \includegraphics{toc-entry-graphic}
+%    Some text to explain the graphic.
+%  \end{tocentry}
+%\end{LaTeXdemo}
 %
 %\section{The package file}
-% The package file is loaded by the class, but can also be loaded
-% independently. The class contains only items focussed on
-% submission; more generally-useful items are stored in the package.
-%
-%\subsection{Altering the behaviour of \pkg{natbib}}
-% \currpkg comes with the \pkg{natmove} package, which adds
-% \pkg{cite}-like functionality to \pkg{natbib}.\footnote{The code is
-% a copy from \pkg{cite} with minor modifications.}  Thus citations
-% may be made using all of the \pkg{natbib} commands
-% (\cs{citeauthor}, \cs{citeyear}, \etc).  For superscript citations,
-% the number will be moved after punctuation as needed.  The user
-% should therefore write citations suitable for ``in line'' use and
-% leave the positioning to the package.
-%\begin{LaTeXexample}
-%  Some text \cite{Coghill2006} some more text.\\
-%  Some text ending a sentence \cite{Coghill2006}.
-%\end{LaTeXexample}
-%
+% The \pkg{achemso} package is independent of the classs file, and 
+% contains parts of the bundle useful outside of submission to the 
+% \ACS.
+% 
 %\subsection{Package options}
-% The \opt{journal} and \opt{manuscript} options have no effect when
-% using the package without the class.  Instead, the user can control
-% various aspects of the behaviour of the package
-% directly.\footnote{Using the package alone probably means a report
-% or thesis is being written, and so prescriptive application of
-% journal style is not appropriate.}  The options all relate to
-% aspects of reference handling.
+%
+% As with the class options, the package uses the key--value method
+% for option set up. These are used to control the output of citations
+% and bibliographic data. The same options are used when creating 
+% journal configurations for the class: this is a task most users will
+% not need to undertake!
 %
 %\DescribeOption{super}
 % The \opt{super} option affects the handling of superscript
@@ -615,7 +624,7 @@ citations after punctuation.
 % of the \BibTeX\ style files.  \opt{maxauthors} is the number of
 % authors allowed before truncation to ``et~al.'' occurs.  The
 % default is 15, but can be increased (for example for supplementary
-% information).  Using the value 0 means that all authors will be
+% information).  Using the value $0$ means that all authors will be
 % added to the list.  The \opt{usetitle} option is a Boolean, and
 % sets whether the title of a paper referenced appears in the
 % bibliography.  The default is \opt{usetitle=false}.
@@ -628,8 +637,8 @@ citations after punctuation.
 % (surround the number in brackets) and \opt{period} or
 % \opt{fullstop} (follow the number by a full stop/period).
 %
-%\DescribeOption{biochemistry}
 %\DescribeOption{biochem}
+%\DescribeOption{biochemistry}
 % Most \ACS\ journals use the same bibliography style, with the only
 % variation being the inclusion of article titles.  However, a small
 % number of journals use a rather different style; the journal
@@ -640,15 +649,55 @@ citations after punctuation.
 % default.\footnote{More accurately, the default built into the
 % \BibTeX\ style file is to use article titles with the
 % \emph{Biochemistry} style.}
+% 
+%\subsection{Bibliography notes}
 %
+%\DescribeMacro{\bibnote}
+%\DescribeMacro{\bibnotemark}
+%\DescribeMacro{\bibnotetext}
+% \pkg{achemso} provides the \cs{bibnote} macro. This is intended for
+% addition of notes to the bibliography (references).  The macro 
+% accepts a single argument, which is transferred to the bibliography by
+% \BibTeX. In analogy to \cs{footnote}, the macros \cs{bibnotemark} and
+% \cs{bibnotetext} are available for dividing up the marker for a
+% note from the text.
+%\begin{LaTeXdemo}
+%  Some text \bibnote{This note text will be in the bibliography}.
+%\end{LaTeXdemo}
+%
+% The functionality for bibnotes in \pkg{achemso} is based on that
+% in the \pkg{notes2bib} package. The \pkg{notes2bib} package can be
+% loaded with the \pkg{achemso} package, and no clash will occur. With
+% the class file, \pkg{notes2bib} will be ignored if requested, to 
+% prevent issues on submission to the \ACS.
+% 
 %\section{The \texorpdfstring{\BibTeX}{BibTeX} style files}
-% \currpkg is supplied with two style files, \file{achemso.bst} and
-% \file{biochem.bst}.  The direct use of these without the \currpkg
+%
+% \pkg{achemso} is supplied with two style files, \file{achemso.bst} and
+% \file{biochem.bst}.  The direct use of these without the \pkg{achemso}
 % package file is not recommended, but is possible.  The style files
 % can be loaded in the usual way, with a \cs{bibliographystyle}
-% command.  The \pkg{natbib} and \pkg{micteplus} packages must be
-% loaded by the \LaTeX\ file concerned, if the \pkg{achemso} package
-% is not in use.
+% command.  The \pkg{natbib} package must be loaded by the \LaTeX\ file 
+% concerned, if the \pkg{achemso} package is not in use.
+% 
+% The style files are designed to use the \pkg{mciteplus} package if it
+% is available, but to work even if is not. When \pkg{mciteplus} is 
+% present, it is possible to automatically produce references of the 
+% form
+%\begin{quotation}
+%  \noindent
+%  (5) (a) Arduengo,~A.~J.,~III; Dias,~H. V.~R.; Harlow,~R.~L.; 
+%  Kline,~M. \emph{{J}.~{A}m.\ {C}hem.\ {S}oc.} \textbf{1992}, 
+%  \emph{114}, 5530--5534; (b) Appelhans,~L.~N.; Zuccaccia,~D.; 
+%  Kovacevic,~A.; Chianese,~A.~R.; Miecznikowski,~J.~R.; Macchioni,~A.; 
+%  Clot,~E.; Eisenstein,~O.; Crabtree,~R.~H. \emph{{J}.~{A}m.\ {C}hem. 
+%  {S}oc.} \textbf{2005}, \emph{127}, 16299--16311; (c) 
+%  Arduengo,~A.~J.,~III; Gamper,~S.~F.; Calabrese,~J.~C.; Davidson,~F.
+%  \emph{J.~Am.\ Chem.\ Soc.} \textbf{1994}, \emph{116}, 4391--4394.
+%\end{quotation}
+% as demonstrated in the example document. When \pkg{mciteplus} is 
+% not present, this functionality is not available but the style files
+% will work normally.
 %
 % The \BibTeX\ style files implement the bibliographic style
 % specified by the \ACS\ in \emph{The ACS Style Guide}
@@ -656,40 +705,541 @@ citations after punctuation.
 % output using the \file{achemso.bst} file, but are with the
 % \file{biochem.bst} file.
 %
-%\StopEventually{%
+%\section{The \pkg{natmove} package}
+%
+% The \pkg{natmove} package does only one job.  It brings the ability to
+% move punctuation after citations, using code borrowed from the
+% \pkg{cite} package. Both the \pkg{achemso} class and package load
+% \pkg{natmove} automatically.
+%\begin{LaTeXdemo}
+%  Some text \cite{Coghill2006} some more text.\\
+%  Some text ending a sentence \cite{Coghill2006}.
+%\end{LaTeXdemo}
+% This is deactivated for other citation types.
+%\begin{LaTeXdemo}
+%  Some text \citeyear{Coghill2006}.\\
+%  Some text \citeauthor{Coghill2006}.\\
+%  Some text \citenum{Coghill2006}.
+%\end{LaTeXdemo}
+% The package does nothing if the \opt{super} option has not been
+% given to \pkg{natbib}.  This means that the source can be written
+% without needing to decide where citations will to appear, with the
+% \opt{super} option for \pkg{natbib} controlling the result.
+%
+%\DescribeMacro{\natmovechars}
+% One user macro is provided: \cs{natmovechars}.  This contains
+% the characters which are moved before superscript punctuation.
+% The default contents is |,;:.| and can be set using
+% \cs{renewcommand*}:
+%\begin{LaTeXdemo}
+%  \renewcommand*{\natmovechars}{.}
+%  Some text \cite{Coghill2006},
+%  more text \cite{Coghill2006}.
+%\end{LaTeXdemo}
+%
+%\StopEventually{^^A
 %  \PrintChanges
 %  \PrintIndex
-%  \bibliography{achemso}}
+%  \bibliography{achemso}
+%}
 %
-%\iffalse
-%<*class>
-%\fi
-%\section{The class file}
-%\subsection{Setup code}
-%\changes{v3.1}{2008/08/27}{Package loading re-ordered}
-% The first task of the class is the usual identification.
+%\section{Implementation}
+%
+% A lot of the work done by the package is also needed by the class.
+% Loading the package and the class makes load-order awkward. Instead,
+% the two parts are done in one place. Sandwiching the common code are
+% two slices of dedicated material for the class and the package. Some
+% of this is needed ``early'', before the common material, whilst the 
+% rest is ``late''.
+%
+%\subsection{Early class-only code}
+%
+% So that there is no confusion, the base class is loaded early.
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\LoadClass[12pt]{article}
+%<*class>
 \ProvidesClass{achemso}
-  [2009/02/03 v3.1a Submissions to ACS journals]
-\RequirePackage[etex=false]{notes2bib}[2008/06/21]
-\RequirePackage[margin=2.54cm]{geometry}
-\RequirePackage[T1]{fontenc}
-\RequirePackage[scaled=0.90]{helvet}
-\RequirePackage{mathptmx,courier,setspace,graphicx,truncate,
-  float,varioref,url,caption}
-\AtBeginDocument{\doublespacing}
+  [2009/04/21 v3.2 Submission to ACS journals]
+\LoadClass[12pt,letter]{article}
+%    \end{macrocode}
+%    
+%\begin{macro}{\acs@warning}
+% The code for a warning is created so that it works for the package too.
+%    \begin{macrocode}
+\newcommand*{\acs@warning}{\ClassWarning{achemso}}
+%</class>
+%    \end{macrocode}
+%\end{macro}
+%
+%\subsection{Early package-only code}
+%
+% The package and the class should not both be loaded, as the two use 
+% the same internal macro names. On the other hand, if the class is 
+% not in use a reminder is printed to use it if possible.
+%    \begin{macrocode}
+%<*package>
+\ProvidesPackage{achemso}
+  [2009/04/21 v3.2 Support for ACS journals]
+\@ifclassloaded{achemso}{%
+  \PackageInfo{achemso}{%
+    You have already loaded the `achemso' class:\MessageBreak
+    loading the package will abort%
+  }%
+  \endinput
+}{%
+  \PackageInfo{achemso}{%
+    When writing a submission to an ACS journal, please\MessageBreak
+    use the achemso document class%
+  }%
+}
+%    \end{macrocode}
+%    
+%\begin{macro}{\acs@warning}
+% The code for a warning is created so that it works for the class too.
+%    \begin{macrocode}
+\newcommand*{\acs@warning}{\PackageWarning{achemso}}
+%</package>
+%    \end{macrocode}
+%\end{macro}
+%    
+%\subsection{Common code}
+%
+%\begin{macro}{\acs@ifundefined}
+% A non-expandable test for defined macros: does not add to the hash
+% table.
+%    \begin{macrocode}
+%<*package|class>
+\newcommand*{\acs@ifundefined}[1]{%
+  \begingroup\expandafter\expandafter\expandafter\endgroup
+  \expandafter\ifx\csname #1\endcsname\relax
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%
+% The first stage needed is to read the package options given. Although
+% \pkg{xkeyval} was perhaps not the best choice, changing this now would
+% be rather risky. 
+%    \begin{macrocode}
+\RequirePackage{xkeyval}
+%    \end{macrocode}
+%\begin{macro}{\ifacs@biochem}
+%\begin{macro}{\ifacs@super}
+%\begin{macro}{\ifacs@usetitle}
+% These are all very trivial definitions: to avoid issues with older
+% versions of \pkg{xkeyval} each definition is done separately.
+%    \begin{macrocode}
+\define@boolkey{acs}[acs@]{biochem}[true]{}
+\define@boolkey{acs}[acs@]{super}[true]{}
+\define@boolkey{acs}[acs@]{usetitle}[true]{}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@journal}
+%\begin{macro}{\acs@manuscript}
+%\begin{macro}{\acs@maxauthors}
+% Trivial again.
+%    \begin{macrocode}
+\newcommand*{\acs@journal}{jacsat}
+\newcommand*{\acs@manuscript}{article}
+\newcommand*{\acs@maxauthors}{15}
+\define@cmdkey{acs}[acs@]{journal}{}
+\define@cmdkey{acs}[acs@]{manuscript}{}
+\define@cmdkey{acs}[acs@]{maxauthors}{}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+% The \opt{biochemistry} option is an alias for \opt{biochem}. The 
+% \opt{biblabel} option is a choice, which is implemented using a 
+% csname search. The group here prevents hash table pollution, whilst
+% the \pkg{xkeyval} method is avoided as it is more complex than it is
+% worth!
+%    \begin{macrocode}
+\define@key{acs}{biochemistry}{%
+  \setkeys{acs}{biochem = #1}%
+}
+\define@key{acs}{biblabel}{%
+  \acs@ifundefined{acs@biblabel@#1}{%
+    \acs@warning{%
+      Unknown value `#1' for\MessageBreak biblabel option%
+    }%
+  }{%
+    \@nameuse{acs@biblabel@#1}%
+  }%
+}
+%    \end{macrocode}
+%\begin{macro}{\acs@biblabel@brackets}
+%\begin{macro}{\acs@biblabel@fullstop}
+%\begin{macro}{\acs@biblabel@period}
+%\begin{macro}{\acs@biblabel@plain}
+% The macros to implement the idea above for biblabels.
+%    \begin{macrocode}
+\newcommand*{\acs@biblabel@brackets}{\def\@biblabel##1{(##1)}}
+\newcommand*{\acs@biblabel@fullstop}{\def\@biblabel##1{##1.}}
+\newcommand*{\acs@biblabel@period}{\def\@biblabel##1{##1.}}
+\newcommand*{\acs@biblabel@plain}{\def\@biblabel##1{##1}}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+% Set up some defaults.
+%    \begin{macrocode}
+\setkeys{acs}{
+  super = true
+}
+%    \end{macrocode}
+% Loading some other packages depends on the options chosen, so they
+% are processed now.
+%    \begin{macrocode}
+\ProcessOptionsX*<acs>
+%    \end{macrocode}
+%    
+%\begin{macro}{\acs@niib@create}
+%\begin{macro}{bibnote}
+%\begin{macro}{\thebibnote}
+%\begin{macro}{\bibnote}
+%\begin{macro}{\bibnotemark}
+%\begin{macro}{\bibnotetext}
+%\begin{macro}{\printbibnotes}
+% To avoid needing to load the \pkg{notes2bib} package, especially as 
+% the plan is to move that package to \LaTeX3 internal syntax, 
+% \pkg{achemso} provides a minimal version here. The first step is to
+% create macros which will need a guard against \pkg{notes2bib} already
+% having been loaded. To allow the package and class to behave 
+% differently these are actually applied later.
+%    \begin{macrocode}
+\newcommand*{\acs@niib@create}{%
+  \@namedef{ver@notes2bib.sty}{%
+    2009/04/20 v1.6a Integrating notes into the bibliography (achemso
+    version)
+  }%
+  \newcounter{bibnote}
+  \renewcommand*{\thebibnote}{%
+    Note-\the\value{bibnote}%
+  }%
+  \DeclareRobustCommand*{\bibnote}[1][\thebibnote]{%
+    \stepcounter{bibnote}%
+    \def\acs@niib@after@text{\cite{##1}}%
+    \acs@niib@text{##1}%
+  }%
+  \DeclareRobustCommand*{\bibnotemark}[1][\thebibnote]{%
+    \stepcounter{bibnote}%
+    \cite{##1}%
+  }%
+  \DeclareRobustCommand*{\bibnotetext}[1][\thebibnote]{%
+    \let\acs@niib@after@text\relax
+    \acs@niib@text{##1}%
+  }%
+  \newcommand*{\printbibnotes}{%
+    \ifnum\the\value{bibnote}>\z@\relax
+      \nocite{achemso-control}%
+      \acs@bibliography{acs-\jobname}%
+    \fi
+  }%
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@niib@after@text}
+% After the text.
+%    \begin{macrocode}
+\newcommand*{\acs@niib@after@text}{}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\acs@niib@text}
+% The \cs{acs@niib@text} macro is the outer part of the writing system.
+% It does not absorb the text of note, as without \eTeX\ this is bad
+% news. The same file is used for notes and the control entry for
+% the bibliography style.
+%    \begin{macrocode}
+\newcommand*{\acs@niib@text}{%
+  \@bsphack
+  \acs@bib@write
+  \if@filesw
+    \expandafter\acs@niib@write
+  \else
+    \expandafter\acs@niib@no@write
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\acs@niib@write}
+%\begin{macro}{\acs@niib@write@aux@i}
+%\begin{macro}{\acs@niib@write@aux@ii}
+% Writing verbatim without \eTeX.
+%    \begin{macrocode}
+\newcommand*{\acs@niib@write}[1]{%
+  \begingroup
+    \let\do\@makeother
+    \dospecials
+    \catcode`\{ 1\relax
+    \catcode`\} 2\relax
+    \acs@niib@write@aux@i{#1}%
+}
+\newcommand*{\acs@niib@write@aux@i}[1]{%
+  \long\def\@tempa##1{%
+      \def\@tempa{##1}%
+      \@onelevel@sanitize\@tempa
+    \expandafter\endgroup
+    \expandafter\def\expandafter\@tempa\expandafter{\@tempa}%
+    \acs@niib@write@aux@ii{#1}%
+  }%
+  \catcode`\^^M 10\relax
+  \@tempa
+}
+\newcommand*{\acs@niib@write@aux@ii}[1]{%
+  \immediate\write\acs@bib@file{%
+    @Misc\string{#1,^^J%
+    \space\space note = \string{\@tempa\string},^^J%
+    \string}^^J%
+  }%
+  \@esphack
+  \acs@niib@after@text
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@niib@no@write}
+% If no files are to be written, a bit of tidying up.
+%    \begin{macrocode}
+\newcommand{\acs@niib@no@write}[2]{%
+  \@esphack
+  \acs@niib@after@text
+}
+%    \end{macrocode}
+%\end{macro}
+% 
+%\begin{macro}{\citenumfont}
+% Changes to citations can now be made. The citation styles supplied
+% here require \pkg{natbib}, which is loaded with the appropriate 
+% options.
+%    \begin{macrocode}
+\ifacs@super
+  \RequirePackage[sort&compress,numbers,super]{natbib}
+\else
+  \RequirePackage[sort&compress,numbers,round]{natbib}
+  \def\citenumfont{\textit}
+\fi
+%    \end{macrocode}
+%\end{macro} 
+%    \begin{macrocode}
+\RequirePackage{natmove}
+%    \end{macrocode}
+%\begin{macro}{\nmv@natbib@detect}
+%\begin{macro}{\acs@nmv@activate}
+%\begin{macro}{\acs@autonote}
+% The functionality of \pkg{notes2bib} is combined with the standard
+% \cs{cite} macro, to give automatic note-like data in the bibliography.
+%    \begin{macrocode}
+\renewcommand*{\nmv@natbib@detect}{%
+  \ifNAT@super
+    \expandafter\acs@nmv@activate
+  \else
+    \expandafter\acs@autonote
+  \fi
+}
+\newcommand*{\acs@nmv@activate}{%
+  \let\nmv@citex@nat\@citex
+  \let\@citex\nmv@citex
+  \let\nmv@cite\cite
+  \renewcommand*{\cite}[2][]{%
+    \nmv@ifmtarg{##1}{%
+      \nmv@citetrue
+      \nmv@cite{##2}%
+    }{%
+      \nocite{##2}%
+      \bibnote{Ref.~\citenum{##2}, ##1}%
+    }%
+  }%
+}
+\newcommand*{\acs@autonote}{%
+  \let\nmv@cite\cite
+  \renewcommand*{\cite}[2][]{%
+    \nmv@ifmtarg{##1}{%
+      \nmv@cite{##2}%
+    }{%
+      \nocite{##2}%
+      \bibnote{Ref.~\citenum{##2}, ##1}%
+    }%
+  }%
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%    
+%\begin{macro}{\acs@bibstyle}
+% The next step is to sort out bibliography formatting. With both the
+% package and the class, the bibliography style is determined without
+% user intervention. The style is stored as it may need to be
+% altered later.
+%    \begin{macrocode}
+\newcommand*{\acs@bibstyle}{achemso}
+\bibliographystyle{achemso}
+\ifacs@biochem
+  \renewcommand*{\acs@bibstyle}{biochem}
+  \bibliographystyle{biochem}
+\fi
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\acs@bibliographystyle}
+%\begin{macro}{\bibliographystyle}
+% The original \cs{bibliographystyle} macro is now disabled: the 
+% underlying command is repeated otherwise problems cop up with 
+% \pkg{chapterbib}.
+%    \begin{macrocode}
+\newcommand*{\acs@bibliographystyle}{}
+\let\acs@bibliographystyle\bibliographystyle
+\renewcommand*{\bibliographystyle}[1]{%
+  \acs@warning{\string\bibliographystyle\space ignored}%
+  \expandafter\acs@bibliographystyle\expandafter{\acs@bibstyle}%
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%
+%\begin{macro}{\acs@bib@file}
+%\begin{macro}{\acs@bib@message}
+%\begin{macro}{\acs@bib@name}
+% Some information or creating the control file for \BibTeX\ is set up.
+%    \begin{macrocode}
+\newwrite\acs@bib@file
+\newcommand*{\acs@bib@message}{%
+  This is an auxiliary file used by the `achemso' bundle.^^J%
+  This file may safely be deleted. It will be recreated as
+  required.^^J
+}
+\newcommand*{\acs@bib@name}{acs-\jobname.bib}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\ifacs@bib@written}
+%\begin{macro}{\acs@bib@write}
+%\begin{macro}{\acs@bib@write@aux}
+% The control information for \BibTeX\ needs to be written to a special
+% file. The main writing macro is quite simple. Actually writing the
+% information is left to the code for \cs{bibliography}, so that this
+% only happens if needed.
+%    \begin{macrocode}
+\newif\ifacs@bib@written
+\newcommand*{\acs@bib@write}{%
+  \if@filesw
+    \ifacs@bib@written\else
+      \expandafter\expandafter\expandafter\acs@bib@write@aux
+    \fi
+  \fi
+}
+\newcommand*{\acs@bib@write@aux}{%
+  \immediate\openout\acs@bib@file\acs@bib@name\relax
+  \immediate\write\acs@bib@file{\acs@bib@message}%
+  \edef\@tempa##1##2{%
+    \space\space##1\space = \space"##2",^^J%
+  }%
+  \immediate\write\acs@bib@file{%
+    @Control\string{%
+      achemso-control,^^J%
+      \@tempa{ctrl-use-title}{%
+        \ifacs@usetitle yes\else no\fi
+      }%
+      \@tempa{ctrl-etal-number}{\acs@maxauthors}%
+    \string}^^J%
+  }%
+  \immediate\write\@auxout{%
+    \string\citation\string{achemso-control\string}%
+  }%
+  \global\acs@bib@writtentrue
+  \AtEndDocument{%
+    \immediate\closeout\acs@bib@file\relax
+  }%
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%
+% The \pkg{mciteplus} package allows the construction of lists of
+% references with sub-letters. However, it might not be available, and
+% so it is only loaded if available: the \file{.bst} files should work
+% either way.
+%    \begin{macrocode}
+\IfFileExists{mciteplus.sty}{%
+  \RequirePackage{mciteplus}
+}{}
 %    \end{macrocode}
 %
-%\subsection{Meta-data changes}
+%\begin{macro}{\acs@bibliography}
+%\begin{macro}{\bibliography}
+% The \cs{bibliography} macro is now patched so that everything works
+% correctly. There are two things to do, the patch itself and a citation
+% for the control file.
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \let\acs@bibliography\bibliography
+  \renewcommand*{\bibliography}[1]{%
+    \acs@bib@write
+    \acs@bibliography{acs-\jobname,#1}%
+  }%
+}
+%</package|class>
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%
+%\subsection{Late class-only code}
+%
+% Most of the power of the class is now created. First, a few options
+% are reset so that any given by the user are effectively ignored.
+%    \begin{macrocode}
+%<*class>
+\setkeys{acs}{
+  biblabel   = brackets,
+  biochem    = false,
+  maxauthors = 15,
+  super      = true,
+  usetitle   = false
+}
+%    \end{macrocode}
+% When using the class, \pkg{notes2bib} is always emulated. Other
+% standard support packages can now be loaded.
+%    \begin{macrocode}
+\acs@niib@create
+\RequirePackage[T1]{fontenc}
+\RequirePackage[margin=2.54cm]{geometry}
+\RequirePackage[scaled=0.90]{helvet}
+\RequirePackage{
+  caption,
+  courier,
+  float,
+  graphicx,
+  mathptmx,
+  setspace,
+  url,
+  varioref
+}
+\AtBeginDocument{\doublespacing}
+%    \end{macrocode}
+%    
 %\begin{macro}{\title}
+%\changes{v3.2}{2009/04/19}{
+%  Short title no longer used although optional argument still 
+%  accepted: removed internal \cs{@shorttitle} macro
+%}
 %\begin{macro}{\@title}
 %\begin{macro}{\acs@title}
-%\begin{macro}{\@shorttitle}
-% For the meta-data, the \REVTeX\ bundle provides a good model for
-% the commands to give the author.  First of all, the \cs{title}
-% macro is given an optional argument.  \cs{gdef} is used here to
+% For the meta-data, the REV\TeX\ bundle provides a good model for
+% the commands to give the author.  \cs{gdef} is used here to
 % avoid any odd grouping issues.  The various title macros are all
 % ``trapped'' in the preamble.  As the argument of \cs{title} is
 % needed in the document body, \cs{acs@title} is defined to store it
@@ -698,22 +1248,21 @@ citations after punctuation.
 \renewcommand*{\title}[2][]{%
   \gdef\@title{#2}%
   \gdef\acs@title{#2}%
-  \gdef\@shorttitle{#1}}
+}
 \@onlypreamble\title
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%\end{macro}
-%\begin{macro}{\acs@authorcnt}
-%\begin{macro}{\acs@affilcnt}
-%\begin{macro}{\acs@altaffilcnt}
-% Still following \REVTeX, the \cs{author} macro is redefined.  In
-% this way, each author is given as a separate \cs{author} argument.
+%\begin{macro}{\acs@author@cnt}
+%\begin{macro}{\acs@affil@cnt}
+%\begin{macro}{\acs@affil@alt@cnt}
+% \pkg{achemso} tracks the number authors, affiliations and alternative
+% affiliations.
 %    \begin{macrocode}
-\newcount\acs@authorcnt
-\newcount\acs@affilcnt
-\newcount\acs@altaffilcnt
+\newcount\acs@author@cnt
+\newcount\acs@affil@cnt
+\newcount\acs@affil@alt@cnt
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -727,14 +1276,13 @@ citations after punctuation.
 % locally incremented to keep the logic of the code clear elsewhere.
 %    \begin{macrocode}
 \renewcommand*{\author}[1]{%
-  \global\advance\acs@authorcnt\@ne\relax
-  \expandafter\gdef\csname @author@\@roman\the\acs@authorcnt\endcsname
-    {#1}%
+  \global\advance\acs@author@cnt\@ne\relax
+  \expandafter\gdef\csname @author@\@roman\acs@author@cnt\endcsname{#1}%
   \begingroup
-    \advance\acs@affilcnt\@ne
-    \expandafter\xdef\csname @author@affil@\@roman\the\acs@authorcnt
-      \endcsname
-      {\the\acs@affilcnt}%
+    \advance\acs@affil@cnt\@ne
+    \expandafter\xdef\csname @author@affil@\@roman
+      \acs@author@cnt\endcsname
+      {\the\acs@affil@cnt}%
   \endgroup
 }
 \@onlypreamble\author
@@ -745,13 +1293,17 @@ citations after punctuation.
 % Neither \cs{and} nor \cs{thanks} are used by the document class.
 %    \begin{macrocode}
 \renewcommand*{\and}{%
-  \ClassError{achemso}{\string\and\space not supported}
-    {The achemso class does not use \string\and
-     \MessageBreak see the documentation for details}}
-\renewcommand*{\thanks}[1]{%
-  \ClassError{achemso}{\string\thanks\space not supported}
-    {The achemso class does not use \string\thanks
-     \MessageBreak see the documentation for details}}
+  \acs@warning{%
+    \string\and\space not used by the achemso class: please see
+    the\MessageBreak package documentation for details%
+  }%
+}
+\renewcommand*{\thanks}{%
+  \acs@warning{%
+    \string\thanks\space not used by the achemso class: please see
+    the\MessageBreak the package documentation for details%
+  }%
+}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -762,25 +1314,25 @@ citations after punctuation.
 % been seen.
 %    \begin{macrocode}
 \newcommand*{\affiliation}[2][\relax]{%
-  \ifnum\acs@authorcnt>\z@\relax
+  \ifnum\acs@author@cnt>\z@\relax
     \acs@affil@ifdup{#2}{%
       \acs@affil@swap{#2}%
     }{%
-      \global\advance\acs@affilcnt\@ne
-      \expandafter\gdef\csname @address@\@roman\acs@affilcnt
-        \endcsname{#2}%
+      \global\advance\acs@affil@cnt\@ne\relax
+      \expandafter\gdef\csname @address@\@roman\acs@affil@cnt\endcsname
+        {#2}%
       \ifx\relax#1\relax
-        \expandafter\gdef\csname @affil@\@roman\acs@affilcnt
-          \endcsname{#2}%
+        \expandafter\gdef\csname @affil@\@roman\acs@affil@cnt\endcsname
+          {#2}%
       \else
-        \expandafter\gdef\csname @affil@\@roman\acs@affilcnt
-          \endcsname{#1}%
+        \expandafter\gdef\csname @affil@\@roman\acs@affil@cnt\endcsname
+          {#1}%
       \fi
     }%
   \else
-    \ClassWarning{achemso}
-      {Affiliation with no author}%
-  \fi}
+    \acs@warning{Affiliation with no author}%
+  \fi
+}
 \@onlypreamble\affiliation
 %    \end{macrocode}
 %\end{macro}
@@ -790,26 +1342,27 @@ citations after punctuation.
 %    \begin{macrocode}
 \newcommand*{\acs@affil@ifdup}[1]{%
   \begingroup
-    \def\acs@tempa{#1}%
-    \acs@switchfalse
-    \acs@tempcnta\z@\relax
+    \def\@tempa{#1}%
+    \@tempswafalse
+    \@tempcnta\z@\relax
     \acs@affil@ifdup@aux
-    \ifacs@switch
+    \if@tempswa
       \aftergroup\@firstoftwo
     \else
       \aftergroup\@secondoftwo
     \fi
-    \endgroup
+  \endgroup
 }
 \newcommand*{\acs@affil@ifdup@aux}{%
-  \advance\acs@tempcnta\@ne\relax
-  \expandafter\expandafter\expandafter\def\expandafter\expandafter
-    \expandafter\acs@tempb\expandafter\expandafter\expandafter
-    {\csname @address@\@roman\acs@tempcnta\endcsname}%
-  \ifx\acs@tempa\acs@tempb
-    \expandafter\acs@switchtrue
+  \advance\@tempcnta\@ne\relax
+  \edef\@tempb{%
+    \expandafter\noexpand\csname @address@\@roman\@tempcnta\endcsname
+  }%
+  \expandafter\def\expandafter\@tempb\expandafter{\@tempb}%
+  \ifx\@tempa\@tempb
+    \expandafter\@tempswatrue
   \else
-    \ifnum\acs@tempcnta<\acs@affilcnt\relax
+    \ifnum\@tempcnta<\acs@affil@cnt\relax
       \expandafter\expandafter\expandafter\acs@affil@ifdup@aux
     \fi
   \fi
@@ -826,22 +1379,23 @@ citations after punctuation.
 %    \begin{macrocode}
 \newcommand*{\acs@affil@swap}[1]{%
   \begingroup
-    \def\acs@tempa{#1}%
-    \acs@tempcnta\z@\relax
-    \acs@tempcntb\z@\relax
+    \def\@tempa{#1}%
+    \@tempcnta\z@\relax
+    \@tempcntb\z@\relax
     \acs@affil@ifdup@aux
-    \advance\acs@affilcnt\@ne\relax
+    \advance\acs@affil@cnt\@ne\relax
     \acs@affil@swap@aux
   \endgroup
 }
 \newcommand*{\acs@affil@swap@aux}{%
-  \advance\acs@tempcntb\@ne\relax
-  \expandafter\ifnum\csname @author@affil@\@roman
-    \acs@tempcntb\endcsname = \acs@affilcnt\relax
-    \expandafter\xdef\csname @author@affil@\@roman
-      \acs@tempcntb\endcsname{\the\acs@tempcnta}%
+  \advance\@tempcntb\@ne\relax
+  \expandafter\ifnum\csname @author@affil@\@roman\@tempcntb\endcsname 
+    = \acs@affil@cnt\relax
+    \expandafter\xdef\csname @author@affil@\@roman\@tempcntb\endcsname{%
+      \the\@tempcnta
+    }%
   \fi
-  \ifnum\acs@tempcntb<\acs@authorcnt\relax
+  \ifnum\@tempcntb<\acs@author@cnt\relax
     \expandafter\acs@affil@swap@aux
   \fi
 }
@@ -855,42 +1409,44 @@ citations after punctuation.
 % authors. This is tracked on a per author basis.
 %    \begin{macrocode}
 \newcommand*{\alsoaffiliation}[2][\relax]{%
-  \ifnum\acs@authorcnt>\z@\relax
+  \ifnum\acs@author@cnt>\z@\relax
     \acs@affil@ifdup{#2}{%
       \acs@alsoaffil@find{#2}%
     }{%
-      \global\advance\acs@affilcnt\@ne
-      \acs@tempcnta\acs@affilcnt\relax
-      \expandafter\gdef\csname @address@\@roman\acs@affilcnt
-        \endcsname{#2}%
+      \global\advance\acs@affil@cnt\@ne\relax
+      \@tempcnta\acs@affil@cnt\relax
+      \expandafter\gdef\csname @address@\@roman\acs@affil@cnt\endcsname
+        {#2}%
       \ifx\relax#1\relax
-        \expandafter\gdef\csname @affil@\@roman\acs@affilcnt
-          \endcsname{#2}%
+        \expandafter\gdef\csname @affil@\@roman\acs@affil@cnt\endcsname
+          {#2}%
       \else
-        \expandafter\gdef\csname @affil@\@roman\acs@affilcnt
-          \endcsname{#1}%
+        \expandafter\gdef\csname @affil@\@roman\acs@affil@cnt\endcsname
+          {#1}%
       \fi
     }%
-    \@ifundefined{@author@alsoaffil@\@roman\acs@authorcnt}{%
-      \expandafter\xdef\csname @author@alsoaffil@\@roman\acs@authorcnt
-        \endcsname{\the\acs@tempcnta}%
+    \@ifundefined{@author@alsoaffil@\@roman\acs@author@cnt}{%
+      \expandafter\xdef\csname @author@alsoaffil@\@roman\acs@author@cnt
+        \endcsname{\the\@tempcnta}%
     }{%
-      \expandafter\xdef\csname @author@alsoaffil@\@roman\acs@authorcnt
-        \endcsname{\csname @author@alsoaffil@\@roman\acs@authorcnt
-          \endcsname,\the\acs@tempcnta}%
-    }
+      \expandafter\xdef\csname @author@alsoaffil@\@roman\acs@author@cnt
+        \endcsname{%
+        \csname @author@alsoaffil@\@roman\acs@author@cnt\endcsname
+        ,\the\@tempcnta
+      }%
+    }%
   \else
-    \ClassWarning{achemso}
-      {Affiliation with no author}%
-  \fi}
+    \acs@warning{Affiliation with no author}%
+  \fi
+}
 \newcommand*{\acs@alsoaffil@find}[1]{%
   \begingroup
-    \def\acs@tempa{#1}%
-    \acs@tempcnta\z@\relax
-    \acs@tempcntb\z@\relax
+    \def\@tempa{#1}%
+    \@tempcnta\z@\relax
+    \@tempcntb\z@\relax
     \acs@affil@ifdup@aux
   \expandafter\endgroup
-  \expandafter\acs@tempcnta\the\acs@tempcnta\relax
+  \expandafter\@tempcnta\the\@tempcnta\relax
 }
 %    \end{macrocode}
 %\end{macro}
@@ -900,16 +1456,16 @@ citations after punctuation.
 % affiliation is ``attached'' to the author.
 %    \begin{macrocode}
 \newcommand*{\altaffiliation}[1]{%
-  \ifnum\acs@authorcnt>\z@\relax
-    \global\advance\acs@altaffilcnt\@ne\relax
-    \expandafter\gdef\csname @altaffil@\@roman\acs@authorcnt
-      \endcsname{#1}%
-    \expandafter\xdef\csname @author@altaffil@\@roman\acs@authorcnt
-      \endcsname{\the\acs@altaffilcnt}%
+  \ifnum\acs@author@cnt>\z@\relax
+    \global\advance\acs@affil@alt@cnt\@ne\relax
+    \expandafter\gdef\csname @altaffil@\@roman\acs@author@cnt\endcsname
+      {#1}%
+    \expandafter\xdef\csname @author@altaffil@\@roman\acs@author@cnt
+      \endcsname{\the\acs@affil@alt@cnt}%
   \else
-    \ClassWarning{achemso}
-      {Affiliation with no author}%
-  \fi}
+    \acs@warning{Affiliation with no author}%
+  \fi
+}
 \@onlypreamble\altaffiliation
 %    \end{macrocode}
 %\end{macro}
@@ -917,329 +1473,402 @@ citations after punctuation.
 % E-mail addresses are attached to authors as well.
 %    \begin{macrocode}
 \newcommand*{\email}[1]{%
-  \ifnum\acs@authorcnt>\z@\relax
-    \expandafter\gdef\csname @email@\@roman\acs@authorcnt
-      \endcsname{#1}%
+  \ifnum\acs@author@cnt>\z@\relax
+    \expandafter\gdef\csname @email@\@roman\acs@author@cnt\endcsname
+      {#1}%
   \else
-    \ClassWarning{achemso}
-      {E-mail with no author}%
-  \fi}
+    \acs@warning{E-mail with no author}%
+  \fi
+}
 \@onlypreamble\email
 %    \end{macrocode}
 %\end{macro}
+%
 %\begin{macro}{\@maketitle}
-%\changes{v3.0a}{2008/08/21}{Skips footnotes for a single
-%  institution}
+%\changes{v3.0a}{2008/08/21}{
+%  Skips footnotes for a single institution
+%}
 %\changes{v3.1}{2008/08/28}{Slightly simplified code}
 % With the changes outlined above in place, a new \cs{@maketitle}
 % macro is needed.  This is partially a copy of the existing, but
-% rather heavily modified.
+% rather heavily modified. Some classes need a page break after the
+% title: a hook is provided for this.
 %    \begin{macrocode}
 \renewcommand*{\@maketitle}{%
-  \ifnum\acs@authorcnt<\z@\relax
-    \ClassError{achemso}{No authors defined}
-      {At least one author is required}%
+  \ifnum\acs@author@cnt<\z@\relax
+    \acs@warning{No authors defined: At least one author is required}%
   \fi
   \newpage
   \null
-  \vskip 2em%
-  \begin{center}%
-    {\LARGE\bfseries\sffamily
-     \renewcommand*{\acs@tempa}{suppinfo}%
-     \ifx\acs@manuscript\acs@tempa
-       Supporting information for:
-     \fi
-     \@title \par}%
+  \vskip 2em\relax
+  \begin{center}
+    {%
+      \LARGE\bfseries\sffamily
+      \def\@tempa{suppinfo}%
+      \ifx\acs@manuscript\@tempa
+        Supporting information for:
+      \fi
+      \@title 
+      \par
+    }%
     \vskip 1.5em\relax
-    {\large\sffamily\frenchspacing \acs@authorlist}%
-    \vskip 1em%
-    {\itshape\acs@addresslist}%
+    {%
+      \large\sffamily\frenchspacing\acs@author@list
+    }%
     \vskip 1em\relax
-    {\sffamily E-mail: \acs@emaillist}%
+    {%
+      \itshape\acs@address@list
+    }%
+    \vskip 1em\relax
+    {%
+      \sffamily E-mail: \acs@email@list
+    }%
   \end{center}
   \par
-  \vskip 1.5em\relax}
+  \vskip 1.5em\relax
+}
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\@thanks}
-%\changes{v3.1}{2008/08/29}{Moved footnote generation
-%  to \cs{@thanks} macro}
+%\changes{v3.1}{2008/08/29}{
+%  Moved footnote generation to \cs{@thanks} macro
+%}
 % The \cs{@thanks} macro is used as a hook to generate the footnotes if
 % needed.
 %    \begin{macrocode}
 \renewcommand*{\@thanks}{%
-  \ifnum\acs@affilcnt>\@ne\relax
-    \acs@affilfoot
+  \ifnum\acs@affil@cnt>\@ne\relax
+    \expandafter\acs@affil@list
   \else
-    \ifnum\acs@altaffilcnt>\z@\relax
-      \acs@affilfoot
+    \ifnum\acs@affil@alt@cnt>\z@\relax
+      \expandafter\expandafter\expandafter\acs@affil@list
     \fi
-  \fi}
+  \fi
+}
 %    \end{macrocode}
 %\end{macro}
-%\begin{macro}{\acs@authorlist}
-%\begin{macro}{\acs@authorlist@aux}
-%\begin{macro}{\acs@authorlist@email}
-%\begin{macro}{\acs@authorlist@also}
-%\begin{macro}{\acs@authorlist@alt}
+%\begin{macro}{\acs@author@list}
 %\changes{v3.0a}{2008/08/21}{Skips footnotes for a single institution}
+%\changes{v3.2}{2009/04/20}{Logic made clearer with more sub-macros}
 % Printing the author list needs to do several things. The appropriate
 % separators between authors are created and the author names
 % themselves are printed.
 %    \begin{macrocode}
-\newcommand*{\acs@authorlist}{%
-  \acs@tempcnta\z@\relax
-  \acs@tempcntb\acs@affilcnt\relax
-  \ifnum\acs@authorcnt=\z@\relax
-    \ClassError{achemso}{No authors given}
-      {No authors were specified for the paper}%
-  \else
-    \expandafter\acs@authorlist@aux
-  \fi}
-\newcommand*{\acs@authorlist@aux}{%
-  \advance\acs@tempcnta\@ne\relax
-  \def\acs@tempa{}%
-  \ifnum\acs@authorcnt=\@ne\relax\else
-    \ifnum\acs@tempcnta=\acs@authorcnt\relax
+\newcommand*{\acs@author@list}{%
+  \@tempcnta\z@\relax
+  \@tempcntb\acs@affil@cnt\relax
+  \ifnum\acs@author@cnt=\z@\relax\else
+    \expandafter\acs@author@list@main
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\acs@author@footnotes}
+%\begin{macro}{\acs@author@list@main}
+% The main control macro for producing the author list iterates over 
+% each author on the list. The result is stored as 
+% \cs{acs@author@listing}.
+%    \begin{macrocode}
+\newcommand*{\acs@author@footnotes}{}
+\newcommand*{\acs@author@list@main}{%
+  \advance\@tempcnta\@ne\relax
+  \def\acs@author@footnotes{}%
+  \acs@author@list@and
+  \space
+  \@nameuse{@author@\@roman\@tempcnta}%
+  \acs@author@list@comma
+  \acs@author@star
+  \acs@author@affil
+  \acs@author@affil@also
+  \acs@author@affil@alt
+  \ifx\@empty\acs@author@footnotes\else
+    \textsuperscript{\acs@author@footnotes}%
+  \fi
+  \ifnum\@tempcnta<\acs@author@cnt\relax
+    \expandafter\acs@author@list@main
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@author@list@and}
+%\begin{macro}{\acs@author@list@comma}
+% Simple checks to add an ``and'' and a comma.
+%    \begin{macrocode}
+\newcommand*{\acs@author@list@and}{%
+  \ifnum\acs@author@cnt=\@ne\relax\else
+    \ifnum\@tempcnta=\acs@author@cnt\relax
       \space and%
     \fi
   \fi
-  \space
-  \csname @author@\@roman\acs@tempcnta\endcsname
-  \ifnum\acs@tempcnta<\acs@authorcnt
+}
+\newcommand*{\acs@author@list@comma}{%
+  \ifnum\@tempcnta<\acs@author@cnt\relax
     ,%
   \fi
-  \begingroup
-    \@ifundefined{@email@\@roman\acs@tempcnta}
-      {}
-      {\aftergroup\acs@authorlist@email}%
-  \endgroup
-%    \end{macrocode}
-% A check on putting \cs{affiliation} before authors but not after.
-%    \begin{macrocode}
-  \begingroup
-    \expandafter\acs@tempcntb\csname @author@affil@\@roman
-      \acs@tempcnta\endcsname\relax
-    \@ifundefined{@affil@\@roman\acs@tempcntb}
-      {\ClassError{achemso}{Affiliation not given}
-       {No affiliation has been given for author\MessageBreak
-        \csname @author@\@roman\acs@tempcnta\endcsname}}
-      {}%
-  \endgroup
-%    \end{macrocode}
-% If there are at least two affiliations, then a symbol must be
-% produced. Of course, if there is only one main affiliation it must
-% have symbol one!
-%    \begin{macrocode}
-  \ifnum\acs@affilcnt>\@ne\relax
-    \protected@edef\acs@tempa{%
-      \acs@tempa
-      \acs@fnsymbol{%
-        \csname @author@affil@\@roman\acs@tempcnta\endcsname
-      }%
-    }%
-  \else
-    \ifnum\acs@altaffilcnt>\z@\relax
-      \protected@edef\acs@tempa{\acs@tempa\acs@fnsymbol{\@ne}}%
-    \fi
-  \fi
-%    \end{macrocode}
-% Secondary affiliations that are shared are included.
-%    \begin{macrocode}
-  \begingroup
-    \@ifundefined{@author@alsoaffil@\@roman\acs@tempcnta}
-      {}
-      {\aftergroup\acs@authorlist@also}%
-  \endgroup
-%    \end{macrocode}
-% To get the correct symbols for the alternative affiliations, a track
-% of the number has to be kept.
-%    \begin{macrocode}
-  \begingroup
-    \@ifundefined{@author@altaffil@\@roman\acs@tempcnta}
-      {}
-      {\aftergroup\acs@authorlist@alt}%
-  \endgroup
-  \ifx\@empty\acs@tempa\@empty\else
-    \textsuperscript{\acs@tempa}%
-  \fi
-  \ifnum\acs@tempcnta<\acs@authorcnt
-    \expandafter\acs@authorlist@aux
-  \fi
 }
-\newcommand*{\acs@authorlist@email}{%
-  \protected@edef\acs@tempa{%
-    \acs@fnsymbol{\z@}%
-    \ifnum\acs@affilcnt>\@ne\relax
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@author@star}
+%\begin{macro}{\acs@author@star@aux}
+% A check for an e-mail for an author: if so, add a star.
+%    \begin{macrocode}
+\newcommand*{\acs@author@star}{%
+  \acs@ifundefined{@email@\@roman\@tempcnta}{}{%
+    \acs@author@star@aux
+  }%
+}
+\newcommand*{\acs@author@star@aux}{%
+  \protected@edef\acs@author@footnotes{%
+    \acs@author@fnsymbol{\z@}%
+    \ifnum\acs@affil@cnt>\@ne\relax
       ,%
     \else
-      \ifnum\acs@altaffilcnt>\z@\relax
+      \ifnum\acs@affil@alt@cnt>\z@\relax
         ,%
       \fi
     \fi
   }%
 }
-\newcommand*{\acs@authorlist@also}{%
-  \expandafter\@for\expandafter\acs@tempb\expandafter:\expandafter
-    =\csname @author@alsoaffil@\@roman\acs@tempcnta\endcsname\do{%
-    \protected@edef\acs@tempa{%
-      \acs@tempa
-      ,%
-      \acs@fnsymbol{\acs@tempb}%
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@author@affil}
+%\begin{macro}{\acs@author@affil@aux}
+% The main affiliation of the author is checked for, and assuming one
+% is found the appropriate symbol is added to the list.
+%    \begin{macrocode}
+\newcommand*{\acs@author@affil}{%
+  \acs@ifundefined{%
+    @affil@\@roman\csname @author@affil@\@roman\@tempcnta\endcsname
+  }{%
+    \acs@warning{%
+      No affiliation given for author\MessageBreak
+      \@nameuse{@author@\@roman\@tempcnta}%
     }%
+  }{%
+    \acs@author@affil@aux
   }%
 }
-\newcommand*{\acs@authorlist@alt}{%
-  \advance\acs@tempcntb\@ne\relax
-  \protected@edef\acs@tempa{%
-    \acs@tempa
-    ,%
-    \acs@fnsymbol{\acs@tempcntb}%
+\newcommand*{\acs@author@affil@aux}{%
+  \ifnum\acs@affil@cnt>\@ne\relax
+    \protected@edef\acs@author@footnotes{%
+      \acs@author@footnotes
+      \acs@author@fnsymbol{%
+        \@nameuse{@author@affil@\@roman\@tempcnta}%
+      }%
+    }%
+  \else
+    \ifnum\acs@affil@alt@cnt>\z@\relax
+      \protected@edef\acs@author@fnsymbol{%
+        \acs@author@footnotes
+        \acs@author@fnsymbol{\@ne}%
+      }%
+    \fi
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@author@affil@also}
+%\begin{macro}{\acs@author@affil@also@aux}
+% The ``also'' affiliations are generated by a loop as there may be more
+% than one.
+%    \begin{macrocode}
+\newcommand*{\acs@author@affil@also}{%
+  \acs@ifundefined{@author@alsoaffil@\@roman\@tempcnta}{}{%
+    \acs@author@affil@also@aux
+  }%
+}
+\newcommand*{\acs@author@affil@also@aux}{%
+  \expandafter\@for\expandafter\@tempa\expandafter:\expandafter
+    =\csname @author@alsoaffil@\@roman\@tempcnta\endcsname\do{%
+    \protected@edef\acs@author@footnotes{%
+      \acs@author@footnotes
+      ,%
+      \acs@author@fnsymbol{\@tempa}%
+    }%
   }%
 }
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
+%\begin{macro}{\acs@author@affil@alt}
+%\begin{macro}{\acs@author@affil@alt@aux}
+% Alternative affiliations use the secondary counter \cs{@tempcntb},
+% which starts out at the end of the main list.
+%    \begin{macrocode}
+\newcommand*{\acs@author@affil@alt}{%
+  \acs@ifundefined{@author@altaffil@\@roman\@tempcnta}{}{%
+    \acs@author@affil@alt@aux
+  }%
+}
+\newcommand*{\acs@author@affil@alt@aux}{%
+  \advance\@tempcntb\@ne\relax
+  \protected@edef\acs@author@footnotes{%
+    \acs@author@footnotes
+    ,%
+    \acs@author@fnsymbol{\@tempcntb}%
+  }%
+}
+%    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\end{macro}
-%\begin{macro}{\acs@fnsymbol}
+%\begin{macro}{\acs@author@fnsymbol}
 %\changes{v3.1}{2008/09/04}{Extended symbols available}
 % The ACS have an extended list of symbols.  The star appears at the
 % special position zero.
 %    \begin{macrocode}
-\newcommand*{\acs@fnsymbol}[1]{%
-  \ensuremath{\ifcase#1 *\or \dagger\or \ddagger\or \P\or
-   \S\or \|\or \bot\or \#\or @\or \triangle\or \nabla\else
-   \ClassError{achemso}{Too many affiliations}
-     {There are no symbols left: complain to the package
-      author}\fi}}
+\newcommand*{\acs@author@fnsymbol}[1]{%
+  \ensuremath{%
+    \ifcase #1 *\or 
+      \dagger\or 
+        \ddagger\or 
+          \P\or
+            \S\or 
+              \|\or 
+                \bot\or 
+                  \#\or 
+                    @\or 
+                      \triangle\or 
+                        \nabla\else
+                          #1%
+    \fi
+  }%
+}
 %    \end{macrocode}
 %\end{macro}
-%\begin{macro}{\acs@addresslist}
-%\begin{macro}{\acs@addresslist@aux}
-% The main address block works in a similar way to the author printing.
+%\begin{macro}{\acs@address@list}
+%\begin{macro}{\acs@address@list@aux}
+% The main address block is rather less complex than the author 
+% printing: one print job per address.
 %    \begin{macrocode}
-\newcommand*{\acs@addresslist}{%
-  \ifnum\acs@affilcnt>\z@\relax
-    \acs@tempcnta\z@\relax
-    \acs@addresslist@aux
+\newcommand*{\acs@address@list}{%
+  \@tempcnta\z@\relax
+  \ifnum\acs@affil@cnt>\z@\relax
+    \acs@address@list@aux
   \else
-    \ClassError{achemso}{No affiliations}
-      {At least one affiliation is needed}%
-  \fi}
-\newcommand*{\acs@addresslist@aux}{%
-  \advance\acs@tempcnta\@ne\relax
-  \ifnum\acs@affilcnt>\@ne\relax
-    \ifnum\acs@tempcnta=\acs@affilcnt\relax
+    \acs@warning{%
+      No affiliations: at least one affiliation is needed%
+    }%
+  \fi
+}
+\newcommand*{\acs@address@list@aux}{%
+  \advance\@tempcnta\@ne\relax
+  \ifnum\acs@affil@cnt>\@ne\relax
+    \ifnum\@tempcnta=\acs@affil@cnt\relax
       and
     \fi
   \fi
-  \csname @address@\@roman\acs@tempcnta\endcsname
-  \ifnum\acs@tempcnta<\acs@affilcnt\relax
+  \@nameuse{@address@\@roman\@tempcnta}%
+  \ifnum\@tempcnta<\acs@affil@cnt\relax
     ,
-    \expandafter\acs@addresslist@aux
+    \expandafter\acs@address@list@aux
   \fi
 }
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\acs@affilfoot}
 %\begin{macro}{\acs@fnsymbol@org}
-%\changes{v3.0a}{2008/08/21}{Fixed bugs in printing affiliations
-%  correctly}
-%\begin{macro}{\acs@affil@foot}
-%\begin{macro}{\acs@altaffil@foot}
-%\begin{macro}{\acs@altaffil@foot@aux}
+%\changes{v3.0a}{2008/08/21}{
+%  Fixed bugs in printing affiliations correctly
+%}
+%\begin{macro}{\acs@affil@list}
+%\begin{macro}{\acs@affil@list@aux}
 % Footnotes are done in two stages.  First the main affiliation is
-% handled, then the possible alternative.
+% handled, then the possible alternative. There is a need to check for 
+% the possibility that there is only one main affiliation but one or 
+% more alternative ones.
 %    \begin{macrocode}
-\newcommand*{\acs@affilfoot}{%
+\newcommand*{\acs@fnsymbol@org}{}
+\newcommand*{\acs@affil@list}{%
   \let\acs@fnsymbol@org\@fnsymbol
-  \let\@fnsymbol\acs@fnsymbol
-  \acs@tempcnta\z@\relax
-  \acs@tempcntb\z@\relax
-  \ifnum\acs@affilcnt>\@ne\relax
-    \acs@affil@foot
+  \let\@fnsymbol\acs@author@fnsymbol
+  \@tempcnta\z@\relax
+  \@tempcntb\z@\relax
+  \ifnum\acs@affil@cnt>\@ne\relax
+    \expandafter\acs@affil@list@aux
   \else
-    \ifnum\acs@altaffilcnt>\z@\relax
+    \ifnum\acs@affil@alt@cnt>\z@\relax
       \footnotetext[\@ne]{\@affil@i}%
-      \acs@tempcnta\@ne\relax
+      \@tempcnta\@ne\relax
     \fi
   \fi
-  \ifnum\acs@altaffilcnt>\z@\relax
-    \acs@altaffil@foot
+  \ifnum\acs@affil@alt@cnt>\z@\relax
+    \expandafter\acs@affil@alt@list
   \fi
-  \let\@fnsymbol\acs@fnsymbol@org}
-\newcommand*{\acs@affil@foot}{%
-  \advance\acs@tempcnta\@ne\relax
-  \footnotetext[\acs@tempcnta]
-    {\csname @affil@\@roman\acs@tempcnta\endcsname}%
-  \ifnum\acs@tempcnta<\acs@affilcnt\relax
-    \expandafter\acs@affil@foot
-  \fi}
-\newcommand*{\acs@altaffil@foot}{%
-  \advance\acs@tempcntb\@ne\relax
-  \begingroup
-    \@ifundefined{@altaffil@\@roman\acs@tempcntb}
-      {}
-      {\aftergroup\acs@altaffil@foot@aux}%
-  \endgroup
-  \ifnum\acs@tempcntb<\acs@authorcnt\relax
-    \expandafter\acs@altaffil@foot
+  \let\@fnsymbol\acs@fnsymbol@org
+}
+\newcommand*{\acs@affil@list@aux}{%
+  \advance\@tempcnta\@ne\relax
+  \footnotetext[\@tempcnta]{\@nameuse{@affil@\@roman\@tempcnta}}%
+  \ifnum\@tempcnta<\acs@affil@cnt\relax
+    \expandafter\acs@affil@list@aux
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@affil@alt@list}
+%\begin{macro}{\acs@affil@alt@lista@aux}
+% The secondary loop for alternative affiliations is similar.
+%    \begin{macrocode}
+\newcommand*{\acs@affil@alt@list}{%
+  \advance\@tempcntb\@ne\relax
+  \acs@ifundefined{@altaffil@\@roman\@tempcntb}{}{%
+    \acs@altaffil@foot@aux
+  }
+  \ifnum\@tempcntb<\acs@author@cnt\relax
+    \expandafter\acs@affil@alt@list
   \fi
 }
 \newcommand*{\acs@altaffil@foot@aux}{%
-  \advance\acs@tempcnta\@ne\relax
-  \footnotetext[\acs@tempcnta]
-    {\csname @altaffil@\@roman\acs@tempcntb\endcsname}%
+  \advance\@tempcnta\@ne\relax
+  \footnotetext[\@tempcnta]{\@nameuse{@altaffil@\@roman\@tempcntb}}%
 }
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\begin{macro}{\acs@emaillist}
-%\changes{v3.0a}{2008/08/21}{Fixed error if only one address is given}
 %\begin{macro}{\acs@email@list}
+%\changes{v3.0a}{2008/08/21}{Fixed error if only one address is given}
+%\begin{macro}{\acs@email@list@aux}
 % The final piece of meta-data to print is the e-mail address list.
 % The total number of e-mail addresses given it counted in
-% \cs{acs@tempcntb}, which means a warning can be given if there are
+% \cs{@tempcntb}, which means a warning can be given if there are
 % none.  The group is used so that \cs{UrlFont} can be set correctly.
 %    \begin{macrocode}
-\newcommand*{\acs@emaillist}{%
-  \begingroup
-    \renewcommand*{\UrlFont}{\sf}%
-    \acs@tempcnta\z@\relax
-    \acs@tempcntb\z@\relax
-    \acs@email@list
-    \expandafter\endgroup\expandafter\acs@tempcntb\number
-      \acs@tempcntb\relax
-  \ifnum\acs@tempcntb=\z@\relax
-    \ClassError{achemso}{No e-mail given}
-      {At lest one author must have a contact e-mail}%
-  \fi}
 \newcommand*{\acs@email@list}{%
-  \advance\acs@tempcnta\@ne\relax
-  \ifnum\acs@tempcnta>\acs@authorcnt\relax\else
-    \begingroup
-      \@ifundefined{@email@\@roman\acs@tempcnta}
-        {\aftergroup\@gobble}
-        {\aftergroup\@firstofone}%
-    \endgroup
-      {\advance\acs@tempcntb\@ne\relax
-       \ifnum\acs@tempcntb>\@ne\relax
-%    \end{macrocode}
-% The lack of a percent sign here is deliberate.
-%    \begin{macrocode}
-         ;
-       \fi
-       \expandafter\expandafter\expandafter\url\expandafter
-         \expandafter\expandafter{%
-           \csname @email@\@roman\acs@tempcnta\endcsname}}%
-    \acs@email@list
-  \fi}
+  \begingroup
+    \def\UrlFont{\sf}%
+    \@tempcnta\z@\relax
+    \@tempcntb\z@\relax
+    \acs@email@list@aux
+    \ifnum\@tempcntb=\z@\relax
+      \acs@warning{%
+        No e-mail given:\MessageBreak
+        at lest one author must have a contact e-mail%
+      }%
+    \fi
+  \endgroup
+}
+\newcommand*{\acs@email@list@aux}{%
+  \advance\@tempcnta\@ne\relax
+  \ifnum\@tempcnta>\acs@author@cnt\relax\else
+    \acs@ifundefined{@email@\@roman\@tempcnta}{}{%
+      \advance\@tempcntb\@ne\relax
+      \ifnum\@tempcntb>\@ne\relax
+        ;
+      \fi
+      \expandafter\expandafter\expandafter\url\expandafter
+        \expandafter\expandafter{%
+           \csname @email@\@roman\@tempcnta\endcsname
+      }%
+    }%
+    \expandafter\acs@email@list@aux
+  \fi
+}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -1249,8 +1878,7 @@ citations after punctuation.
 %    \begin{macrocode}
 \g@addto@macro{\document}{\maketitle}
 %    \end{macrocode}
-%
-%\subsection{Floats}
+%    
 %\begin{environment}{scheme}
 %\begin{environment}{chart}
 %\changes{v3.1}{2008/08/29}{Fixed scheme naming}
@@ -1292,7 +1920,10 @@ citations after punctuation.
 % Floats are all centred.
 %    \begin{macrocode}
 \let\acs@floatboxreset\@floatboxreset
-\renewcommand*{\@floatboxreset}{\centering\acs@floatboxreset}
+\renewcommand*{\@floatboxreset}{%
+  \centering
+  \acs@floatboxreset
+}
 %    \end{macrocode}
 %\end{macro}
 % \pkg{varioref} is used to control the appearance of cross-references.
@@ -1303,227 +1934,32 @@ citations after punctuation.
 \labelformat{figure}{\figurename~#1}
 \labelformat{table}{\tablename~#1}
 %    \end{macrocode}
-%
-%\subsection{Page headers}
-%\begin{macro}{\ps@achemso}
-%\begin{macro}{\@oddfoot}
-%\begin{macro}{\@oddhead}
-% For reviewers, page headers indicating which manuscript the page
-% belongs to would be useful.  Rather than load \pkg{fancyhdr}, a
-% low-level patch is made to the appropriate command.  This is rather
-% simply-minded but gives the desired output.
-%    \begin{macrocode}
-\newcommand*{\ps@achemso}{%
-  \renewcommand*{\@oddfoot}{\reset@font\hfil\thepage\hfil}%
-  \let\@evenfoot\@oddfoot
-  \renewcommand*{\@oddhead}{%
-    \reset@font
-    \@author@i
-    \ifnum\acs@authorcnt>\@ne\relax
-      \space et al.%
-    \fi
-    \hfil\relax
-%    \end{macrocode}
-% If the short title is empty, then the main title is used with some
-% trimming.  A check is made first, as the \cs{truncate} macro will
-% left-align if the text is not actually too long.
-%    \begin{macrocode}
-    \ifx\@empty\@shorttitle\@empty
-      \setbox\z@\hbox{\acs@title}%
-      \ifdim\wd\z@>0.45\textwidth\relax
-        \truncate{0.45\textwidth}{\acs@title}%
-      \else
-        \acs@title
-      \fi
-    \else
-      \@shorttitle
-    \fi}%
-  \let\@evenhead\@oddhead}
-\pagestyle{achemso}
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%
-%\subsection{Miscellaneous changes}
-% Although \currpkg avoids too much formatting, the class file makes
-% a few changes to keep life simple.  The name of the bibliography
-% should be ``Notes and References'' if any notes are added.
-%    \begin{macrocode}
-\renewcommand*{\refname}{%
-  \ifnum\the\value{bibnote}>\z@\relax
-    Notes and
-  \fi References}
-%    \end{macrocode}
-%
-%\subsection{Finalisation}
-%\changes{v3.1}{2008/08/28}{Moved loading of \pkg{achemso} package}
-% At this stage, the \currpkg package can be loaded. Numbering
-% of sections is disabled by default.
-%    \begin{macrocode}
-\RequirePackage{achemso}
-%    \end{macrocode}
-%\begin{macro}{\acs@manuscript}
-% The article must have a type: if nothing else has been set, then
-% ``article'' is used.
-%    \begin{macrocode}
-\@ifundefined{acs@manuscript}
-  {\newcommand*{\acs@manuscript}{article}}{}
-%    \end{macrocode}
-%\end{macro}
-% Some settings are defined by the document type.  At this stage, the
-% journal file should have ensured that the type is valid.
-%    \begin{macrocode}
-\edef\acs@tempa{note}
-\ifx\acs@manuscript\acs@tempa
-  \acs@killsecs
-\fi
-\edef\acs@tempa{review}
-\ifx\acs@manuscript\acs@tempa
-  \acs@restsecnums
-\fi
-\edef\acs@tempa{suppinfo}
-\ifx\acs@manuscript\acs@tempa
-  \acs@restsecnums
-  \acs@setkeys{maxauthors=0}
-\fi
-\if@filesw
-  \acs@writebib
-\fi
-%    \end{macrocode}
-%
-%\iffalse
-%</class>
-%<*package>
-%\fi
-%\section{The package file}
-%\subsection{Setup code}
-% The package file is designed to be usable with any document class.
-% It sets up the basics, but leaves some settings to the class file.
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{achemso}
-  [2009/02/03 v3.1a Support for ACS journals]
-\@ifclassloaded{achemso}{}
-  {\PackageInfo{achemso}{When using the achemso bundle
-     for\MessageBreak submission of articles to the ACS,
-     please\MessageBreak use the achemso document class.}}
-\RequirePackage{notes2bib,mciteplus,xkeyval}
-%    \end{macrocode}
-%\begin{macro}{\acs@tempa}
-%\begin{macro}{\acs@tempb}
-%\begin{macro}{\acs@tempcnta}
-%\begin{macro}{\acs@tempcntb}
-%\begin{macro}{\acs@tempcntc}
-%\begin{macro}{\ifacs@switch}
-% Some scratch macros are defined.
-%    \begin{macrocode}
-\newcommand*{\acs@tempa}{}
-\newcommand*{\acs@tempb}{}
-\newcount\acs@tempcnta
-\newcount\acs@tempcntb
-\newcount\acs@tempcntc
-\newif\ifacs@switch
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%
-%\subsection{Option handling}
-%\begin{macro}{\acs@manuscript}
-%\begin{macro}{\acs@journal}
-%\begin{macro}{\acs@maxauthors}
-%\begin{macro}{\ifacs@super}
-%\begin{macro}{\ifacs@usetitle}
-%\begin{macro}{\ifacs@biochemistry}
-% The various keys are defined.
-%    \begin{macrocode}
-\define@boolkeys[acs]{key}[acs@]{
-  abbreviate,
-  biochem,
-  biochemistry,
-  super,
-  usetitle}[true]
-\let\acs@key@biochem\acs@key@biochemistry
-\define@cmdkeys[acs]{key}[acs@]{
-  maxauthors,
-  journal,
-  manuscript}
-\define@choicekey*[acs]{key}{biblabel}
-  [\acs@tempa\acs@tempb]
-  {plain,brackets,fullstop,period}
-  {\ifcase\acs@tempb\relax
-     \def\@biblabel##1{##1}\or
-     \def\@biblabel##1{(##1)}\or
-     \def\@biblabel##1{##1.}\or
-     \def\@biblabel##1{##1.}\fi}
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\begin{macro}{\acs@setkeys}
-% A slight shortcut for setting keys.
-%    \begin{macrocode}
-\newcommand*{\acs@setkeys}{\setkeys[acs]{key}}
-%    \end{macrocode}
-%\end{macro}
-% Default values for some of the options are set up here, before
-% processing.
-%    \begin{macrocode}
-\acs@setkeys{
-  maxauthors=15,
-  super=true,
-  biblabel=brackets}
-\ProcessOptionsX*[acs]<key>
-%    \end{macrocode}
-%\begin{macro}{\acs@cfgextension}
-%\begin{macro}{\acs@prefix}
-% A few fixed values are used in several places.
-%    \begin{macrocode}
-\newcommand*{\acs@cfgextension}{cfg}
-\newcommand*{\acs@prefix}{acs-}
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%
-%\subsection{\opt{type} validation}
-%\begin{macro}{\acs@validtype}
-% The \opt{type} of manuscript needs to be validated by most journal
-% files.  A shortcut is provided here.  This needs to happen before
-% support files can be loaded.
-%    \begin{macrocode}
-\newcommand*{\acs@validtype}[2][article]{%
-  \acs@switchfalse
-  \@ifundefined{acs@manuscript}
-    {\newcommand*{\acs@manuscript}{#1}}
-    {\@for\acs@tempa:=#2\do{%
-      \ifx\acs@tempa\acs@manuscript
-        \acs@switchtrue
-      \fi}
-    \ifacs@switch\else
-      \ClassWarning{achemso}{Invalid manuscript type:
-        \MessageBreak changing to #1}%
-      \renewcommand*{\acs@manuscript}{#1}%
-    \fi}}
-%    \end{macrocode}
-%\end{macro}
-%
-%\subsection{Section headings}
-%\changes{v3.1}{2008/08/27}{Moved section modification to
-%  package}
-%\begin{macro}{\acs@orgstartsection}
+%    
+%\begin{macro}{\acs@section}
+%\begin{macro}{\acs@subsection}
+%\begin{macro}{\acs@subsubsection}
 %\begin{macro}{\acs@startsection}
-% The applicable section headings depend on the journal and document
-% type.  First, numbering of sections is killed off by default.
+% Both the numbering and existence of section headers may need to be 
+% altered. Some generic functions are therefore provided to deal with
+% this cleanly. First, some original definitions are saved.
 %    \begin{macrocode}
-\let\acs@orgstartsection\@startsection
-\newcommand*{\acs@startsection}[6]{%
+\newcommand*{\acs@section}{}
+\let\acs@section\section
+\newcommand*{\acs@subsection}{}
+\let\acs@subsection\subsection
+\newcommand*{\acs@subsubsection}{}
+\let\acs@subsubsection\subsubsection
+\newcommand*{\acs@startsection}{}
+\let\acs@startsection\@startsection
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}   
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@startsection@alt}
+% An alternative version of \cs{@startsection} which never adds numbers.
+%    \begin{macrocode}
+\newcommand*{\acs@startsection@alt}[6]{%
   \if@noskipsec \leavevmode \fi
   \par
   \@tempskipa #4\relax
@@ -1534,130 +1970,143 @@ citations after punctuation.
   \if@nobreak
     \everypar{}%
   \else
-    \addpenalty\@secpenalty\addvspace\@tempskipa
+    \addpenalty\@secpenalty
+    \addvspace\@tempskipa
   \fi
+  \@ifstar{%
+    \@ssect{#3}{#4}{#5}{#6}%
+  }{%
+    \@ssect{#3}{#4}{#5}{#6}%
+  }%
+}
 %    \end{macrocode}
-% The change is here: a star makes no difference.  \cs{@ifstar} means
-% that any star is nicely got rid of.
+%\end{macro}
+%\begin{macro}{\acs@sections@none}
+%\begin{macro}{\acs@sections@none@aux}
+% When removing sections entirely, a gobble macro is needed.
 %    \begin{macrocode}
-  \@ifstar
-    {\@ssect{#3}{#4}{#5}{#6}}
-    {\@ssect{#3}{#4}{#5}{#6}}}
+\newcommand*{\acs@sections@none}{%
+  \@ifstar{%
+    \acs@sections@none@aux
+  }{%
+    \acs@sections@none@aux
+  }%
+}
+\newcommand*{\acs@sections@none@aux}[2][]{%
+  \acs@warning{%
+    (Sub)section `#2' ignored%
+  }%
+}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\acs@killsecnums}
-%\begin{macro}{\acs@restsecnums}
-% The business end.
+%\begin{macro}{\SectionNumbersOff}
+%\begin{macro}{\SectionNumbersOn}
+% To macros to add or remove the section numbers. The standard setting
+% for the class has them on, but some configurations will turn them 
+% off. The names of these functions are both in design space so that
+% users can change the decision easily.
 %    \begin{macrocode}
-\newcommand*{\acs@killsecnums}{%
-  \let\@startsection\acs@startsection}
-\newcommand*{\acs@restsecnums}{%
-  \let\@startsection\acs@orgstartsection}
-\@ifclassloaded{achemso}
-  {\acs@killsecnums}
-  {}
+\newcommand*{\SectionNumbersOff}{%
+  \let\@startsection\acs@startsection@alt
+}
+\@onlypreamble\SectionNumbersOff
+\newcommand*{\SectionNumbersOn}{%
+  \let\@startsection\acs@startsection
+}
+\@onlypreamble\SectionNumbersOn
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\acs@section}
-%\begin{macro}{\acs@subsection}
-% The original definitions are always available.
+%\begin{macro}{\SectionsOff}
+%\begin{macro}{\SectionsOn}
+% Quite similar for entire sections.
 %    \begin{macrocode}
-\let\acs@section\section
-\let\acs@subsection\subsection
+\newcommand*{\SectionsOff}{%
+  \let\section\acs@sections@none
+  \let\subsection\acs@sections@none
+  \let\subsubsection\acs@sections@none
+}
+\@onlypreamble\SectionsOff
+\newcommand*{\SectionsOn}{%
+  \let\section\acs@section
+  \let\subsection\acs@subsection
+  \let\subsubsection\acs@subsubsection
+}
+\@onlypreamble\SectionsOn
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\acs@killsecs}
-%\begin{macro}{\acs@gobblesection}
-%\begin{macro}{\section}
-%\begin{macro}{\subsection}
-%\begin{macro}{\subsubsection}
-% To kill sections entirely, a different approach is needed. The set
-% to gobble up the title and if necessary the star.
+%\begin{environment}{acknowledgement}
+%\begin{environment}{suppinfo}
+% Simple named sections.
 %    \begin{macrocode}
-\newcommand*{\acs@killsecs}{%
-  \newcommand*{\acs@gobblesection}{%
-    \ClassWarning{achemso}
-      {Sections not allowed for this manuscript type}%
-    \@ifstar{\@gobble}{\@gobble}}
-  \let\section\acs@gobblesection
-  \let\subsection\acs@gobblesection
-  \let\subsubsection\acs@gobblesection
+\newenvironment{acknowledgement}{%
+  \acs@subsection*{\acknowledgementname}%
+}{}
+\newenvironment{suppinfo}{%
+  \acs@subsection*{\suppinfoname}%
+}{}
 %    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
+%\end{environment}
+%\end{environment}
+%\begin{macro}{\acknowledgementname}
 %\begin{macro}{\bibsection}
-% The bibliography is altered here.
+%\begin{macro}{\suppinfoname}
+% A few macros need to get around the changes.
 %    \begin{macrocode}
-  \AtBeginDocument{
-    \renewcommand*{\bibsection}{\acs@section*{\refname}}}}
+\newcommand*{\acknowledgementname}{Acknowledgement}
+\renewcommand*{\bibsection}{%
+  \acs@subsection*{\refname}%
+}
+\newcommand*{\suppinfoname}{Supporting Information Available}
 %    \end{macrocode}
 %\end{macro}
-%\end{macro}
-%\begin{macro}{\acknowledgement}
-%\changes{v3.1}{2008/08/28}{Converted to environment}
-%\begin{macro}{\suppinfo}
-%\changes{v3.1}{2008/08/28}{Converted to environment}
-% Two macros are provided that will always give the correct
-% output.
-%    \begin{macrocode}
-\newcommand*{\acknowledgement}{%
-  \acs@subsection*{\acs@acknowledgement}}
-\newcommand*{\suppinfo}{%
-  \acs@subsection*{\acs@suppinfo}}
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\begin{macro}{\acs@acknowledgement}
-%\begin{macro}{\acs@suppinfo}
-% The text for the above is held separately.
-%    \begin{macrocode}
-\newcommand*{\acs@acknowledgement}{Acknowledgement}
-\newcommand*{\acs@suppinfo}{Supporting Information Available}
-%    \end{macrocode}
 %\end{macro}
 %\end{macro}
 %
-%\subsection{Removal of abstract}
-%\begin{macro}{\acs@killabstract}
-%\begin{macro}{\acs@startgobble}
-%\begin{macro}{\acs@endgobble}
-%\begin{macro}{\acs@iffalse}
-% To disable the abstract, a modified copy of the code from
-% \pkg{versions} is used.  This code comes here so that the journal
-% support files can call \cs{acs@killabstract} immediately.
+%\begin{macro}{\acs@abstract}
+%\begin{macro}{\acs@endabstract}
+%\begin{macro}{\acs@abstract@start}
+%\begin{macro}{\acs@abstract@end}
+%\begin{macro}{\acs@abstract@iffalse}
+% Removing the abstract, if necessary, is done using a trick from the
+% \pkg{comment} package. However, it code is copied here to keep 
+% requirements down.
 %    \begin{macrocode}
-\newcommand*{\acs@killabstract}{%
-  \let\abstract\acs@startgobble}
+\newcommand*{\acs@abstract}{}
+\let\acs@abstract\abstract
+\newcommand*{\acs@endabstract}{}
+\let\acs@endabstract\endabstract
 \begingroup
-  \catcode`{=\active
-  \catcode`}=12\relax
-  \catcode`(=1\relax
-  \catcode`)=2\relax
-  \gdef\acs@startgobble(%
-    \ClassWarning(achemso)
-      (Abstract not allowed for this\MessageBreak
-       manuscript type)%
+  \catcode`{ \active
+  \catcode`} 12\relax
+  \catcode`( 1\relax
+  \catcode`) 2\relax
+  \gdef\acs@abstract@start(%
+    \acs@warning(%
+      Abstract not allowed for this\MessageBreak
+       manuscript type
+    )%
     \@bsphack
-    \catcode`{=\active
-    \catcode`}=12\relax
+    \catcode`{ \active
+    \catcode`} 12\relax
     \let\end\fi
-    \let{\acs@endgobble%}
-    \iffalse)%{
-  \gdef\acs@endgobble#1}(%
-    \def\acs@tempa(#1)%
-    \ifx\acs@tempa\@currenvir
+    \let{\acs@abstract@end% }
+    \iffalse
+  )%{
+  \gdef\acs@abstract@end#1}(%
+    \def\@tempa(#1)%
+    \ifx\@tempa\@currenvir
       \@Esphack\endgroup
-        \if@ignore
-          \global\@ignorefalse\ignorespaces
-        \fi
-     \else
-       \expandafter\acs@iffalse
-    \fi)
+      \if@ignore
+        \global\@ignorefalse
+        \ignorespaces
+      \fi
+    \else
+       \expandafter\acs@abstract@iffalse
+    \fi
+  )
 \endgroup
 \newcommand*{\acs@iffalse}{\iffalse}
 %    \end{macrocode}
@@ -1665,327 +2114,743 @@ citations after punctuation.
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%
-%\subsection{Loading appropriate support}
-% If the package is being used with the class file, then the options
-% \opt{journal} and \opt{type} are used to set up the correct
-% settings.
+%\end{macro}
+%\begin{macro}{\AbstractOff}
+%\begin{macro}{\AbstractOn}
+% A very similar pattern to before.
 %    \begin{macrocode}
-\@ifclassloaded{achemso}
-  {\@ifundefined{acs@journal}
-     {\ClassInfo{achemso}{No target journal specified:
-       \MessageBreak using package defaults}%
+\newcommand*{\AbstractOff}{%
+  \let\abstract\acs@abstract@start
+  \let\endabstract\acs@abstract@end
+}
+\@onlypreamble\AbstractOff
+\newcommand*{\AbstractOn}{%
+  \let\abstract\acs@abstract
+  \let\endabstract\acs@endabstract
+}
+\@onlypreamble\AbstractOn
 %    \end{macrocode}
-% The \opt{type} option only applies when a particular journal is
-% given as an option.
+%\end{macro}
+%\end{macro}
+%    
+%\begin{macro}{\acs@toc@toks}
+%\begin{macro}{\acs@toc@content}
+%\begin{macro}{\acs@toc@content}
+% The content of the graphic TOC entry is processed using a method from
+% \pkg{amsmath} \emph{via} \pkg{environ}. The entire environment is
+% gathered for typesetting in a box. First, some storage is needed.
 %    \begin{macrocode}
-     \@ifundefined{acs@manuscript}{}
-       {\ClassWarning{achemso}{The `type' option is only
-          applicable\MessageBreak when the `journal' option is
-          also specified}}}%
-     {\InputIfFileExists{\acs@journal.\acs@cfgextension}
-        {\ClassInfo{achemso}{Loading configuration for
-          journal\MessageBreak \acs@journal}}
-        {\ClassWarning{achemso}{Unknown journal
-          `\acs@journal'}%
-         \InputIfFileExists{jacsat.\acs@cfgextension}
-           {\ClassInfo{achemso}{Loading jacs
-            configuration\MessageBreak as a fall-back}}
-           {\ClassError{achemso}{Could not load
-             jacsat.cfg}{This is a core file of\MessageBreak
-             the achemso bundle: something is wrong with
-             \MessageBreak  your installation}}}}}%
+\newtoks\acs@toc@toks
+\newtoks\acs@toc@empty@toks
+\newcommand*{\acs@toc@begins}{}
+\newcommand*{\acs@toc@content}{}
 %    \end{macrocode}
-% If the class is not loaded, then an appropriate warning is given if
-% either option is set.
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@toc@collect}
+%\begin{macro}{\acs@toc@collect@aux}
+%\begin{macro}{\acs@toc@collect@begins}
+%\begin{macro}{\acs@toc@collect@body}
+% This is a \cs{long} version of \cs{collect@body}.
 %    \begin{macrocode}
-  {\@ifundefined{acs@journal}{}
-     {\PackageWarning{achemso}{The `journal' option is only
-        applicable\MessageBreak when using the achemso
-        document class}}%
-   \@ifundefined{acs@manuscript}{}
-     {\PackageWarning{achemso}{The `type' option is only
-       applicable\MessageBreak when using the achemso
-       document class}}}
+\newcommand{\acs@toc@collect}[1]{%
+  \acs@toc@toks{%
+    \expandafter#1\expandafter{\the\acs@toc@toks}%
+  }%
+  \edef\acs@toc@content{%
+    \the\acs@toc@toks
+    \noexpand\end{\@currenvir}%
+  }%
+  \acs@toc@toks\acs@toc@empty@toks
+  \def\acs@toc@begins{b}%
+  \begingroup
+    \expandafter\let\csname\@currenvir\endcsname\acs@toc@collect@aux
+    \edef\acs@toc@content{%
+      \expandafter\noexpand\csname\@currenvir\endcsname
+    }%
+    \acs@toc@content
+}
+\newcommand*{\acs@toc@collect@aux}{}
+\long\def\acs@toc@collect@aux#1\end#2{%
+  \edef\acs@toc@begins{%
+    \acs@toc@collect@begins#1\begin\end
+    \expandafter\@gobble\acs@toc@begins
+  }%
+  \ifx\@empty\acs@toc@begins
+    \endgroup
+    \@checkend{#2}%
+    \acs@toc@collect@body{#1}%
+  \else
+    \acs@toc@collect@body{#1\end{#2}}%
+  \fi
+  \acs@toc@content
+}
+\newcommand*{\acs@toc@collect@begins}{}
+\long\def\acs@toc@collect@begins#1\begin#2{%
+  \ifx\end#2\else
+    b\expandafter\acs@toc@collect@begins
+  \fi
+}
+\newcommand{\acs@toc@collect@body}[1]{%
+  \global\acs@toc@toks\expandafter{\the\acs@toc@toks#1}%
+}
 %    \end{macrocode}
-%
-%\subsection{Patching \pkg{natbib}}
-% As in REV\TeX, the package needs to modify \pkg{natbib} to move
-% punctuation before superscript citations.  First, \pkg{natbib} is
-% loaded with the \opt{sort\&compress} option active.
+%\end{macro} 
+%\end{macro}
+%\end{macro} 
+%\end{macro} 
+%\begin{macro}{\acs@toc@print}
+% A simple macro to print the TOC contents.
 %    \begin{macrocode}
-\ifacs@super
-  \RequirePackage[sort&compress,numbers,super]{natbib}
-\else
-  \RequirePackage[sort&compress,numbers,round]{natbib}
+\newcommand{\acs@toc@print}[1]{%
+  \begin{center}
+    \fbox{%
+      \begin{minipage}{9cm}
+        \vbox to 3.5cm{#1}%
+      \end{minipage}%
+    }%
+  \end{center}%
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{environment}{tocentry}
+% Actually creating the entry is pretty easy.
+%    \begin{macrocode}
+\newenvironment{tocentry}{%
+  \if@twocolumn
+    \@restonecoltrue\onecolumn
+  \else
+    \@restonecolfalse\newpage
+  \fi
+  \acs@section*{\tocentryname}%
+  \tocsize
+  \sffamily
+  \singlespacing
+  \acs@toc@collect\acs@toc@print
+}{%
+  \if@restonecol
+    \twocolumn
+  \else 
+    \newpage 
+  \fi
+}
+%    \end{macrocode}
+%\end{environment}
+%\begin{macro}{\tocentryname}
+% A simple name macro.
+%    \begin{macrocode}
+\newcommand*{\tocentryname}{Graphical TOC Entry}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\tocsize}
+% The font size for printing the TOC entry.
+%    \begin{macrocode}
+\newcommand*{\tocsize}{%
+  \@setfontsize\tocsize\@viiipt\@ixpt
+}
+%    \end{macrocode}
+%\end{macro}
+%    
+%\begin{macro}{\acs@type@list}
+%\begin{macro}{\acs@type@default}
+%\begin{macro}{\acs@type@check}
+% Different journals allow different types of article. A list is set
+% up here: different journals can then alter it. A check function
+% is also provided along with a default.
+%    \begin{macrocode}
+\newcommand*{\acs@type@list}{article,communication,suppinfo}
+\newcommand*{\acs@type@default}{article}
+\newcommand*{\acs@type@check}{%
+  \@tempswafalse
+  \@for\@tempa:=\acs@type@list\do{%
+    \ifx\@tempa\acs@manuscript
+      \expandafter\@tempswatrue
+    \fi
+  }%
+  \if@tempswa\else
+    \acs@warning{%
+      Invalid manuscript type \acs@manuscript:\MessageBreak
+      changed to default type \acs@type@default
+    }%
+    \let\acs@manuscript\acs@type@default
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%    
+% Although \pkg{achemso} avoids too much formatting, the class file 
+% makes a few changes to keep life simple.  The name of the 
+% bibliography should be ``Notes and References'' if any notes are 
+% added.
+%    \begin{macrocode}
+\renewcommand*{\refname}{%
+  \ifnum\the\value{bibnote}>\z@\relax
+    Notes and
+  \fi 
+  References%
+}
+%    \end{macrocode}
+%    
+% With all of the standard settings done, the journal configuration can
+% be loaded.    
+%    \begin{macrocode}
+\InputIfFileExists{\acs@journal.cfg}{}{%
+  \acs@warning{%
+    Unknown journal `\acs@journal':\MessageBreak
+    using default configuration JACSAT%
+  }%
+  \input{jacsat.cfg}%
+}
+%    \end{macrocode} 
+%  
+%\begin{macro}{\thepage}      
+% Some changes that can always be applied if the manuscript type is
+% appropriate: this saves some repetition in the configuration files.
+%    \begin{macrocode}
+\acs@type@check
+\def\@tempa{note}
+\ifx\acs@manuscript\@tempa
+  \SectionsOff
 \fi
-\RequirePackage{natmove}
-%    \end{macrocode}
-%\begin{macro}{\nmv@activate}
-%\begin{macro}{\nmv@natcitex}
-%\begin{macro}{\nmv@cite}
-%\begin{macro}{\cite}
-% The \pkg{natmove} package is slightly patched to get automatic
-% bibnotes.  This is true for superscript and standard citations.
+\def\@tempa{review}
+\ifx\acs@manuscript\@tempa
+  \SectionsOn
+  \SectionNumbersOn
+\fi
+\def\@tempa{suppinfo}
+\ifx\acs@manuscript\@tempa
+  \setkeys{acs}{maxauthors = 0}
+  \renewcommand*{\thepage}{S\arabic{page}}
+\fi
+%</class>
+%    \end{macrocode}   
+%\end{macro}    
+%    
+%\subsection{Late package-only code}
+%
+% The \pkg{notes2bib} code may or may not be activated.
 %    \begin{macrocode}
-\renewcommand*{\nmv@activate}{%
-  \let\nmv@natcitex\@citex
+%<*package>
+\AtBeginDocument{%
+  \@ifpackageloaded{notes2bib}{}{%
+    \acs@niib@create
+  }%
+}
+%</package>
+%    \end{macrocode}
+%    
+%\subsection{Moving citations with \pkg{natbib}}
+% 
+% The code for moving citations is created as a separate package, as
+% the code needed is the same in both cases.
+%    \begin{macrocode}
+%<*natmove>
+\ProvidesPackage{natmove}
+  [2009/04/20 v1.1 Automatic citation moving with natbib]
+\RequirePackage{natbib}
+%    \end{macrocode}
+% 
+%\begin{macro}{\nmv@ifmtarg}
+%\begin{macro}{\nmv@xifmtarg}
+% To keep down dependence on other packages, the very short code block
+% from \pkg{ifmtarg} is copied here with an internal name.
+%    \begin{macrocode}
+\newcommand*{\nmv@ifmtarg}{}
+\newcommand*{\nmv@xifmtarg}{}
+\begingroup
+  \catcode`\Q 3\relax
+  \long\gdef\nmv@ifmtarg#1{%
+    \nmv@xifmtarg#1QQ\@secondoftwo\@firstoftwo\@nil
+  }
+  \long\gdef\nmv@xifmtarg#1#2Q#3#4#5\@nil{#4}
+\endgroup
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\ifnmv@cite}
+% A flag is need to watch whether \cs{cite} or another macro is in use.
+%    \begin{macrocode}
+\newif\ifnmv@cite
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex}
+% Using the flag, either the new internal macro, or the \pkg{natbib} 
+% original, can be called.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex}{%
+  \ifnmv@cite
+    \expandafter\nmv@citex@moving
+  \else
+    \expandafter\nmv@citex@nat
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@after}
+% Later, the argument for \cs{cite} will need to be saved.
+%    \begin{macrocode}
+\newcommand*{\nmv@after}{}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@moving}
+% The new version of \cs{@citex} is needed that looks ahead of the
+% citation using \cs{futurelet}.  There are three arguments to
+% \cs{@citex} when using \pkg{natbib}.  Other than that, the trick
+% used here is similar to that in \pkg{cite}.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@moving}{}
+\def\nmv@citex@moving[#1][#2]#3{%
+  \leavevmode
+  \skip@\lastskip
+  \unskip
+  \begingroup
+    \def\nmv@after{\nmv@citex@nat[#1][#2]{#3}}%
+    \global\nmv@citefalse
+    \nmv@citex@get@next\relax
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@end}
+% To get things right at the end.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@end}{%
+    \nmv@after
+  \endgroup
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@get@next}
+%\begin{macro}{\nmv@citex@next}
+% The next token on the input stack is saved into
+% \cs{nmv@citex@next}, after gobbling up one token.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@get@next}[1]{%
+  \futurelet\nmv@citex@next\nmv@citex@punct
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\nmv@citex@punct}
+%\begin{macro}{\nmv@citex@loop}
+% The working macro for moving the punctuation.  This is very much
+% like \cs{@citey} in the \pkg{cite} package. The initial assumption
+% is that the loop will terminate, and so the recursion call will
+% simply do the finalisation.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@punct}{%
+  \let\nmv@citex@loop\nmv@citex@end
+  \ifx\nmv@citex@next.\relax
+    \ifnum\spacefactor<\nmv@citex@sfac\else
+      \let\nmv@citex@next\relax
+      \let\nmv@citex@loop\nmv@citex@get@next
+    \fi
+  \fi
+  \expandafter\nmv@citex@punct@aux\natmovechars\@empty
+  \nmv@citex@loop
+}
+\newcommand*{\nmv@citex@loop}{}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\nmv@citex@pnct}
+% The final part of the punctuation moving system.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@punct@aux}{}
+\def\nmv@citex@punct@aux#1#2\@empty{%
+  \ifx\nmv@citex@next#1\@empty
+    #1%
+    \let\nmv@citex@loop\nmv@citex@get@next
+  \fi
+  \ifx\@empty#2\@empty\else
+    \expandafter\nmv@citex@punct@aux#2\@empty
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@sfac}
+% The value of the spacing factor after a full stop is used to signal
+% doubled punctuation.  For French spacing, a bit of patching is
+% needed.
+%    \begin{macrocode}
+\mathchardef\nmv@citex@sfac3000\relax
+\expandafter\def\expandafter\frenchspacing\expandafter{%
+  \frenchspacing
+  \mathchardef\nmv@citex@sfac1001\relax
+  \sfcode`\.\nmv@citex@sfac
+  \sfcode`\?\nmv@citex@sfac
+  \sfcode`\!\nmv@citex@sfac
+}
+\ifnum\sfcode`\.=\@m
+  \frenchspacing
+\fi
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@nat}
+%\begin{macro}{\nmv@activate}
+%\begin{macro}{\cite}
+% The swap has to be done at the beginning of the document. The
+% internal flag from \pkg{natbib} is used, but under the
+% circumstances we should be safe.  \cs{cite} is also patched to make
+% the system active. 
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@nat}{}
+\newcommand*{\nmv@activate}{%
+  \let\nmv@citex@nat\@citex
   \let\@citex\nmv@citex
   \let\nmv@cite\cite
   \renewcommand*{\cite}[2][]{%
-    \nmv@ifmtarg{##1}
-      {\nmv@citetrue
-       \nmv@cite{##2}}
-      {\nocite{##2}%
-       \bibnote{Ref.~\citenum{##2}, ##1}}}}
-\renewcommand*{\nmv@notactivate}{%
-  \let\nmv@cite\cite
-  \renewcommand*{\cite}[2][]{%
-    \nmv@ifmtarg{##1}
-      {\nmv@cite{##2}}
-      {\nocite{##2}%
-       \bibnote{Ref.~\citenum{##2}, ##1}}}}
+    \nmv@ifmtarg{##1}{%
+      \nmv@citetrue
+      \nmv@cite{##2}%
+    }{%
+      \nmv@citefalse
+      \nmv@cite[##1]{##2}}%
+  }%
+}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%\end{macro}
-%
-%\subsection{General citation setup}
-%\begin{macro}{\acs@bibstyle}
-% The \currpkg package sets up the correct bibliography style.
+%\begin{macro}{\nmv@natbib@detect}
+% So that \pkg{natbib} options can be set without worrying about load
+% order, \pkg{natmove} doesn't require \pkg{natbib}. So a test is needed
+% to see if it is actually loaded. This is done as a macro so that the
+% effect can be changed by \pkg{achemso}.
 %    \begin{macrocode}
-%\end{macro}
-\ifacs@biochemistry
-  \newcommand*{\acs@bibstyle}{biochem}
-\else
-  \newcommand*{\acs@bibstyle}{achemso}
-\fi
-\expandafter\bibliographystyle\expandafter{\acs@bibstyle}
+\newcommand*{\nmv@natbib@detect}{%
+  \@ifpackageloaded{natbib}{%
+    \ifNAT@super
+      \expandafter\nmv@activate
+    \fi
+  }{%
+    \PackageInfo{natmove}{%
+      The natbib package is not loaded.\MessageBreak
+      Loading natmove will do nothing
+    }%
+  }%
+}
+\AtBeginDocument{\nmv@natbib@detect}
 %    \end{macrocode}
 %\end{macro}
-%\begin{macro}{\bibliographystyle}
-%\begin{macro}{\acs@bibliographystyle}
-% If \pkg{chapterbib} is loaded, then multiple calls to
-% \cs{bibliographystyle} need to be allowed.  In either case, the
-% argument is gobbled.
+%\begin{macro}{\natmovechars}
+% A user macro is needed for moving characters.
 %    \begin{macrocode}
-\let\acs@bibliographystyle\bibliographystyle
-\AtBeginDocument{
-  \@ifpackageloaded{chapterbib}
-    {\renewcommand*{\bibliographystyle}[1]{%
-      \expandafter\acs@bibliographystyle\expandafter{%
-        \acs@bibstyle}}}}
-\renewcommand*{\bibliographystyle}[1]{%
-  \PackageWarning{achemso}{\string\bibliographystyle\space
-    ignored}}
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\begin{macro}{\citenumfont}
-% For on-line citations, italic numbers are required.
-%    \begin{macrocode}
-\ifacs@super\else
-  \newcommand*{\citenumfont}{\textit}
-\fi
+\newcommand*{\natmovechars}{.,;:}
+%</natmove>
 %    \end{macrocode}
 %\end{macro}
 %
-%\subsection{Controlling \texorpdfstring{\BibTeX}{BibTeX}}
-%\begin{macro}{\acs@msg}
-%\begin{macro}{\acs@writebib}
-%\begin{macro}{\acs@out}
-%\begin{macro}{\acs@stream}
-% \currpkg use the same system as \pkg{biblatex} and \pkg{IEEEtrans}
-% to control output.  A special database is generated, which contains
-% the necessary control entries.
-%    \begin{macrocode}
-\edef\acs@msg{%
-  This is an auxiliary file used by the `achemso' package.^^J%
-  This file may safely be deleted. It will be recreated as
-  required.^^J}
-\newcommand*{\acs@writebib}{%
-  \immediate\openout\acs@out\acs@stream\relax
-  \immediate\write\acs@out{\acs@msg}%
-%    \end{macrocode}
-% A shortcut to producing the control sequences.
-%    \begin{macrocode}
-  \edef\acs@tempa##1##2{\space\space##1\space
-    =\space"##2",^^J}%
-  \immediate\write\acs@out{%
-    @Control\string{achemso-control,^^J%
-    \acs@tempa{ctrl-use-title}{\ifacs@usetitle
-      yes\else no\fi}%
-    \acs@tempa{ctrl-etal-number}{\acs@maxauthors}%
-    \string}^^J}}
-%    \end{macrocode}
-% The writing system is designed to allow the class to re-write the
-% control file if needed.
-%    \begin{macrocode}
-\if@filesw
-  \newwrite\acs@out
-  \newcommand*\acs@stream{\acs@prefix\jobname.bib}
-  \acs@writebib
-  \AtBeginDocument{\immediate\closeout\acs@out}
-\fi
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\begin{macro}{\bibliography}
-%\begin{macro}{\acs@bibliography}
-% The \cs{bibliography} macro is now patched to use the control
-% database.
-%    \begin{macrocode}
-\AtBeginDocument{
-  \let\acs@bibliography\bibliography
-  \renewcommand*{\bibliography}[1]{%
-    \acs@bibliography{\acs@prefix\jobname,#1}}}
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-% The control citation is now added to the document.  This needs to
-% be after the beginning of the document.  To avoid a \pkg{natbib}
-% warning, this is done directly (without \cs{nocite}).
-%    \begin{macrocode}
-\g@addto@macro{\document}{%
-  \if@filesw
-    \immediate\write\@auxout{%
-      \string\citation\string{achemso-control\string}}%
-  \fi}
-%    \end{macrocode}
+%\subsection{The configuration files}
 %
-%\section{The configuration files}
-% The configuration files for different journals are not very
-% complex.  Keeping everything separate simply helps with
-% maintenance. The defaults are re-applied by the files so that any
-% user options are over-written when using the class file.  Several
-% of the files are basically copies of \file{jacsat.cfg}.
-%
+% The configuration files for different journals are not very complex.
+% Keeping everything separate simply helps with maintenance. Most of 
+% this code is very, very boring, and so it is not typeset.
+% 
 %\iffalse
-%</package>
-%<*jacsat>
+%    \begin{macrocode}
+%<*achre4>
+\ProvidesFile{achre4.cfg}
+  [2009/04/21 v3.2 achemso configuration: Acc. Chem. Res.]
+\setkeys{acs}{
+  biblabel = plain
+}
+\renewcommand*{\acs@type@list}{article,suppinfo}
+\renewcommand*{\abstractname}{Conspectus}
+%</achre4>
+%<*acbcct>
+\ProvidesFile{acbcct.cfg}
+  [2009/04/21 v3.2 achemso configuration: ACS Chem. Biol.]
+\setkeys{acs}{
+  biblabel = fullstop,
+  biochem  = true,
+  super    = false,
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,letter,review,suppinfo}
+\SectionNumbersOff
+%</acbcct>
+%<*ancac3>
+\ProvidesFile{acbcct.cfg}
+  [2009/04/21 v3.2 achemso configuration: ACS Nano]
+\setkeys{acs}{
+  biblabel = fullstop,
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,perspective,suppinfo}
+\SectionNumbersOff
+%</ancac3>
+%<*ancham>
+\ProvidesFile{ancham.cfg}
+  [2009/04/21 v3.2 achemso configuration:  Anal. Chem.]
+\renewcommand*{\acs@type@list}{article,note,suppinfo}
+\SectionNumbersOff
+%</ancham>
+%<*bichaw>
+\ProvidesFile{biochem.cfg}
+  [2009/04/21 v3.2 achemso configuration: Biochemistry]
+\setkeys{acs}{
+  biblabel = fullstop,
+  biochem  = true,
+  super    = false,
+  usetitle = true
+}
+\SectionNumbersOff
+%</bichaw>
+%<*bcches>
+\ProvidesFile{bcches.cfg}
+  [2009/04/21 v3.2 achemso configuration: Bioconjugate Chem.]
+\setkeys{acs}{
+  biochem  = true,
+  super    = false,
+  usetitle = true
+}
+\SectionNumbersOff
+%</bcches>
+%<*bomaf6>
+\ProvidesFile{bomaf6.cfg}
+  [2009/04/21 v3.2 achemso configuration: Biomacromolecules]
+\setkeys{acs}{
+  super    = false,
+  usetitle = true
+}
+\SectionNumbersOff
+%</bomaf6>
+%<*bipret>
+\ProvidesFile{bipret.cfg}
+  [2009/04/21 v3.2 achemso configuration: Biotechnol. Prog.]
+\setkeys{acs}{
+  super    = false,
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,review,suppinfo}
+\SectionNumbersOff
+%</bipret>
+%<*crtoec>
+\ProvidesFile{crtoec.cfg}
+  [2009/04/21 v3.2 achemso configuration: Chem. Res. Toxicol.]
+\setkeys{acs}{
+  biochem  = true,
+  super    = false,
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{%
+  article,perspective,profile,review,suppinfo%
+}
+\SectionNumbersOff
+%</crtoec>
+%<*chreay>
+\ProvidesFile{chreay.cfg}
+  [2009/04/21 v3.2 achemso configuration: Chem. Rev.]
+\renewcommand*{\acs@type@default}{review}
+\renewcommand*{\acs@type@list}{review}
+%    \end{macrocode}
+% The references section is numbered in \emph{Chem.\ Rev.}
+%    \begin{macrocode}
+\renewcommand*{\bibsection}{\acs@section{\refname}}
+%</chreay>
+%<*cmatex>
+%    \begin{macrocode}
+\ProvidesFile{cmatex.cfg}
+  [2009/04/21 v3.2 achemso configuration: Chem. Mater.]
+\SectionNumbersOff
+\def\@tempa{communication}
+\ifx\acs@manuscript\@tempa
+  \AbstractOff
+  \SectionsOff
+\fi
+%</cmatex>
+%<*cgdefu>
+\ProvidesFile{cgdefu.cfg}
+  [2009/04/21 v3.2 achemso configuration: Cryst. Growth Des.]
+\renewcommand*{\acs@type@list}{%
+  article,communication,perspective,suppinfo%
+}
+\SectionNumbersOff
+\def\@tempa{communication}
+\ifx\acs@manuscript\@tempa
+  \SectionsOff
+\fi
+%</cgdefu>
+%<*enfuem>
+\ProvidesFile{enfuem.cfg}
+  [2009/04/21 v3.2 achemso configuration: Energy Fuels]
+\renewcommand*{\acs@type@list}{article,review,suppinfo}
+\SectionNumbersOff
+%</enfuem>
+%<*esthag>
+\ProvidesFile{esthag.cfg}
+  [2009/04/21 v3.2 achemso configuration: Environ. Sci. Technol.]
+\setkeys{acs}{
+  super    = false,
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,suppinfo}
+\SectionNumbersOff
+%</esthag>
+%<*iecred>
+\ProvidesFile{iecred.cfg}
+  [2009/04/21 v3.2 achemso configuration: Ind. Eng. Chem. Res.]
+\setkeys{acs}{
+  biblabel = fullstop,
+  usetitle = true
+}
+\SectionNumbersOff
+%</iecred>
+%<*inoraj>
+\ProvidesFile{inoraj.cfg}
+  [2009/04/21 v3.2 achemso configuration: Inorg. Chem.]
+\SectionNumbersOff
+\def\@tempa{communication}
+\ifx\acs@manuscript\@tempa
+  \AbstractOff
+  \SectionsOff
+\fi
+%</inoraj>
+%    \end{macrocode}   
 %\fi
-%\subsection{\emph{J.~Am.\ Chem.\ Soc.}}
-% The \emph{J. Am. Chem. Soc.} is the basis of all of the configuration
-% files.
+% 
+% The \emph{J.~Am.\ Chem.\ Soc.}~configuration is rather more 
+% complicated as there is the need to construct a ``galley-like''
+% layout for communications.
 %    \begin{macrocode}
+%<*jacsat>
 \ProvidesFile{jacsat.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Am. Chem. Soc.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,communication,suppinfo}
+  [2009/04/21 v3.2 achemso configuration: J. Am. Chem. Soc.]
+\SectionNumbersOff
+\def\@tempa{communication}
+\ifx\acs@manuscript\@tempa\else
+  \expandafter\endinput
+\fi
 %    \end{macrocode}
-% For JACS Communications, a number of setting changes are made to
-% match the published style. A lot of the float stuff is
-% copied from \pkg{chemstyle}.
+% Everything from here onward applies only to communications. Some
+% adjustments are now made using the existing tools.
 %    \begin{macrocode}
-\renewcommand*{\acs@tempa}{communication}
-\ifx\acs@manuscript\acs@tempa
-%    \end{macrocode}
+\AbstractOff
+\SectionsOff
+\AtBeginDocument{\singlespacing}
+%    \end{macrocode}   
 %\begin{macro}{\@xipt}
-% The class loaded is 12 point and one column.  So changes are needed
-% to get two columns and 9 point text.
+% The class is already using 12 pt text, and the easiest way to change
+% the size now is to define it by hand.
 %    \begin{macrocode}
-  \@twocolumntrue
-  \col@number\tw@\relax
-  \def\@xipt{11}
-  \renewcommand{\normalsize}{%
-    \@setfontsize\normalsize\@ixpt\@xipt}
-  \normalsize
+\twocolumn
+\renewcommand*{\@xipt}{11}
+\renewcommand{\normalsize}{%
+  \@setfontsize\normalsize\@ixpt\@xipt
+}
+\normalsize
+\let\@listi\@listI
 %    \end{macrocode}
-%\end{macro}
-%\begin{macro}{\titlesize}
-%\begin{macro}{\authorsize}
-%\begin{macro}{\affilsize}
-%\begin{macro}{\emailsize}
-%\begin{macro}{\capsize}
-%\begin{macro}{\acksize}
-%\begin{macro}{\suppsize}
-%\begin{macro}{\refsize}
-% To keep things logical, the size macros are given names related to
-% their function.
-%    \begin{macrocode}
-  \newcommand*{\titlesize}{%
-    \@setfontsize\titlesize\@xiipt{13}}
-  \newcommand*{\authorsize}{%
-    \@setfontsize\authorsize{10.5}{12.5}}
-  \newcommand*{\affilsize}{%
-    \@setfontsize\affilsize\@ixpt\@xpt}
-  \newcommand*{\emailsize}{%
-    \@setfontsize\emailsize\@viiipt{15}}
-  \newcommand*{\capsize}{%
-    \@setfontsize\capsize\@viiipt\@ixpt}
-  \newcommand*{\acksize}{%
-    \@setfontsize\acksize\@ixpt\@xipt}
-  \newcommand*{\suppsize}{%
-    \@setfontsize\suppsize{8.5}{10.5}}
-  \newcommand*{\refsize}{%
-    \@setfontsize\refsize{7.5}{7.5}}
-  \let\footnotesize\refsize
-%    \end{macrocode}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
-%\end{macro}
+%\end{macro} 
 % The page geometry is set up, along with the various spacings around
 % display content.
 %    \begin{macrocode}
-  \geometry{letterpaper,top=12.7mm,bottom=16.8mm,left=19.3mm,
-    right=19.3mm,dvips}
-  \setlength{\columnsep}{8.1mm}
-  \setlength{\parindent}{3.3mm}
-  \abovedisplayskip 5\p@ \@plus2\p@ \@minus 5\p@
-  \abovedisplayshortskip \z@ \@plus3\p@
-  \belowdisplayshortskip 3\p@ \@plus3\p@ \@minus 3\p@
-  \belowdisplayskip \abovedisplayskip
-  \abovecaptionskip 5\p@
-  \intextsep 7\p@ \@plus 2\p@ \@minus 2\p@
-  \let\@listi\@listI
+\geometry{
+  letterpaper,
+  top    = 12.7mm,
+  bottom = 16.8mm,
+  left   = 19.3mm,
+  right  = 19.3mm,
+  dvips
+}
+\setlength{\columnsep}{8.1mm}
+\setlength{\parindent}{3.3mm}
+\abovedisplayskip 5\p@ \@plus2\p@ \@minus 5\p@\relax
+\abovedisplayshortskip \z@ \@plus3\p@\relax
+\belowdisplayshortskip 3\p@ \@plus3\p@ \@minus 3\p@\relax
+\belowdisplayskip\abovedisplayskip\relax
+\abovecaptionskip 5\p@\relax
+\intextsep 7\p@ \@plus 2\p@ \@minus 2\p@\relax
 %    \end{macrocode}
-% \TeX\ is given some extra play with the spacing, as narrow columns otherwise
-% need a lot of hyphens.
+% \TeX\ is given some extra play with the spacing, as narrow columns 
+% otherwise need a lot of hyphens.
 %    \begin{macrocode}
-  \tolerance=2000
-  \emergencystretch=10pt
+\tolerance=2000\relax
+\emergencystretch=10pt\relax
 %    \end{macrocode}
-% Some adjustments are now made to the layout.
+%\begin{macro}{\acksize}
+%\begin{macro}{\affilsize}
+%\begin{macro}{\authorsize}
+%\begin{macro}{\emailsize}
+%\begin{macro}{\capsize}
+%\begin{macro}{\refsize}
+%\begin{macro}{\suppsize}
+%\begin{macro}{\titlesize}
+% To keep things logical, the size macros are given names related to
+% their function.
 %    \begin{macrocode}
-  \acs@killabstract
-  \acs@killsecs
-  \AtBeginDocument{\singlespacing}
+\newcommand*{\affilsize}{%
+  \@setfontsize\affilsize\@ixpt\@xpt
+}
+\newcommand*{\acksize}{%
+  \@setfontsize\acksize\@ixpt\@xipt
+}
+\newcommand*{\authorsize}{%
+  \@setfontsize\authorsize{10.5}{12.5}%
+}
+\newcommand*{\capsize}{%
+  \@setfontsize\capsize\@viiipt\@ixpt
+}
+\newcommand*{\emailsize}{%
+  \@setfontsize\emailsize\@viiipt{15}%
+}
+\newcommand*{\refsize}{%
+  \@setfontsize\refsize{7.5}{7.5}%
+}
+\newcommand*{\suppsize}{%
+  \@setfontsize\suppsize{8.5}{10.5}%
+}
+\newcommand*{\titlesize}{%
+  \@setfontsize\titlesize\@xiipt{13}%
+}
+\let\footnotesize\refsize
+\let\captionfont\capsize
 %    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
 %\begin{macro}{\ps@plain}
 %\begin{macro}{\ps@jacs}
-% The header styles are again done the hard way, to keep down the
-% number of packages loaded.
+% The header styles are done the hard way, to keep down the number of 
+% packages loaded.
 %    \begin{macrocode}
-  \renewcommand*{\ps@plain}{%
-    \let\@mkboth\@gobbletwo
-    \let\@oddhead\@empty
-    \renewcommand*{\@oddfoot}{%
-      \reset@font\sffamily\textbf{\thepage}\hfil}%
-    \let\@evenhead\@empty
-    \let\@evenfoot\@oddfoot}
-  \newcommand*{\ps@jacs}{%
-    \renewcommand*{\@oddfoot}{%
-      \reset@font\sffamily\textbf{\thepage}\hfil}%
-    \renewcommand*{\@evenfoot}{%
-      \reset@font\hfil\sffamily\textbf{\thepage}}%
-    \renewcommand*{\@oddhead}{}%
-    \let\@evenhead\@oddhead}
-  \pagestyle{jacs}
+\renewcommand*{\ps@plain}{%
+  \let\@mkboth\@gobbletwo
+  \let\@oddhead\@empty
+  \renewcommand*{\@oddfoot}{%
+    \reset@font
+    \sffamily
+    \textbf{\thepage}%
+    \hfil
+  }%
+  \let\@evenhead\@empty
+  \let\@evenfoot\@oddfoot
+}
+\newcommand*{\ps@jacs}{%
+  \renewcommand*{\@oddfoot}{%
+    \reset@font
+    \sffamily
+    \textbf{\thepage}%
+    \hfil
+  }%
+  \renewcommand*{\@evenfoot}{%
+    \reset@font
+    \hfil
+    \sffamily
+    \textbf{\thepage}%
+  }%
+  \renewcommand*{\@oddhead}{}%
+  \let\@evenhead\@oddhead
+}
+\pagestyle{jacs}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -1993,907 +2858,296 @@ citations after punctuation.
 % The title-making macro is completely re-written to force the desired
 % spacing.
 %    \begin{macrocode}
-  \renewcommand*{\@maketitle}{%
-    \pagestyle{jacs}%
-    \ifnum\acs@authorcnt<\z@\relax
-      \ClassError{achemso}{No authors defined}
-      {At least one author is required}%
-    \fi
-    \newpage
-    \null
-    {\titlesize
-     \vspace*{16mm}}%
-    \begin{center}
-      \begin{minipage}{152.4mm}
-        \begin{center}
-          {\titlesize\bfseries\sffamily
-           \@title \par}%
-          {\authorsize\sffamily\frenchspacing
-           \acs@authorlist\par}%
-          {\affilsize\itshape\acs@addresslist \par}%
-          {\emailsize\sffamily
-           Received \today;
-           E-mail: \acs@emaillist}%
-          \vspace{-1mm}%
-        \end{center}
-      \end{minipage}
-    \end{center}}
+\renewcommand*{\@maketitle}{%
+  \pagestyle{jacs}%
+  \ifnum\acs@author@cnt<\z@\relax
+    \acs@warning{No authors defined: At least one author is required}%
+  \fi
+  \newpage
+  \null
+  {%
+    \titlesize
+    \vspace*{16mm}%
+  }%
+  \begin{center}
+    \begin{minipage}{152.4mm}
+      \begin{center}
+        {%
+          \titlesize
+          \bfseries
+          \sffamily
+          \@title\par
+        }%
+        {%
+          \authorsize
+          \sffamily
+          \frenchspacing
+          \acs@author@list
+          \par
+        }%
+        {%
+          \affilsize
+          \itshape
+          \acs@address@list
+          \par
+        }%
+        {%
+          \emailsize
+          \sffamily
+          Received \today;
+          E-mail: \acs@email@list
+        }%
+        \vspace{-1mm}%
+      \end{center}
+    \end{minipage}
+  \end{center}%
+}
 %    \end{macrocode}
 %\end{macro}
 % Getting the floats correct is a difficult task ``by hand''; using
 % the \pkg{caption} package makes this a lot easier.
 %    \begin{macrocode}
-  \floatstyle{plaintop}
-  \restylefloat{scheme}
-  \floatstyle{plain}
-  \DeclareCaptionLabelSeparator{perquad}{.\quad}
-  \captionsetup{labelfont={bf,it,sf},textfont=sf,
-    labelsep=perquad}
-  \let\captionfont\capsize
-  \captionsetup[figure]{textfont=rm}
-  \captionsetup{singlelinecheck=off}
+\floatstyle{plaintop}
+\restylefloat{scheme}
+\floatstyle{plain}
+\DeclareCaptionLabelSeparator{perquad}{.\quad}
+\captionsetup{
+  singlelinecheck = off,
+  labelfont       = {bf,it,sf},
+  textfont        = sf,
+  labelsep        = perquad
+}
+\captionsetup[figure]{textfont=rm}
 %    \end{macrocode}
-% The text in tables should be smaller.
+%\begin{macro}{\acs@table}
+%\begin{macro}{\table}
+% A patch or \cs{table}.
 %    \begin{macrocode}
-  \g@addto@macro{\table}{\capsize}
+\newcommand*{\acs@table}{}
+\let\acs@table\table
+\renewcommand*{\table}{%
+  \capsize
+  \acs@table
+}
 %    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@par}
 %\begin{environment}{acknowledgement}
 %\begin{environment}{suppinfo}
 % Supporting information and acknowledgements are turned into
 % environments proper here; this allows control of text size.
 %    \begin{macrocode}
-  \renewenvironment{acknowledgement}{%
-    \renewcommand*{\acs@tempa}{acknowledgement}%
-    \ifx\@currenvir\acs@tempa
-      \let\par\relax
-      \acksize
-      \vspace{6pt}%
-      \textbf{\acs@acknowledgement.}
-    \else
-      \acs@subsection*{\acs@acknowledgement}
-    \fi}{\acs@par}
-  \renewenvironment{suppinfo}{%
-    \renewcommand*{\acs@tempa}{suppinfo}%
-    \ifx\@currenvir\acs@tempa
-      \let\par\relax
-      \suppsize
-      \vspace{6pt}%
-      \textbf{\acs@suppinfo:}
-    \else
-      \acs@subsection*{\acs@suppinfo}
-    \fi}{\acs@par}
+\newcommand*{\acs@par}{}
+\let\acs@par\par
+\renewenvironment{acknowledgement}{%
+  \def\@tempa{acknowledgement}%
+  \ifx\@currenvir\@tempa
+    \let\par\relax
+    \acksize
+    \vspace{6pt}%
+    \textbf{\acknowledgementname}
+  \else
+    \acs@subsection*{\acknowledgementname}
+  \fi
+}{%
+  \acs@par
+}
+\renewenvironment{suppinfo}{%
+  \def\@tempa{suppinfo}%
+  \ifx\@currenvir\@tempa
+    \let\par\relax
+    \suppsize
+    \vspace{6pt}%
+    \textbf{\suppinfoname:}
+  \else
+    \acs@subsection*{\suppinfoname}
+  \fi
+}{%
+  \acs@par
+}
 %    \end{macrocode}
-%\begin{macro}{\acs@par}
-% The above needs a saved copy of \cs{par}.
-%    \begin{macrocode}
-  \let\acs@par\par
-%    \end{macrocode}
+%\end{environment}
+%\end{environment} 
 %\end{macro}
 % The bibliography has to be adjusted.
 %    \begin{macrocode}
-  \AtBeginDocument{
-    \renewcommand*{\bibsection}{%
-      \@startsection{section}{1}
-        {\z@}{\z@}{2.5mm}%
-        {\normalfont\acksize\bfseries}
-        {\hrule\nobreak
-      \vspace{1.2mm}\noindent\refname}}
-    \let\bibfont\refsize
-    \setlength{\bibhang}{0.61cm}
-    \setlength{\bibsep}{0mm}}
-\fi
-%    \end{macrocode}
-%\end{environment}
-%\end{environment}
-%
-%\iffalse
-%</jacsat>
-%<*achre4>
-%\fi
-%\subsection{\emph{Acc.\ Chem.\ Res.}}
-%    \begin{macrocode}
-\ProvidesFile{achre4.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Acc. Chem. Res.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=plain,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,suppinfo}
-\renewcommand*{\abstractname}{Conspectus}
-%    \end{macrocode}
-%\iffalse
-%</achre4>
-%<*acbcct>
-%\fi
-%\subsection{\emph{ACS Chem.\ Biol.}}
-%    \begin{macrocode}
-\ProvidesFile{acbcct.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   ACS Chem. Biol.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=fullstop,
-  biochem=true,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{article,letter,review,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</acbcct>
-%<*ancac3>
-%\fi
-%\subsection{\emph{ACS Nano}}
-%    \begin{macrocode}
-\ProvidesFile{acbcct.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   ACS Nano]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=fullstop,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=true}
-\acs@validtype{perspective,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</ancac3>
-%<*ancham>
-%\fi
-%\subsection{\emph{Anal.\ Chem.}}
-%    \begin{macrocode}
-\ProvidesFile{ancham.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Anal. Chem.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,suppinfo,note}
-%    \end{macrocode}
-%\iffalse
-%</ancham>
-%<*bichaw>
-%\fi
-%\subsection{\emph{Biochemistry}}
-%    \begin{macrocode}
-\ProvidesFile{biochem.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Biochemistry]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=fullstop,
-  biochem=true,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{article,communication,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</bichaw>
-%<*bcches>
-%\fi
-%\subsection{\emph{Bioconjugate Chem.}}
-%    \begin{macrocode}
-\ProvidesFile{bcches.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Bioconjugate Chem.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=true,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{article,communication,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</bcches>
-%<*bomaf6>
-%\fi
-%\subsection{\emph{Biomacromolecules}}
-%    \begin{macrocode}
-\ProvidesFile{bomaf6.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Biomacromolecules]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{article,communication,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</bomaf6>
-%<*bipret>
-%\fi
-%\subsection{\emph{Biotechnol.\ Prog.}}
-%    \begin{macrocode}
-\ProvidesFile{bipret.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Biotechnol. Prog.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{article,review,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</bipret>
-%<*crtoec>
-%\fi
-%\subsection{\emph{Chem.\ Res.\ Toxicol.}}
-%    \begin{macrocode}
-\ProvidesFile{crtoec.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Chem. Res. Toxicol.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=true,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{perspective,article,review,profile,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</crtoec>
-%<*chreay>
-%\fi
-%\subsection{\emph{Chem.\ Rev.}}
-% For \emph{Chem.\ Rev.}, the usual start.
-%    \begin{macrocode}
-\ProvidesFile{chreay.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Chem. Rev.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=0,
-  super=true,
-  usetitle=false}
-\acs@validtype[review]{review}
-%    \end{macrocode}
-%\begin{macro}{\bibsection}
-% Some changes are needed as the bibliography should be numbered.
-% This is done with the \cs{bibsection} macro, as \pkg{natbib} sets
-% this up rather than \cs{thebibliography}.
-%    \begin{macrocode}
 \AtBeginDocument{
-  \renewcommand*{\bibsection}{\section{\refname}}}
+  \renewcommand*{\bibsection}{%
+    \@startsection
+      {section}
+      {1}
+      {\z@}{\z@}{2.5mm}%
+      {\normalfont\acksize\bfseries}
+      {\hrule\nobreak\vspace{1.2mm}\noindent\refname}%
+  }%
+  \let\bibfont\refsize
+  \setlength{\bibhang}{0.61cm}%
+  \setlength{\bibsep}{0mm}%
+}
+%</jacsat>
 %    \end{macrocode}
-%\end{macro}
-%\iffalse
-%</chreay>
-%<*cmatex>
-%\fi
-%\subsection{\emph{Chem.\ Mater.}}
+%    
+%\iffalse    
 %    \begin{macrocode}
-\ProvidesFile{cmatex.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Chem. Mater.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,communication,suppinfo}
-\renewcommand*{\acs@tempa}{communication}
-\ifx\acs@manuscript\acs@tempa
-  \acs@killabstract
-  \acs@killsecs
-\fi
-%    \end{macrocode}
-%\iffalse
-%</cmatex>
-%<*cgdefu>
-%\fi
-%\subsection{\emph{Cryst.\ Growth Des.}}
-%    \begin{macrocode}
-\ProvidesFile{cgdefu.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Cryst. Growth Des.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{perspective,article,communication,suppinfo}
-\renewcommand*{\acs@tempa}{communication}
-\ifx\acs@manuscript\acs@tempa
-  \acs@killsecs
-\fi
-%    \end{macrocode}
-%\iffalse
-%</cgdefu>
-%<*enfuem>
-%\fi
-%\subsection{\emph{Energy Fuels}}
-%    \begin{macrocode}
-\ProvidesFile{enfuem.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Energy Fuels]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{review,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</enfuem>
-%<*esthag>
-%\fi
-%\subsection{\emph{Environ.\ Sci.\ Technol.}}
-%    \begin{macrocode}
-\ProvidesFile{esthag.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Environ. Sci. Technol.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{article,suppinfo}
-%    \end{macrocode}
-%\iffalse
-%</esthag>
-%<*iecred>
-%\fi
-%\subsection{\emph{Ind.\ Eng.\ Chem.\ Res.}}
-%    \begin{macrocode}
-\ProvidesFile{iecred.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Ind. Eng. Chem. Res.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=fullstop,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=true}
-\acs@validtype{article,communication,suppinfo}
-\renewcommand*{\acs@tempa}{suppinfo}
-\ifx\acs@manuscript\acs@tempa
-  \acs@setkeys{maxauthors=0}
-\fi
-%    \end{macrocode}
-%\iffalse
-%</iecred>
-%<*inoraj>
-%\fi
-%\subsection{\emph{Inorg.\ Chem.}}
-%    \begin{macrocode}
-\ProvidesFile{inoraj.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Inorg. Chem.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,communication,suppinfo}
-\renewcommand*{\acs@tempa}{communication}
-\ifx\acs@manuscript\acs@tempa
-  \acs@killabstract
-  \acs@killsecs
-\fi
-%    \end{macrocode}
-%\iffalse
-%</inoraj>
 %<*jafcau>
-%\fi
-%\subsection{\emph{J.~Agric.\ Food Chem.}}
-%    \begin{macrocode}
 \ProvidesFile{jafcau.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Agric. Food Chem.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=false,
-  usetitle=true}
-\acs@validtype{article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Agric. Food Chem.]
+\setkeys{acs}{
+  super    = false,
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,suppinfo}
+\SectionNumbersOff
 %</jafcau>
 %<*jceaax>
-%\fi
-%\subsection{\emph{J.~Chem.\ Eng. Data}}
-%    \begin{macrocode}
 \ProvidesFile{jceaax.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Chem. Eng. Data]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=true}
-\acs@validtype{article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Chem. Eng. Data]
+\setkeys{acs}{
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,suppinfo}
+\SectionNumbersOff
 %</jceaax>
 %<*jcisd8>
-%\fi
-%\subsection{\emph{J.~Chem.\ Inf.\ Model.}}
-%    \begin{macrocode}
 \ProvidesFile{jcisd8.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Chem. Inf. Model.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=true}
-\acs@validtype{article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Chem. Inf. Model.]
+\setkeys{acs}{
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,suppinfo}
+\SectionNumbersOff
 %</jcisd8>
 %<*jctcce>
-%\fi
-%\subsection{\emph{J.~Chem.\ Theory Comput.}}
-%\changes{v3.0a}{2008/08/21}{Added section numbers for
-%  \emph{J.~Chem.\ Theory Comput.}}
-%    \begin{macrocode}
 \ProvidesFile{jctcce.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Chem. Theory Comput.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,suppinfo}
-\acs@restsecnums
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Chem. Theory Comput.]
+\renewcommand*{\acs@type@list}{article,suppinfo}
 %</jctcce>
 %<*jcchff>
-%\fi
-%\subsection{\emph{J.~Comb.\ Chem.}}
-%    \begin{macrocode}
 \ProvidesFile{jcchff.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Comb. Chem.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,report,perspective,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Comb. Chem.]
+\renewcommand*{\acs@type@list}{article,report,perspective,suppinfo}
+\SectionNumbersOff
 %</jcchff>
 %<*jmcmar>
-%\fi
-%\subsection{\emph{J.~Med.\ Chem.}}
-%    \begin{macrocode}
 \ProvidesFile{jmcmar.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Med. Chem.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=true}
-\acs@validtype{perspective,letter,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Med. Chem.]
+\setkeys{acs}{
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,letter,perspective,suppinfo}
+\SectionNumbersOff
 %</jmcmar>
 %<*jnprdf>
-%\fi
-%\subsection{\emph{J.~Nat.\ Prod.}}
-%    \begin{macrocode}
 \ProvidesFile{jnprdf.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Nat. Prod.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,communication,suppinfo}
-\renewcommand*{\acs@tempa}{communication}
-\ifx\acs@manuscript\acs@tempa
-  \acs@killabstract
-  \acs@killsecs
+  [2009/04/21 v3.2 achemso configuration: J. Nat. Prod.]
+\def\@tempa{communication}
+\ifx\acs@manuscript\@tempa
+  \AbstractOff
+  \SectionsOff
 \fi
-%    \end{macrocode}
-%\iffalse
 %</jnprdf>
 %<*joceah>
-%\fi
-%\subsection{\emph{J.~Org.\ Chem.}}
-%    \begin{macrocode}
 \ProvidesFile{joceah.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Org. Chem.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{article,communication,suppinfo}
-\renewcommand*{\acs@tempa}{communication}
-\ifx\acs@manuscript\acs@tempa
-  \acs@killabstract
-  \acs@killsecs
+  [2009/04/21 v3.2 achemso configuration: J. Org. Chem.]
+\def\@tempa{communication}
+\ifx\acs@manuscript\@tempa
+  \AbstractOff
+  \SectionsOff
 \fi
-%    \end{macrocode}
-%\iffalse
 %</joceah>
 %<*jpcafh>
-%\fi
-%\subsection{\emph{J.~Phys.\ Chem.~A}}
-%    \begin{macrocode}
 \ProvidesFile{jpcafh.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Phys. Chem. A]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{letter,article,suppinfo}
+  [2009/04/21 v3.2 achemso configuration: J. Phys. Chem. A]
+\renewcommand*{\acs@type@list}{article,letter,suppinfo}
+\SectionNumbersOff
+\captionsetup[table]{labelfont=bf,textfont=bf}
 %    \end{macrocode}
-%\iffalse
+% Title 
+%    \begin{macrocode}
+\g@addto@macro{\maketitle}{\newpage}
 %</jpcafh>
 %<*jpcbfk>
-%\fi
-%\subsection{\emph{J.~Phys.\ Chem.~B}}
-%    \begin{macrocode}
 \ProvidesFile{jpcbfk.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Phys. Chem. B]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{letter,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Phys. Chem. B]
+\renewcommand*{\acs@type@list}{article,letter,suppinfo}
+\SectionNumbersOff
+\captionsetup[table]{labelfont=bf,textfont=bf}
+\g@addto@macro{\maketitle}{\newpage}
 %</jpcbfk>
 %<*jpccck>
-%\fi
-%\subsection{\emph{J.~Phys.\ Chem.~C}}
-%    \begin{macrocode}
 \ProvidesFile{jpccck.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Phys. Chem. C]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{letter,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Phys. Chem. C]
+\renewcommand*{\acs@type@list}{article,letter,suppinfo}
+\SectionNumbersOff
+\captionsetup[table]{labelfont=bf,textfont=bf}
+\g@addto@macro{\maketitle}{\newpage}
 %</jpccck>
 %<*jprobs>
-%\fi
-%\subsection{\emph{J.~Proteome Res.}}
-%    \begin{macrocode}
 \ProvidesFile{jprobs.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   J. Proteome Res.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=true}
-\acs@validtype{review,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: J. Proteome Res.]
+\setkeys{acs}{
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,review,suppinfo}
+\SectionNumbersOff
 %</jprobs>
 %<*langd5>
-%\fi
-%\subsection{\emph{Langmuir}}
-%    \begin{macrocode}
 \ProvidesFile{langd5.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Langmuir]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{letter,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: Langmuir]
+\renewcommand*{\acs@type@list}{article,letter,suppinfo}
+\SectionNumbersOff
 %</langd5>
 %<*mamobx>
-%\fi
-%\subsection{\emph{Macromolecules}}
-%    \begin{macrocode}
 \ProvidesFile{mamobx.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Macromolecules]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{communication,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: Macromolecules]
+\SectionNumbersOff
 %</mamobx>
 %<*mpohbp>
-%\fi
-%\subsection{\emph{Mol.\ Pharm.}}
-%    \begin{macrocode}
 \ProvidesFile{mamobx.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Mol. Pharm.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=true}
-\acs@validtype{article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: Mol. Pharm.]
+\setkeys{acs}{
+  usetitle = true
+}
+\renewcommand*{\acs@type@list}{article,suppinfo}
+\SectionNumbersOff
 %</mpohbp>
 %<*nalefd>
-%\fi
-%\subsection{\emph{Nano Lett.}}
-%    \begin{macrocode}
 \ProvidesFile{nalefd.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Nano Lett.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype[letter]{letter}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: Nano Lett.]
+\renewcommand*{\acs@type@default}{letter}
+\renewcommand*{\acs@type@list}{letter}
+\SectionNumbersOff
 %</nalefd>
 %<*orlef7>
-%\fi
-%\subsection{\emph{Org.\ Lett.}}
-%    \begin{macrocode}
 \ProvidesFile{orlef7.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Org. Lett.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype[letter]{letter}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: Org. Lett.]
+\renewcommand*{\acs@type@default}{letter}
+\renewcommand*{\acs@type@list}{letter}
+\SectionNumbersOff
 %</orlef7>
 %<*oprdfk>
-%\fi
-%\subsection{\emph{Org.\ Proc.\ Res.\ Dev.}}
-%    \begin{macrocode}
 \ProvidesFile{oprdfk.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Org. Proc. Res. Dev.]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{highlight,article,review,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: Org. Proc. Res. Dev.]
+\renewcommand*{\acs@type@list}{article,highlight,review,suppinfo}
+\SectionNumbersOff
 %</oprdfk>
 %<*orgnd7>
-%\fi
-%\subsection{\emph{Organometallics}}
-%    \begin{macrocode}
 \ProvidesFile{orgnd7.cfg}
-  [2009/02/03 v3.1a achemso configuration:
-   Organometallics]
-\acs@setkeys{
-  abbreviate=true,
-  biblabel=brackets,
-  biochem=false,
-  maxauthors=15,
-  super=true,
-  usetitle=false}
-\acs@validtype{communication,article,suppinfo}
-%    \end{macrocode}
-%\iffalse
+  [2009/04/21 v3.2 achemso configuration: Organometallics]
+\SectionNumbersOff
 %</orgnd7>
-%\fi
-%
+%    \end{macrocode}
+%\fi 
+% 
 %\Finale
+%
 %\iffalse
-%<*refs>
-@ARTICLE{Abernethy2003,
-  author = {Colin D. Abernethy and Gareth M. Codd and Mark D. Spicer
-    and Michelle K. Taylor},
-  title = {{A} highly stable {N}-heterocyclic carbene complex of
-    trichloro-oxo-vanadium(\textsc{v}) displaying novel
-    {C}l---{C}(carbene) bonding interactions},
-  journal = {{J}. {A}m. {C}hem. {S}oc.},
-  year = {2003},
-  volume = {125},
-  pages = {1128--1129},
-  number = {5},
-  doi = {10.1021/ja0276321},
-}
-
-@MISC{ACS2007,
-  url = {http://pubs.acs.org/books/references.shtml},
-}
-
-@ARTICLE{Arduengo1992,
-  author = {Arduengo, III, Anthony J. and H. V. Rasika Dias and
-    Richard L. Harlow and Michael Kline},
-  title = {{E}lectronic stabilization of nucleophilic carbenes},
-  journal = {{J}.~{A}m.\ {C}hem.\ {S}oc.},
-  year = {1992},
-  volume = {114},
-  pages = {5530--5534},
-  number = {14},
-  doi = {10.1021/ja00040a007},
-}
-
-@ARTICLE{Arduengo1994,
-  author = {Arduengo, III, Anthony J. and Siegfried F. Gamper and
-    Joseph C. Calabrese	and Fredric Davidson},
-  title = {{L}ow-coordinate carbene complexes of nickel(0) and
-    platinum(0)},
-  journal = jacsat,
-  year = {1994},
-  volume = {116},
-  pages = {4391--4394},
-  number = {10},
-  doi = {10.1021/ja00089a029},
-}
-
-@ARTICLE{Eisenstein2005,
-  author = {Appelhans, Leah N. and Zuccaccia, Daniele and Kovacevic,
-    Anes and Chianese, Anthony R. and Miecznikowski, John R. and
-    Macchioni, Aleco and Clot, Eric and Eisenstein, Odile and
-    Crabtree, Robert H.},
-  title = {{A}n anion-dependent switch in selectivity results from a
-    change of {C}---{H} activation mechanism in the reaction of an
-    imidazolium salt with \ce{IrH5(PPh3)2}},
-  journal = {{J}.~{A}m.\ {C}hem. {S}oc.},
-  year = {2005},
-  volume = {127},
-  pages = {16299--16311},
-  number = {46},
-  doi = {10.1021/ja055317j},
-}
-
-@BOOK{Coghill2006,
-  title = {{T}he {ACS} {S}tyle {G}uide},
-  publisher = {{O}xford {U}niversity {P}ress, {I}nc. and
-               {T}he {A}merican {C}hemical {S}ociety},
-  year = {2006},
-  editor = {Coghill, Anne M. and Garson, Lorrin R.},
-  address = {{N}ew {Y}ork},
-  edition = {3},
-  subtitle = {{E}ffective {C}ommunication of {S}cientific
-    {I}nformation},
-}
-
-@BOOK{Cotton1999,
-  title = {{A}dvanced {I}norganic {C}hemistry},
-  publisher = {Wiley},
-  year = {1999},
-  author = {Cotton, Frank Albert and Wilkinson, Geoffrery and
-    Murillio, Carlos A. and Bochmann, Manfred},
-  address = {Chichester},
-  edition = {6},
-}
-
-@MANUAL{Pople2003,
-  title = {{G}aussian 03},
-  author = {M.~J. Frisch and G.~W. Trucks and H.~B. Schlegel and G.~E. Scuseria
-	and M.~A. Robb and J.~R. Cheeseman and Montgomery and Jr. and J.
-	A. and T. Vreven and K.~N. Kudin and J.~C. Burant and J.~M. Millam
-	and S.~S. Iyengar and J. Tomasi and V. Barone and B. Mennucci and
-	M. Cossi and G. Scalmani and N. Rega and G.~A. Petersson and H. Nakatsuji
-	and M. Hada and M. Ehara and K. Toyota and R. Fukuda and J. Hasegawa
-	and M. Ishida and T. Nakajima and Y. Honda and O. Kitao and H. Nakai
-	and M. Klene and X. Li and J.~E. Knox and H.~P. Hratchian and J.~B.
-	Cross and V. Bakken and C. Adamo and J. Jaramillo and R. Gomperts
-	and R.~E. Stratmann and O. Yazyev and A.~J. Austin and R. Cammi and
-	C. Pomelli and J.~W. Ochterski and P.~Y. Ayala and K. Morokuma and
-	G.~A. Voth and P. Salvador and J.~J. Dannenberg and V.~G. Zakrzewski
-	and S. Dapprich and A.~D. Daniels and M.~C. Strain and O. Farkas
-	and D.~K. Malick and A.~D. Rabuck and K. Raghavachari and J.~B. Foresman
-	and J.~V. Ortiz and Q. Cui and A.~G. Baboul and S. Clifford and J.
-	Cioslowski and B.~B. Stefanov and G. Liu and A. Liashenko and P.
-	Piskorz and I. Komaromi and R.~L. Martin and D.~J. Fox and T. Keith
-	and M.~A. Al-Laham and C.~Y. Peng and A. Nanayakkara and M. Challacombe
-	and P.~M.~W. Gill and B. Johnson and W. Chen and M.~W. Wong and C.
-	Gonzalez and J.~A. Pople},
-  organization = {Gaussian, Inc.},
-  address = {Wallingford, CT},
-  year = {2004},
-  howpublished = {Gaussian, Inc., Wallingford, CT, USA},
-  institution = {Gaussian, Inc.},
-  publisher = {Gaussian, Inc.}
-}
-
-@ARTICLE{Mena2000,
-  author = {Angel Abarca and Pilar G\'omez-Sal and Avelino Mart\'in
-    and Miguel Mena and Josep Mar\'ia Poblet and Carlos Y\'elamos},
-  title = {{A}mmonolysis of mono(pentamethylcyclopentadienyl)
-    titanium(\textsc{iv}) derivatives},
-  journal = {Inorg. Chem.},
-  year = {2000},
-  volume = {39},
-  pages = {642--651},
-  number = {4},
-  doi = {10.1021/ic9907718},
-}
-%</refs>
 %<*demo>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% This is a (brief) model paper using the achemso class
 %% The document class accepts keyval options, which should include
-%% the target journal and optionally the macuscript type.
+%% the target journal and optionally the manuscript type.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[journal=jacsat,manuscript=article]{achemso}
 
@@ -2961,10 +3215,8 @@ Germany}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The document title should be given as usual
-%% A short title can be given as a *suggestion* for running headers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[\texttt{achemso} demonstration]
-{A demonstration of the \textsf{achemso} \LaTeX\ class}
+\title{A demonstration of the \textsf{achemso} \LaTeX\ class}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2983,8 +3235,8 @@ Germany}
   This is an abstract for the \textsf{achemso} document class
   demonstration document.  An abstract is only allowed for certain
   manuscript types.  The selection of \texttt{journal} and
-  \texttt{type} will determine if an abstract is valid.  If not, the
-  class will issue an appropriate error.
+  \texttt{manuscript} will determine if an abstract is valid.  If 
+  not, the class will issue an appropriate error.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3027,6 +3279,9 @@ Multiple citations to be combined into a list can be given as
 a single citation.  This uses the \textsf{mciteplus} package
 \cite{Arduengo1992,*Eisenstein2005,*Arduengo1994}.  Citations
 other than the first of the list should be indicated with a star.
+If the \textsf{mciteplus} package is not installed, the standard
+bibliography tools will still work but starred references will be
+ignored.
 
 The class also handles notes to be added to the bibliography.  These
 should be given in place in the document \bibnote{This is a note.
@@ -3208,6 +3463,33 @@ package files.
 %% and also names the section correctly.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{achemso}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The "tocentry" environment can be used to create an entry for the
+%% graphical table of contents.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tocentry}
+
+Some journals require a graphical entry for the Table of Contents.
+This should be laid out ``print ready'' so that the sizing of the
+text is correct. 
+
+Inside the \texttt{tocentry} environment, the font used is Helvetica
+8\,pt, as required by \emph{Journal of the American Chemical 
+Society}.
+
+The surrounding frame is 9\,cm by 3.5\,cm, which is the maximum 
+permitted for  \emph{Journal of the American Chemical Society}
+graphical table of content entries. The box will not resize if the
+content is too big: instead it will overflow the edge of the box.
+
+This box and the associated title will always be printed on a 
+separate page from the rest of the document. It is best to place the
+graphical TOC entry as the last item in the draft so that the page 
+break is not a problem. 
+
+\end{tocentry}
 
 \end{document}
 %</demo>
@@ -4701,20 +4983,33 @@ FUNCTION {begin.bib}
     'skip$
     { preamble$ write$ newline$ }
   if$
-  "\ifx\mcitethebibliography\mciteundefinedmacro"
+  "\providecommand*{\mcitethebibliography}{\thebibliography}"
   write$ newline$
-  "\PackageError"
-  write$
-%<!bio>  "{achemso.bst}"
-%<bio>  "{biochem.bst}"
-  write$
-  "{mciteplus.sty has not been loaded}"
+  "\csname @ifundefined\endcsname{endmcitethebibliography}"
   write$ newline$
-  "{This bibstyle requires the use of the mciteplus package.}\fi"
+  "{\let\endmcitethebibliography\endthebibliography}{}"
   write$ newline$
   "\begin{mcitethebibliography}{"  number.label int.to.str$  * "}" *
   write$ newline$
   "\providecommand*{\natexlab}[1]{#1}"
+  write$ newline$
+  "\providecommand*{\mciteSetBstSublistMode}[1]{}"
+  write$ newline$  
+  "\providecommand*{\mciteSetBstMaxWidthForm}[2]{}"
+  write$ newline$
+  "\providecommand*{\mciteBstWouldAddEndPuncttrue}"
+  write$ newline$      
+  "  {\def\EndOfBibitem{\unskip.}}"
+  write$ newline$   
+  "\providecommand*{\mciteBstWouldAddEndPunctfalse}"
+  write$ newline$      
+  "  {\let\EndOfBibitem\relax}"
+  write$ newline$ 
+  "\providecommand*{\mciteSetBstMidEndSepPunct}[3]{}"
+  write$ newline$
+  "\providecommand*{\mciteSetBstSublistLabelBeginEnd}[3]{}"
+  write$ newline$
+  "\providecommand*{\EndOfBibitem}{}"
   write$ newline$
   "\mciteSetBstSublistMode{f}"
   write$ newline$
@@ -4739,180 +5034,129 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 %</bst>
-%<*jawltxdoc>
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{jawltxdoc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[final]{listings,graphicx,microtype}
-\usepackage[scaled=0.95]{helvet}
-\usepackage[version=3]{mhchem}
-\usepackage[osf]{mathpazo}
-\usepackage{booktabs,array,url,courier,xspace,varioref}
-\usepackage{upgreek,ifpdf,float,caption,longtable,babel}
-\begingroup
-  \@ifundefined{eTeXversion}
-    {\aftergroup\@gobble}
-    {\aftergroup\@firstofone}
-\endgroup
-  {\usepackage{etoolbox}}
-\floatstyle{plaintop}
-\restylefloat{table}
-\labelformat{figure}{\figurename~#1}
-\labelformat{table}{\tablename~#1}
-\ifpdf
-  \usepackage{embedfile}
-  \embedfile[%
-    stringmethod=escape,%
-    mimetype=plain/text,%
-    desc={LaTeX docstrip source archive for package `\jobname'}%
-    ]{\jobname.dtx}
-\fi
-\IfFileExists{\jobname.sty}
-  {\usepackage{\jobname}}{}
-\usepackage[numbered]{hypdoc}
-\setcounter{IndexColumns}{2}
-\newlength\LaTeXwidth
-\newlength\LaTeXoutdent
-\newlength\LaTeXgap
-\setlength\LaTeXgap{1em}
-\setlength\LaTeXoutdent{-0.15\textwidth}
-\newbox\lst@samplebox
-\edef\LaTeXexamplefile{\jobname.tmp}
-\lst@RequireAspects{writefile}
-\lstnewenvironment{LaTeXexample}[1][example]{%
-  \global\let\lst@intname\@empty
-  \ifcsname LaTeXcode#1\endcsname
-    \expandafter\let\expandafter\LaTeXcode
-      \csname LaTeXcode#1\endcsname
-    \expandafter\let\expandafter\LaTeXcodeend
-      \csname LaTeXcode#1end\endcsname
-  \else
-    \PackageError{jawltxdoc}
-      {Undefined example type `#1'}
-      \@ehd
-    \let\LaTeXcode\relax
-    \let\LaTeXcodeend\relax
-  \fi
-  \LaTeXcode}
-  {\lst@EndWriteFile
-   \LaTeXcodeend}
-\newcommand*{\LaTeXcodeexample}{%
-  \setbox\lst@samplebox=\hbox\bgroup
-  \LaTeXcodefloat}
-\let\LaTeXcoderesultonly\LaTeXcodeexample
-\newcommand*{\LaTeXcodeexampleend}{%
-  \egroup
-  \setlength\LaTeXwidth{\wd\lst@samplebox}%
-  \begin{list}{}{%
-    \setlength\itemindent{0pt}
-    \setlength\leftmargin\LaTeXoutdent
-    \setlength\rightmargin{0pt}}%
-    \item
-      \setlength\LaTeXoutdent{-0.15\textwidth}
-      \begin{minipage}[c]{%
-        \textwidth-\LaTeXwidth-\LaTeXoutdent-\LaTeXgap}
-        \LaTeXcodefloatend
-      \end{minipage}%
-      \hfill
-      \begin{minipage}[c]{\LaTeXwidth}%
-        \hbox to\linewidth{\box\lst@samplebox\hss}%
-      \end{minipage}%
-  \end{list}}
-\newcommand*{\LaTeXcodefloat}{%
-  \setkeys{lst}{tabsize=4,gobble=3,breakindent=0pt,
-    basicstyle=\small\ttfamily,basewidth=0.51em,
-    keywordstyle=\color{blue}}%
-  \lst@BeginAlsoWriteFile{\LaTeXexamplefile}}
-\let\LaTeXcodenoexample\LaTeXcodefloat
-\let\LaTeXcodenoexampleend\@empty
-\newcommand*{\LaTeXcodefloatend}{%
-  \MakePercentComment\catcode`\^^M=10\relax
-  \small
-  {\setkeys{lst}{SelectCharTable=\lst@ReplaceInput{\^\^I}%
-    {\lst@ProcessTabulator}}%
-    \leavevmode \input{\LaTeXexamplefile}}%
-  \MakePercentIgnore}
-\newcommand*{\LaTeXcoderesultonlyend}{\egroup\LaTeXcodefloatend}
-\lstnewenvironment{BibTeXexample}{%
-  \global\let\lst@intname\@empty
-  \setbox\lst@samplebox=\hbox\bgroup
-  \setkeys{lst}{tabsize=4,gobble=3,breakindent=0pt,
-    basicstyle=\small\ttfamily,basewidth=0.51em,
-    keywordstyle=\color{black}}
-  \lst@BeginAlsoWriteFile{\LaTeXexamplefile}}
- {\lst@EndWriteFile
-   \LaTeXcodeexampleend}
-\newcommand*{\DescribeOption}{%
-  \leavevmode\@bsphack\begingroup\MakePrivateLetters
-  \Describe@Option}
-\newcommand*{\Describe@Option}[1]{\endgroup
-              \marginpar{\raggedleft\PrintDescribeEnv{#1}}%
-              \SpecialOptionIndex{#1}\@esphack\ignorespaces}
-\newcommand*{\SpecialOptionIndex}[1]{\@bsphack
-    \index{#1\actualchar{\protect\ttfamily#1}
-           (option)\encapchar usage}%
-    \index{options:\levelchar#1\actualchar{\protect\ttfamily#1}%
-      \encapchar usage}\@esphack}
-\newcommand*{\indexopt}[1]{\DescribeOption{#1}\opt{#1}}
-\newcommand*{\DescribeOptionInfo}[2]{%
-  \DescribeOption{#1}%
-  \opt{#1=\meta{#2}}\xspace}
-\newcommand*{\ofixarg}[1]{%
-  {\ttfamily[}%
-  \ifmmode \expandafter \nfss@text \fi
-  {%
-    \meta@font@select
-    \edef\meta@hyphen@restore{%
-      \hyphenchar\the\font\the\hyphenchar\font}%
-    \hyphenchar\font\m@ne
-    \language\l@nohyphenation
-    #1\/%
-    \meta@hyphen@restore
-    }%
-    {\ttfamily]}}
-\newcommand*{\pkg}[1]{\textsf{#1}}
-\newcommand*{\currpkg}{\pkg{\jobname}\xspace}
-\newcommand*{\opt}[1]{\texttt{#1}}
-\newcommand*{\defaultopt}[1]{\opt{\textbf{#1}}}
-\newcommand*{\file}[1]{\texttt{#1}}
-\newcommand*{\ext}[1]{\file{.#1}}
-\newcommand*{\latin}[1]{\emph{#1}}
-\newcommand*{\etc}{%
-  \@ifnextchar.
-    {\latin{etc}}
-    {\latin{etc}.\xspace}}
-\newcommand*{\eg}{%
-  \@ifnextchar.
-    {\latin{e.g}}
-    {\latin{e.g}.\xspace}}
-\newcommand*{\ie}{%
-  \@ifnextchar.
-    {\latin{i.e}}
-    {\latin{i.e}.\xspace}}
-\newcommand*{\etal}{%
-  \@ifnextchar.
-    {\latin{et~al.}}
-    {\latin{et~al}.\xspace}}
-\newcommand*{\AMS}{{\protect\usefont{OMS}{cmsy}{m}{n}%
-  A\kern-.1667em\lower.5ex\hbox{M}\kern-.125emS}}
-\providecommand*{\eTeX}{\ensuremath{\varepsilon}-\TeX}
-\DeclareRobustCommand*{\XeTeX}
-  {X\kern-.125em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\TeX}
-\providecommand*{\CTAN}{\textsc{ctan}}
-\@ifpackageloaded{etoolbox}
-  {\patchcmd{\@addmarginpar}
-    {\@latex@warning@no@line {Marginpar on page \thepage\space moved}}
-    {\relax}{}{}}
-  {}
-\newcounter{argument}
-\g@addto@macro\endmacro{\setcounter{argument}{0}}
-\newcommand*\darg[1]{%
-  \stepcounter{argument}%
-  {\ttfamily\char`\#\theargument~:~}#1\par\noindent\ignorespaces}
-\newcommand*\doarg[1]{%
-  \stepcounter{argument}%
-  {\ttfamily\makebox[0pt][r]{[}%
-   \char`\#\theargument]:~}#1\par\noindent\ignorespaces}
-%</jawltxdoc>
+%<*bib>
+@ARTICLE{Abernethy2003,
+  author = {Colin D. Abernethy and Gareth M. Codd and Mark D. Spicer
+    and Michelle K. Taylor},
+  title = {{A} highly stable {N}-heterocyclic carbene complex of
+    trichloro-oxo-vanadium(\textsc{v}) displaying novel
+    {C}l---{C}(carbene) bonding interactions},
+  journal = {{J}. {A}m. {C}hem. {S}oc.},
+  year = {2003},
+  volume = {125},
+  pages = {1128--1129},
+  number = {5},
+  doi = {10.1021/ja0276321},
+}
+
+@MISC{ACS2007,
+  url = {http://pubs.acs.org/books/references.shtml},
+}
+
+@ARTICLE{Arduengo1992,
+  author = {Arduengo, III, Anthony J. and H. V. Rasika Dias and
+    Richard L. Harlow and Michael Kline},
+  title = {{E}lectronic stabilization of nucleophilic carbenes},
+  journal = {{J}.~{A}m.\ {C}hem.\ {S}oc.},
+  year = {1992},
+  volume = {114},
+  pages = {5530--5534},
+  number = {14},
+  doi = {10.1021/ja00040a007},
+}
+
+@ARTICLE{Arduengo1994,
+  author = {Arduengo, III, Anthony J. and Siegfried F. Gamper and
+    Joseph C. Calabrese	and Fredric Davidson},
+  title = {{L}ow-coordinate carbene complexes of nickel(0) and
+    platinum(0)},
+  journal = jacsat,
+  year = {1994},
+  volume = {116},
+  pages = {4391--4394},
+  number = {10},
+  doi = {10.1021/ja00089a029},
+}
+
+@ARTICLE{Eisenstein2005,
+  author = {Appelhans, Leah N. and Zuccaccia, Daniele and Kovacevic,
+    Anes and Chianese, Anthony R. and Miecznikowski, John R. and
+    Macchioni, Aleco and Clot, Eric and Eisenstein, Odile and
+    Crabtree, Robert H.},
+  title = {{A}n anion-dependent switch in selectivity results from a
+    change of {C}---{H} activation mechanism in the reaction of an
+    imidazolium salt with \ce{IrH5(PPh3)2}},
+  journal = {{J}.~{A}m.\ {C}hem. {S}oc.},
+  year = {2005},
+  volume = {127},
+  pages = {16299--16311},
+  number = {46},
+  doi = {10.1021/ja055317j},
+}
+
+@BOOK{Coghill2006,
+  title = {{T}he {ACS} {S}tyle {G}uide},
+  publisher = {{O}xford {U}niversity {P}ress, {I}nc. and
+               {T}he {A}merican {C}hemical {S}ociety},
+  year = {2006},
+  editor = {Coghill, Anne M. and Garson, Lorrin R.},
+  address = {{N}ew {Y}ork},
+  edition = {3},
+  subtitle = {{E}ffective {C}ommunication of {S}cientific
+    {I}nformation},
+}
+
+@BOOK{Cotton1999,
+  title = {{A}dvanced {I}norganic {C}hemistry},
+  publisher = {Wiley},
+  year = {1999},
+  author = {Cotton, Frank Albert and Wilkinson, Geoffrery and
+    Murillio, Carlos A. and Bochmann, Manfred},
+  address = {Chichester},
+  edition = {6},
+}
+
+@MANUAL{Pople2003,
+  title = {{G}aussian 03},
+  author = {M.~J. Frisch and G.~W. Trucks and H.~B. Schlegel and G.~E. Scuseria
+	and M.~A. Robb and J.~R. Cheeseman and Montgomery and Jr. and J.
+	A. and T. Vreven and K.~N. Kudin and J.~C. Burant and J.~M. Millam
+	and S.~S. Iyengar and J. Tomasi and V. Barone and B. Mennucci and
+	M. Cossi and G. Scalmani and N. Rega and G.~A. Petersson and H. Nakatsuji
+	and M. Hada and M. Ehara and K. Toyota and R. Fukuda and J. Hasegawa
+	and M. Ishida and T. Nakajima and Y. Honda and O. Kitao and H. Nakai
+	and M. Klene and X. Li and J.~E. Knox and H.~P. Hratchian and J.~B.
+	Cross and V. Bakken and C. Adamo and J. Jaramillo and R. Gomperts
+	and R.~E. Stratmann and O. Yazyev and A.~J. Austin and R. Cammi and
+	C. Pomelli and J.~W. Ochterski and P.~Y. Ayala and K. Morokuma and
+	G.~A. Voth and P. Salvador and J.~J. Dannenberg and V.~G. Zakrzewski
+	and S. Dapprich and A.~D. Daniels and M.~C. Strain and O. Farkas
+	and D.~K. Malick and A.~D. Rabuck and K. Raghavachari and J.~B. Foresman
+	and J.~V. Ortiz and Q. Cui and A.~G. Baboul and S. Clifford and J.
+	Cioslowski and B.~B. Stefanov and G. Liu and A. Liashenko and P.
+	Piskorz and I. Komaromi and R.~L. Martin and D.~J. Fox and T. Keith
+	and M.~A. Al-Laham and C.~Y. Peng and A. Nanayakkara and M. Challacombe
+	and P.~M.~W. Gill and B. Johnson and W. Chen and M.~W. Wong and C.
+	Gonzalez and J.~A. Pople},
+  organization = {Gaussian, Inc.},
+  address = {Wallingford, CT},
+  year = {2004},
+  howpublished = {Gaussian, Inc., Wallingford, CT, USA},
+  institution = {Gaussian, Inc.},
+  publisher = {Gaussian, Inc.}
+}
+
+@ARTICLE{Mena2000,
+  author = {Angel Abarca and Pilar G\'omez-Sal and Avelino Mart\'in
+    and Miguel Mena and Josep Mar\'ia Poblet and Carlos Y\'elamos},
+  title = {{A}mmonolysis of mono(pentamethylcyclopentadienyl)
+    titanium(\textsc{iv}) derivatives},
+  journal = {Inorg. Chem.},
+  year = {2000},
+  volume = {39},
+  pages = {642--651},
+  number = {4},
+  doi = {10.1021/ic9907718},
+}
+%</bib>
 %\fi
