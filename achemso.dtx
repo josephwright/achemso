@@ -673,17 +673,36 @@ This work consists of the file  achemso.dtx
 % reference markers.  The option switches this behaviour
 % on and off (and takes Boolean values: \opt{super=true} and
 % \opt{super=false} are valid).
-%
-%\DescribeOption{maxauthors}
+% 
 %\DescribeOption{usetitle}
-% The \opt{maxauthors} and \opt{usetitle} options change the output
-% of the \BibTeX\ style files.  \opt{maxauthors} is the number of
-% authors allowed before truncation to ``et~al.'' occurs.  The
-% default is 15, but can be increased (for example for supplementary
-% information).  Using the value $0$ means that all authors will be
-% added to the list.  The \opt{usetitle} option is a Boolean, and
-% sets whether the title of a paper referenced appears in the
-% bibliography.  The default is \opt{usetitle=false}.
+% The \opt{usetitle} option is a Boolean, and sets whether the title 
+% of a paper referenced appears in the bibliography.  The default is 
+% \opt{usetitle=false} for the \file{achemso} style and
+% \opt{usetitle=true} for the \file{biochem} style.
+%
+%\DescribeOption{etalmode}
+%\changes{v3.3a}{2009/09/1}{New \texttt{etalmode} option}
+%\DescribeOption{maxauthors}
+% Many journals require that long lists of authors are shortened using
+% `et al.' in the references section. The behaviour of the \BibTeX\ 
+% styles in this regard is controlled by two options, \opt{etalmode}
+% and \opt{maxauthors}. There are two possible ways to shorten a long
+% list of authors. Some journals require that only the first author
+% is given, followed by `et al.': for this behaviour, set
+% \opt{etalmode=firstonly}:
+%\begin{verbatim}
+%  Jones, A.N. et al.
+%\end{verbatim}
+% On the other hand, some journals request that the list of authors 
+% is truncated after $n$ authors. This is set up by the 
+% \opt{etalmode=truncate} option:
+%\begin{verbatim}
+%  Jones, A.N.; Bloggs, F.; Nobacon, D. et al.
+%\end{verbatim}
+% In both cases, the maximum number of authors permitted before 
+% introducing `et al.' is governed by the \opt{maxauthors} option.
+% This option recognises the sentinal value $0$, which indicates that
+% no shortening should occur at all.
 %
 %\DescribeOption{biblabel}
 % Redefining the formatting of the numbers used in the bibliography
@@ -814,7 +833,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*class>
 \ProvidesClass{achemso}
-  [2009/08/28 v3.3 Submission to ACS journals]
+  [2009/09/01 v3.3a Submission to ACS journals]
 \LoadClass[12pt,letter]{article}
 %    \end{macrocode}
 %    
@@ -834,7 +853,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*package>
 \ProvidesPackage{achemso}
-  [2009/08/28 v3.3 Support for ACS journals]
+  [2009/09/01 v3.3a Support for ACS journals]
 \@ifclassloaded{achemso}{%
   \PackageInfo{achemso}{%
     You have already loaded the `achemso' class:\MessageBreak
@@ -961,6 +980,28 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\ifacs@etal@truncate}
+%\begin{macro}{\acs@etal@firstonly}
+%\begin{macro}{\acs@etal@truncate}
+% The setup for the \opt{etalmode} option is quite simple: just look 
+% for the appropriate macros.
+%    \begin{macrocode}
+\newif\ifacs@etal@truncate
+\define@key{acs}{etalmode}{%
+  \acs@ifundefined{acs@etal@#1}{%
+    \acs@warning{%
+      Unknown value `#1' for\MessageBreak  etalmode option%
+    }%
+  }{%
+    \@nameuse{acs@etal@#1}%
+  }%
+}
+\newcommand*\acs@etal@firstonly{\acs@etal@truncatefalse}
+\newcommand*\acs@etal@truncate{\acs@etal@truncatetrue}
+%    \end{macrocode}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -1234,10 +1275,13 @@ This work consists of the file  achemso.dtx
   \immediate\write\acs@bib@file{%
     @Control\string{%
       achemso-control,^^J%
-      \@tempa{ctrl-use-title}{%
+      \@tempa{ctrl-use-title\space\space\space\space}{%
         \ifacs@usetitle yes\else no\fi
       }%
-      \@tempa{ctrl-etal-number}{\acs@maxauthors}%
+      \@tempa{ctrl-etal-number\space\space}{\acs@maxauthors}%
+      \@tempa{ctrl-etal-truncate}{%
+        \ifacs@etal@truncate yes\else no\fi
+      }%
     \string}^^J%
   }%
   \immediate\write\@auxout{%
@@ -1287,6 +1331,7 @@ This work consists of the file  achemso.dtx
   abbreviations = false,
   biblabel      = brackets,
   biochem       = false,
+  etalmode      = firstonly,
   keywords      = false,
   maxauthors    = 15,
   super         = true,
@@ -3242,7 +3287,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*achre4>
 \ProvidesFile{achre4.cfg}
-  [2009/08/28 v3.3 achemso configuration: Acc. Chem. Res.]
+  [2009/09/01 v3.3a achemso configuration: Acc. Chem. Res.]
 \setkeys{acs}{
   biblabel = plain
 }
@@ -3251,7 +3296,7 @@ This work consists of the file  achemso.dtx
 %</achre4>
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
-  [2009/08/28 v3.3 achemso configuration: ACS Chem. Biol.]
+  [2009/09/01 v3.3a achemso configuration: ACS Chem. Biol.]
 \setkeys{acs}{
   biblabel = fullstop,
   biochem  = true,
@@ -3263,9 +3308,10 @@ This work consists of the file  achemso.dtx
 %</acbcct>
 %<*ancac3>
 \ProvidesFile{ancac3.cfg}
-  [2009/08/28 v3.3 achemso configuration: ACS Nano]
+  [2009/09/01 v3.3a achemso configuration: ACS Nano]
 \setkeys{acs}{
   biblabel   = fullstop,
+  etalmode   = truncate,
   maxauthors = 10,
   usetitle   = true
 }
@@ -3274,13 +3320,13 @@ This work consists of the file  achemso.dtx
 %</ancac3>
 %<*ancham>
 \ProvidesFile{ancham.cfg}
-  [2009/08/28 v3.3 achemso configuration: Anal. Chem.]
+  [2009/09/01 v3.3a achemso configuration: Anal. Chem.]
 \def\acs@type@list{article,note,suppinfo}
 \SectionNumbersOff
 %</ancham>
 %<*bichaw>
 \ProvidesFile{biochem.cfg}
-  [2009/08/28 v3.3 achemso configuration: Biochemistry]
+  [2009/09/01 v3.3a achemso configuration: Biochemistry]
 \setkeys{acs}{
   abbreviations = true,
   biblabel      = fullstop,
@@ -3330,7 +3376,7 @@ This work consists of the file  achemso.dtx
 %</bichaw>
 %<*bcches>
 \ProvidesFile{bcches.cfg}
-  [2009/08/28 v3.3 achemso configuration: Bioconjugate Chem.]
+  [2009/09/01 v3.3a achemso configuration: Bioconjugate Chem.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3340,7 +3386,7 @@ This work consists of the file  achemso.dtx
 %</bcches>
 %<*bomaf6>
 \ProvidesFile{bomaf6.cfg}
-  [2009/08/28 v3.3 achemso configuration: Biomacromolecules]
+  [2009/09/01 v3.3a achemso configuration: Biomacromolecules]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3349,7 +3395,7 @@ This work consists of the file  achemso.dtx
 %</bomaf6>
 %<*bipret>
 \ProvidesFile{bipret.cfg}
-  [2009/08/28 v3.3 achemso configuration: Biotechnol. Prog.]
+  [2009/09/01 v3.3a achemso configuration: Biotechnol. Prog.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3359,7 +3405,7 @@ This work consists of the file  achemso.dtx
 %</bipret>
 %<*crtoec>
 \ProvidesFile{crtoec.cfg}
-  [2009/08/28 v3.3 achemso configuration: Chem. Res. Toxicol.]
+  [2009/09/01 v3.3a achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3372,7 +3418,7 @@ This work consists of the file  achemso.dtx
 %</crtoec>
 %<*chreay>
 \ProvidesFile{chreay.cfg}
-  [2009/08/28 v3.3 achemso configuration: Chem. Rev.]
+  [2009/09/01 v3.3a achemso configuration: Chem. Rev.]
 \def\acs@type@default{review}
 \def\acs@type@list{review}
 %    \end{macrocode}
@@ -3383,7 +3429,7 @@ This work consists of the file  achemso.dtx
 %<*cmatex>
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
-  [2009/08/28 v3.3 achemso configuration: Chem. Mater.]
+  [2009/09/01 v3.3a achemso configuration: Chem. Mater.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3392,7 +3438,7 @@ This work consists of the file  achemso.dtx
 %</cmatex>
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
-  [2009/08/28 v3.3 achemso configuration: Cryst. Growth Des.]
+  [2009/09/01 v3.3a achemso configuration: Cryst. Growth Des.]
 \def\acs@type@list{%
   article,communication,perspective,suppinfo%
 }
@@ -3403,13 +3449,13 @@ This work consists of the file  achemso.dtx
 %</cgdefu>
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
-  [2009/08/28 v3.3 achemso configuration: Energy Fuels]
+  [2009/09/01 v3.3a achemso configuration: Energy Fuels]
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
 %</enfuem>
 %<*esthag>
 \ProvidesFile{esthag.cfg}
-  [2009/08/28 v3.3 achemso configuration: Environ. Sci. Technol.]
+  [2009/09/01 v3.3a achemso configuration: Environ. Sci. Technol.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3419,7 +3465,7 @@ This work consists of the file  achemso.dtx
 %</esthag>
 %<*iecred>
 \ProvidesFile{iecred.cfg}
-  [2009/08/28 v3.3 achemso configuration: Ind. Eng. Chem. Res.]
+  [2009/09/01 v3.3a achemso configuration: Ind. Eng. Chem. Res.]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -3428,7 +3474,7 @@ This work consists of the file  achemso.dtx
 %</iecred>
 %<*inoraj>
 \ProvidesFile{inoraj.cfg}
-  [2009/08/28 v3.3 achemso configuration: Inorg. Chem.]
+  [2009/09/01 v3.3a achemso configuration: Inorg. Chem.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3443,7 +3489,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jacsat>
 \ProvidesFile{jacsat.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Am. Chem. Soc.]
+  [2009/09/01 v3.3a achemso configuration: J. Am. Chem. Soc.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication\else
   \expandafter\endinput
@@ -3646,7 +3692,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jafcau>
 \ProvidesFile{jafcau.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Agric. Food Chem.]
+  [2009/09/01 v3.3a achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3656,7 +3702,7 @@ This work consists of the file  achemso.dtx
 %</jafcau>
 %<*jceaax>
 \ProvidesFile{jceaax.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Chem. Eng. Data]
+  [2009/09/01 v3.3a achemso configuration: J. Chem. Eng. Data]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3665,7 +3711,7 @@ This work consists of the file  achemso.dtx
 %</jceaax>
 %<*jcisd8>
 \ProvidesFile{jcisd8.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Chem. Inf. Model.]
+  [2009/09/01 v3.3a achemso configuration: J. Chem. Inf. Model.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3674,18 +3720,18 @@ This work consists of the file  achemso.dtx
 %</jcisd8>
 %<*jctcce>
 \ProvidesFile{jctcce.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Chem. Theory Comput.]
+  [2009/09/01 v3.3a achemso configuration: J. Chem. Theory Comput.]
 \def\acs@type@list{article,suppinfo}
 %</jctcce>
 %<*jcchff>
 \ProvidesFile{jcchff.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Comb. Chem.]
+  [2009/09/01 v3.3a achemso configuration: J. Comb. Chem.]
 \def\acs@type@list{article,report,perspective,suppinfo}
 \SectionNumbersOff
 %</jcchff>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Med. Chem.]
+  [2009/09/01 v3.3a achemso configuration: J. Med. Chem.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3694,7 +3740,7 @@ This work consists of the file  achemso.dtx
 %</jmcmar>
 %<*jnprdf>
 \ProvidesFile{jnprdf.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Nat. Prod.]
+  [2009/09/01 v3.3a achemso configuration: J. Nat. Prod.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3702,7 +3748,7 @@ This work consists of the file  achemso.dtx
 %</jnprdf>
 %<*joceah>
 \ProvidesFile{joceah.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Org. Chem.]
+  [2009/09/01 v3.3a achemso configuration: J. Org. Chem.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3710,7 +3756,7 @@ This work consists of the file  achemso.dtx
 %</joceah>
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Phys. Chem. A]
+  [2009/09/01 v3.3a achemso configuration: J. Phys. Chem. A]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3721,7 +3767,7 @@ This work consists of the file  achemso.dtx
 %</jpcafh>
 %<*jpcbfk>
 \ProvidesFile{jpcbfk.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Phys. Chem. B]
+  [2009/09/01 v3.3a achemso configuration: J. Phys. Chem. B]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3737,7 +3783,7 @@ This work consists of the file  achemso.dtx
 %</jpccck>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
-  [2009/08/28 v3.3 achemso configuration: J. Proteome Res.]
+  [2009/09/01 v3.3a achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3746,32 +3792,32 @@ This work consists of the file  achemso.dtx
 %</jprobs>
 %<*langd5>
 \ProvidesFile{langd5.cfg}
-  [2009/08/28 v3.3 achemso configuration: Langmuir]
+  [2009/09/01 v3.3a achemso configuration: Langmuir]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 %</langd5>
 %<*mamobx>
 \ProvidesFile{mamobx.cfg}
-  [2009/08/28 v3.3 achemso configuration: Macromolecules]
+  [2009/09/01 v3.3a achemso configuration: Macromolecules]
 \SectionNumbersOff
 %</mamobx>
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
-  [2009/08/28 v3.3 achemso configuration: Mol. Pharm.]
+  [2009/09/01 v3.3a achemso configuration: Mol. Pharm.]
 \setkeys{acs}{usetitle = true}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</mpohbp>
 %<*nalefd>
 \ProvidesFile{nalefd.cfg}
-  [2009/08/28 v3.3 achemso configuration: Nano Lett.]
+  [2009/09/01 v3.3a achemso configuration: Nano Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
 %</nalefd>
 %<*orlef7>
 \ProvidesFile{orlef7.cfg}
-  [2009/08/28 v3.3 achemso configuration: Org. Lett.]
+  [2009/09/01 v3.3a achemso configuration: Org. Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
@@ -3781,13 +3827,13 @@ This work consists of the file  achemso.dtx
 %</orlef7>
 %<*oprdfk>
 \ProvidesFile{oprdfk.cfg}
-  [2009/08/28 v3.3 achemso configuration: Org. Proc. Res. Dev.]
+  [2009/09/01 v3.3a achemso configuration: Org. Proc. Res. Dev.]
 \def\acs@type@list{article,highlight,review,suppinfo}
 \SectionNumbersOff
 %</oprdfk>
 %<*orgnd7>
 \ProvidesFile{orgnd7.cfg}
-  [2009/08/28 v3.3 achemso configuration: Organometallics]
+  [2009/09/01 v3.3a achemso configuration: Organometallics]
 \SectionNumbersOff
 %</orgnd7>
 %    \end{macrocode}
@@ -4172,6 +4218,7 @@ ENTRY
     chapter
     ctrl-use-title
     ctrl-etal-number
+    ctrl-etal-truncate
     doi
     edition
     editor
@@ -4198,91 +4245,115 @@ ENTRY
     short.list
   }
 
-INTEGERS { output.state before.all mid.sentence after.sentence }
-INTEGERS { after.block after.item author.or.editor }
-INTEGERS { separate.by.semicolon }
-INTEGERS { is.use.title etal.number }
+INTEGERS {
+  before.all
+  mid.sentence
+  after.sentence
+  after.block
+  after.item
+}
 
-FUNCTION {init.state.consts}
-{ #0 'before.all :=
+FUNCTION { init.state.consts } {
+  #0 'before.all :=
   #1 'mid.sentence :=
   #2 'after.sentence :=
   #3 'after.block :=
   #4 'after.item :=
 }
 
-%% #0 turns off the display of the title for articles
-%% #1 enables
-%<!bio>FUNCTION {default.is.use.title} { #0 }
-%<bio>FUNCTION {default.is.use.title} { #1 }
+%% For true/false settings, #1 is regarded as true and #0 as false.
+INTEGERS { 
+  etal.number 
+  etal.truncate 
+  is.use.title 
+}
 
-%% The number of names that force "et al." to be used
-FUNCTION {default.etal.number} { #15 }
+FUNCTION { default.etal.number } { #15 }
 
-FUNCTION {add.comma}
-{ ", " * }
+FUNCTION { default.etal.truncate } { #0 }
 
-FUNCTION {add.semicolon}
-{ "; " * }
+%<!bio>FUNCTION { default.is.use.title } { #0 }
+%<bio>FUNCTION { default.is.use.title } { #1 }
 
-%<*!bio>
-FUNCTION {add.comma.or.semicolon}
-{ #1 separate.by.semicolon =
-    'add.semicolon
-    'add.comma
+FUNCTION { add.comma } { ", " * }
+
+FUNCTION { add.colon } {  ": " * }
+
+FUNCTION { add.semicolon } { "; " * }
+
+INTEGERS { separate.by.semicolon }
+
+FUNCTION { init.separate.by.semicolon } 
+%<!bio>  { #1 'separate.by.semicolon := }
+%<bio>  { #0 'separate.by.semicolon := }
+
+FUNCTION { add.comma.or.semicolon } {
+  #1 separate.by.semicolon = {
+    add.semicolon
+  }{
+    add.comma
+  }
   if$
 }
 
-%</!bio>
-FUNCTION {add.colon}
-{ ": " * }
-
 STRINGS { s t }
 
-FUNCTION {output.nonnull}
-{ 's :=
-  output.state mid.sentence =
-    { add.comma write$ }
-    { output.state after.block =
-      { add.semicolon write$
-        newline$
-        "\newblock " write$
-      }
-      { output.state before.all =
-          'write$
-          { output.state after.item =
-            { " " * write$ }
-            { add.period$ " " * write$ }
-          if$
-          }
-        if$
+INTEGERS { output.state }
+
+FUNCTION { output.nonnull } {
+  's :=
+  output.state mid.sentence = {
+    add.comma write$
+  }{
+    output.state after.block = {
+      add.semicolon write$
+      newline$
+      "\newblock " write$
+    }{
+      output.state before.all = {
+        write$
+      }{
+        output.state after.item = {
+          " " * write$
+        }{
+          add.period$ " " * write$
         }
+        if$
+      }
       if$
-      mid.sentence 'output.state :=
     }
+    if$
+    mid.sentence 'output.state :=
+  }
   if$
   s
 }
 
-FUNCTION {output}
-{ duplicate$ empty$
-    'pop$
-    'output.nonnull
+FUNCTION { output } {
+  duplicate$ empty$ {
+    pop$
+  }{
+    output.nonnull
+  }
   if$
 }
 
-FUNCTION {output.check}
-{ 't :=
-  duplicate$ empty$
-    { pop$ "Empty " t * " in " * cite$ * warning$ }
-    'output.nonnull
+FUNCTION { output.check } {
+  't :=
+  duplicate$ empty$ {
+    pop$ "Empty " t * " in " * cite$ * warning$
+  }{
+    output.nonnull
+  }
   if$
 }
 
-FUNCTION {new.block}
-{ output.state before.all =
-    'skip$
-    { after.block 'output.state := }
+FUNCTION { new.block } {
+  output.state before.all = {
+    skip$
+  }{
+    after.block 'output.state :=
+  }
   if$
 }
 
@@ -4297,7 +4368,7 @@ FUNCTION {new.sentence}
   if$
 }
 
-INTEGERS {would.add.period.textlen}
+INTEGERS { would.add.period.textlen }
 
 FUNCTION {would.add.period}
 { duplicate$
@@ -4627,45 +4698,89 @@ FUNCTION {tie.or.space.connect}
 FUNCTION {space.connect}
 { " " swap$ * * }
 
-INTEGERS { nameptr namesleft numnames }
+INTEGERS { 
+  current.name 
+  remaining.names 
+  total.names 
+}
 
-FUNCTION {format.names}
-{ 's :=
-  #1 'nameptr :=
-  s num.names$ 'numnames :=
-  numnames 'namesleft :=
-  numnames etal.number > etal.number #0 > and
-    { s #1 "{vv~}{ll,}{~f.}{,~jj}" format.name$ 't :=
-      t bbl.etal space.connect
+STRINGS { 
+  formatted.name
+  names.list
+}
+
+FUNCTION { format.names.loop } {
+  { remaining.names #0 > } {
+    names.list current.name "{vv~}{ll,}{~f.}{,~jj}" format.name$ 
+      'formatted.name :=
+    current.name #1 > {
+      formatted.name "others," = {
+        bbl.etal space.connect
+        remaining.names #1 'remaining.names :=
+      }{
+%<*bio>
+        add.comma 
+        remaining.names #1 > {
+          formatted.name *
+        }{
+          bbl.and space.connect 
+          formatted.name space.connect
+        }
+        if$
+%</bio>
+%<*!bio>
+        add.comma.or.semicolon formatted.name *
+%</!bio>
+      }
+      if$
+    }{
+      formatted.name
     }
-    {
-       { namesleft #0 > }
-       { s nameptr "{vv~}{ll,}{~f.}{,~jj}" format.name$ 't :=
-           nameptr #1 >
-             { namesleft #1 >
-%<!bio>               { add.comma.or.semicolon t * }
-%<bio>               { add.comma t * }
-               { numnames #2 >
-                 { "" * }
-                 'skip$
-               if$
-               t "others," =
-                 { bbl.etal space.connect }
-%<!bio>                 { add.comma.or.semicolon t * }
-%<bio>                 { add.comma bbl.and space.connect t space.connect }
-               if$
-               }
-             if$
-             }
-           't
-         if$
-         nameptr #1 + 'nameptr :=
-         namesleft #1 - 'namesleft :=
-         }
-     while$
+    if$
+    current.name #1 + 'current.name :=
+    remaining.names #1 - 'remaining.names :=
+  }
+  while$
+}
+
+FUNCTION { format.names.all } {
+  total.names 'remaining.names :=
+  format.names.loop
+}
+
+FUNCTION { format.names.etal } {
+  etal.truncate #1 = {
+    etal.number 'remaining.names :=
+  }{
+    #1 'remaining.names :=
+  }
+  if$
+  format.names.loop
+  formatted.name "others," = {
+  }{
+    bbl.etal space.connect
   }
   if$
 }
+
+FUNCTION { format.names } {
+  'names.list :=
+  #1 'current.name :=
+  names.list num.names$ 'total.names :=
+  etal.number #0 = {
+    format.names.all
+  }{
+    total.names etal.number > {
+      format.names.etal
+    }{
+      format.names.all
+    }
+    if$
+  }
+  if$
+}
+
+INTEGERS { author.or.editor }
 
 FUNCTION {format.authors}
 { author empty$
@@ -4692,6 +4807,8 @@ FUNCTION {format.editors}
     }
   if$
 }
+
+INTEGERS { nameptr numnames namesleft }
 
 FUNCTION {n.separate.multi}
 { 't :=
@@ -5417,20 +5534,33 @@ FUNCTION {yes.no.to.int}
 
 %% Using the same mechanism as in IEEEtrans, control of
 %% output can be achieved using a special entry type.
-FUNCTION {Control}
-{ ctrl-use-title
-  empty$
-    { skip$ }
-    { ctrl-use-title
-      yes.no.to.int
-      'is.use.title := }
+FUNCTION { Control } {
+  ctrl-use-title
+  empty$ {
+    skip$ 
+  }{
+    ctrl-use-title
+    yes.no.to.int
+    'is.use.title := 
+  }
   if$
   ctrl-etal-number
-  empty$
-    { skip$ }
-    { ctrl-etal-number
-      str.to.int
-      'etal.number := }
+  empty$ {
+    skip$ 
+  }{
+    ctrl-etal-number
+    str.to.int
+    'etal.number := 
+  }
+  if$
+  ctrl-etal-truncate
+  empty$ {
+    skip$ 
+  }{
+    ctrl-etal-truncate
+    yes.no.to.int
+    'etal.truncate := 
+  }
   if$
 }
 
@@ -5603,8 +5733,8 @@ FUNCTION {calc.short.authors}
   'short.list :=
 }
 
-FUNCTION {calc.label}
-{ calc.short.authors
+FUNCTION { calc.label } {
+  calc.short.authors
   short.list
   "("
   *
@@ -5617,14 +5747,22 @@ FUNCTION {calc.label}
   'label :=
 }
 
-ITERATE {calc.label}
+ITERATE { calc.label }
 
-STRINGS { longest.label last.label next.extra }
+STRINGS { 
+  longest.label 
+  last.label 
+  next.extra 
+}
 
-INTEGERS { longest.label.width last.extra.num number.label }
+INTEGERS { 
+  longest.label.width 
+  last.extra.num 
+  number.label 
+}
 
-FUNCTION {initialize.longest.label}
-{ "" 'longest.label :=
+FUNCTION { initialize.longest.label } {
+  "" 'longest.label :=
   #0 int.to.chr$ 'last.label :=
   "" 'next.extra :=
   #0 'longest.label.width :=
@@ -5645,14 +5783,16 @@ FUNCTION {forward.pass}
   number.label #1 + 'number.label :=
 }
 
-EXECUTE {initialize.longest.label}
+EXECUTE { initialize.longest.label }
 
-ITERATE {forward.pass}
+ITERATE { forward.pass }
 
-FUNCTION {begin.bib}
-{ preamble$ empty$
-    'skip$
-    { preamble$ write$ newline$ }
+FUNCTION { begin.bib } {
+  preamble$ empty$ {
+    skip$
+  }{
+    preamble$ write$ newline$
+  }
   if$
   "\providecommand*{\mcitethebibliography}{\thebibliography}"
   write$ newline$
@@ -5692,18 +5832,20 @@ FUNCTION {begin.bib}
   write$ newline$
 }
 
-EXECUTE {begin.bib}
+EXECUTE { begin.bib }
 
-EXECUTE {init.state.consts}
+EXECUTE { init.state.consts }
 
-ITERATE {call.type$}
+EXECUTE { init.separate.by.semicolon }
 
-FUNCTION {end.bib}
-{ newline$
+ITERATE { call.type$ }
+
+FUNCTION { end.bib } {
+  newline$
   "\end{mcitethebibliography}" write$ newline$
 }
 
-EXECUTE {end.bib}
+EXECUTE { end.bib }
 %</bst>
 %<*bib>
 @ARTICLE{Abernethy2003,
