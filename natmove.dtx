@@ -1,0 +1,595 @@
+% \iffalse meta-comment
+%
+% Portions copyright (C) 1989-2003 by
+%    Donald Arseneau
+% Copyright (C) 2007-08 by
+%    Joseph Wright <joseph.wright@morningstar2.co.uk>
+%
+% Part of this file is derived from cite.sty, to which the following
+% license applies:
+%--------------------------------------------------------------------
+%     Copyright (C) 1989-2003 by Donald Arseneau
+%     These macros may be freely transmitted, reproduced, or modified
+%     provided that this notice is left intact.
+%--------------------------------------------------------------------
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3c of this license or (at your option) any later
+% version. The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained.'
+%
+% The current maintainer of this work is Joseph Wright.
+%
+% This work consists of the source file natmove.dtx
+%                 and the derived files natmove.ins,
+%                                       natmove.sty,
+%                                       natmove.pdf,
+%                                       natmove-manual.pdf and
+%                                       jawltxdoc.sty
+%
+% TDS-ready files:
+%    The compressed file natmove.tds.zip contains an unpacked version
+%    of all of the files included here, and pre-compiled
+%    documentation in PDF format.  Simply decompress natmove.tds.dtx
+%    in your local TeX directory, run your hash program (texhash,
+%    initexmf --update-fndb, etc.) and everything will be ready to
+%    go.  The user documentation for the package is called
+%    natmove-manual.pdf; the file achemso.pdf includes the user
+%    manual and the fully-indexed source code.
+%
+% Unpacking:
+%    (a) If natmove.ins is present:
+%           tex natmove.ins
+%    (b) Without natmove.ins:
+%           tex natmove.dtx
+%    (c) If you use LaTeX to generate files:
+%           latex \let\install=y\input{natmove.dtx}
+%
+% Documentation:
+%    (a) Without write18 enabled:
+%          pdflatex natmove.dtx
+%          bibtex8 --wolfgang natmove
+%          makeindex -s gind.ist natmove.idx
+%          makeindex -s gglo.ist -o natmove.gls natmove.glo
+%          pdflatex natmove.dtx
+%          pdflatex natmove.dtx
+%    (b) With write18 enabled:
+%          pdflatex natmove.dtx
+%          pdflatex natmove.dtx
+%          pdflatex natmove.dtx
+%
+% Installation:
+%     Copy natmove.sty to a location searched by TeX, and if required
+%     by your TeX installation, run the appropriate command to build
+%     a hash of files (texhash, initexmf --update-fndb, etc.)
+%
+% Note:
+%     The jawltxdoc.sty file is not needed for installation,
+%     only for building the documentation; it may be deleted
+%     after producing the documentation (if necessary).
+%
+%<*ignore>
+% This is all taken verbatim from Heiko Oberdiek's packages
+\begingroup
+  \def\x{LaTeX2e}%
+\expandafter\endgroup
+\ifcase 0\ifx\install y1\fi\expandafter
+         \ifx\csname processbatchFile\endcsname\relax\else1\fi
+         \ifx\fmtname\x\else 1\fi\relax
+\else\csname fi\endcsname
+%</ignore>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+ ----------------------------------------------------------------
+ natmove --- Automatic citation moving with natbib
+ Maintained by Joseph Wright
+ E-mail: joseph.wright@morningstar2.co.uk
+ Released under the LaTeX Project Public License v1.3c or later
+ See http://www.latex-project.org/lppl.txt
+ ----------------------------------------------------------------
+
+\endpreamble
+\Msg{Generating natmove files:}
+\generate{\file{jawltxdoc.sty}{\from{\jobname.dtx}{jawltxdoc}}
+}
+\usedir{tex/latex/achemso}
+\generate{\file{\jobname.sty}{\from{\jobname.dtx}{package}}
+}
+\usedir{source/latex/achemso}
+\generate{\file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\endbatchfile
+%</install>
+%<*ignore>
+\fi
+% Will Robertson's trick
+\immediate\write18{bibtex8 --wolfgang \jobname}
+\immediate\write18{makeindex -s gind.ist -o \jobname.ind  \jobname.idx}
+\immediate\write18{makeindex -s gglo.ist -o \jobname.gls  \jobname.glo}
+%</ignore>
+%<*driver>
+\PassOptionsToClass{a4paper}{article}
+\documentclass[german,english,UKenglish]{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+%\OnlyDescription
+\usepackage[sort&compress,numbers,super]{natbib}
+\usepackage{mciteplus}
+\usepackage{jawltxdoc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+%\CheckSum{158}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%\GetFileInfo{\jobname.sty}
+%
+%\DoNotIndex{\!,\.,\?,\@empty,\@firstoftwo,\@ifmtarg}
+%\DoNotIndex{\@ifpackageloaded,\@m,\@nil,\@secondoftwo}
+%\DoNotIndex{\AtBeginDocument,\begingroup,\catcode,\def,\else}
+%\DoNotIndex{\endgroup,\expandafter,\fi,\frenchspacing,\futurelet}
+%\DoNotIndex{\gdef,\global,\ifnum,\ifx,\ifNAT@super,\lastskip}
+%\DoNotIndex{\leavevmode,\let,\long,\mathchardef,\NeedsTeXFormat}
+%\DoNotIndex{,\newcommand,\newif,\PackageWarning,\ProvidesPackage,\Q}
+%\DoNotIndex{\relax,\renewcommand,\RequirePackage,\sfcode,\skip@}
+%\DoNotIndex{\space,\spacefactor,\unskip}
+%
+%\changes{v1.0}{2008/06/22}{First public release}
+%
+%\setkeys{lst}{language=[LaTeX]{TeX},moretexcs={citenum,
+%  citeyear,citeauthor}}
+%
+%\title{\currpkg\ ---  Automatic citation moving with natbib^^A
+%  \thanks{This file describes version \fileversion, last revised
+%    \filedate.}}
+%\author{Joseph Wright^^A
+%  \thanks{E-mail: joseph.wright@morningstar2.co.uk}}
+%\date{Released \filedate}
+%
+%\maketitle
+%
+%\newcommand*{\ACS}{\textsc{acs}}
+%\begin{abstract}
+% The \currpkg package adds the ability to move citations after
+% punctuation automatically to the \pkg{natbib} package, in the same
+% way as with \pkg{cite}.  With non-superscript citations, no action
+% is taken.
+%\end{abstract}
+%
+%\begin{multicols}{2}
+%  \tableofcontents
+%\end{multicols}
+%
+%\section{Using the package}
+% The \currpkg package does only one job.  It brings the ability to
+% move punctuation after citations, using code borrowed from the
+% \pkg{cite} package.
+%\begin{LaTeXexample}
+%  Some text \cite{Coghill2006} some more text.\\
+%  Some text ending a sentence \cite{Coghill2006}.
+%\end{LaTeXexample}
+% This is deactivated for other citation types.
+%\begin{LaTeXexample}
+%  Some text \citeyear{Coghill2006}.\\
+%  Some text \citeauthor{Coghill2006}.\\
+%  Some text \citenum{Coghill2006}.
+%\end{LaTeXexample}
+% The package does nothing if the \opt{super} option has not been
+% given to \pkg{natbib}.  This means that the source can be written
+% without needing to decide where citations will to appear, with the
+% \opt{super} option for \pkg{natbib} controlling the result.
+%
+%\DescribeMacro{\natmovechars}
+% One user macro is provided: \cs{natmovechars}.  This contains
+% the characters which are moved before superscript punctuation.
+% The default contents is |,;:.| and can be set using
+% \cs{renewcommand*}:
+%\begin{LaTeXexample}
+%  \renewcommand*{\natmovechars}{.}
+%  Some text \cite{Coghill2006},
+%  more text \cite{Coghill2006}.
+%\end{LaTeXexample}
+%
+%\StopEventually{%
+%  \PrintChanges
+%  \PrintIndex
+%  \bibliographystyle{achemso}
+%  \bibliography{achemso}}
+%
+%\iffalse
+%<*package>
+%\fi
+%\section{The code}
+%\begin{macro}{\nmv@id}
+% The package file is designed to be usable with any document class.
+% It sets up the basics, but leaves some settings to the class file.
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\def\nmv@id$#1: #2.#3 #4 #5-#6-#7 #8 #9${%
+  #5/#6/#7\space v1.0\space}
+\ProvidesPackage{natmove}
+  [\nmv@id$Id: natmove.dtx 22 2008-06-22 09:02:23Z joseph $
+   Automatic citation moving with natbib]
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@ifmtarg}
+%\begin{macro}{\nmv@xifmtarg}
+% To keep down dependance on other packages, the very short code
+% block from \pkg{ifmtarg} is copied here with an internal name.
+%    \begin{macrocode}
+\begingroup
+  \catcode`\Q=3
+  \long\gdef\nmv@ifmtarg#1{%
+    \nmv@xifmtarg#1QQ\@secondoftwo\@firstoftwo\@nil}
+  \long\gdef\nmv@xifmtarg#1#2Q#3#4#5\@nil{#4}
+\endgroup
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\ifnmv@cite}
+% A flag is need to watch whether \cs{cite} or another macro is in
+% use.
+%    \begin{macrocode}
+\newif\ifnmv@cite
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex}
+% Using the flag, either the new internal macro, or the
+% \pkg{natbib} original, can be called.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex}{%
+  \ifnmv@cite
+    \expandafter\nmv@citex@
+  \else
+    \expandafter\nmv@natcitex
+  \fi}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@}
+% The new version of \cs{@citex} is needed that looks ahead of the
+% citation using \cs{futurelet}.  There are three arguments to
+% \cs{@citex} when using \pkg{natbib}.  Other than that, the trick
+% used here is similar to that in \pkg{cite}.
+%    \begin{macrocode}
+\def\nmv@citex@[#1][#2]#3{%
+  \leavevmode
+  \skip@\lastskip
+  \unskip
+  \begingroup
+%    \end{macrocode}
+%\begin{macro}{\nmv@arg}
+% The arguments of the macro now need to be saved, before handing off
+% to the ``search'' macro.
+%    \begin{macrocode}
+    \def\nmv@arg{[#1][#2]{#3}}%
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@end}
+% The entire block to be executed after punctuation is set up here,
+% to make recursion easier.  The system used is very similar to that
+% in \pkg{cite}.  Notice that the \cs{relax} is essential.
+%    \begin{macrocode}
+    \newcommand*{\nmv@citex@end}{%
+        \expandafter\nmv@natcitex\nmv@arg
+      \endgroup}%
+    \global\nmv@citefalse
+    \nmv@citex@getnext\relax}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@getnext}
+%\begin{macro}{\nmv@citex@next}
+% The next token on the input stack is saved into
+% \cs{nmv@citex@next}, after gobbling up one token.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@getnext}[1]{%
+  \futurelet\nmv@citex@next\nmv@citex@punct}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\nmv@citex@punct}
+%\begin{macro}{\nmv@citex@loop}
+% The working macro for moving the punctuation.  This is very much
+% like \cs{@citey} in the \pkg{cite} package. The initial assumption
+% is that the loop will terminate, and so the recursion call will
+% simply do the finalisation.
+%    \begin{macrocode}
+\newcommand*{\nmv@citex@punct}{%
+  \let\nmv@citex@loop\nmv@citex@end
+%    \end{macrocode}
+% A check is made for doubled full stops.
+%    \begin{macrocode}
+  \ifx.\nmv@citex@next\@empty
+    \ifnum\spacefactor<\nmv@citex@sfac\else
+      \let\nmv@citex@next\relax
+      \let\nmv@citex@loop\nmv@citex@getnext
+    \fi
+  \fi
+%    \end{macrocode}
+% The other cases are handled.
+%    \begin{macrocode}
+  \expandafter\nmv@citex@pnct\natmovechars\@empty
+  \nmv@citex@loop}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\nmv@citex@pnct}
+% The final part of the punctuation moving system.
+%    \begin{macrocode}
+\def\nmv@citex@pnct#1#2\@empty{%
+  \ifx\nmv@citex@next#1\@empty
+    #1%
+    \let\nmv@citex@loop\nmv@citex@getnext
+  \fi
+  \ifx\@empty#2\@empty\else
+    \expandafter\nmv@citex@pnct#2\@empty
+  \fi}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@citex@sfac}
+% The value of the spacing factor after a full stop is used to signal
+% doubled punctuation.  For French spacing, a bit of patching is
+% needed.
+%    \begin{macrocode}
+\mathchardef\nmv@citex@sfac3000
+\expandafter\renewcommand\expandafter*\expandafter{\expandafter%
+  \frenchspacing\expandafter}\expandafter{%
+  \frenchspacing
+  \mathchardef\nmv@citex@sfac1001
+  \sfcode`\.\nmv@citex@sfac
+  \sfcode`\?\nmv@citex@sfac
+  \sfcode`\!\nmv@citex@sfac}
+\ifnum\sfcode`\.=\@m
+  \frenchspacing
+\fi
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\nmv@activate}
+%\begin{macro}{\@citex}
+%\begin{macro}{\nmv@natcitex}
+%\begin{macro}{\cite}
+%\begin{macro}{\nmv@cite}
+%\begin{macro}{\nmv@notactivate}
+% The swap has to be done at the beginning of the document. The
+% internal flag from \pkg{natbib} is used, but under the
+% circumstances we should be safe.  \cs{cite} is also patched to make
+% the system active.  A
+%    \begin{macrocode}
+\newcommand*{\nmv@activate}{%
+  \let\nmv@natcitex\@citex
+  \let\@citex\nmv@citex
+  \let\nmv@cite\cite
+  \renewcommand*{\cite}[2][]{%
+    \nmv@ifmtarg{##1}
+      {\nmv@citetrue
+       \nmv@cite{##2}}
+      {\nmv@citefalse
+       \nmv@cite[##1]{##2}}}}
+\AtBeginDocument{
+  \@ifpackageloaded{natbib}
+    {\ifNAT@super
+      \nmv@activate
+     \else
+      \nmv@notactivate
+     \fi}
+    {\PackageWarning{natmove}
+       {The natbib package has not been loaded}}}
+\newcommand*{\nmv@notactivate}{}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\natmovechars}
+% A user macro is needed for moving characters.
+%    \begin{macrocode}
+\newcommand*{\natmovechars}{.,;:}
+%    \end{macrocode}
+%\end{macro}
+%\iffalse
+%</package>
+%\fi
+%
+%\Finale
+%
+%\iffalse
+%<*jawltxdoc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jawltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[final]{listings,graphicx,microtype}
+\usepackage[scaled=0.95]{helvet}
+\usepackage[version=3]{mhchem}
+\usepackage[osf]{mathpazo}
+\usepackage{booktabs,array,url,courier,xspace,etoolbox,varioref}
+\usepackage{upgreek,ifpdf,float,caption,longtable,babel}
+\floatstyle{plaintop}
+\restylefloat{table}
+\labelformat{figure}{\figurename~#1}
+\labelformat{table}{\tablename~#1}
+\ifpdf
+  \usepackage{embedfile}
+  \embedfile[%
+    stringmethod=escape,%
+    mimetype=plain/text,%
+    desc={LaTeX docstrip source archive for package `\jobname'}%
+    ]{\jobname.dtx}
+\fi
+\IfFileExists{\jobname.sty}
+  {\usepackage{\jobname}}{}
+\usepackage[numbered]{hypdoc}
+\setcounter{IndexColumns}{2}
+\newlength\LaTeXwidth
+\newlength\LaTeXoutdent
+\newlength\LaTeXgap
+\setlength\LaTeXgap{1em}
+\setlength\LaTeXoutdent{-0.15\textwidth}
+\newbox\lst@samplebox
+\edef\LaTeXexamplefile{\jobname.tmp}
+\lst@RequireAspects{writefile}
+\lstnewenvironment{LaTeXexample}[1][example]{%
+  \global\let\lst@intname\@empty
+  \ifcsname LaTeXcode#1\endcsname
+    \expandafter\let\expandafter\LaTeXcode
+      \csname LaTeXcode#1\endcsname
+    \expandafter\let\expandafter\LaTeXcodeend
+      \csname LaTeXcode#1end\endcsname
+  \else
+    \PackageError{jawltxdoc}
+      {Undefined example type `#1'}
+      \@ehd
+    \let\LaTeXcode\relax
+    \let\LaTeXcodeend\relax
+  \fi
+  \LaTeXcode}
+  {\lst@EndWriteFile
+   \LaTeXcodeend}
+\newcommand*{\LaTeXcodeexample}{%
+  \setbox\lst@samplebox=\hbox\bgroup
+  \LaTeXcodefloat}
+\let\LaTeXcoderesultonly\LaTeXcodeexample
+\newcommand*{\LaTeXcodeexampleend}{%
+  \egroup
+  \setlength\LaTeXwidth{\wd\lst@samplebox}%
+  \begin{list}{}{%
+    \setlength\itemindent{0pt}
+    \setlength\leftmargin\LaTeXoutdent
+    \setlength\rightmargin{0pt}}%
+    \item
+      \setlength\LaTeXoutdent{-0.15\textwidth}
+      \begin{minipage}[c]{%
+        \textwidth-\LaTeXwidth-\LaTeXoutdent-\LaTeXgap}
+        \LaTeXcodefloatend
+      \end{minipage}%
+      \hfill
+      \begin{minipage}[c]{\LaTeXwidth}%
+        \hbox to\linewidth{\box\lst@samplebox\hss}%
+      \end{minipage}%
+  \end{list}}
+\let\LaTeXcodenoexample\LaTeXcodeexample
+\newcommand*{\LaTeXcodenoexampleend}{%
+  \egroup
+  \setlength\LaTeXwidth{\wd\lst@samplebox}%
+  \begin{list}{}{%
+    \setlength\itemindent{0pt}
+    \setlength\leftmargin{0pt}
+    \setlength\rightmargin{0pt}}%
+    \item
+      \begin{minipage}[c]{\LaTeXwidth}
+        \hbox to\linewidth{\box\lst@samplebox\hss}%
+      \end{minipage}%
+  \end{list}}
+\newcommand*{\LaTeXcodefloat}{%
+  \setkeys{lst}{tabsize=4,gobble=3,breakindent=0pt,
+    basicstyle=\small\ttfamily,basewidth=0.51em,
+    keywordstyle=\color{blue}}%
+  \lst@BeginAlsoWriteFile{\LaTeXexamplefile}}
+\newcommand*{\LaTeXcodefloatend}{%
+  \MakePercentComment\catcode`\^^M=10\relax
+  \small
+  {\setkeys{lst}{SelectCharTable=\lst@ReplaceInput{\^\^I}%
+    {\lst@ProcessTabulator}}%
+    \leavevmode \input{\LaTeXexamplefile}}%
+  \MakePercentIgnore}
+\newcommand*{\LaTeXcoderesultonlyend}{\egroup\LaTeXcodefloatend}
+\lstnewenvironment{BibTeXexample}{%
+  \global\let\lst@intname\@empty
+  \setbox\lst@samplebox=\hbox\bgroup
+  \setkeys{lst}{tabsize=4,gobble=3,breakindent=0pt,
+    basicstyle=\small\ttfamily,basewidth=0.51em,
+    keywordstyle=\color{black}}
+  \lst@BeginAlsoWriteFile{\LaTeXexamplefile}}
+ {\lst@EndWriteFile
+   \LaTeXcodeexampleend}
+\newcommand*{\DescribeOption}{%
+  \leavevmode\@bsphack\begingroup\MakePrivateLetters
+  \Describe@Option}
+\newcommand*{\Describe@Option}[1]{\endgroup
+              \marginpar{\raggedleft\PrintDescribeEnv{#1}}%
+              \SpecialOptionIndex{#1}\@esphack\ignorespaces}
+\newcommand*{\SpecialOptionIndex}[1]{\@bsphack
+    \index{#1\actualchar{\protect\ttfamily#1}
+           (option)\encapchar usage}%
+    \index{options:\levelchar#1\actualchar{\protect\ttfamily#1}%
+      \encapchar usage}\@esphack}
+\newcommand*{\indexopt}[1]{\DescribeOption{#1}\opt{#1}}
+\newcommand*{\DescribeOptionInfo}[2]{%
+  \DescribeOption{#1}%
+  \opt{#1=\meta{#2}}\xspace}
+\newcommand*{\ofixarg}[1]{%
+  {\ttfamily[}%
+  \ifmmode \expandafter \nfss@text \fi
+  {%
+    \meta@font@select
+    \edef\meta@hyphen@restore{%
+      \hyphenchar\the\font\the\hyphenchar\font}%
+    \hyphenchar\font\m@ne
+    \language\l@nohyphenation
+    #1\/%
+    \meta@hyphen@restore
+    }%
+    {\ttfamily]}}
+\newcommand*{\pkg}[1]{\textsf{#1}}
+\newcommand*{\currpkg}{\pkg{\jobname}\xspace}
+\newcommand*{\opt}[1]{\texttt{#1}}
+\newcommand*{\defaultopt}[1]{\opt{\textbf{#1}}}
+\newcommand*{\file}[1]{\texttt{#1}}
+\newcommand*{\ext}[1]{\file{.#1}}
+\newcommand*{\latin}[1]{\emph{#1}}
+\newcommand*{\etc}{%
+  \@ifnextchar.
+    {\latin{etc}}
+    {\latin{etc}.\xspace}}
+\newcommand*{\eg}{%
+  \@ifnextchar.
+    {\latin{e.g}}
+    {\latin{e.g}.\xspace}}
+\newcommand*{\ie}{%
+  \@ifnextchar.
+    {\latin{i.e}}
+    {\latin{i.e}.\xspace}}
+\newcommand*{\etal}{%
+  \@ifnextchar.
+    {\latin{et~al.}}
+    {\latin{et~al}.\xspace}}
+\newcommand*{\AMS}{{\protect\usefont{OMS}{cmsy}{m}{n}%
+  A\kern-.1667em\lower.5ex\hbox{M}\kern-.125emS}}
+\providecommand*{\eTeX}{\ensuremath{\varepsilon}-\TeX}
+\DeclareRobustCommand*{\XeTeX}
+  {X\kern-.125em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\TeX}
+\providecommand*{\CTAN}{\textsc{ctan}}
+\patchcmd{\@addmarginpar}
+  {\@latex@warning@no@line {Marginpar on page \thepage\space moved}}
+  {\relax}{}{}
+%</jawltxdoc>
+%\fi
