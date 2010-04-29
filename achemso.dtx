@@ -797,7 +797,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*class>
 \ProvidesClass{achemso}
-  [2009/07/11 v3.2d Submission to ACS journals]
+  [2009/07/29 v3.2e Submission to ACS journals]
 \LoadClass[12pt,letter]{article}
 %    \end{macrocode}
 %    
@@ -817,7 +817,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*package>
 \ProvidesPackage{achemso}
-  [2009/07/11 v3.2d Support for ACS journals]
+  [2009/07/29 v3.2e Support for ACS journals]
 \@ifclassloaded{achemso}{%
   \PackageInfo{achemso}{%
     You have already loaded the `achemso' class:\MessageBreak
@@ -2430,7 +2430,7 @@ This work consists of the file  achemso.dtx
 }{}
 \newenvironment{suppinfo}{%
   \acs@subsection*{\suppinfoname}%
-  \acs@toc@collect\acs@suppinfo@print
+  \acs@collect\acs@suppinfo@print
 }{}
 %    \end{macrocode}
 %\end{environment}
@@ -2531,67 +2531,67 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %    
-%\begin{macro}{\acs@toc@toks}
-%\begin{macro}{\acs@toc@content}
-%\begin{macro}{\acs@toc@content}
+%\begin{macro}{\acs@collect@toks}
+%\begin{macro}{\acs@collect@content}
+%\begin{macro}{\acs@collect@content}
 % The content of the graphic TOC entry is processed using a method from
 % \pkg{amsmath} \emph{via} \pkg{environ}. The entire environment is
 % gathered for typesetting in a box. First, some storage is needed.
 %    \begin{macrocode}
-\newtoks\acs@toc@toks
-\newtoks\acs@toc@empty@toks
-\newcommand*\acs@toc@begins{}
-\newcommand*\acs@toc@content{}
+\newtoks\acs@collect@toks
+\newtoks\acs@collect@empty@toks
+\newcommand*\acs@collect@begins{}
+\newcommand*\acs@collect@content{}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\acs@toc@collect}
-%\begin{macro}{\acs@toc@collect@aux}
-%\begin{macro}{\acs@toc@collect@begins}
-%\begin{macro}{\acs@toc@collect@body}
+%\begin{macro}{\acs@collect}
+%\begin{macro}{\acs@collect@aux}
+%\begin{macro}{\acs@collect@begins@}
+%\begin{macro}{\acs@collect@body}
 % This is a \cs{long} version of \cs{collect@body}.
 %    \begin{macrocode}
-\newcommand\acs@toc@collect[1]{%
-  \acs@toc@toks{%
-    \expandafter#1\expandafter{\the\acs@toc@toks}%
+\newcommand\acs@collect[1]{%
+  \acs@collect@toks{%
+    \expandafter#1\expandafter{\the\acs@collect@toks}%
   }%
-  \edef\acs@toc@content{%
-    \the\acs@toc@toks
+  \edef\acs@collect@content{%
+    \the\acs@collect@toks
     \noexpand\end{\@currenvir}%
   }%
-  \acs@toc@toks\acs@toc@empty@toks
-  \def\acs@toc@begins{b}%
+  \acs@collect@toks\acs@collect@empty@toks
+  \def\acs@collect@begins{b}%
   \begingroup
-    \expandafter\let\csname\@currenvir\endcsname\acs@toc@collect@aux
-    \edef\acs@toc@content{%
+    \expandafter\let\csname\@currenvir\endcsname\acs@collect@aux
+    \edef\acs@collect@content{%
       \expandafter\noexpand\csname\@currenvir\endcsname
     }%
-    \acs@toc@content
+    \acs@collect@content
 }
-\newcommand*\acs@toc@collect@aux{}
-\long\def\acs@toc@collect@aux#1\end#2{%
-  \edef\acs@toc@begins{%
-    \acs@toc@collect@begins#1\begin\end
-    \expandafter\@gobble\acs@toc@begins
+\newcommand*\acs@collect@aux{}
+\long\def\acs@collect@aux#1\end#2{%
+  \edef\acs@collect@begins{%
+    \acs@collect@begins@#1\begin\end
+    \expandafter\@gobble\acs@collect@begins
   }%
-  \ifx\@empty\acs@toc@begins
+  \ifx\@empty\acs@collect@begins
     \endgroup
     \@checkend{#2}%
-    \acs@toc@collect@body{#1}%
+    \acs@collect@body{#1}%
   \else
-    \acs@toc@collect@body{#1\end{#2}}%
+    \acs@collect@body{#1\end{#2}}%
   \fi
-  \acs@toc@content
+  \acs@collect@content
 }
-\newcommand*\acs@toc@collect@begins{}
-\long\def\acs@toc@collect@begins#1\begin#2{%
+\newcommand*\acs@collect@begins@{}
+\long\def\acs@collect@begins@#1\begin#2{%
   \ifx\end#2\else
-    b\expandafter\acs@toc@collect@begins
+    b\expandafter\acs@collect@begins@
   \fi
 }
-\newcommand\acs@toc@collect@body[1]{%
-  \global\acs@toc@toks\expandafter{\the\acs@toc@toks#1}%
+\newcommand\acs@collect@body[1]{%
+  \global\acs@collect@toks\expandafter{\the\acs@collect@toks#1}%
 }
 %    \end{macrocode}
 %\end{macro} 
@@ -2612,6 +2612,29 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
+%\begin{macro}{\acs@abstract@print}
+% Delayed abstract printing works in a similar way, but with some
+% formatting `built-in'.
+%    \begin{macrocode}
+\newcommand\acs@abstract@print[1]{%
+  \global\long\def\acs@abstract@text{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse\newpage
+    \fi
+    \acs@section*{Abstract}%
+    #1%
+    \if@restonecol
+      \twocolumn
+    \else 
+      \newpage 
+    \fi
+  }%
+  \AtEndDocument{\acs@abstract@text}%
+}
+%    \end{macrocode}
+%\end{macro}
 %\begin{environment}{tocentry}
 % Actually creating the entry is pretty easy.
 %    \begin{macrocode}
@@ -2625,7 +2648,7 @@ This work consists of the file  achemso.dtx
   \tocsize
   \sffamily
   \singlespacing
-  \acs@toc@collect\acs@toc@print
+  \acs@collect\acs@toc@print
 }{%
   \if@restonecol
     \twocolumn
@@ -2767,7 +2790,7 @@ This work consists of the file  achemso.dtx
   \suppsize
   \vspace{6pt}%
   \textbf{\suppinfoname:}
-  \acs@toc@collect\acs@suppinfo@print
+  \acs@collect\acs@suppinfo@print
 }
 %    \end{macrocode}
 %\end{macro}  
@@ -3093,7 +3116,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*achre4>
 \ProvidesFile{achre4.cfg}
-  [2009/07/11 v3.2d achemso configuration: Acc. Chem. Res.]
+  [2009/07/29 v3.2e achemso configuration: Acc. Chem. Res.]
 \setkeys{acs}{
   biblabel = plain
 }
@@ -3102,7 +3125,7 @@ This work consists of the file  achemso.dtx
 %</achre4>
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
-  [2009/07/11 v3.2d achemso configuration: ACS Chem. Biol.]
+  [2009/07/29 v3.2e achemso configuration: ACS Chem. Biol.]
 \setkeys{acs}{
   biblabel = fullstop,
   biochem  = true,
@@ -3114,7 +3137,7 @@ This work consists of the file  achemso.dtx
 %</acbcct>
 %<*ancac3>
 \ProvidesFile{acbcct.cfg}
-  [2009/07/11 v3.2d achemso configuration: ACS Nano]
+  [2009/07/29 v3.2e achemso configuration: ACS Nano]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -3124,13 +3147,13 @@ This work consists of the file  achemso.dtx
 %</ancac3>
 %<*ancham>
 \ProvidesFile{ancham.cfg}
-  [2009/07/11 v3.2d achemso configuration:  Anal. Chem.]
+  [2009/07/29 v3.2e achemso configuration:  Anal. Chem.]
 \def\acs@type@list{article,note,suppinfo}
 \SectionNumbersOff
 %</ancham>
 %<*bichaw>
 \ProvidesFile{biochem.cfg}
-  [2009/07/11 v3.2d achemso configuration: Biochemistry]
+  [2009/07/29 v3.2e achemso configuration: Biochemistry]
 \setkeys{acs}{
   abbreviations = true,
   biblabel      = fullstop,
@@ -3148,7 +3171,7 @@ This work consists of the file  achemso.dtx
 %</bichaw>
 %<*bcches>
 \ProvidesFile{bcches.cfg}
-  [2009/07/11 v3.2d achemso configuration: Bioconjugate Chem.]
+  [2009/07/29 v3.2e achemso configuration: Bioconjugate Chem.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3158,7 +3181,7 @@ This work consists of the file  achemso.dtx
 %</bcches>
 %<*bomaf6>
 \ProvidesFile{bomaf6.cfg}
-  [2009/07/11 v3.2d achemso configuration: Biomacromolecules]
+  [2009/07/29 v3.2e achemso configuration: Biomacromolecules]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3167,7 +3190,7 @@ This work consists of the file  achemso.dtx
 %</bomaf6>
 %<*bipret>
 \ProvidesFile{bipret.cfg}
-  [2009/07/11 v3.2d achemso configuration: Biotechnol. Prog.]
+  [2009/07/29 v3.2e achemso configuration: Biotechnol. Prog.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3177,7 +3200,7 @@ This work consists of the file  achemso.dtx
 %</bipret>
 %<*crtoec>
 \ProvidesFile{crtoec.cfg}
-  [2009/07/11 v3.2d achemso configuration: Chem. Res. Toxicol.]
+  [2009/07/29 v3.2e achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3190,7 +3213,7 @@ This work consists of the file  achemso.dtx
 %</crtoec>
 %<*chreay>
 \ProvidesFile{chreay.cfg}
-  [2009/07/11 v3.2d achemso configuration: Chem. Rev.]
+  [2009/07/29 v3.2e achemso configuration: Chem. Rev.]
 \def\acs@type@default{review}
 \def\acs@type@list{review}
 %    \end{macrocode}
@@ -3201,7 +3224,7 @@ This work consists of the file  achemso.dtx
 %<*cmatex>
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
-  [2009/07/11 v3.2d achemso configuration: Chem. Mater.]
+  [2009/07/29 v3.2e achemso configuration: Chem. Mater.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3210,7 +3233,7 @@ This work consists of the file  achemso.dtx
 %</cmatex>
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
-  [2009/07/11 v3.2d achemso configuration: Cryst. Growth Des.]
+  [2009/07/29 v3.2e achemso configuration: Cryst. Growth Des.]
 \def\acs@type@list{%
   article,communication,perspective,suppinfo%
 }
@@ -3221,13 +3244,13 @@ This work consists of the file  achemso.dtx
 %</cgdefu>
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
-  [2009/07/11 v3.2d achemso configuration: Energy Fuels]
+  [2009/07/29 v3.2e achemso configuration: Energy Fuels]
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
 %</enfuem>
 %<*esthag>
 \ProvidesFile{esthag.cfg}
-  [2009/07/11 v3.2d achemso configuration: Environ. Sci. Technol.]
+  [2009/07/29 v3.2e achemso configuration: Environ. Sci. Technol.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3237,7 +3260,7 @@ This work consists of the file  achemso.dtx
 %</esthag>
 %<*iecred>
 \ProvidesFile{iecred.cfg}
-  [2009/07/11 v3.2d achemso configuration: Ind. Eng. Chem. Res.]
+  [2009/07/29 v3.2e achemso configuration: Ind. Eng. Chem. Res.]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -3246,7 +3269,7 @@ This work consists of the file  achemso.dtx
 %</iecred>
 %<*inoraj>
 \ProvidesFile{inoraj.cfg}
-  [2009/07/11 v3.2d achemso configuration: Inorg. Chem.]
+  [2009/07/29 v3.2e achemso configuration: Inorg. Chem.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3261,7 +3284,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jacsat>
 \ProvidesFile{jacsat.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Am. Chem. Soc.]
+  [2009/07/29 v3.2e achemso configuration: J. Am. Chem. Soc.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication\else
   \expandafter\endinput
@@ -3273,11 +3296,21 @@ This work consists of the file  achemso.dtx
 \setkeys{acs}{
   email = true
 }
-\AbstractOff
 \SectionsOff
 \acs@layout@nine
-%    \end{macrocode}   
-%    
+%    \end{macrocode}
+%       
+%\begin{environment}{abstract}
+% Abstracts have to be printed at the end of the document, which is
+% handled by the \cs{acs@abstract@print} macro.
+%    \begin{macrocode}
+\renewenvironment{abstract}{%
+  \acs@collect\acs@abstract@print
+}{%
+}
+%    \end{macrocode}
+%\end{environment}
+%
 %\begin{macro}{\acksize}
 %\begin{macro}{\affilsize}
 %\begin{macro}{\authorsize}
@@ -3454,7 +3487,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jafcau>
 \ProvidesFile{jafcau.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Agric. Food Chem.]
+  [2009/07/29 v3.2e achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3464,7 +3497,7 @@ This work consists of the file  achemso.dtx
 %</jafcau>
 %<*jceaax>
 \ProvidesFile{jceaax.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Chem. Eng. Data]
+  [2009/07/29 v3.2e achemso configuration: J. Chem. Eng. Data]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3473,7 +3506,7 @@ This work consists of the file  achemso.dtx
 %</jceaax>
 %<*jcisd8>
 \ProvidesFile{jcisd8.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Chem. Inf. Model.]
+  [2009/07/29 v3.2e achemso configuration: J. Chem. Inf. Model.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3482,18 +3515,18 @@ This work consists of the file  achemso.dtx
 %</jcisd8>
 %<*jctcce>
 \ProvidesFile{jctcce.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Chem. Theory Comput.]
+  [2009/07/29 v3.2e achemso configuration: J. Chem. Theory Comput.]
 \def\acs@type@list{article,suppinfo}
 %</jctcce>
 %<*jcchff>
 \ProvidesFile{jcchff.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Comb. Chem.]
+  [2009/07/29 v3.2e achemso configuration: J. Comb. Chem.]
 \def\acs@type@list{article,report,perspective,suppinfo}
 \SectionNumbersOff
 %</jcchff>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Med. Chem.]
+  [2009/07/29 v3.2e achemso configuration: J. Med. Chem.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3502,7 +3535,7 @@ This work consists of the file  achemso.dtx
 %</jmcmar>
 %<*jnprdf>
 \ProvidesFile{jnprdf.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Nat. Prod.]
+  [2009/07/29 v3.2e achemso configuration: J. Nat. Prod.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3510,7 +3543,7 @@ This work consists of the file  achemso.dtx
 %</jnprdf>
 %<*joceah>
 \ProvidesFile{joceah.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Org. Chem.]
+  [2009/07/29 v3.2e achemso configuration: J. Org. Chem.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3518,7 +3551,7 @@ This work consists of the file  achemso.dtx
 %</joceah>
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Phys. Chem. A]
+  [2009/07/29 v3.2e achemso configuration: J. Phys. Chem. A]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3529,7 +3562,7 @@ This work consists of the file  achemso.dtx
 %</jpcafh>
 %<*jpcbfk>
 \ProvidesFile{jpcbfk.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Phys. Chem. B]
+  [2009/07/29 v3.2e achemso configuration: J. Phys. Chem. B]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3545,7 +3578,7 @@ This work consists of the file  achemso.dtx
 %</jpccck>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
-  [2009/07/11 v3.2d achemso configuration: J. Proteome Res.]
+  [2009/07/29 v3.2e achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3554,18 +3587,18 @@ This work consists of the file  achemso.dtx
 %</jprobs>
 %<*langd5>
 \ProvidesFile{langd5.cfg}
-  [2009/07/11 v3.2d achemso configuration: Langmuir]
+  [2009/07/29 v3.2e achemso configuration: Langmuir]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 %</langd5>
 %<*mamobx>
 \ProvidesFile{mamobx.cfg}
-  [2009/07/11 v3.2d achemso configuration: Macromolecules]
+  [2009/07/29 v3.2e achemso configuration: Macromolecules]
 \SectionNumbersOff
 %</mamobx>
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
-  [2009/07/11 v3.2d achemso configuration: Mol. Pharm.]
+  [2009/07/29 v3.2e achemso configuration: Mol. Pharm.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3574,14 +3607,14 @@ This work consists of the file  achemso.dtx
 %</mpohbp>
 %<*nalefd>
 \ProvidesFile{nalefd.cfg}
-  [2009/07/11 v3.2d achemso configuration: Nano Lett.]
+  [2009/07/29 v3.2e achemso configuration: Nano Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
 %</nalefd>
 %<*orlef7>
 \ProvidesFile{orlef7.cfg}
-  [2009/07/11 v3.2d achemso configuration: Org. Lett.]
+  [2009/07/29 v3.2e achemso configuration: Org. Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
@@ -3591,13 +3624,13 @@ This work consists of the file  achemso.dtx
 %</orlef7>
 %<*oprdfk>
 \ProvidesFile{oprdfk.cfg}
-  [2009/07/11 v3.2d achemso configuration: Org. Proc. Res. Dev.]
+  [2009/07/29 v3.2e achemso configuration: Org. Proc. Res. Dev.]
 \def\acs@type@list{article,highlight,review,suppinfo}
 \SectionNumbersOff
 %</oprdfk>
 %<*orgnd7>
 \ProvidesFile{orgnd7.cfg}
-  [2009/07/11 v3.2d achemso configuration: Organometallics]
+  [2009/07/29 v3.2e achemso configuration: Organometallics]
 \SectionNumbersOff
 %</orgnd7>
 %    \end{macrocode}
