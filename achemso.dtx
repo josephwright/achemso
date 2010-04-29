@@ -1,5 +1,5 @@
 % \iffalse meta-comment
-% !TEX program  = pdfLaTeX
+% !TeX program = pdfLaTeX
 %<*internal>
 \iffalse
 %</internal>
@@ -21,6 +21,30 @@ submission to ACS journals.
 The bundle also includes the natmove package.  This package is
 loaded by achemso, and provides automatic moving of superscript
 citations after punctuation.
+
+Installation
+------------
+
+The package is supplied in dtx format and as a pre-extracted zip
+file, achemso.tds.zip. The later is most convenient for most 
+users: simply unzip this in your local texmf directory and run 
+texhash to update the database of file locations. If you want to
+unpack the dtx yourself, running 'tex achemso.dtx' will extract
+the package whereas 'latex achemso.dtx will extract it and also 
+typeset the documentation.
+
+Typesetting the documentation requires a number of packages in
+addition to those needed to use the package. This is mainly 
+because of the number of demonstration items included in the 
+text. To compile the documentation without error, you will 
+need the packages:
+ - array
+ - booktabs
+ - hypdoc
+ - listings
+ - lmodern
+ - mathpazo
+ - microtype
 %</readme>
 %<*internal>
 \fi
@@ -47,12 +71,12 @@ See http://www.latex-project.org/lppl.txt
 
 Originally developed by Mats Dahlgren
 Copyright (C) 1996-1998 by Mats Dahlgren 
-Copyright (C) 2008-2009 by
+Copyright (C) 2008-2010 by
   Joseph Wright <joseph.wright@morningstar2.co.uk>
   
 Part of this bundle is derived from cite.sty, to which the
 following license applies:
-  Copyright (C) 1989-2003 by Donald Arseneau
+  Copyright (C) 1989-2009 by Donald Arseneau
   These macros may be freely transmitted, reproduced, or
   modified provided that this notice is left intact.
 
@@ -67,11 +91,11 @@ This work is "maintained" (as per LPPL maintenance status) by
   Joseph Wright.
 
 This work consists of the file  achemso.dtx
-          and the derived files achemso.pdf,
-                                achemso.bib,
-                                achemso.cls,
+          and the derived files achemso.cls,
                                 achemso.ins,
+                                achemso.pdf,
                                 achemso.sty,
+                                achemso-demo.bib,
                                 achemso-demo.tex,
                                 natmove.sty and
                                 a number of configuration files.
@@ -143,7 +167,7 @@ This work consists of the file  achemso.dtx
 \generate{
   \file{README.txt}{\from{\jobname.dtx}{readme}}
   \file{achemso-demo.tex}{\from{\jobname.dtx}{demo}}
-  \file{achemso.bib}{\from{\jobname.dtx}{bib}}
+  \file{achemso-demo.bib}{\from{\jobname.dtx}{bib}}
 }
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
@@ -356,23 +380,40 @@ This work consists of the file  achemso.dtx
 %
 %\section{Installation}
 %
-% The entire bundle is supplied with the TDS-ready ZIP file,
-% \file{achemso.tds.zip}.  Simply unzip this into your local texmf
-% tree and run your hash program (\texttt{texhash} for recent
-% \TeX{}Live or MiK\TeX\ systems).
-%
-% To extract the bundle of files from \file{achemso.dtx}, run 
-% (pdf)\TeX\ on \file{achemso.dtx}. This will produce all of the package
-% files, and also \file{README.txt}.  To extract the
-% files and build the documentation, run (pdf)\LaTeX\ on 
-% \texttt{achemso.dtx}.  The files can then be installed as above.
+%\changes{v3.4}{2010/01/15}{More detail on installation}
+% The package is supplied in \file{dtx} format and as a pre-extracted
+% zip file, \file{\jobname.tds.zip}. The later is most convenient for
+% most users: simply unzip this in your local texmf directory and
+% run \texttt{texhash} to update the database of file locations. If
+% you want to unpack the \file{dtx} yourself, running 
+% \texttt{tex \jobname.dtx} will extract the package whereas
+% \texttt{latex \jobname.dtx} will extract it and also typeset the
+% documentation.
+% 
+% Typesetting the documentation requires a number of packages in
+% addition to those needed to use the package. This is mainly 
+% because of the number of demonstration items included in the text. To
+% compile the documentation without error, you will need the packages:
+% \begin{itemize}
+%   \item \pkg{array}
+%   \item \pkg{booktabs}
+%   \item \pkg{hypdoc}
+%   \item \pkg{listings}
+%   \item \pkg{lmodern}
+%   \item \pkg{mathpazo}
+%   \item \pkg{microtype}
+%\end{itemize}
 %
 %\section{Requirements}
 %
+%\changes{v3.4}{2010/01/15}{Require \pkg{cleveref}, dropping 
+%  \pkg{varioref} use}
 % The \pkg{achemso} class requires the following packages:
 %\begin{itemize}
 %  \item \pkg{caption}
+%  \item \pkg{cleveref}
 %  \item \pkg{float}
+%  \item \pkg{geometery}
 %  \item \pkg{natbib}
 %  \item \pkg{setspace}
 %  \item \pkg{xkeyval}
@@ -597,9 +638,15 @@ This work consists of the file  achemso.dtx
 % ``here'' if possible.  The contents of all floats is automatically 
 % horizontally centred on the page.
 %
-% Cross-referencing to floats automatically includes the name of the
-% floating environment.  For example, |\ref{table:one}|
-% will yield ``Table~1'' without the user adding the ``Table'' part.
+%\DescribeMacro{\ref}
+%\DescribeMacro{\plainref}
+% The behaviour of the \cs{ref} macro is modified by the \pkg{achemso}
+% class, so that it will automatically include the name of the
+% floating environment.  For example, |\ref{table:one}| will yield 
+% ``Table~1'' without the user adding the ``Table'' part. Multiple
+% cross-references will automatically be sorted and compressed.
+% To access the number associated with the float without any
+% text or other formatting the \cs{plainref} macro is available.
 % 
 %\subsection{Section headers}
 %
@@ -829,7 +876,7 @@ This work consists of the file  achemso.dtx
 %\StopEventually{^^A
 %  \PrintChanges
 %  \PrintIndex
-%  \bibliography{achemso}
+%  \bibliography{achemso-demo}
 %}
 %
 %\section{Implementation}
@@ -847,7 +894,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*class>
 \ProvidesClass{achemso}
-  [2009/12/16 v3.3g Submission to ACS journals]
+  [2010/01/15 v3.4 Submission to ACS journals]
 \LoadClass[12pt,letter]{article}
 %    \end{macrocode}
 %    
@@ -867,7 +914,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*package>
 \ProvidesPackage{achemso}
-  [2009/12/16 v3.3g Support for ACS journals]
+  [2010/01/15 v3.4 Support for ACS journals]
 \@ifclassloaded{achemso}{%
   \PackageInfo{achemso}{%
     You have already loaded the `achemso' class:\MessageBreak
@@ -1359,6 +1406,7 @@ This work consists of the file  achemso.dtx
 \RequirePackage[T1]{fontenc}
 \RequirePackage[margin=2.54cm]{geometry}
 \RequirePackage[scaled=0.90]{helvet}
+\RequirePackage[capitalise]{cleveref}
 \RequirePackage{
   caption,
   courier,
@@ -1366,8 +1414,7 @@ This work consists of the file  achemso.dtx
   graphicx,
   mathptmx,
   setspace,
-  url,
-  varioref
+  url
 }
 \AtBeginDocument{\doublespacing}
 %    \end{macrocode}
@@ -2454,14 +2501,31 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
-% \pkg{varioref} is used to control the appearance of cross-references.
+%\changes{v3.4}{2010/01/15}{Float names now set up for use with
+%  \pkg{cleveref}}
+% As \pkg{cleveref} is used for cross-references, some new names have to
+% be defined.
 %    \begin{macrocode}
-\labelformat{scheme}{\schemename~#1}
-\labelformat{chart}{\chartname~#1}
-\labelformat{graph}{\graphname~#1}
-\labelformat{figure}{\figurename~#1}
-\labelformat{table}{\tablename~#1}
+\crefname{chart}{Chart}{Chart}
+\crefname{figure}{Figure}{Figures}
+\crefname{graph}{Graph}{Graphs}
+\crefname{scheme}{Scheme}{Schemes}
 %    \end{macrocode}
+%\begin{macro}{\plainref}
+%\changes{v3.4}{2010/01/15}{New macro}
+%\begin{macro}{\ref}
+%\changes{v3.4}{2010/01/15}{Redefined to use \pkg{cleveref}}
+% As \pkg{cleveref} does not alter the standard \cs{ref} macro, it is
+% first backed up, then redefined to be ``clever''.
+%    \begin{macrocode}
+\newcommand*\plainref{}
+\AtBeginDocument{
+  \let\plainref\ref
+  \let\ref\cref
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
 %    
 %\begin{macro}{\acs@section}
 %\begin{macro}{\acs@subsection}
@@ -2587,7 +2651,7 @@ This work consists of the file  achemso.dtx
 \newcommand\acs@suppinfo@print[1]{%
   #1
   This material is available free of charge via the Internet at
-  \url{http://pubs.acs.org}.
+  \url{http://pubs.acs.org/}.
 }
 %    \end{macrocode}
 %\end{macro}
@@ -2744,20 +2808,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro} 
 %\end{macro} 
-%\begin{macro}{\acs@toc@print}
-% A simple macro to print the TOC contents.
-%    \begin{macrocode}
-\newcommand\acs@toc@print[1]{%
-  \begin{center}
-    \fbox{%
-      \begin{minipage}{9cm}
-        \vbox to 3.5cm{#1}%
-      \end{minipage}%
-    }%
-  \end{center}%
-}
-%    \end{macrocode}
-%\end{macro}
 %\begin{macro}{\acs@abstract@print}
 % Delayed abstract printing works in a similar way, but with some
 % formatting `built-in'.
@@ -2781,27 +2831,48 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
+%\begin{macro}{\acs@tocentry@print}
+%\begin{macro}{\acs@tocentry@text}
+% The same approach is taken for the graphical table of content 
+% printing. This is done in a box so that everything has a frame around
+% it.
+%    \begin{macrocode}
+\newcommand\acs@tocentry@print[1]{%
+  \global\long\def\acs@tocentry@text
+    {%
+      \if@twocolumn
+        \@restonecoltrue\onecolumn
+      \else
+        \@restonecolfalse\newpage
+      \fi
+      \acs@section*{\tocentryname}%
+      \tocsize
+      \sffamily
+      \singlespacing
+      \begin{center}
+        \fbox
+          {%
+            \begin{minipage}{9 cm}
+              \vbox to 3.5 cm{#1}%
+            \end{minipage}%
+          }%
+      \end{center}%
+      \if@restonecol
+        \twocolumn
+      \else 
+        \newpage 
+      \fi
+    }%
+  \AtEndDocument{\acs@tocentry@text}%
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
 %\begin{environment}{tocentry}
+%\changes{v3.4}{2010/01/15}{New TOC printing routine}
 % Actually creating the entry is pretty easy.
 %    \begin{macrocode}
-\newenvironment{tocentry}{%
-  \if@twocolumn
-    \@restonecoltrue\onecolumn
-  \else
-    \@restonecolfalse\newpage
-  \fi
-  \acs@section*{\tocentryname}%
-  \tocsize
-  \sffamily
-  \singlespacing
-  \acs@collect\acs@toc@print
-}{%
-  \if@restonecol
-    \twocolumn
-  \else 
-    \newpage 
-  \fi
-}
+\newenvironment{tocentry}{\acs@collect\acs@tocentry@print}{}
 %    \end{macrocode}
 %\end{environment}
 %\begin{macro}{\tocentryname}
@@ -3105,7 +3176,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*natmove>
 \ProvidesPackage{natmove}
-  [2009/04/20 v1.1 Automatic citation moving with natbib]
+  [2010/01/15 v1.1a Automatic citation moving with natbib]
 \RequirePackage{natbib}
 %    \end{macrocode}
 % 
@@ -3160,7 +3231,7 @@ This work consists of the file  achemso.dtx
 \newcommand*\nmv@citex@moving{}
 \def\nmv@citex@moving[#1][#2]#3{%
   \leavevmode
-  \skip@\lastskip
+  \skip@\lastskip\relax
   \unskip
   \begingroup
     \def\nmv@after{\nmv@citex@nat[#1][#2]{#3}}%
@@ -3190,6 +3261,9 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\nmv@citex@punct}
+%\changes{v3.4}{2009/01/15}{Move code for double periods to a separate
+%  macro}
+%\begin{macro}{\nmv@citex@punct@undouble}
 %\begin{macro}{\nmv@citex@loop}
 % The working macro for moving the punctuation.  This is very much
 % like \cs{@citey} in the \pkg{cite} package. The initial assumption
@@ -3200,28 +3274,32 @@ This work consists of the file  achemso.dtx
   \let\nmv@citex@loop\nmv@citex@end
   \ifx\nmv@citex@next.\relax
     \ifnum\spacefactor<\nmv@citex@sfac\else
-      \let\nmv@citex@next\relax
-      \let\nmv@citex@loop\nmv@citex@get@next
+      \expandafter\expandafter\expandafter\nmv@citex@punct@undouble
     \fi
   \fi
-  \expandafter\nmv@citex@punct@aux\natmovechars\@empty
+  \expandafter\nmv@citex@punct@aux\natmovechars\@nil
   \nmv@citex@loop
+}
+\newcommand*\nmv@citex@punct@undouble{%
+  \let\nmv@citex@next\relax
+  \let\nmv@citex@loop\nmv@citex@get@next
 }
 \newcommand*\nmv@citex@loop{}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\nmv@citex@pnct}
+%\end{macro}
+%\begin{macro}{\nmv@citex@punct@aux}
+%\changes{v3.4}{2009/01/15}{Safer loop, as in \pkg{}}
 % The final part of the punctuation moving system.
 %    \begin{macrocode}
-\newcommand*\nmv@citex@punct@aux{}
-\def\nmv@citex@punct@aux#1#2\@empty{%
+\newcommand*\nmv@citex@punct@aux[1]{%
   \ifx\nmv@citex@next#1\@empty
     #1%
     \let\nmv@citex@loop\nmv@citex@get@next
   \fi
-  \ifx\@empty#2\@empty\else
-    \expandafter\nmv@citex@punct@aux#2\@empty
+  \ifx#1\@nil\else
+    \expandafter\nmv@citex@punct@aux
   \fi
 }
 %    \end{macrocode}
@@ -3307,7 +3385,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*achre4>
 \ProvidesFile{achre4.cfg}
-  [2009/12/16 v3.3g achemso configuration: Acc. Chem. Res.]
+  [2010/01/15 v3.4 achemso configuration: Acc. Chem. Res.]
 \setkeys{acs}{
   biblabel = plain,
   usetitle = true
@@ -3317,7 +3395,7 @@ This work consists of the file  achemso.dtx
 %</achre4>
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
-  [2009/12/16 v3.3g achemso configuration: ACS Chem. Biol.]
+  [2010/01/15 v3.4 achemso configuration: ACS Chem. Biol.]
 \setkeys{acs}{
   biblabel = fullstop,
   biochem  = true,
@@ -3329,7 +3407,7 @@ This work consists of the file  achemso.dtx
 %</acbcct>
 %<*ancac3>
 \ProvidesFile{ancac3.cfg}
-  [2009/12/16 v3.3g achemso configuration: ACS Nano]
+  [2010/01/15 v3.4 achemso configuration: ACS Nano]
 \setkeys{acs}{
   biblabel   = fullstop,
   etalmode   = truncate,
@@ -3341,13 +3419,13 @@ This work consists of the file  achemso.dtx
 %</ancac3>
 %<*ancham>
 \ProvidesFile{ancham.cfg}
-  [2009/12/16 v3.3g achemso configuration: Anal. Chem.]
+  [2010/01/15 v3.4 achemso configuration: Anal. Chem.]
 \def\acs@type@list{article,note,suppinfo}
 \SectionNumbersOff
 %</ancham>
 %<*bichaw>
 \ProvidesFile{biochem.cfg}
-  [2009/12/16 v3.3g achemso configuration: Biochemistry]
+  [2010/01/15 v3.4 achemso configuration: Biochemistry]
 \setkeys{acs}{
   abbreviations = true,
   biblabel      = fullstop,
@@ -3397,7 +3475,7 @@ This work consists of the file  achemso.dtx
 %</bichaw>
 %<*bcches>
 \ProvidesFile{bcches.cfg}
-  [2009/12/16 v3.3g achemso configuration: Bioconjugate Chem.]
+  [2010/01/15 v3.4 achemso configuration: Bioconjugate Chem.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3407,7 +3485,7 @@ This work consists of the file  achemso.dtx
 %</bcches>
 %<*bomaf6>
 \ProvidesFile{bomaf6.cfg}
-  [2009/12/16 v3.3g achemso configuration: Biomacromolecules]
+  [2010/01/15 v3.4 achemso configuration: Biomacromolecules]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3416,7 +3494,7 @@ This work consists of the file  achemso.dtx
 %</bomaf6>
 %<*bipret>
 \ProvidesFile{bipret.cfg}
-  [2009/12/16 v3.3g achemso configuration: Biotechnol. Prog.]
+  [2010/01/15 v3.4 achemso configuration: Biotechnol. Prog.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3426,7 +3504,7 @@ This work consists of the file  achemso.dtx
 %</bipret>
 %<*crtoec>
 \ProvidesFile{crtoec.cfg}
-  [2009/12/16 v3.3g achemso configuration: Chem. Res. Toxicol.]
+  [2010/01/15 v3.4 achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3439,7 +3517,7 @@ This work consists of the file  achemso.dtx
 %</crtoec>
 %<*chreay>
 \ProvidesFile{chreay.cfg}
-  [2009/12/16 v3.3g achemso configuration: Chem. Rev.]
+  [2010/01/15 v3.4 achemso configuration: Chem. Rev.]
 \def\acs@type@default{review}
 \def\acs@type@list{review}
 %    \end{macrocode}
@@ -3450,7 +3528,7 @@ This work consists of the file  achemso.dtx
 %<*cmatex>
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
-  [2009/12/16 v3.3g achemso configuration: Chem. Mater.]
+  [2010/01/15 v3.4 achemso configuration: Chem. Mater.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3459,7 +3537,7 @@ This work consists of the file  achemso.dtx
 %</cmatex>
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
-  [2009/12/16 v3.3g achemso configuration: Cryst. Growth Des.]
+  [2010/01/15 v3.4 achemso configuration: Cryst. Growth Des.]
 \def\acs@type@list{%
   article,communication,perspective,suppinfo%
 }
@@ -3470,13 +3548,13 @@ This work consists of the file  achemso.dtx
 %</cgdefu>
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
-  [2009/12/16 v3.3g achemso configuration: Energy Fuels]
+  [2010/01/15 v3.4 achemso configuration: Energy Fuels]
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
 %</enfuem>
 %<*esthag>
 \ProvidesFile{esthag.cfg}
-  [2009/12/16 v3.3g achemso configuration: Environ. Sci. Technol.]
+  [2010/01/15 v3.4 achemso configuration: Environ. Sci. Technol.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3486,7 +3564,7 @@ This work consists of the file  achemso.dtx
 %</esthag>
 %<*iecred>
 \ProvidesFile{iecred.cfg}
-  [2009/12/16 v3.3g achemso configuration: Ind. Eng. Chem. Res.]
+  [2010/01/15 v3.4 achemso configuration: Ind. Eng. Chem. Res.]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -3495,7 +3573,7 @@ This work consists of the file  achemso.dtx
 %</iecred>
 %<*inoraj>
 \ProvidesFile{inoraj.cfg}
-  [2009/12/16 v3.3g achemso configuration: Inorg. Chem.]
+  [2010/01/15 v3.4 achemso configuration: Inorg. Chem.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3510,7 +3588,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jacsat>
 \ProvidesFile{jacsat.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Am. Chem. Soc.]
+  [2010/01/15 v3.4 achemso configuration: J. Am. Chem. Soc.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication\else
   \expandafter\endinput
@@ -3713,7 +3791,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jafcau>
 \ProvidesFile{jafcau.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Agric. Food Chem.]
+  [2010/01/15 v3.4 achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3723,7 +3801,7 @@ This work consists of the file  achemso.dtx
 %</jafcau>
 %<*jceaax>
 \ProvidesFile{jceaax.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Chem. Eng. Data]
+  [2010/01/15 v3.4 achemso configuration: J. Chem. Eng. Data]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3732,7 +3810,7 @@ This work consists of the file  achemso.dtx
 %</jceaax>
 %<*jcisd8>
 \ProvidesFile{jcisd8.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Chem. Inf. Model.]
+  [2010/01/15 v3.4 achemso configuration: J. Chem. Inf. Model.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3741,18 +3819,18 @@ This work consists of the file  achemso.dtx
 %</jcisd8>
 %<*jctcce>
 \ProvidesFile{jctcce.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Chem. Theory Comput.]
+  [2010/01/15 v3.4 achemso configuration: J. Chem. Theory Comput.]
 \def\acs@type@list{article,suppinfo}
 %</jctcce>
 %<*jcchff>
 \ProvidesFile{jcchff.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Comb. Chem.]
+  [2010/01/15 v3.4 achemso configuration: J. Comb. Chem.]
 \def\acs@type@list{article,report,perspective,suppinfo}
 \SectionNumbersOff
 %</jcchff>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Med. Chem.]
+  [2010/01/15 v3.4 achemso configuration: J. Med. Chem.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3761,7 +3839,7 @@ This work consists of the file  achemso.dtx
 %</jmcmar>
 %<*jnprdf>
 \ProvidesFile{jnprdf.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Nat. Prod.]
+  [2010/01/15 v3.4 achemso configuration: J. Nat. Prod.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3771,7 +3849,7 @@ This work consists of the file  achemso.dtx
 %\changes{v3.3e}{2009/11/18}{Formatting for \emph{J.\ Org.\ Chem}.\ 
 %  schemes corrected}
 \ProvidesFile{joceah.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Org. Chem.]
+  [2010/01/15 v3.4 achemso configuration: J. Org. Chem.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3782,7 +3860,7 @@ This work consists of the file  achemso.dtx
 %</joceah>
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Phys. Chem. A]
+  [2010/01/15 v3.4 achemso configuration: J. Phys. Chem. A]
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3793,7 +3871,7 @@ This work consists of the file  achemso.dtx
 %</jpcafh>
 %<*jpcbfk>
 \ProvidesFile{jpcbfk.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Phys. Chem. B]
+  [2010/01/15 v3.4 achemso configuration: J. Phys. Chem. B]
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3801,7 +3879,7 @@ This work consists of the file  achemso.dtx
 %</jpcbfk>
 %<*jpccck>
 \ProvidesFile{jpccck.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Phys. Chem. C]
+  [2010/01/15 v3.4 achemso configuration: J. Phys. Chem. C]
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3813,7 +3891,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jpclcd>
 \ProvidesFile{jpclcd.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Phys. Chem. Lett.]
+  [2010/01/15 v3.4 achemso configuration: J. Phys. Chem. Lett.]
 \setkeys{acs}{usetitle = true}
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
@@ -3823,7 +3901,7 @@ This work consists of the file  achemso.dtx
 %</jpclcd>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
-  [2009/12/16 v3.3g achemso configuration: J. Proteome Res.]
+  [2010/01/15 v3.4 achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3832,32 +3910,32 @@ This work consists of the file  achemso.dtx
 %</jprobs>
 %<*langd5>
 \ProvidesFile{langd5.cfg}
-  [2009/12/16 v3.3g achemso configuration: Langmuir]
+  [2010/01/15 v3.4 achemso configuration: Langmuir]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 %</langd5>
 %<*mamobx>
 \ProvidesFile{mamobx.cfg}
-  [2009/12/16 v3.3g achemso configuration: Macromolecules]
+  [2010/01/15 v3.4 achemso configuration: Macromolecules]
 \SectionNumbersOff
 %</mamobx>
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
-  [2009/12/16 v3.3g achemso configuration: Mol. Pharm.]
+  [2010/01/15 v3.4 achemso configuration: Mol. Pharm.]
 \setkeys{acs}{usetitle = true}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</mpohbp>
 %<*nalefd>
 \ProvidesFile{nalefd.cfg}
-  [2009/12/16 v3.3g achemso configuration: Nano Lett.]
+  [2010/01/15 v3.4 achemso configuration: Nano Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
 %</nalefd>
 %<*orlef7>
 \ProvidesFile{orlef7.cfg}
-  [2009/12/16 v3.3g achemso configuration: Org. Lett.]
+  [2010/01/15 v3.4 achemso configuration: Org. Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
@@ -3867,13 +3945,13 @@ This work consists of the file  achemso.dtx
 %</orlef7>
 %<*oprdfk>
 \ProvidesFile{oprdfk.cfg}
-  [2009/12/16 v3.3g achemso configuration: Org. Proc. Res. Dev.]
+  [2010/01/15 v3.4 achemso configuration: Org. Proc. Res. Dev.]
 \def\acs@type@list{article,highlight,review,suppinfo}
 \SectionNumbersOff
 %</oprdfk>
 %<*orgnd7>
 \ProvidesFile{orgnd7.cfg}
-  [2009/12/16 v3.3g achemso configuration: Organometallics]
+  [2010/01/15 v3.4 achemso configuration: Organometallics]
 \SectionNumbersOff
 %</orgnd7>
 %    \end{macrocode}
@@ -3910,7 +3988,7 @@ This work consists of the file  achemso.dtx
 %% possible, and avoid layout-changing macros (which are not used
 %% when typesetting).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand*{\mycommand}[1]{\texttt{\emph{#1}}}
+\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Meta-data block
@@ -4028,7 +4106,9 @@ Ref.~\citenum{Mena2000}.  Long lists of authors will be
 automatically truncated in most article formats, but not in
 supplementary information or reviews \cite{Pople2003}. If you
 encounter problems with the citation macros, please check that
-your copy of \textsf{natbib} is up to date.
+your copy of \textsf{natbib} is up to date. The demonstration
+database file \texttt{achemso-demo.bib} shows how to complete 
+entries correctly.
 
 Multiple citations to be combined into a list can be given as
 a single citation.  This uses the \textsf{mciteplus} package
@@ -4055,7 +4135,7 @@ illustrated, the float is ``here'' if possible.
 \begin{scheme}
   Your scheme graphic would go here: \texttt{.eps} format\\
   for \LaTeX\, or \texttt{.pdf} (or \texttt{.png}) for pdf\LaTeX\\
-  \textsc{ChemDraw} files are best saved as \texttt{.eps} files;\\
+  \textsc{ChemDraw} files are best saved as \texttt{.eps} files:\\
   these can be scaled without loss of quality, and can be\\
   converted to \texttt{.pdf} files easily using \texttt{eps2pdf}.\\
   %\includegraphics{graphic}
@@ -4085,14 +4165,15 @@ sense; the production process will move them if needed.
 \subsection{Math(s)}
 
 The \textsf{achemso} class does not load any particular additional
-support for mathematics.  If the author \emph{needs} things like
-\textsf{amsmath}, they should be loaded in the preamble.  However,
-the basics should work fine.  Some inline material $ y = mx + c$
+support for mathematics.  If packages such as \textsf{amsmath} are
+required, they should be loaded in the preamble.  However,
+the basic \LaTeX\ math(s) input should work correctly without
+this.  Some inline material \( y = mx + c \) or $ 1 + 1 = 2 $
 followed by some display. \[ A = \pi r^2 \]
 
-It is possible to label equations in the usual way.
+It is possible to label equations in the usual way (\ref{eqn:example}).
 \begin{equation}
-  \frac{\mathrm{d}}{\mathrm{d}x} \, r^2 = 2r
+  \frac{\mathrm{d}}{\mathrm{d}x} \, r^2 = 2r \label{eqn:example}
 \end{equation}
 This can also be used to have equations containing graphical
 content. To align the equation number with the middle of the graphic,
@@ -4112,19 +4193,17 @@ rather than the bottom, a minipage may be used.
 
 The usual experimental details should appear here.  This could
 include a table, which can be referenced as \ref{tbl:example}. Notice
-that the caption is positioned at the top of the table. Do not worry
-too much about the appearance of the table: this will be altered 
-during production.
+that the caption is positioned at the top of the table. 
 \begin{table}
   \caption{An example table}
   \label{tbl:example}
   \begin{tabular}{ll}
     \hline
-    Header one & Header two \\
+    Header one  & Header two  \\
     \hline
-    Entry one & Entry two \\
-    Entry three & Entry four \\
-    Entry five & Entry five \\
+    Entry one   & Entry two   \\
+    Entry three & Entry four  \\
+    Entry five  & Entry five  \\
     Entry seven & Entry eight \\
     \hline
   \end{tabular}
@@ -4133,19 +4212,16 @@ during production.
 Adding notes to tables can be complicated.  Perhaps the easiest
 method is to generate these using the basic
 \texttt{\textbackslash textsuperscript} and
-\texttt{\textbackslash emph} macros, as illustrated
-(\ref{tbl:notes}).
+\texttt{\textbackslash emph} macros, as illustrated (\ref{tbl:notes}).
 \begin{table}
   \caption{A table with notes}
   \label{tbl:notes}
   \begin{tabular}{ll}
     \hline
-    Header one & Header two \\
+    Header one                            & Header two \\
     \hline
-    Entry one\textsuperscript{\emph{a}}
-      & Entry two \\
-    Entry three\textsuperscript{\emph{b}}
-      & Entry four \\
+    Entry one\textsuperscript{\emph{a}}   & Entry two  \\
+    Entry three\textsuperscript{\emph{b}} & Entry four \\
     \hline
   \end{tabular}
 
@@ -4153,16 +4229,41 @@ method is to generate these using the basic
   \textsuperscript{\emph{b}} Some more text.
 \end{table}
 
-The example file also loads the \textsf{mhchem} package, so
-that formulas are easy to input: \texttt{\textbackslash
-\ce\{H2SO4\}} gives \ce{H2SO4}.  See the use in the
-bibliography file (when using titles in the references
-section).
+The example file also loads the optional \textsf{mhchem} package, so
+that formulas are easy to input: \texttt{\textbackslash ce\{H2SO4\}} 
+gives \ce{H2SO4}.  See the use in the bibliography file (when using 
+titles in the references section).
 
 The use of new commands should be limited to simple things which will
 not interfere with the production process.  For example,
 \texttt{\textbackslash mycommand} has been defined in this example,
-to give italic, monospaced text: \mycommand{some text}.
+to give italic, mono-spaced text: \mycommand{some text}.
+
+\section{Cross-referencing material}
+
+Items such as figures, schemes and tables will need to be referred to 
+in the main text. The class loads the \textsf{cleveref} package,
+which means that text such as
+``\ref{fgr:example,fgr:example:2,fgr:example:3}'' can be created 
+automatically. This is achieved by modifying the behaviour of the
+\texttt{\textbackslash ref} macro: plain numerical references with
+no preceding text are available using the 
+\texttt{\textbackslash plainref} macro. For example, compare
+``\ref{fgr:example}'' and ``\plainref{fgr:example}''.
+
+\begin{figure}
+  This figure is used to demonstrate \\
+  cross-referencing.
+  \caption{A second example figure}
+  \label{fgr:example:2}
+\end{figure}
+
+\begin{figure}
+  This figure is used to demonstrate \\
+  cross-referencing.
+  \caption{A third example figure}
+  \label{fgr:example:3}
+\end{figure}
 
 \section{Extra information when writing JACS Communications}
 
@@ -4219,7 +4320,7 @@ automatically add a sentence pointing to the information on-line:
 %% Notice that the class file automatically sets \bibliographystyle
 %% and also names the section correctly.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliography{achemso}
+\bibliography{achemso-demo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The "tocentry" environment can be used to create an entry for the
@@ -4242,9 +4343,7 @@ graphical table of content entries. The box will not resize if the
 content is too big: instead it will overflow the edge of the box.
 
 This box and the associated title will always be printed on a 
-separate page from the rest of the document. It is best to place the
-graphical TOC entry as the last item in the draft so that the page 
-break is not a problem. 
+separate page at the end of the document. 
 
 \end{tocentry}
 
