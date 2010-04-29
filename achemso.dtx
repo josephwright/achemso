@@ -171,8 +171,6 @@ This work consists of the file  achemso.dtx
 %</driver>
 % \fi
 %
-%\CheckSum{2651}
-%
 %\GetFileInfo{\jobname.sty}
 %
 %\makeatletter
@@ -285,10 +283,10 @@ This work consists of the file  achemso.dtx
 %}{^^A
 %}
 %
-%\providecommand*{\eTeX}{\ensuremath{\varepsilon}-\TeX}
-%\providecommand*{\file}{\texttt}
-%\providecommand*{\opt}{\texttt}
-%\providecommand*{\pkg}{\textsf}
+%\providecommand*\eTeX{\ensuremath{\varepsilon}-\TeX}
+%\providecommand*\file{\texttt}
+%\providecommand*\opt{\texttt}
+%\providecommand*\pkg{\textsf}
 %
 %\newcommand*\ACS{\textsc{acs}}
 %
@@ -467,6 +465,16 @@ This work consists of the file  achemso.dtx
 % whether sections and an abstract are valid.  The value
 % \opt{suppinfo} is also available for supporting information.
 % 
+%\DescribeOption{layout}
+%\changes{v3.3}{2009/08/28}{New \texttt{layout} option}
+% The \pkg{achemso} class can produce drafts in two layout styles. The 
+% standard setting for the \opt{layout} option is \opt{traditional}, 
+% which produces a double-spaced single column manuscript. The 
+% alternative setting \opt{twocolumn} will use single spacing and 
+% print the text in two columns. The second option is obviously more 
+% compact. If the journal requires a particular style this option may
+% be ignored.
+% 
 %\DescribeOption{email}
 %\changes{v3.2b}{2009/05/05}{New \texttt{email} option}
 %\changes{v3.2c}{2009/05/28}{Fix so that \texttt{email} option is turned
@@ -487,6 +495,8 @@ This work consists of the file  achemso.dtx
 %\DescribeMacro{\alsoaffiliation}
 %\changes{v3.1}{2008/11/08}{Added \cs{alsoaffiliation} macro}
 %\DescribeMacro{\altaffiliation}
+%\changes{v3.3}{2008/08/28}{\cs{altaffiliation} macro checks for 
+%  duplicate entries and uses only one footnote}
 %\DescribeMacro{\email}
 % Inspired by REV\TeX, the \pkg{achemso} class alters the method for
 % adding author information to the manuscript.  Each author should be
@@ -518,6 +528,17 @@ This work consists of the file  achemso.dtx
 %    {Research Department, SponsorCo, BigCity, USA}
 %  \alsoaffiliation{University of Somewhere, Sometown, USA}
 %\end{LaTeXdemo}
+% Repeated entries for \cs{affiliation} and \cs{alsoaffiliation} will
+% result in only one address being printed in the address list and 
+% footnotes. Repeated \cs{altaffiliation} entries only produce a single
+% footnote, and can therefore be used for entries such as
+%\begin{LaTeXdemo}[code only]
+%  \author{First Coworker}
+%  \altaffiliation{Contributed equally to this work}
+%  \author{Second Coworker}
+%  \altaffiliation{Contributed equally to this work}
+%\end{LaTeXdemo}
+% if required.
 %
 %\DescribeMacro{\fax}
 %\changes{v3.2c}{2009/05/29}{Added \cs{fax} macro}
@@ -593,7 +614,6 @@ This work consists of the file  achemso.dtx
 % and of. This is functionality is available to the user \emph{via} the
 % \cs{SectionsOn} and \cs{SectionsOff} macros, which again are 
 % preamble-only.
-% 
 %\DescribeMacro{\AbstractOff} 
 %\DescribeMacro{\AbstractOn}
 %\changes{v3.2}{2009/04/20}{
@@ -794,7 +814,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*class>
 \ProvidesClass{achemso}
-  [2009/08/06 v3.2f Submission to ACS journals]
+  [2009/08/28 v3.3 Submission to ACS journals]
 \LoadClass[12pt,letter]{article}
 %    \end{macrocode}
 %    
@@ -814,7 +834,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*package>
 \ProvidesPackage{achemso}
-  [2009/08/06 v3.2f Support for ACS journals]
+  [2009/08/28 v3.3 Support for ACS journals]
 \@ifclassloaded{achemso}{%
   \PackageInfo{achemso}{%
     You have already loaded the `achemso' class:\MessageBreak
@@ -855,12 +875,27 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %
+%\changes{v3.3}{2009/08/28}{Changed key code to be independent of 
+%  \pkg{xkeyval} version}
 % The first stage needed is to read the package options given. Although
 % \pkg{xkeyval} was perhaps not the best choice, changing this now would
 % be rather risky. 
 %    \begin{macrocode}
 \RequirePackage{xkeyval}
 %    \end{macrocode}
+%\begin{macro}{\acs@keyval@bool}
+% A support macro for making Boolean options: the \pkg{xkeyval} version
+% is only available in newer releases.
+%    \begin{macrocode}
+\newcommand*\acs@keyval@bool[2]{%
+  \acs@ifundefined{acs@#1#2}{%
+    \acs@warning{Unknown option `#2' for key #1}%
+  }{%
+    \@nameuse{acs@#1#2}%
+  }%
+}
+%    \end{macrocode}
+%\end{macro}
 %\begin{macro}{\ifacs@abbreviations}
 %\begin{macro}{\ifacs@biochem}
 %\begin{macro}{\ifacs@email}
@@ -868,14 +903,32 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\ifacs@super}
 %\begin{macro}{\ifacs@usetitle}
 % These are all very trivial definitions: to avoid issues with older
-% versions of \pkg{xkeyval} each definition is done separately.
+% versions of \pkg{xkeyval} each definition is done directly.
 %    \begin{macrocode}
-\define@boolkey{acs}[acs@]{abbreviations}[true]{}
-\define@boolkey{acs}[acs@]{biochem}[true]{}
-\define@boolkey{acs}[acs@]{email}[true]{}
-\define@boolkey{acs}[acs@]{keywords}[true]{}
-\define@boolkey{acs}[acs@]{super}[true]{}
-\define@boolkey{acs}[acs@]{usetitle}[true]{}
+\newif\ifacs@abbreviations
+\newif\ifacs@biochem
+\newif\ifacs@email
+\newif\ifacs@keywords
+\newif\ifacs@super
+\newif\ifacs@usetitle
+\define@key{acs}{abbreviations}[true]{%
+  \acs@keyval@bool{abbreviations}{#1}%
+}
+\define@key{acs}{biochem}[true]{%
+  \acs@keyval@bool{biochem}{#1}%
+}
+\define@key{acs}{email}[true]{%
+  \acs@keyval@bool{email}{#1}%
+}
+\define@key{acs}{keywords}[true]{%
+  \acs@keyval@bool{keywords}{#1}%
+}
+\define@key{acs}{super}[true]{%
+  \acs@keyval@bool{super}{#1}%
+}
+\define@key{acs}{usetitle}[true]{%
+  \acs@keyval@bool{usetitle}{#1}%
+}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -884,17 +937,30 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@journal}
+%\begin{macro}{\acs@layout}
 %\begin{macro}{\acs@manuscript}
 %\begin{macro}{\acs@maxauthors}
-% Trivial again.
+% Trivial again: done without using \pkg{xkeyval} for the same reasons
+% as before.
 %    \begin{macrocode}
 \newcommand*\acs@journal{jacsat}
+\newcommand*\acs@layout{traditional}
 \newcommand*\acs@manuscript{article}
 \newcommand*\acs@maxauthors{15}
-\define@cmdkey{acs}[acs@]{journal}{}
-\define@cmdkey{acs}[acs@]{manuscript}{}
-\define@cmdkey{acs}[acs@]{maxauthors}{}
+\define@key{acs}{journal}{%
+  \def\acs@journal{#1}%
+}
+\define@key{acs}{layout}{%
+  \def\acs@layout{#1}%
+}
+\define@key{acs}{manuscript}{%
+  \def\acs@manuscript{#1}%
+}
+\define@key{acs}{maxauthors}{%
+  \def\acs@maxauthors{#1}%
+}
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -1248,13 +1314,11 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %    
 %\begin{macro}{\title}
-%\changes{v3.2}{2009/04/19}{
-%  Short title no longer used although optional argument still 
-%  accepted: removed internal \cs{@shorttitle} macro
-%}
-%\changes{v3.2c}{2009/05/29}{
-%  Restored short title for some journals which do need this information
-%}
+%\changes{v3.2}{2009/04/19}{Short title no longer used although 
+%  optional argument still accepted: removed internal \cs{@shorttitle} 
+%  macro}
+%\changes{v3.2c}{2009/05/29}{Restored short title for some journals 
+%  which do need this information}
 %\begin{macro}{\@title}
 %\begin{macro}{\acs@title@short}
 % For the meta-data, the REV\TeX\ bundle provides a good model for
@@ -1481,22 +1545,67 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\altaffiliation}
+%\changes{v3.3}{2009/08/28}{\cs{altaffiliation} code modified to check
+%  for repeated entries}
 % For the alternative affiliation, a second count is kept, and the
-% affiliation is ``attached'' to the author.
+% affiliation is ``attached'' to the author. The way these are stored
+% means that the appropriate affiliation number can be recovered later,
+% and so printed correctly when things get complex.
 %    \begin{macrocode}
 \newcommand*\altaffiliation[1]{%
   \ifnum\acs@author@cnt>\z@\relax
-    \global\advance\acs@affil@alt@cnt\@ne\relax
-    \expandafter\gdef\csname @altaffil@\@roman\acs@author@cnt\endcsname
-      {#1}%
-    \expandafter\xdef\csname @author@altaffil@\@roman\acs@author@cnt
-      \endcsname{\the\acs@affil@alt@cnt}%
+    \begingroup
+      \acs@altaffil@ifdup{#1}{%
+        \expandafter\xdef\csname @author@altaffil@\@roman\acs@author@cnt
+          \endcsname{\the\@tempcnta}%
+      }{%
+        \global\advance\acs@affil@alt@cnt\@ne\relax
+        \expandafter\gdef\csname @altaffil@\@roman\acs@author@cnt
+          \endcsname{#1}%
+        \expandafter\xdef\csname @author@altaffil@\@roman\acs@author@cnt
+          \endcsname{\the\acs@affil@alt@cnt}%
+      }%
+    \endgroup
   \else
     \acs@warning{Affiliation with no author}%
   \fi
 }
 \@onlypreamble\altaffiliation
 %    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\acs@altaffil@ifdup}
+%\begin{macro}{\acs@altaffil@ifdup@aux}
+% This is very similar to the same routine for normal affiliations but
+% with the appropriate name changes.
+%    \begin{macrocode}
+\newcommand*\acs@altaffil@ifdup[1]{%
+  \def\@tempa{#1}%
+  \@tempswafalse
+  \@tempcnta\z@\relax
+  \ifnum\acs@affil@alt@cnt>\z@\relax
+    \expandafter\acs@altaffil@ifdup@aux
+  \fi  
+  \if@tempswa
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+}
+\newcommand*\acs@altaffil@ifdup@aux{%
+  \advance\@tempcnta\@ne\relax
+  \expandafter\expandafter\expandafter\def\expandafter\expandafter
+    \expandafter\@tempb\expandafter\expandafter\expandafter
+    {\csname @altaffil@\@roman\@tempcnta\endcsname}%
+  \ifx\@tempa\@tempb
+    \expandafter\@tempswatrue
+  \else
+    \ifnum\@tempcnta<\acs@affil@alt@cnt\relax
+      \expandafter\expandafter\expandafter\acs@altaffil@ifdup@aux
+    \fi
+  \fi
+}
+%    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\begin{macro}{\email}
 % E-mail addresses are attached to authors as well.
@@ -1709,7 +1818,7 @@ This work consists of the file  achemso.dtx
     \end{minipage}
   \end{center}%
 }
-\newcommand\@maketitle@title@hook{}
+\newcommand*\@maketitle@title@hook{}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -1760,9 +1869,8 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\@thanks}
-%\changes{v3.1}{2008/08/29}{
-%  Moved footnote generation to \cs{@thanks} macro
-%}
+%\changes{v3.1}{2008/08/29}{Moved footnote generation to \cs{@thanks} 
+%  macro}
 %\begin{macro}{\@thanks@hook}
 % The \cs{@thanks} macro is used as a hook to generate the footnotes if
 % needed.
@@ -1793,7 +1901,6 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \newcommand*\acs@author@list{%
   \@tempcnta\z@\relax
-  \@tempcntb\acs@affil@cnt\relax
   \ifnum\acs@author@cnt=\z@\relax\else
     \expandafter\acs@author@list@main
   \fi
@@ -1951,8 +2058,10 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@author@affil@alt}
 %\begin{macro}{\acs@author@affil@alt@aux}
 %\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
-% Alternative affiliations use the secondary counter \cs{@tempcntb},
-% which starts out at the end of the main list.
+% Alternative affiliations get the correct affiliation number back out
+% from the stored data. There are then two corrections: one for the
+% total number of main affiliations and a second in case there is a 
+% footnote to the title.
 %    \begin{macrocode}
 \newcommand*\acs@author@affil@alt{%
   \acs@ifundefined{@author@altaffil@\@roman\@tempcnta}{}{%
@@ -1960,8 +2069,9 @@ This work consists of the file  achemso.dtx
   }%
 }
 \newcommand*\acs@author@affil@alt@aux{%
-  \advance\@tempcntb\@ne\relax
-  \acs@affil@marker@cnt\@tempcntb\relax
+  \expandafter\acs@affil@marker@cnt
+    \csname @author@altaffil@\@roman\@tempcnta\endcsname\relax
+  \advance\acs@affil@marker@cnt\acs@affil@cnt\relax
   \advance\acs@affil@marker@cnt\acs@footnote@cnt\relax
   \protected@edef\acs@author@footnotes{%
     \acs@author@footnotes
@@ -2839,9 +2949,23 @@ This work consists of the file  achemso.dtx
   \setkeys{acs}{maxauthors = 0}
   \def\thepage{S\arabic{page}}
 \fi
+%    \end{macrocode}   
+%\end{macro} 
+% 
+% Set up two column layout.
+%    \begin{macrocode}
+\begingroup
+  \def\@tempa{twocolumn}
+  \ifx\acs@layout\@tempa
+    \aftergroup\acs@layout@shared
+  \fi
+  \def\@tempa{two-column}
+  \ifx\acs@layout\@tempa
+    \aftergroup\acs@layout@shared
+  \fi
+\endgroup
 %</class>
 %    \end{macrocode}   
-%\end{macro}    
 %
 %\subsection{Late shared code}
 %
@@ -3118,7 +3242,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*achre4>
 \ProvidesFile{achre4.cfg}
-  [2009/08/06 v3.2f achemso configuration: Acc. Chem. Res.]
+  [2009/08/28 v3.3 achemso configuration: Acc. Chem. Res.]
 \setkeys{acs}{
   biblabel = plain
 }
@@ -3127,7 +3251,7 @@ This work consists of the file  achemso.dtx
 %</achre4>
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
-  [2009/08/06 v3.2f achemso configuration: ACS Chem. Biol.]
+  [2009/08/28 v3.3 achemso configuration: ACS Chem. Biol.]
 \setkeys{acs}{
   biblabel = fullstop,
   biochem  = true,
@@ -3138,24 +3262,25 @@ This work consists of the file  achemso.dtx
 \SectionNumbersOff
 %</acbcct>
 %<*ancac3>
-\ProvidesFile{acbcct.cfg}
-  [2009/08/06 v3.2f achemso configuration: ACS Nano]
+\ProvidesFile{ancac3.cfg}
+  [2009/08/28 v3.3 achemso configuration: ACS Nano]
 \setkeys{acs}{
-  biblabel = fullstop,
-  usetitle = true
+  biblabel   = fullstop,
+  maxauthors = 10,
+  usetitle   = true
 }
 \def\acs@type@list{article,perspective,suppinfo}
 \SectionNumbersOff
 %</ancac3>
 %<*ancham>
 \ProvidesFile{ancham.cfg}
-  [2009/08/06 v3.2f achemso configuration:  Anal. Chem.]
+  [2009/08/28 v3.3 achemso configuration: Anal. Chem.]
 \def\acs@type@list{article,note,suppinfo}
 \SectionNumbersOff
 %</ancham>
 %<*bichaw>
 \ProvidesFile{biochem.cfg}
-  [2009/08/06 v3.2f achemso configuration: Biochemistry]
+  [2009/08/28 v3.3 achemso configuration: Biochemistry]
 \setkeys{acs}{
   abbreviations = true,
   biblabel      = fullstop,
@@ -3205,7 +3330,7 @@ This work consists of the file  achemso.dtx
 %</bichaw>
 %<*bcches>
 \ProvidesFile{bcches.cfg}
-  [2009/08/06 v3.2f achemso configuration: Bioconjugate Chem.]
+  [2009/08/28 v3.3 achemso configuration: Bioconjugate Chem.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3215,7 +3340,7 @@ This work consists of the file  achemso.dtx
 %</bcches>
 %<*bomaf6>
 \ProvidesFile{bomaf6.cfg}
-  [2009/08/06 v3.2f achemso configuration: Biomacromolecules]
+  [2009/08/28 v3.3 achemso configuration: Biomacromolecules]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3224,7 +3349,7 @@ This work consists of the file  achemso.dtx
 %</bomaf6>
 %<*bipret>
 \ProvidesFile{bipret.cfg}
-  [2009/08/06 v3.2f achemso configuration: Biotechnol. Prog.]
+  [2009/08/28 v3.3 achemso configuration: Biotechnol. Prog.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3234,7 +3359,7 @@ This work consists of the file  achemso.dtx
 %</bipret>
 %<*crtoec>
 \ProvidesFile{crtoec.cfg}
-  [2009/08/06 v3.2f achemso configuration: Chem. Res. Toxicol.]
+  [2009/08/28 v3.3 achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3247,7 +3372,7 @@ This work consists of the file  achemso.dtx
 %</crtoec>
 %<*chreay>
 \ProvidesFile{chreay.cfg}
-  [2009/08/06 v3.2f achemso configuration: Chem. Rev.]
+  [2009/08/28 v3.3 achemso configuration: Chem. Rev.]
 \def\acs@type@default{review}
 \def\acs@type@list{review}
 %    \end{macrocode}
@@ -3258,7 +3383,7 @@ This work consists of the file  achemso.dtx
 %<*cmatex>
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
-  [2009/08/06 v3.2f achemso configuration: Chem. Mater.]
+  [2009/08/28 v3.3 achemso configuration: Chem. Mater.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3267,7 +3392,7 @@ This work consists of the file  achemso.dtx
 %</cmatex>
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
-  [2009/08/06 v3.2f achemso configuration: Cryst. Growth Des.]
+  [2009/08/28 v3.3 achemso configuration: Cryst. Growth Des.]
 \def\acs@type@list{%
   article,communication,perspective,suppinfo%
 }
@@ -3278,13 +3403,13 @@ This work consists of the file  achemso.dtx
 %</cgdefu>
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
-  [2009/08/06 v3.2f achemso configuration: Energy Fuels]
+  [2009/08/28 v3.3 achemso configuration: Energy Fuels]
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
 %</enfuem>
 %<*esthag>
 \ProvidesFile{esthag.cfg}
-  [2009/08/06 v3.2f achemso configuration: Environ. Sci. Technol.]
+  [2009/08/28 v3.3 achemso configuration: Environ. Sci. Technol.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3294,7 +3419,7 @@ This work consists of the file  achemso.dtx
 %</esthag>
 %<*iecred>
 \ProvidesFile{iecred.cfg}
-  [2009/08/06 v3.2f achemso configuration: Ind. Eng. Chem. Res.]
+  [2009/08/28 v3.3 achemso configuration: Ind. Eng. Chem. Res.]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -3303,7 +3428,7 @@ This work consists of the file  achemso.dtx
 %</iecred>
 %<*inoraj>
 \ProvidesFile{inoraj.cfg}
-  [2009/08/06 v3.2f achemso configuration: Inorg. Chem.]
+  [2009/08/28 v3.3 achemso configuration: Inorg. Chem.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3318,7 +3443,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jacsat>
 \ProvidesFile{jacsat.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Am. Chem. Soc.]
+  [2009/08/28 v3.3 achemso configuration: J. Am. Chem. Soc.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication\else
   \expandafter\endinput
@@ -3328,7 +3453,8 @@ This work consists of the file  achemso.dtx
 % adjustments are now made using the existing tools.
 %    \begin{macrocode}
 \setkeys{acs}{
-  email = true
+  email  = true,
+  layout = twocolumn
 }
 \SectionsOff
 \acs@layout@nine
@@ -3501,7 +3627,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 % The bibliography has to be adjusted.
 %    \begin{macrocode}
-\acs@layout@shared
 \AtBeginDocument{%
   \def\bibsection{%
     \@startsection
@@ -3521,7 +3646,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jafcau>
 \ProvidesFile{jafcau.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Agric. Food Chem.]
+  [2009/08/28 v3.3 achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3531,7 +3656,7 @@ This work consists of the file  achemso.dtx
 %</jafcau>
 %<*jceaax>
 \ProvidesFile{jceaax.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Chem. Eng. Data]
+  [2009/08/28 v3.3 achemso configuration: J. Chem. Eng. Data]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3540,7 +3665,7 @@ This work consists of the file  achemso.dtx
 %</jceaax>
 %<*jcisd8>
 \ProvidesFile{jcisd8.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Chem. Inf. Model.]
+  [2009/08/28 v3.3 achemso configuration: J. Chem. Inf. Model.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3549,18 +3674,18 @@ This work consists of the file  achemso.dtx
 %</jcisd8>
 %<*jctcce>
 \ProvidesFile{jctcce.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Chem. Theory Comput.]
+  [2009/08/28 v3.3 achemso configuration: J. Chem. Theory Comput.]
 \def\acs@type@list{article,suppinfo}
 %</jctcce>
 %<*jcchff>
 \ProvidesFile{jcchff.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Comb. Chem.]
+  [2009/08/28 v3.3 achemso configuration: J. Comb. Chem.]
 \def\acs@type@list{article,report,perspective,suppinfo}
 \SectionNumbersOff
 %</jcchff>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Med. Chem.]
+  [2009/08/28 v3.3 achemso configuration: J. Med. Chem.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3569,7 +3694,7 @@ This work consists of the file  achemso.dtx
 %</jmcmar>
 %<*jnprdf>
 \ProvidesFile{jnprdf.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Nat. Prod.]
+  [2009/08/28 v3.3 achemso configuration: J. Nat. Prod.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3577,7 +3702,7 @@ This work consists of the file  achemso.dtx
 %</jnprdf>
 %<*joceah>
 \ProvidesFile{joceah.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Org. Chem.]
+  [2009/08/28 v3.3 achemso configuration: J. Org. Chem.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -3585,7 +3710,7 @@ This work consists of the file  achemso.dtx
 %</joceah>
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Phys. Chem. A]
+  [2009/08/28 v3.3 achemso configuration: J. Phys. Chem. A]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3596,7 +3721,7 @@ This work consists of the file  achemso.dtx
 %</jpcafh>
 %<*jpcbfk>
 \ProvidesFile{jpcbfk.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Phys. Chem. B]
+  [2009/08/28 v3.3 achemso configuration: J. Phys. Chem. B]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
@@ -3612,7 +3737,7 @@ This work consists of the file  achemso.dtx
 %</jpccck>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
-  [2009/08/06 v3.2f achemso configuration: J. Proteome Res.]
+  [2009/08/28 v3.3 achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3621,50 +3746,48 @@ This work consists of the file  achemso.dtx
 %</jprobs>
 %<*langd5>
 \ProvidesFile{langd5.cfg}
-  [2009/08/06 v3.2f achemso configuration: Langmuir]
+  [2009/08/28 v3.3 achemso configuration: Langmuir]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 %</langd5>
 %<*mamobx>
 \ProvidesFile{mamobx.cfg}
-  [2009/08/06 v3.2f achemso configuration: Macromolecules]
+  [2009/08/28 v3.3 achemso configuration: Macromolecules]
 \SectionNumbersOff
 %</mamobx>
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
-  [2009/08/06 v3.2f achemso configuration: Mol. Pharm.]
-\setkeys{acs}{
-  usetitle = true
-}
+  [2009/08/28 v3.3 achemso configuration: Mol. Pharm.]
+\setkeys{acs}{usetitle = true}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</mpohbp>
 %<*nalefd>
 \ProvidesFile{nalefd.cfg}
-  [2009/08/06 v3.2f achemso configuration: Nano Lett.]
+  [2009/08/28 v3.3 achemso configuration: Nano Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
 %</nalefd>
 %<*orlef7>
 \ProvidesFile{orlef7.cfg}
-  [2009/08/06 v3.2f achemso configuration: Org. Lett.]
+  [2009/08/28 v3.3 achemso configuration: Org. Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
-\acs@layout@shared
+\setkeys{acs}{layout = twocolumn}
 \RequirePackage{xcolor}
 \definecolor{orglett}{RGB}{128,0,0}
 %</orlef7>
 %<*oprdfk>
 \ProvidesFile{oprdfk.cfg}
-  [2009/08/06 v3.2f achemso configuration: Org. Proc. Res. Dev.]
+  [2009/08/28 v3.3 achemso configuration: Org. Proc. Res. Dev.]
 \def\acs@type@list{article,highlight,review,suppinfo}
 \SectionNumbersOff
 %</oprdfk>
 %<*orgnd7>
 \ProvidesFile{orgnd7.cfg}
-  [2009/08/06 v3.2f achemso configuration: Organometallics]
+  [2009/08/28 v3.3 achemso configuration: Organometallics]
 \SectionNumbersOff
 %</orgnd7>
 %    \end{macrocode}
@@ -3724,10 +3847,12 @@ This work consists of the file  achemso.dtx
 %% when authors are associated with multiple institutions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \author{Andrew N. Other}
+\altaffiliation{A shared footnote}
 \author{Fred T. Secondauthor}
 \altaffiliation{Current address: Some other place, Othert\"own,
 Germany}
 \author{I. Ken Groupleader}
+\altaffiliation{A shared footnote}
 \email{i.k.groupleader@unknown.uu}
 \phone{+123 (0)123 4445556}
 \fax{+123 (0)123 4445557}
@@ -3881,13 +4006,19 @@ followed by some display. \[ A = \pi r^2 \]
 
 It is possible to label equations in the usual way.
 \begin{equation}
-  \frac{\mathrm{d}}{\mathrm{d}x} r^2 = 2r
+  \frac{\mathrm{d}}{\mathrm{d}x} \, r^2 = 2r
 \end{equation}
 This can also be used to have equations containing graphical
-content.
+content. To align the equation number with the middle of the graphic,
+rather than the bottom, a minipage may be used.
 \begin{equation}
-  \textrm{Some content}
-  %\includegraphics{graphic}
+  \begin{minipage}[c]{0.80\linewidth}
+    \centering
+    As illustrated here, the width of \\
+    the minipage needs to allow some  \\
+    space for the number to fit in to.
+    %\includegraphics{graphic}
+  \end{minipage}
   \label{eqn:graphic}
 \end{equation}
 
@@ -3979,7 +4110,9 @@ authors would like to thank \ldots''.
 
 The author thanks Mats Dahlgren for version one of \textsf{achemso},
 and Donald Arseneau for the code taken from \textsf{cite} to move
-citations after punctuation.
+citations after punctuation. Many users have provided feedback on the
+class, which is reflected in all of the different demonstrations 
+shown in this document.
 
 \end{acknowledgement}
 
