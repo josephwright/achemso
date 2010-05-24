@@ -108,43 +108,44 @@ This work consists of the file  achemso.dtx
   \file{natmove.sty}{\from{\jobname.dtx}{natmove}}
 }
 \usedir{tex/latex/achemso/config}
-\generate{\file{achre4.cfg}{\from{\jobname.dtx}{achre4}}
-          \file{acbcct.cfg}{\from{\jobname.dtx}{acbcct}}
+\generate{\file{acbcct.cfg}{\from{\jobname.dtx}{acbcct}}
+          \file{achre4.cfg}{\from{\jobname.dtx}{achre4}}
+          \file{acncdm.cfg}{\from{\jobname.dtx}{acncdm}}
           \file{ancac3.cfg}{\from{\jobname.dtx}{ancac3}}
           \file{ancham.cfg}{\from{\jobname.dtx}{ancham}}
           \file{bichaw.cfg}{\from{\jobname.dtx}{bichaw}}
           \file{bcches.cfg}{\from{\jobname.dtx}{bcches}}
           \file{bomaf6.cfg}{\from{\jobname.dtx}{bomaf6}}
-          \file{bipret.cfg}{\from{\jobname.dtx}{bipret}}
 }
-\generate{\file{crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
+\generate{\file{bipret.cfg}{\from{\jobname.dtx}{bipret}}
+          \file{crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
           \file{chreay.cfg}{\from{\jobname.dtx}{chreay}}
           \file{cmatex.cfg}{\from{\jobname.dtx}{cmatex}}
           \file{cgdefu.cfg}{\from{\jobname.dtx}{cgdefu}}
           \file{enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
           \file{esthag.cfg}{\from{\jobname.dtx}{esthag}}
           \file{iecred.cfg}{\from{\jobname.dtx}{iecred}}
-          \file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
 }
-\generate{\file{jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
+\generate{\file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
+          \file{jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
           \file{jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
           \file{jceaax.cfg}{\from{\jobname.dtx}{jceaax}}
           \file{jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
           \file{jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
           \file{jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
           \file{jcchff.cfg}{\from{\jobname.dtx}{jcchff}}
-          \file{jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
 }
-\generate{\file{jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
+\generate{\file{jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
+          \file{jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
           \file{joceah.cfg}{\from{\jobname.dtx}{joceah}}
           \file{jpcafh.cfg}{\from{\jobname.dtx}{jpcafh}}
           \file{jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}
           \file{jpccck.cfg}{\from{\jobname.dtx}{jpccck}}
           \file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}
           \file{jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
-          \file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
 }
-\generate{\file{mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
+\generate{\file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
+          \file{mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
           \file{mpohbp.cfg}{\from{\jobname.dtx}{mpohbp}}
           \file{nalefd.cfg}{\from{\jobname.dtx}{nalefd}}
           \file{orlef7.cfg}{\from{\jobname.dtx}{orlef7}}
@@ -456,8 +457,9 @@ This work consists of the file  achemso.dtx
 %    \toprule
 %      Journal                  & Setting \\
 %    \midrule
-%      Acc.\ Chem.\ Res.        & achre4  \\
 %      ACS Chem.\ Biol.         & acbcct  \\
+%      Acc.\ Chem.\ Res.        & achre4  \\
+%      ACS Chem.\ Neurosci.     & acncdm  \\
 %      ACS Nano                 & ancac3  \\
 %      Anal.\ Chem.             & ancham  \\
 %      Biochemistry             & bichaw  \\
@@ -3406,16 +3408,6 @@ This work consists of the file  achemso.dtx
 % Keeping everything separate simply helps with maintenance. 
 % 
 %    \begin{macrocode}
-%<*achre4>
-\ProvidesFile{achre4.cfg}
-  [2010/04/13 v3.4f achemso configuration: Acc. Chem. Res.]
-\setkeys{acs}{
-  biblabel = plain,
-  usetitle = true
-}
-\def\acs@type@list{article,suppinfo}
-\def\abstractname{Conspectus}
-%</achre4>
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
   [2010/04/13 v3.4f achemso configuration: ACS Chem. Biol.]
@@ -3428,6 +3420,28 @@ This work consists of the file  achemso.dtx
 \def\acs@type@list{article,letter,review,suppinfo}
 \SectionNumbersOff
 %</acbcct>
+%<*achre4>
+\ProvidesFile{achre4.cfg}
+  [2010/04/13 v3.4f achemso configuration: Acc. Chem. Res.]
+\setkeys{acs}{
+  biblabel = plain,
+  usetitle = true
+}
+\def\acs@type@list{article,suppinfo}
+\def\abstractname{Conspectus}
+%</achre4>
+%<*acncdm>
+\ProvidesFile{acncdm.cfg}
+  [2010/04/13 v3.4f achemso configuration: ACS Chem. Neurosci.]
+\def\acs@type@list{article,review,letter,suppinfo,viewpoint}
+\setkeys{acs}{
+  biblabel      = fullstop,
+  biochem       = true,
+  keywords      = true,
+  super         = false,
+  usetitle      = true
+}
+%</acncdm>
 %<*ancac3>
 \ProvidesFile{ancac3.cfg}
   [2010/04/13 v3.4f achemso configuration: ACS Nano]
