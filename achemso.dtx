@@ -1108,10 +1108,10 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@biblabel@plain}
 % The macros to implement the idea above for biblabels.
 %    \begin{macrocode}
-\newcommand*\acs@biblabel@brackets{\def\@biblabel##1{(##1)}}
-\newcommand*\acs@biblabel@fullstop{\def\@biblabel##1{##1.}}
-\newcommand*\acs@biblabel@period{\def\@biblabel##1{##1.}}
-\newcommand*\acs@biblabel@plain{\def\@biblabel##1{##1}}
+\newcommand*\acs@biblabel@brackets{\def\bibnumfmt##1{(##1)}}
+\newcommand*\acs@biblabel@fullstop{\def\bibnumfmt##1{##1.}}
+\newcommand*\acs@biblabel@period{\def\bibnumfmt##1{##1.}}
+\newcommand*\acs@biblabel@plain{\def\bibnumfmt##1{##1}}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
