@@ -5503,7 +5503,7 @@ FUNCTION { format.editors } {
       if$  
       *
       output
-      next.punct.space 'next.punct.int :=
+      next.punct.semicolon 'next.punct.int :=
     }  
   if$  
 }
@@ -5569,7 +5569,6 @@ FUNCTION { format.chapter.booktitle } {
     { bbl.in add.space swap$ * }
   if$  
   output
-  next.punct.period 'next.punct.int :=
 }
 
 FUNCTION { format.doi } {
