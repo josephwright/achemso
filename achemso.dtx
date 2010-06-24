@@ -5107,7 +5107,8 @@ FUNCTION { begin.bib } {
   if$
   "\providecommand*\mcitethebibliography{\thebibliography}" write$
   newline$
-  "\providecommand*\endmcitethebibliography{\endthebibliography}" write$
+  "\csname @ifundefined\endcsname{endmcitethebibliography}" write$
+  "  {\let\endmcitethebibliography\endthebibliography}{}" write$
   newline$
   "\begin{mcitethebibliography}{" 
     entries.int int.to.str$  * "}" * write$
