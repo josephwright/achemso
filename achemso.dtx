@@ -4166,11 +4166,11 @@ entries correctly.
 
 Multiple citations to be combined into a list can be given as
 a single citation.  This uses the \textsf{mciteplus} package
-\cite{Arduengo1992,*Eisenstein2005,*Arduengo1994}.  Citations
-other than the first of the list should be indicated with a star.
-If the \textsf{mciteplus} package is not installed, the standard
-bibliography tools will still work but starred references will be
-ignored.
+\cite{Johnson1972,*Arduengo1992,*Eisenstein2005,*Arduengo1994}.  
+Citations other than the first of the list should be indicated 
+with a star. If the \textsf{mciteplus} package is not installed, 
+the standard bibliography tools will still work but starred 
+references will be ignored.
 
 The class also handles notes to be added to the bibliography.  These
 should be given in place in the document \bibnote{This is a note.
@@ -6150,6 +6150,16 @@ EXECUTE { end.bib }
   edition        = {1},
   year           = {2003}
 } 
+
+@PATENT{Johnson1972,
+  author       = {Johnson, Alexander Lawrence},
+  organization = {E.~I.~du Pont de Nemours},
+  number       = {3637731},
+  title        = {1-(Alkylsubstituted phenyl)imidazoles useful in ACTH 
+    reverse assay},
+  type         = {US~Patent},
+  year         = {1972}
+}
 
 @MANUAL{Pople2003,
   title = {{G}aussian 03},
