@@ -848,6 +848,16 @@ This work consists of the file  achemso.dtx
 % output using the \file{achemso.bst} file, but are with the
 % \file{biochem.bst} file.
 % 
+% The style used by the \ACS\ does not differentiate between 
+% \BibTeX\ \texttt{book}, \texttt{inbook}, \texttt{collection} and
+% \texttt{incollection} entries. As a result, the appearance of 
+% these entry types depends on the fields available. Named subdivisions
+% of a book (for example, chapters where each has a named author)
+% should be given in the \texttt{title} field, with the title of
+% the book itself in the \texttt{booktitle} field. The 
+% \texttt{chapter} field should be used for a chapter number, and
+% is printed as part of the pagination.
+% 
 % One frequently asked question is why some people see an empty first
 % item in their bibliography when using the \pkg{achemso} package or
 % class. This is usually because they have downloaded the \LaTeX\ files
