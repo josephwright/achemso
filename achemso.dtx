@@ -4756,8 +4756,6 @@ FUNCTION { bbl.pages }   { "pp" }
 
 FUNCTION { bbl.phd }     { "Ph.D.\ thesis" }
 
-FUNCTION { bbl.patent }  { "Patent" }
-
 FUNCTION { bbl.version } { "version" }
 
 FUNCTION { bbl.volume }  { "Vol." }
@@ -4815,45 +4813,6 @@ FUNCTION { multi.page.check } {
     }
   while$
   multiresult.bool
-}
-
-INTEGERS { number.int }
-
-STRINGS {
-  number.input.str
-  number.output.str
-}
-
-FUNCTION { number.group.separate } {
-  'number.input.str :=
-  number.input.str text.length$ #4 >
-  number.input.str is.a.number
-  and
-    {
-      "" 'number.output.str :=
-      #0 'number.int :=
-      { number.input.str empty$ not }
-        { 
-          number.input.str #-1 #1 substring$
-          number.output.str  * 'number.output.str :=
-          number.input.str #-2 global.max$ substring$ 
-            'number.input.str :=
-          number.int #1 + 'number.int := 
-          number.int #4 =
-            { 
-              number.output.str #1 #1 substring$ "," *
-              number.output.str #2 global.max$ substring$ *
-                'number.output.str :=
-              #1 'number.int :=
-            }
-            { }
-          if$  
-        }
-      while$ 
-      number.output.str
-    }
-    { number.input.str }
-  if$  
 }
 
 % Functions for calculating the label data needed by natbib
@@ -5637,16 +5596,6 @@ FUNCTION { format.note } {
   if$  
 }
 
-FUNCTION { format.number.patent } {
-  number empty$
-    { }
-    {
-      number number.group.separate
-      output 
-    }
-  if$  
-}
-
 FUNCTION { format.number.series } {
   series empty$
     { }
@@ -5661,6 +5610,18 @@ FUNCTION { format.number.series } {
       if$  
       output
       next.punct.semicolon 'next.punct.int :=
+    }
+  if$  
+}
+
+
+FUNCTION { format.organization } {
+  organization empty$
+    { }
+    {
+      organization paren
+      output 
+      next.punct.period 'next.punct.int :=
     }
   if$  
 }
@@ -5708,7 +5669,7 @@ FUNCTION { format.title } {
   title empty$
     { }
     {
-      title emph
+      title
       output
       next.punct.period 'next.punct.int :=
     }
@@ -5728,6 +5689,17 @@ FUNCTION { format.title.article } {
       if$  
     }
     { }
+  if$
+}
+
+FUNCTION { format.title.techreport } {
+  title empty$
+    { }
+    {
+      title emph
+      output
+      next.punct.semicolon 'next.punct.int :=
+    }
   if$
 }
 
@@ -5960,9 +5932,9 @@ FUNCTION { misc } {
 FUNCTION { patent } {
   begin.bibitem
   format.authors
-  format.journal
-  bbl.patent format.type
-  format.number.patent
+  format.organization
+  format.title
+  format.type.number
   format.year
   format.note
   end.bibitem
@@ -5991,7 +5963,7 @@ FUNCTION { proceeding } {
 FUNCTION { techreport } {
   begin.bibitem
   format.authors.or.editors
-  format.title
+  format.title.techreport
   format.type.number
   format.organization.address
   format.year
