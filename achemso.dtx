@@ -848,6 +848,16 @@ This work consists of the file  achemso.dtx
 % output using the \file{achemso.bst} file, but are with the
 % \file{biochem.bst} file.
 % 
+% The style used by the \ACS\ does not differentiate between 
+% \BibTeX\ \texttt{book}, \texttt{inbook}, \texttt{collection} and
+% \texttt{incollection} entries. As a result, the appearance of 
+% these entry types depends on the fields available. Named subdivisions
+% of a book (for example, chapters where each has a named author)
+% should be given in the \texttt{title} field, with the title of
+% the book itself in the \texttt{booktitle} field. The 
+% \texttt{chapter} field should be used for a chapter number, and
+% is printed as part of the pagination.
+% 
 % One frequently asked question is why some people see an empty first
 % item in their bibliography when using the \pkg{achemso} package or
 % class. This is usually because they have downloaded the \LaTeX\ files
@@ -3995,6 +4005,7 @@ This work consists of the file  achemso.dtx
 %<*nalefd>
 \ProvidesFile{nalefd.cfg}
   [2010/06/25 v3.5 achemso configuration: Nano Lett.]
+\setkeys{acs}{{keywords = true}
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
@@ -4435,6 +4446,7 @@ ENTRY
     institution
     journal
     key
+    maintitle
     note
     number
     organization
@@ -4743,6 +4755,8 @@ FUNCTION { add.space } { " " * }
 % Bibliography strings: fixed values collected into functions
 
 FUNCTION { bbl.and }     { "and" }
+
+FUNCTION { bbl.chapter } { "Chapter" }
 
 FUNCTION { bbl.doi }     { "DOI:" }
 
@@ -5489,59 +5503,16 @@ FUNCTION { format.authors.or.editors } {
   next.punct.space 'next.punct.int :=
 }
 
-STRINGS {
-  chapter.title
-  book.title
-}
-
-FUNCTION { format.chapter.title } {
-  chapter.title empty$
-    { }
-    { 
-      chapter.title
-      output
-      next.punct.period 'next.punct.int :=
-    }
-  if$    
-}
-
-FUNCTION { format.chapter.booktitle } {
-  "" 'chapter.title :=
+FUNCTION { format.chapter } {
   chapter empty$
-    { 
-      booktitle empty$ 
-        { }
-        {
-          title empty$
-            { }
-            { title 'chapter.title := }
-          if$  
-        }
-      if$  
+    { }
+    {
+      bbl.chapter add.space
+      chapter 
+      *
+      output
     }
-    { chapter 'chapter.title := }
   if$
-  booktitle empty$
-    { title 'book.title := }
-    { booktitle 'book.title := }
-  if$  
-  format.chapter.title 
-  book.title emph
-  chapter.title empty$
-    { 
-      author empty$
-        { }
-        {
-          editor empty$
-            { }
-            { bbl.in add.space swap$ * }
-          if$   
-        }
-      if$  
-    }
-    { bbl.in add.space swap$ * }
-  if$  
-  output
 }
 
 FUNCTION { format.doi } {
@@ -5557,9 +5528,9 @@ FUNCTION { format.edition } {
       edition convert.to.ordinal
       add.space bbl.edition *
       output
-      next.punct.semicolon 'next.punct.int :=
     }
   if$  
+  next.punct.semicolon 'next.punct.int :=
 }
 
 FUNCTION { format.group.address } {
@@ -5594,6 +5565,11 @@ FUNCTION { format.journal } {
   journal emph
   output
   next.punct.space 'next.punct.int :=
+}
+
+FUNCTION { format.journal.unpub } {
+  journal emph
+  output
 }
 
 FUNCTION { format.note } {
@@ -5671,8 +5647,23 @@ FUNCTION { format.publisher.address } {
   publisher format.group.address
 }
 
-FUNCTION { format.school.address } {
-  school format.group.address
+FUNCTION { format.school.address } {  
+  school 
+  duplicate$
+  empty$
+    { pop$ }
+    { 
+      address empty$
+        { }
+        {
+          add.comma 
+          address
+          *
+        }
+      if$  
+      output
+    }
+  if$ 
 }
 
 FUNCTION { format.title } {
@@ -5732,6 +5723,56 @@ FUNCTION { format.title.booktitle } {
   if$    
 }
 
+
+FUNCTION { format.chapter.title } { 
+}
+
+
+STRINGS { 
+  book.title 
+  chapter.title
+}
+
+FUNCTION { format.title.booktitle.book } { 
+  "" 'chapter.title :=
+  booktitle empty$
+    {
+      "" 'chapter.title :=
+      title 'book.title := 
+    }
+    {
+      maintitle empty$
+        { booktitle 'book.title := }
+        { maintitle add.period booktitle * 'book.title := }
+      if$  
+    }
+  if$  
+  chapter.title empty$
+    { }
+    { 
+      chapter.title
+      output
+      next.punct.period 'next.punct.int :=
+    }
+  if$  
+  book.title emph
+  chapter.title empty$
+    { 
+      author empty$
+        { }
+        {
+          editor empty$
+            { }
+            { bbl.in add.space swap$ * }
+          if$   
+        }
+      if$  
+    }
+    { bbl.in add.space swap$ * }
+  if$  
+  output
+}
+
 FUNCTION { format.type } {
   type empty$
     { }
@@ -5740,7 +5781,6 @@ FUNCTION { format.type } {
       type
     }
   if$
-  emph
   output
 }
 
@@ -5818,7 +5858,7 @@ FUNCTION { format.volume } {
     { }
     {
       bbl.volume
-      volume emph
+      volume
       tie.or.space.connect
       output
       next.punct.semicolon 'next.punct.int :=
@@ -5848,7 +5888,7 @@ FUNCTION { article } {
 FUNCTION { book } {
   begin.bibitem
   format.authors.or.editors
-  format.chapter.booktitle
+  format.title.booktitle.book
   format.edition
   author empty$
     { }
@@ -5858,10 +5898,13 @@ FUNCTION { book } {
   format.publisher.address
   format.year
   format.volume
+  format.chapter
   format.pages
   format.note
   end.bibitem
 }
+
+FUNCTION { inbook } { book }
 
 FUNCTION { booklet } {
   begin.bibitem
@@ -5874,14 +5917,14 @@ FUNCTION { booklet } {
   end.bibitem
 }
 
-FUNCTION { inbook } { book }
+FUNCTION { collection } { book }
 
 FUNCTION { incollection } { book }
 
 FUNCTION { inpress } {
   begin.bibitem
   format.authors
-  format.journal
+  format.journal.unpub
   doi empty$
     { 
       bbl.inpress
@@ -5921,8 +5964,9 @@ FUNCTION { manual } {
 FUNCTION { mastersthesis } {
   begin.bibitem
   format.authors
-  format.school.address
+  format.title
   bbl.msc format.type
+  format.school.address
   format.year
   format.note
   end.bibitem
@@ -5953,8 +5997,9 @@ FUNCTION { patent } {
 FUNCTION { phdthesis } {
   begin.bibitem
   format.authors
-  format.school.address
+  format.title
   bbl.phd format.type
+  format.school.address
   format.year
   format.note
   end.bibitem
@@ -5986,9 +6031,9 @@ FUNCTION { techreport } {
 FUNCTION { unpublished } {
   begin.bibitem
   format.authors
-  format.journal
+  format.journal.unpub
   doi empty$
-    { }
+    { format.howpublished }
     { 
       format.year
       format.doi
