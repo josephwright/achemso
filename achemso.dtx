@@ -1077,7 +1077,12 @@ This work consists of the file  achemso.dtx
       Unknown value `#1' for\MessageBreak  etalmode option%
     }%
   }{%
-    \@nameuse{acs@etal@#1}%
+%<*package>  
+    \AtEndOfPackage{\@nameuse{acs@etal@#1}}%
+%</package>
+%<*class>  
+    \AtEndOfClass{\@nameuse{acs@etal@#1}}%
+%</class>
   }%
 }
 \newcommand*\acs@etal@firstonly{\acs@etal@truncatefalse}
@@ -1101,7 +1106,12 @@ This work consists of the file  achemso.dtx
       Unknown value `#1' for\MessageBreak biblabel option%
     }%
   }{%
-    \@nameuse{acs@biblabel@#1}%
+%<*class>
+    \AtEndOfClass{\@nameuse{acs@biblabel@#1}}%
+%</class>
+%<*package>
+    \AtEndOfPackage{\@nameuse{acs@biblabel@#1}}%
+%</package>
   }%
 }
 %    \end{macrocode}
