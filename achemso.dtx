@@ -3455,8 +3455,10 @@ This work consists of the file  achemso.dtx
 %<*acbcct>
 \ProvidesFile{accacs.cfg}
   [2010/11/25 v3.5d achemso configuration: ACS Catal.]
-\setkeys{acs}{}
-\def\acs@type@list{article,letter,review,suppinfo}
+\setkeys{acs}{
+ keywords = true,
+}
+\def\acs@type@list{article,letter,perspective,review,viewpoints,suppinfo}
 %</acbcct>
 %<*achre4>
 \ProvidesFile{achre4.cfg}
@@ -3483,7 +3485,11 @@ This work consists of the file  achemso.dtx
 %<*acsccc>
 \ProvidesFile{acsccc.cfg}
   [2010/11/25 v3.5d achemso configuration: ACS Combinatorial Sci.]
-\def\acs@type@list{article,report,perspective,suppinfo}
+\def\acs@type@list{article,letter,review,perspective,account,note,suppinfo}
+\setkeys{acs}{
+ keywords = true,
+ usetitle = true,
+}
 \SectionNumbersOff
 %</acsccc>
 %<*ancac3>
