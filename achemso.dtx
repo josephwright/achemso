@@ -108,42 +108,43 @@ This work consists of the file  achemso.dtx
 }
 \usedir{tex/latex/achemso/config}
 \generate{\file{acbcct.cfg}{\from{\jobname.dtx}{acbcct}}
+          \file{accacs.cfg}{\from{\jobname.dtx}{accacs}}
           \file{achre4.cfg}{\from{\jobname.dtx}{achre4}}
           \file{acncdm.cfg}{\from{\jobname.dtx}{acncdm}}
+          \file{acsccc.cfg}{\from{\jobname.dtx}{acsccc}}
           \file{ancac3.cfg}{\from{\jobname.dtx}{ancac3}}
           \file{ancham.cfg}{\from{\jobname.dtx}{ancham}}
           \file{bichaw.cfg}{\from{\jobname.dtx}{bichaw}}
-          \file{bcches.cfg}{\from{\jobname.dtx}{bcches}}
-          \file{bomaf6.cfg}{\from{\jobname.dtx}{bomaf6}}
 }
-\generate{\file{bipret.cfg}{\from{\jobname.dtx}{bipret}}
+\generate{\file{bcches.cfg}{\from{\jobname.dtx}{bcches}}
+          \file{bomaf6.cfg}{\from{\jobname.dtx}{bomaf6}}
+          \file{bipret.cfg}{\from{\jobname.dtx}{bipret}}
           \file{crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
           \file{chreay.cfg}{\from{\jobname.dtx}{chreay}}
           \file{cmatex.cfg}{\from{\jobname.dtx}{cmatex}}
           \file{cgdefu.cfg}{\from{\jobname.dtx}{cgdefu}}
           \file{enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
-          \file{esthag.cfg}{\from{\jobname.dtx}{esthag}}
-          \file{iecred.cfg}{\from{\jobname.dtx}{iecred}}
 }
-\generate{\file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
+\generate{\file{esthag.cfg}{\from{\jobname.dtx}{esthag}}
+          \file{iecred.cfg}{\from{\jobname.dtx}{iecred}}
+          \file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
           \file{jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
           \file{jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
           \file{jceaax.cfg}{\from{\jobname.dtx}{jceaax}}
           \file{jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
           \file{jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
-          \file{jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
-          \file{jcchff.cfg}{\from{\jobname.dtx}{jcchff}}
 }
-\generate{\file{jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
+\generate{\file{jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
+          \file{jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
           \file{jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
           \file{joceah.cfg}{\from{\jobname.dtx}{joceah}}
           \file{jpcafh.cfg}{\from{\jobname.dtx}{jpcafh}}
           \file{jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}
           \file{jpccck.cfg}{\from{\jobname.dtx}{jpccck}}
-          \file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}
-          \file{jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
+          \file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}          
 }
-\generate{\file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
+\generate{\file{jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
+          \file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
           \file{mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
           \file{mpohbp.cfg}{\from{\jobname.dtx}{mpohbp}}
           \file{nalefd.cfg}{\from{\jobname.dtx}{nalefd}}
@@ -464,8 +465,10 @@ This work consists of the file  achemso.dtx
 %      Journal                  & Setting \\
 %    \midrule
 %      ACS Chem.\ Biol.         & acbcct  \\
+%      ACS Catal.               & accacs  \\
 %      Acc.\ Chem.\ Res.        & achre4  \\
 %      ACS Chem.\ Neurosci.     & acncdm  \\
+%      ACS Combinatorial Sci.   & acsccc  \\
 %      ACS Nano                 & ancac3  \\
 %      Anal.\ Chem.             & ancham  \\
 %      Biochemistry             & bichaw  \\
@@ -485,7 +488,6 @@ This work consists of the file  achemso.dtx
 %      J.~Chem.\ Ed.            & jceda8  \\
 %      J.~Chem.\ Inf.\ Model.   & jcisd8  \\
 %      J.~Chem.\ Theory Comput. & jctcce  \\
-%      J.~Comb.\ Chem.          & jcchff  \\
 %      J.~Med.\ Chem.           & jmcmar  \\
 %      J.~Nat.\ Prod.           & jnprdf  \\
 %      J.~Org.\ Chem.           & joceah  \\
@@ -3450,6 +3452,12 @@ This work consists of the file  achemso.dtx
 \def\acs@type@list{article,letter,review,suppinfo}
 \SectionNumbersOff
 %</acbcct>
+%<*acbcct>
+\ProvidesFile{accacs.cfg}
+  [2010/11/25 v3.5d achemso configuration: ACS Catal.]
+\setkeys{acs}{}
+\def\acs@type@list{article,letter,review,suppinfo}
+%</acbcct>
 %<*achre4>
 \ProvidesFile{achre4.cfg}
   [2010/11/25 v3.5d achemso configuration: Acc. Chem. Res.]
@@ -3472,6 +3480,12 @@ This work consists of the file  achemso.dtx
   usetitle      = true
 }
 %</acncdm>
+%<*acsccc>
+\ProvidesFile{acsccc.cfg}
+  [2010/11/25 v3.5d achemso configuration: ACS Combinatorial Sci.]
+\def\acs@type@list{article,report,perspective,suppinfo}
+\SectionNumbersOff
+%</acsccc>
 %<*ancac3>
 \ProvidesFile{ancac3.cfg}
   [2010/11/25 v3.5d achemso configuration: ACS Nano]
@@ -3912,12 +3926,6 @@ This work consists of the file  achemso.dtx
   [2010/11/25 v3.5d achemso configuration: J. Chem. Theory Comput.]
 \def\acs@type@list{article,suppinfo}
 %</jctcce>
-%<*jcchff>
-\ProvidesFile{jcchff.cfg}
-  [2010/11/25 v3.5d achemso configuration: J. Comb. Chem.]
-\def\acs@type@list{article,report,perspective,suppinfo}
-\SectionNumbersOff
-%</jcchff>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
   [2010/11/25 v3.5d achemso configuration: J. Med. Chem.]
