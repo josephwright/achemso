@@ -187,9 +187,9 @@ localinstall: unpack
 	TEXMFHOME=`kpsewhich --var-value=TEXMFHOME` ; \
 	mkdir -p $$TEXMFHOME/tex/$(PACKAGEROOT)/config ; \
 	rm -rf $$TEXMFHOME/tex/$(PACKAGEROOT)/*.* ; \
-	cp *.sty $$TEXMFHOME/tex/$(PACKAGEROOT)/ ; \
 	cp *.cfg $$TEXMFHOME/tex/$(PACKAGEROOT)/config/ ; \
-	texhash &> /dev/null
+	cp *.cls $$TEXMFHOME/tex/$(PACKAGEROOT)/ ; \
+	cp *.sty $$TEXMFHOME/tex/$(PACKAGEROOT)/ 
 	
 tds: doc
 	echo "Creating TDS archive"
