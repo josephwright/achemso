@@ -3141,6 +3141,9 @@ This work consists of the file  achemso.dtx
 \ifx\acs@manuscript\acs@manuscript@suppinfo
   \setkeys{acs}{maxauthors = 0}
   \def\thepage{S\arabic{page}}
+  \renewcommand*\thefigure{S\@arabic\c@figure}
+  \renewcommand*\thescheme{S\@arabic\c@scheme}
+  \renewcommand*\thetable{S\@arabic\c@table}
   \AtBeginDocument
     {%
       \renewcommand*\citenumfont[1]{S#1}%
