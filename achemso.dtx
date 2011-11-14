@@ -2909,8 +2909,8 @@ This work consists of the file  achemso.dtx
       \begin{center}
         \fbox
           {%
-            \begin{minipage}{9 cm}
-              \vbox to 3.5 cm{#1}%
+            \begin{minipage}{\acs@tocentry@height}
+              \vbox to \acs@tocentry@width{#1}%
             \end{minipage}%
           }%
       \end{center}%
@@ -2922,6 +2922,10 @@ This work consists of the file  achemso.dtx
     }%
   \AtEndDocument{\acs@tocentry@text}%
 }
+\newlength{\acs@tocentry@height}
+\newlength{\acs@tocentry@width}
+\setlength{\acs@tocentry@height}{9 cm}
+\setlength{\acs@tocentry@width}{3.5 cm}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -3647,6 +3651,8 @@ This work consists of the file  achemso.dtx
 \ifx\acs@manuscript\acs@manuscript@communication
   \SectionsOff
 \fi
+\setlength{\acs@tocentry@height}{8.9 cm}
+\setlength{\acs@tocentry@width}{4.6 cm}
 %</cgdefu>
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
