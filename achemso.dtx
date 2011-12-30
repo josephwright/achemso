@@ -3960,10 +3960,35 @@ This work consists of the file  achemso.dtx
 %<*jnprdf>
 \ProvidesFile{jnprdf.cfg}
   [2011/11/14 v3.5j achemso configuration: J. Nat. Prod.]
+\renewcommand*{\abstractname}{ABSTRACT}
+\renewcommand*{\acknowledgementname}{ACKNOWLEDGEMENT}
+\renewcommand*{\suppinfoname}{ASSOCIATED CONTENT}
+\SectionNumbersOff
+\renewcommand*{\acs@abstract}{%
+  \quotation
+  \textbf{\abstractname :}%
+}
+\AbstractOn
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
 \fi
+\def\refname{%
+  \ifnum\the\value{bibnote}>\z@\relax
+    NOTES AND
+  \fi 
+  REFERENCES%
+}
+\captionsetup{
+  labelfont = bf,
+  labelsep  = period
+}
+\renewcommand\acs@suppinfo@print[1]{%
+  \textbf{Supporting Information}%
+  #1
+  This material is available free of charge via the Internet at
+  \url{http://pubs.acs.org/}.
+}
 %</jnprdf>
 %<*joceah>
 %\changes{v3.3e}{2009/11/18}{Formatting for \emph{J.\ Org.\ Chem}.\ 
