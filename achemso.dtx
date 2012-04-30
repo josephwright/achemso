@@ -417,17 +417,17 @@ This work consists of the file  achemso.dtx
 %
 %\changes{v3.4}{2010/01/15}{Require \pkg{cleveref}, dropping 
 %  \pkg{varioref} use}
+%\changes{v3.6}{2012/01/11}{Drop \pkg{cleverref} use}
 % The \pkg{achemso} class requires the following packages:
 %\begin{itemize}
 %  \item \pkg{caption}
-%  \item \pkg{cleveref}
 %  \item \pkg{float}
 %  \item \pkg{geometery}
 %  \item \pkg{natbib}
 %  \item \pkg{setspace}
 %  \item \pkg{xkeyval}
 %\end{itemize} 
-% These are normally present in the current major \TeX\ distributions,
+% These are normally present in the current major \TeX{} distributions,
 % but are also available from \href{http://www.ctan.org}{The 
 % Comprehensive TeX Archive Network}.
 %
@@ -538,13 +538,6 @@ This work consists of the file  achemso.dtx
 % the \opt{email} option, which takes Boolean values only. The default
 % is to print e-mail addresses. Notice that phone and fax numbers are
 % only printed if e-mail addresses are printed.
-% 
-%\DescribeOption{hyperref}
-%\changes{v3.4b}{2010/02/05}{New \texttt{hyperref} option}
-% Due to load-order issues inside the class, it is necessary to 
-% load \pkg{hyperref} as part of the class loading. Thus if
-% \pkg{hyperref} is required the \opt{hyperref} option must be
-% given to the class.
 %
 % Other options are provided by the package, but when used with the
 % class these are silently ignored. If you need to override the 
@@ -656,16 +649,6 @@ This work consists of the file  achemso.dtx
 % standard \texttt{table} and \texttt{figure} floats is altered to be 
 % ``here'' if possible.  The contents of all floats is automatically 
 % horizontally centred on the page.
-%
-%\DescribeMacro{\ref}
-%\DescribeMacro{\plainref}
-% The behaviour of the \cs{ref} macro is modified by the \pkg{achemso}
-% class, so that it will automatically include the name of the
-% floating environment.  For example, |\ref{table:one}| will yield 
-% ``Table~1'' without the user adding the ``Table'' part. Multiple
-% cross-references will automatically be sorted and compressed.
-% To access the number associated with the float without any
-% text or other formatting the \cs{plainref} macro is available.
 % 
 %\subsection{Section headers}
 %
@@ -923,7 +906,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*class>
 \ProvidesClass{achemso}
-  [2011/12/30 v3.5k Submission to ACS journals]
+  [2012/01/11 v3.6 Submission to ACS journals]
 \LoadClass[12pt,letter]{article}
 %    \end{macrocode}
 %    
@@ -943,7 +926,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*package>
 \ProvidesPackage{achemso}
-  [2011/12/30 v3.5k Support for ACS journals]
+  [2012/01/11 v3.6 Support for ACS journals]
 \@ifclassloaded{achemso}{%
   \PackageInfo{achemso}{%
     You have already loaded the `achemso' class:\MessageBreak
@@ -1106,6 +1089,9 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\end{macro}
+% \begin{macro}
+% \changes{v3.6}{2011/01/11}{Allow \opt{biblabel} option to work
+%   after class or package loading}
 % The \opt{biochemistry} option is an alias for \opt{biochem}. The 
 % \opt{biblabel} option is a choice, which is implemented using a 
 % csname search. The group here prevents hash table pollution, whilst
@@ -1121,15 +1107,20 @@ This work consists of the file  achemso.dtx
       Unknown value `#1' for\MessageBreak biblabel option%
     }%
   }{%
-%<*class>
-    \AtEndOfClass{\@nameuse{acs@biblabel@#1}}%
-%</class>
-%<*package>
-    \AtEndOfPackage{\@nameuse{acs@biblabel@#1}}%
-%</package>
+    \acs@activate@biblabel{\@nameuse{acs@biblabel@#1}}%
   }%
 }
+\newcommand*\acs@activate@biblabel{}
+%<*class>
+\let\acs@activate@biblabel\AtEndOfClass
+\AtEndOfClass{\let\acs@activate@biblabel\@firstofone}
+%</class>
+%<*package>
+\let\acs@activate@biblabel\AtEndOfPackage
+\AtEndOfPackage{\let\acs@activate@biblabel\@firstofone}
+%</package>
 %    \end{macrocode}
+% \end{macro}
 %\begin{macro}{\acs@biblabel@brackets}
 %\begin{macro}{\acs@biblabel@fullstop}
 %\begin{macro}{\acs@biblabel@period}
@@ -1472,7 +1463,6 @@ This work consists of the file  achemso.dtx
   \expandafter\@gobble
 \fi
   {hyperref}
-\RequirePackage[capitalise]{cleveref}
 \AtBeginDocument{\doublespacing}
 %    \end{macrocode}
 %    
@@ -2558,28 +2548,15 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
-%\changes{v3.4}{2010/01/15}{Float names now set up for use with
-%  \pkg{cleveref}}
-% As \pkg{cleveref} is used for cross-references, some new names have to
-% be defined.
-%    \begin{macrocode}
-\crefname{chart}{Chart}{Chart}
-\crefname{figure}{Figure}{Figures}
-\crefname{graph}{Graph}{Graphs}
-\crefname{scheme}{Scheme}{Schemes}
-%    \end{macrocode}
 %\begin{macro}{\plainref}
 %\changes{v3.4}{2010/01/15}{New macro}
 %\begin{macro}{\ref}
 %\changes{v3.4}{2010/01/15}{Redefined to use \pkg{cleveref}}
-% As \pkg{cleveref} does not alter the standard \cs{ref} macro, it is
-% first backed up, then redefined to be ``clever''.
+%\changes{v3.6}{2012/01/11}{Drop \pkg{cleveref}}
+% For legacy support.
 %    \begin{macrocode}
 \newcommand*\plainref{}
-\AtBeginDocument{
-  \let\plainref\ref
-  \let\ref\cref
-}
+\AtBeginDocument{\let\plainref\ref}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -3454,7 +3431,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
-  [2011/12/30 v3.5k achemso configuration: ACS Chem. Biol.]
+  [2012/01/11 v3.6 achemso configuration: ACS Chem. Biol.]
 \setkeys{acs}{
   biblabel = fullstop,
   biochem  = true,
@@ -3466,7 +3443,7 @@ This work consists of the file  achemso.dtx
 %</acbcct>
 %<*acbcct>
 \ProvidesFile{accacs.cfg}
-  [2011/12/30 v3.5k achemso configuration: ACS Catal.]
+  [2012/01/11 v3.6 achemso configuration: ACS Catal.]
 \setkeys{acs}{
  keywords = true,
 }
@@ -3475,7 +3452,7 @@ This work consists of the file  achemso.dtx
 %</acbcct>
 %<*achre4>
 \ProvidesFile{achre4.cfg}
-  [2011/12/30 v3.5k achemso configuration: Acc. Chem. Res.]
+  [2012/01/11 v3.6 achemso configuration: Acc. Chem. Res.]
 \setkeys{acs}{
   biblabel = plain,
   usetitle = true
@@ -3485,7 +3462,7 @@ This work consists of the file  achemso.dtx
 %</achre4>
 %<*acncdm>
 \ProvidesFile{acncdm.cfg}
-  [2011/12/30 v3.5k achemso configuration: ACS Chem. Neurosci.]
+  [2012/01/11 v3.6 achemso configuration: ACS Chem. Neurosci.]
 \def\acs@type@list{article,review,letter,suppinfo,viewpoint}
 \setkeys{acs}{
   biblabel      = fullstop,
@@ -3497,7 +3474,7 @@ This work consists of the file  achemso.dtx
 %</acncdm>
 %<*acsccc>
 \ProvidesFile{acsccc.cfg}
-  [2011/12/30 v3.5k achemso configuration: ACS Combinatorial Sci.]
+  [2012/01/11 v3.6 achemso configuration: ACS Combinatorial Sci.]
 \def\acs@type@list{article,letter,review,perspective,account,note,suppinfo}
 \setkeys{acs}{
  keywords = true,
@@ -3507,7 +3484,7 @@ This work consists of the file  achemso.dtx
 %</acsccc>
 %<*ancac3>
 \ProvidesFile{ancac3.cfg}
-  [2011/12/30 v3.5k achemso configuration: ACS Nano]
+  [2012/01/11 v3.6 achemso configuration: ACS Nano]
 \setkeys{acs}{
   biblabel   = fullstop,
   etalmode   = truncate,
@@ -3519,13 +3496,13 @@ This work consists of the file  achemso.dtx
 %</ancac3>
 %<*ancham>
 \ProvidesFile{ancham.cfg}
-  [2011/12/30 v3.5k achemso configuration: Anal. Chem.]
+  [2012/01/11 v3.6 achemso configuration: Anal. Chem.]
 \def\acs@type@list{article,note,suppinfo}
 \SectionNumbersOff
 %</ancham>
 %<*bichaw>
 \ProvidesFile{biochem.cfg}
-  [2011/12/30 v3.5k achemso configuration: Biochemistry]
+  [2012/01/11 v3.6 achemso configuration: Biochemistry]
 \setkeys{acs}{
   abbreviations = true,
   biblabel      = fullstop,
@@ -3575,7 +3552,7 @@ This work consists of the file  achemso.dtx
 %</bichaw>
 %<*bcches>
 \ProvidesFile{bcches.cfg}
-  [2011/12/30 v3.5k achemso configuration: Bioconjugate Chem.]
+  [2012/01/11 v3.6 achemso configuration: Bioconjugate Chem.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3593,14 +3570,14 @@ This work consists of the file  achemso.dtx
 %\changes{v3.4e}{2010/03/13}{No article titles for
 %  \emph{Biomacromolecules}}
 \ProvidesFile{bomaf6.cfg}
-  [2011/12/30 v3.5k achemso configuration: Biomacromolecules]
+  [2012/01/11 v3.6 achemso configuration: Biomacromolecules]
 \def\acs@type@list{article,comment,communication,note,review,suppinfo}
 \SectionNumbersOff
 \AtEndOfClass{\SectionsOn}
 %</bomaf6>
 %<*bipret>
 \ProvidesFile{bipret.cfg}
-  [2011/12/30 v3.5k achemso configuration: Biotechnol. Prog.]
+  [2012/01/11 v3.6 achemso configuration: Biotechnol. Prog.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3610,7 +3587,7 @@ This work consists of the file  achemso.dtx
 %</bipret>
 %<*crtoec>
 \ProvidesFile{crtoec.cfg}
-  [2011/12/30 v3.5k achemso configuration: Chem. Res. Toxicol.]
+  [2012/01/11 v3.6 achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
   biochem  = true,
   super    = false,
@@ -3623,7 +3600,7 @@ This work consists of the file  achemso.dtx
 %</crtoec>
 %<*chreay>
 \ProvidesFile{chreay.cfg}
-  [2011/12/30 v3.5k achemso configuration: Chem. Rev.]
+  [2012/01/11 v3.6 achemso configuration: Chem. Rev.]
 \def\acs@type@default{review}
 \def\acs@type@list{review}
 %    \end{macrocode}
@@ -3634,7 +3611,7 @@ This work consists of the file  achemso.dtx
 %<*cmatex>
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
-  [2011/12/30 v3.5k achemso configuration: Chem. Mater.]
+  [2012/01/11 v3.6 achemso configuration: Chem. Mater.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3643,7 +3620,7 @@ This work consists of the file  achemso.dtx
 %</cmatex>
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
-  [2011/12/30 v3.5k achemso configuration: Cryst. Growth Des.]
+  [2012/01/11 v3.6 achemso configuration: Cryst. Growth Des.]
 \def\acs@type@list{%
   article,communication,perspective,suppinfo%
 }
@@ -3656,13 +3633,13 @@ This work consists of the file  achemso.dtx
 %</cgdefu>
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
-  [2011/12/30 v3.5k achemso configuration: Energy Fuels]
+  [2012/01/11 v3.6 achemso configuration: Energy Fuels]
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
 %</enfuem>
 %<*esthag>
 \ProvidesFile{esthag.cfg}
-  [2011/12/30 v3.5k achemso configuration: Environ. Sci. Technol.]
+  [2012/01/11 v3.6 achemso configuration: Environ. Sci. Technol.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3672,7 +3649,7 @@ This work consists of the file  achemso.dtx
 %</esthag>
 %<*iecred>
 \ProvidesFile{iecred.cfg}
-  [2011/12/30 v3.5k achemso configuration: Ind. Eng. Chem. Res.]
+  [2012/01/11 v3.6 achemso configuration: Ind. Eng. Chem. Res.]
 \setkeys{acs}{
   biblabel = fullstop,
   usetitle = true
@@ -3681,7 +3658,7 @@ This work consists of the file  achemso.dtx
 %</iecred>
 %<*inoraj>
 \ProvidesFile{inoraj.cfg}
-  [2011/12/30 v3.5k achemso configuration: Inorg. Chem.]
+  [2012/01/11 v3.6 achemso configuration: Inorg. Chem.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3696,7 +3673,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jacsat>
 \ProvidesFile{jacsat.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Am. Chem. Soc.]
+  [2012/01/11 v3.6 achemso configuration: J. Am. Chem. Soc.]
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication\else
   \expandafter\endinput
@@ -3906,7 +3883,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jafcau>
 \ProvidesFile{jafcau.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Agric. Food Chem.]
+  [2012/01/11 v3.6 achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   super    = false,
   usetitle = true
@@ -3916,7 +3893,7 @@ This work consists of the file  achemso.dtx
 %</jafcau>
 %<*jceaax>
 \ProvidesFile{jceaax.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Chem. Eng. Data]
+  [2012/01/11 v3.6 achemso configuration: J. Chem. Eng. Data]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3926,7 +3903,7 @@ This work consists of the file  achemso.dtx
 %</jceaax>
 %<*jceda8>
 \ProvidesFile{jceda8.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Chem. Ed.]
+  [2012/01/11 v3.6 achemso configuration: J. Chem. Ed.]
 \SectionNumbersOff
 \setkeys{acs}{
   usetitle = true
@@ -3936,7 +3913,7 @@ This work consists of the file  achemso.dtx
 %</jceda8>
 %<*jcisd8>
 \ProvidesFile{jcisd8.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Chem. Inf. Model.]
+  [2012/01/11 v3.6 achemso configuration: J. Chem. Inf. Model.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3945,12 +3922,12 @@ This work consists of the file  achemso.dtx
 %</jcisd8>
 %<*jctcce>
 \ProvidesFile{jctcce.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Chem. Theory Comput.]
+  [2012/01/11 v3.6 achemso configuration: J. Chem. Theory Comput.]
 \def\acs@type@list{article,suppinfo}
 %</jctcce>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Med. Chem.]
+  [2012/01/11 v3.6 achemso configuration: J. Med. Chem.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -3959,7 +3936,7 @@ This work consists of the file  achemso.dtx
 %</jmcmar>
 %<*jnprdf>
 \ProvidesFile{jnprdf.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Nat. Prod.]
+  [2012/01/11 v3.6 achemso configuration: J. Nat. Prod.]
 \renewcommand*{\abstractname}{ABSTRACT}
 \renewcommand*{\acknowledgementname}{ACKNOWLEDGEMENT}
 \renewcommand*{\suppinfoname}{ASSOCIATED CONTENT}
@@ -3994,7 +3971,7 @@ This work consists of the file  achemso.dtx
 %\changes{v3.3e}{2009/11/18}{Formatting for \emph{J.\ Org.\ Chem}.\ 
 %  schemes corrected}
 \ProvidesFile{joceah.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Org. Chem.]
+  [2012/01/11 v3.6 achemso configuration: J. Org. Chem.]
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
   \SectionsOff
@@ -4005,7 +3982,7 @@ This work consists of the file  achemso.dtx
 %</joceah>
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Phys. Chem. A]
+  [2012/01/11 v3.6 achemso configuration: J. Phys. Chem. A]
 \def\acs@type@list{article,suppinfo}
 \setkeys{acs}{keywords = true}
 \SectionNumbersOff
@@ -4017,7 +3994,7 @@ This work consists of the file  achemso.dtx
 %</jpcafh>
 %<*jpcbfk>
 \ProvidesFile{jpcbfk.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Phys. Chem. B]
+  [2012/01/11 v3.6 achemso configuration: J. Phys. Chem. B]
 \def\acs@type@list{article,suppinfo}
 \setkeys{acs}{keywords = true}
 \SectionNumbersOff
@@ -4026,7 +4003,7 @@ This work consists of the file  achemso.dtx
 %</jpcbfk>
 %<*jpccck>
 \ProvidesFile{jpccck.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Phys. Chem. C]
+  [2012/01/11 v3.6 achemso configuration: J. Phys. Chem. C]
 \def\acs@type@list{article,suppinfo}
 \setkeys{acs}{keywords = true}
 \SectionNumbersOff
@@ -4039,7 +4016,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 %<*jpclcd>
 \ProvidesFile{jpclcd.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Phys. Chem. Lett.]
+  [2012/01/11 v3.6 achemso configuration: J. Phys. Chem. Lett.]
 \setkeys{acs}{usetitle = true}
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
@@ -4049,7 +4026,7 @@ This work consists of the file  achemso.dtx
 %</jpclcd>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
-  [2011/12/30 v3.5k achemso configuration: J. Proteome Res.]
+  [2012/01/11 v3.6 achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
   usetitle = true
 }
@@ -4058,25 +4035,25 @@ This work consists of the file  achemso.dtx
 %</jprobs>
 %<*langd5>
 \ProvidesFile{langd5.cfg}
-  [2011/12/30 v3.5k achemso configuration: Langmuir]
+  [2012/01/11 v3.6 achemso configuration: Langmuir]
 \def\acs@type@list{article,letter,suppinfo}
 \SectionNumbersOff
 %</langd5>
 %<*mamobx>
 \ProvidesFile{mamobx.cfg}
-  [2011/12/30 v3.5k achemso configuration: Macromolecules]
+  [2012/01/11 v3.6 achemso configuration: Macromolecules]
 \SectionNumbersOff
 %</mamobx>
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
-  [2011/12/30 v3.5k achemso configuration: Mol. Pharm.]
+  [2012/01/11 v3.6 achemso configuration: Mol. Pharm.]
 \setkeys{acs}{usetitle = true}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</mpohbp>
 %<*nalefd>
 \ProvidesFile{nalefd.cfg}
-  [2011/12/30 v3.5k achemso configuration: Nano Lett.]
+  [2012/01/11 v3.6 achemso configuration: Nano Lett.]
 \setkeys{acs}{keywords = true}
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
@@ -4084,7 +4061,7 @@ This work consists of the file  achemso.dtx
 %</nalefd>
 %<*orlef7>
 \ProvidesFile{orlef7.cfg}
-  [2011/12/30 v3.5k achemso configuration: Org. Lett.]
+  [2012/01/11 v3.6 achemso configuration: Org. Lett.]
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionsOff
@@ -4094,13 +4071,13 @@ This work consists of the file  achemso.dtx
 %</orlef7>
 %<*oprdfk>
 \ProvidesFile{oprdfk.cfg}
-  [2011/12/30 v3.5k achemso configuration: Org. Proc. Res. Dev.]
+  [2012/01/11 v3.6 achemso configuration: Org. Proc. Res. Dev.]
 \def\acs@type@list{article,highlight,review,suppinfo}
 \SectionNumbersOff
 %</oprdfk>
 %<*orgnd7>
 \ProvidesFile{orgnd7.cfg}
-  [2011/12/30 v3.5k achemso configuration: Organometallics]
+  [2012/01/11 v3.6 achemso configuration: Organometallics]
 \SectionNumbersOff
 %</orgnd7>
 %    \end{macrocode}
@@ -4282,7 +4259,7 @@ this is not the case \cite[p.~1]{Cotton1999}.
 \subsection{Floats}
 
 New float types are automatically set up by the class file.  The
-means graphics are included as follows (\ref{sch:example}).  As
+means graphics are included as follows (Scheme~\ref{sch:example}).  As
 illustrated, the float is ``here'' if possible.
 \begin{scheme}
   Your scheme graphic would go here: \texttt{.eps} format\\
@@ -4323,7 +4300,7 @@ the basic \LaTeX\ math(s) input should work correctly without
 this.  Some inline material \( y = mx + c \) or $ 1 + 1 = 2 $
 followed by some display. \[ A = \pi r^2 \]
 
-It is possible to label equations in the usual way (\ref{eqn:example}).
+It is possible to label equations in the usual way (Eq.~\ref{eqn:example}).
 \begin{equation}
   \frac{\mathrm{d}}{\mathrm{d}x} \, r^2 = 2r \label{eqn:example}
 \end{equation}
@@ -4344,8 +4321,8 @@ rather than the bottom, a minipage may be used.
 \section{Experimental}
 
 The usual experimental details should appear here.  This could
-include a table, which can be referenced as \ref{tbl:example}. Notice
-that the caption is positioned at the top of the table. 
+include a table, which can be referenced as Table~\ref{tbl:example}.
+Notice that the caption is positioned at the top of the table. 
 \begin{table}
   \caption{An example table}
   \label{tbl:example}
@@ -4364,7 +4341,7 @@ that the caption is positioned at the top of the table.
 Adding notes to tables can be complicated.  Perhaps the easiest
 method is to generate these using the basic
 \texttt{\textbackslash textsuperscript} and
-\texttt{\textbackslash emph} macros, as illustrated (\ref{tbl:notes}).
+\texttt{\textbackslash emph} macros, as illustrated (Table~\ref{tbl:notes}).
 \begin{table}
   \caption{A table with notes}
   \label{tbl:notes}
@@ -4390,32 +4367,6 @@ The use of new commands should be limited to simple things which will
 not interfere with the production process.  For example,
 \texttt{\textbackslash mycommand} has been defined in this example,
 to give italic, mono-spaced text: \mycommand{some text}.
-
-\section{Cross-referencing material}
-
-Items such as figures, schemes and tables will need to be referred to 
-in the main text. The class loads the \textsf{cleveref} package,
-which means that text such as
-``\ref{fgr:example,fgr:example:2,fgr:example:3}'' can be created 
-automatically. This is achieved by modifying the behaviour of the
-\texttt{\textbackslash ref} macro: plain numerical references with
-no preceding text are available using the 
-\texttt{\textbackslash plainref} macro. For example, compare
-``\ref{fgr:example}'' and ``\plainref{fgr:example}''.
-
-\begin{figure}
-  This figure is used to demonstrate \\
-  cross-referencing.
-  \caption{A second example figure}
-  \label{fgr:example:2}
-\end{figure}
-
-\begin{figure}
-  This figure is used to demonstrate \\
-  cross-referencing.
-  \caption{A third example figure}
-  \label{fgr:example:3}
-\end{figure}
 
 \section{Extra information when writing JACS Communications}
 
