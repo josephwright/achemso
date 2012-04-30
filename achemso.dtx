@@ -739,6 +739,13 @@ This work consists of the file  achemso.dtx
 % \opt{usetitle=false} for the \file{achemso} style and
 % \opt{usetitle=true} for the \file{biochem} style.
 %
+% \DescribeOption{chaptertitle}
+% \changes{v3.7}{2012/04/30}{New \opt{chaptertitle} option for bibliography}
+% The option boolean \opt{chaptertitle} option is provided to allow flexibility
+% for the inclusion of chapter titles for \texttt{book} and
+% related entries. The standard setting is \opt{false}: setting
+% it to \opt{true} will cause chapter titles to be included.
+%
 %\DescribeOption{etalmode}
 %\changes{v3.3a}{2009/09/01}{New \texttt{etalmode} option}
 %\DescribeOption{maxauthors}
@@ -993,6 +1000,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\ifacs@abbreviations}
 %\begin{macro}{\ifacs@biochem}
+%\begin{macro}{\ifacs@chaptertitle}
 %\begin{macro}{\ifacs@email}
 %\begin{macro}{\ifacs@hyperref}
 %\begin{macro}{\ifacs@keywords}
@@ -1003,6 +1011,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \newif\ifacs@abbreviations
 \newif\ifacs@biochem
+\newif\ifacs@chaptertitle
 \newif\ifacs@email
 \newif\ifacs@hyperref
 \newif\ifacs@keywords
@@ -1013,6 +1022,9 @@ This work consists of the file  achemso.dtx
 }
 \define@key{acs}{biochem}[true]{%
   \acs@keyval@bool{biochem}{#1}%
+}
+\define@key{acs}{chaptertitle}[true]{%
+  \acs@keyval@bool{chaptertitle}{#1}%
 }
 \define@key{acs}{email}[true]{%
   \acs@keyval@bool{email}{#1}%
@@ -1030,6 +1042,7 @@ This work consists of the file  achemso.dtx
   \acs@keyval@bool{usetitle}{#1}%
 }
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -1377,10 +1390,13 @@ This work consists of the file  achemso.dtx
   \immediate\write\acs@bib@file{%
     @Control\string{%
       achemso-control,^^J%
-      \@tempa{ctrl-use-title\space\space\space\space}{%
+      \@tempa{ctrl-use-title\space\space\space\space\space}{%
         \ifacs@usetitle yes\else no\fi
       }%
-      \@tempa{ctrl-etal-number\space\space}{\acs@maxauthors}%
+      \@tempa{ctrl-chapter-title\space}{%
+        \ifacs@chaptertitle yes\else no\fi
+      }%
+      \@tempa{ctrl-etal-number\space\space\space}{\acs@maxauthors}%
       \@tempa{ctrl-etal-firstonly}{%
         \ifacs@etal@truncate no\else yes\fi
       }%
@@ -4476,6 +4492,7 @@ ENTRY
     author
     booktitle
     chapter
+    ctrl-chapter-title
     ctrl-etal-firstonly
     ctrl-etal-number
     ctrl-use-title
@@ -5180,12 +5197,14 @@ FUNCTION { end.bib } {
 % from LaTeX to BibTeX
 
 INTEGERS {
+  ctrl.chapter.title.bool
   ctrl.use.title.bool
   ctrl.etal.firstonly.bool
   ctrl.etal.number.int
 }
 
 FUNCTION { initialize.control.values } {
+  #0 'ctrl.chapter.title.bool :=
 %<*bio>
   #1 'ctrl.use.title.bool :=
 %</bio>
@@ -5197,7 +5216,8 @@ FUNCTION { initialize.control.values } {
 }
 
 FUNCTION { control } {
-  ctrl-use-title yes.no.to.bool 'ctrl.use.title.bool :=
+  ctrl-chapter-title  yes.no.to.bool 'ctrl.chapter.title.bool  :=
+  ctrl-use-title      yes.no.to.bool 'ctrl.use.title.bool      :=
   ctrl-etal-firstonly yes.no.to.bool 'ctrl.etal.firstonly.bool :=
   ctrl-etal-number str.to.int 'ctrl.etal.number.int :=
 }
@@ -5782,12 +5802,21 @@ FUNCTION { format.title.booktitle.book } {
       title 'book.title := 
     }
     {
+      ctrl.chapter.title.bool
+        {
+          title empty$
+            'skip$
+            { title 'chapter.title := }
+          if$
+        }
+        'skip$
+      if$
       maintitle empty$
         { booktitle 'book.title := }
         { maintitle add.period booktitle * 'book.title := }
       if$  
     }
-  if$  
+  if$
   chapter.title empty$
     { }
     { 
