@@ -757,7 +757,7 @@ This work consists of the file  achemso.dtx
 %\end{verbatim}
 % In both cases, the maximum number of authors permitted before 
 % introducing `et al.' is governed by the \opt{maxauthors} option.
-% This option recognises the sentinal value $0$, which indicates that
+% This option recognises the sentinel value $0$, which indicates that
 % no shortening should occur at all.
 %
 %\DescribeOption{biblabel}
@@ -3924,6 +3924,9 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jctcce.cfg}
   [2012/01/11 v3.6 achemso configuration: J. Chem. Theory Comput.]
 \def\acs@type@list{article,suppinfo}
+\setkeys{acs}{
+  maxauthors = 0
+}
 %</jctcce>
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
