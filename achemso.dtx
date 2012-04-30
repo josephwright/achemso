@@ -548,7 +548,7 @@ This work consists of the file  achemso.dtx
 % the \cs{documentclass} line using \cs{setkeys}:
 %\begin{LaTeXdemo}[code only]
 %  \documentclass[journal = jacsat]{achemso}
-%  \setkeys{acs}{usetitle = true}
+%  \setkeys{acs}{articletitle = true}
 %\end{LaTeXdemo} 
 %
 %\subsection{Manuscript meta-data}
@@ -733,11 +733,13 @@ This work consists of the file  achemso.dtx
 % on and off (and takes Boolean values: \opt{super=true} and
 % \opt{super=false} are valid).
 % 
-%\DescribeOption{usetitle}
-% The \opt{usetitle} option is a Boolean, and sets whether the title 
+%\DescribeOption{articletitle}
+% \changes{v3.7}{2012/04/30}{Rename \opt{usetitle} option to
+%   \opt{articletitle}}
+% The \opt{articletitle} option is a Boolean, and sets whether the title 
 % of a paper referenced appears in the bibliography.  The default is 
-% \opt{usetitle=false} for the \file{achemso} style and
-% \opt{usetitle=true} for the \file{biochem} style.
+% \opt{articletitle=false} for the \file{achemso} style and
+% \opt{articletitle=true} for the \file{biochem} style.
 %
 % \DescribeOption{chaptertitle}
 % \changes{v3.7}{2012/04/30}{New \opt{chaptertitle} option for bibliography}
@@ -786,7 +788,7 @@ This work consists of the file  achemso.dtx
 % \emph{Biochemistry} is probably the most prominent.  The
 % \opt{biochemistry} or \opt{biochem} option uses the style of
 % \emph{Biochemistry} for the bibliography, rather than the normal
-% \ACS\ style.  For this style, the \opt{usetitle=true} option is the
+% \ACS\ style.  For this style, the \opt{articletitle=true} option is the
 % default.\footnote{More accurately, the default built into the
 % \BibTeX\ style file is to use article titles with the
 % \emph{Biochemistry} style.}
@@ -999,26 +1001,29 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\ifacs@abbreviations}
+%\begin{macro}{\ifacs@articletitle}
 %\begin{macro}{\ifacs@biochem}
 %\begin{macro}{\ifacs@chaptertitle}
 %\begin{macro}{\ifacs@email}
 %\begin{macro}{\ifacs@hyperref}
 %\begin{macro}{\ifacs@keywords}
 %\begin{macro}{\ifacs@super}
-%\begin{macro}{\ifacs@usetitle}
 % These are all very trivial definitions: to avoid issues with older
 % versions of \pkg{xkeyval} each definition is done directly.
 %    \begin{macrocode}
 \newif\ifacs@abbreviations
+\newif\ifacs@articletitle
 \newif\ifacs@biochem
 \newif\ifacs@chaptertitle
 \newif\ifacs@email
 \newif\ifacs@hyperref
 \newif\ifacs@keywords
 \newif\ifacs@super
-\newif\ifacs@usetitle
 \define@key{acs}{abbreviations}[true]{%
   \acs@keyval@bool{abbreviations}{#1}%
+}
+\define@key{acs}{articletitle}[true]{%
+  \acs@keyval@bool{articletitle}{#1}%
 }
 \define@key{acs}{biochem}[true]{%
   \acs@keyval@bool{biochem}{#1}%
@@ -1039,7 +1044,7 @@ This work consists of the file  achemso.dtx
   \acs@keyval@bool{super}{#1}%
 }
 \define@key{acs}{usetitle}[true]{%
-  \acs@keyval@bool{usetitle}{#1}%
+  \acs@keyval@bool{articletitle}{#1}%
 }
 %    \end{macrocode}
 %\end{macro}
@@ -1385,13 +1390,13 @@ This work consists of the file  achemso.dtx
   \immediate\openout\acs@bib@file\acs@bib@name\relax
   \immediate\write\acs@bib@file{\acs@bib@message}%
   \edef\@tempa##1##2{%
-    \space\space##1\space = \space"##2",^^J%
+    \space\space##1\space = "##2",^^J%
   }%
   \immediate\write\acs@bib@file{%
     @Control\string{%
       achemso-control,^^J%
-      \@tempa{ctrl-use-title\space\space\space\space\space}{%
-        \ifacs@usetitle yes\else no\fi
+      \@tempa{ctrl-article-title\space}{%
+        \ifacs@articletitle yes\else no\fi
       }%
       \@tempa{ctrl-chapter-title\space}{%
         \ifacs@chaptertitle yes\else no\fi
@@ -1451,13 +1456,13 @@ This work consists of the file  achemso.dtx
 %<*class>
 \setkeys{acs}{
   abbreviations = false,
+  articletitle  = false,
   biblabel      = brackets,
   biochem       = false,
   etalmode      = firstonly,
   keywords      = false,
   maxauthors    = 15,
-  super         = true,
-  usetitle      = false
+  super         = true
 }
 %    \end{macrocode}
 % When using the class, \pkg{notes2bib} is always emulated. Other
@@ -3452,10 +3457,10 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{acbcct.cfg}
   [2012/01/11 v3.6 achemso configuration: ACS Chem. Biol.]
 \setkeys{acs}{
-  biblabel = fullstop,
-  biochem  = true,
-  super    = false,
-  usetitle = true
+  articletitle = true,
+  biblabel     = fullstop,
+  biochem      = true,
+  super        = false
 }
 \def\acs@type@list{article,letter,review,suppinfo}
 \SectionNumbersOff
@@ -3473,8 +3478,8 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{achre4.cfg}
   [2012/01/11 v3.6 achemso configuration: Acc. Chem. Res.]
 \setkeys{acs}{
-  biblabel = plain,
-  usetitle = true
+  articletitle = true,
+  biblabel     = plain
 }
 \def\acs@type@list{article,suppinfo}
 \def\abstractname{Conspectus}
@@ -3484,11 +3489,11 @@ This work consists of the file  achemso.dtx
   [2012/01/11 v3.6 achemso configuration: ACS Chem. Neurosci.]
 \def\acs@type@list{article,review,letter,suppinfo,viewpoint}
 \setkeys{acs}{
-  biblabel      = fullstop,
-  biochem       = true,
-  keywords      = true,
-  super         = false,
-  usetitle      = true
+  articletitle = true,
+  biblabel     = fullstop,
+  biochem      = true,
+  keywords     = true,
+  super        = false
 }
 %</acncdm>
 %<*acsccc>
@@ -3496,8 +3501,8 @@ This work consists of the file  achemso.dtx
   [2012/01/11 v3.6 achemso configuration: ACS Combinatorial Sci.]
 \def\acs@type@list{article,letter,review,perspective,account,note,suppinfo}
 \setkeys{acs}{
- keywords = true,
- usetitle = true,
+  articletitle = true,
+  keywords     = true
 }
 \SectionNumbersOff
 %</acsccc>
@@ -3505,7 +3510,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{amclct.cfg}
   [2012/01/11 v3.6 achemso configuration: ACS Med. Chem. Lett.]
 \setkeys{acs}{
-  usetitle = true
+  articletitle = true
 }
 \def\acs@type@list{article,letter,perspective,suppinfo}
 \SectionNumbersOff
@@ -3514,10 +3519,10 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{ancac3.cfg}
   [2012/01/11 v3.6 achemso configuration: ACS Nano]
 \setkeys{acs}{
-  biblabel   = fullstop,
-  etalmode   = truncate,
-  maxauthors = 10,
-  usetitle   = true
+  articletitle = true,
+  biblabel     = fullstop,
+  etalmode     = truncate,
+  maxauthors   = 10
 }
 \def\acs@type@list{article,perspective,suppinfo}
 \SectionNumbersOff
@@ -3533,11 +3538,11 @@ This work consists of the file  achemso.dtx
   [2012/01/11 v3.6 achemso configuration: Biochemistry]
 \setkeys{acs}{
   abbreviations = true,
+  articletitle  = true,
   biblabel      = fullstop,
   biochem       = true,
   keywords      = true,
-  super         = false,
-  usetitle      = true
+  super         = false
 }
 \SectionNumbersOff
 \def\acs@maketitle@extras@hook{%
@@ -3582,9 +3587,9 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{bcches.cfg}
   [2012/01/11 v3.6 achemso configuration: Bioconjugate Chem.]
 \setkeys{acs}{
-  biochem  = true,
-  super    = false,
-  usetitle = true
+  articletitle = true,
+  biochem      = true,
+  super        = false
 }
 \SectionNumbersOff
 %</bcches>
@@ -3607,8 +3612,8 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{bipret.cfg}
   [2012/01/11 v3.6 achemso configuration: Biotechnol. Prog.]
 \setkeys{acs}{
-  super    = false,
-  usetitle = true
+  articletitle = true,
+  super        = false
 }
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
@@ -3617,9 +3622,9 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{crtoec.cfg}
   [2012/01/11 v3.6 achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
-  biochem  = true,
-  super    = false,
-  usetitle = true
+  articletitle = true,
+  biochem      = true,
+  super        = false
 }
 \def\acs@type@list{%
   article,perspective,profile,review,suppinfo%
@@ -3669,8 +3674,8 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{esthag.cfg}
   [2012/01/11 v3.6 achemso configuration: Environ. Sci. Technol.]
 \setkeys{acs}{
-  super    = false,
-  usetitle = true
+  articletitle = true,
+  super        = false
 }
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
@@ -3679,8 +3684,8 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{iecred.cfg}
   [2012/01/11 v3.6 achemso configuration: Ind. Eng. Chem. Res.]
 \setkeys{acs}{
-  biblabel = fullstop,
-  usetitle = true
+  articletitle = true,
+  biblabel     = fullstop
 }
 \SectionNumbersOff
 %</iecred>
@@ -3913,8 +3918,8 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jafcau.cfg}
   [2012/01/11 v3.6 achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
-  super    = false,
-  usetitle = true
+  articletitle = true,
+  super        = false
 }
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
@@ -3923,7 +3928,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jceaax.cfg}
   [2012/01/11 v3.6 achemso configuration: J. Chem. Eng. Data]
 \setkeys{acs}{
-  usetitle = true
+  articletitle = true
 }
 \def\acs@type@list{article,suppinfo}
 \def\refname{Literature Cited}
@@ -3934,7 +3939,7 @@ This work consists of the file  achemso.dtx
   [2012/01/11 v3.6 achemso configuration: J. Chem. Ed.]
 \SectionNumbersOff
 \setkeys{acs}{
-  usetitle = true
+  articletitle = true
 }
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
@@ -3943,7 +3948,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jcisd8.cfg}
   [2012/01/11 v3.6 achemso configuration: J. Chem. Inf. Model.]
 \setkeys{acs}{
-  usetitle = true
+  articletitle = true
 }
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
@@ -3960,7 +3965,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jmcmar.cfg}
   [2012/01/11 v3.6 achemso configuration: J. Med. Chem.]
 \setkeys{acs}{
-  usetitle = true
+  articletitle = true
 }
 \def\acs@type@list{article,letter,perspective,suppinfo}
 \SectionNumbersOff
@@ -4048,7 +4053,7 @@ This work consists of the file  achemso.dtx
 %<*jpclcd>
 \ProvidesFile{jpclcd.cfg}
   [2012/01/11 v3.6 achemso configuration: J. Phys. Chem. Lett.]
-\setkeys{acs}{usetitle = true}
+\setkeys{acs}{articletitle = true}
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
@@ -4059,7 +4064,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jprobs.cfg}
   [2012/01/11 v3.6 achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
-  usetitle = true
+  articletitle = true
 }
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
@@ -4078,7 +4083,7 @@ This work consists of the file  achemso.dtx
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
   [2012/01/11 v3.6 achemso configuration: Mol. Pharm.]
-\setkeys{acs}{usetitle = true}
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</mpohbp>
@@ -4492,6 +4497,7 @@ ENTRY
     author
     booktitle
     chapter
+    ctrl-article-title
     ctrl-chapter-title
     ctrl-etal-firstonly
     ctrl-etal-number
@@ -5197,29 +5203,30 @@ FUNCTION { end.bib } {
 % from LaTeX to BibTeX
 
 INTEGERS {
+  ctrl.article.title.bool
   ctrl.chapter.title.bool
-  ctrl.use.title.bool
   ctrl.etal.firstonly.bool
   ctrl.etal.number.int
 }
 
 FUNCTION { initialize.control.values } {
-  #0 'ctrl.chapter.title.bool :=
 %<*bio>
-  #1 'ctrl.use.title.bool :=
+  #1 'ctrl.article.title.bool :=
 %</bio>
 %<*!bio>
-  #0 'ctrl.use.title.bool :=
+  #0 'ctrl.article.title.bool :=
 %</!bio>
+  #0 'ctrl.chapter.title.bool :=
   #1 'ctrl.etal.firstonly.bool :=
   #15 'ctrl.etal.number.int :=
 }
 
 FUNCTION { control } {
+  ctrl-article-title  yes.no.to.bool 'ctrl.article.title.bool  :=
   ctrl-chapter-title  yes.no.to.bool 'ctrl.chapter.title.bool  :=
-  ctrl-use-title      yes.no.to.bool 'ctrl.use.title.bool      :=
   ctrl-etal-firstonly yes.no.to.bool 'ctrl.etal.firstonly.bool :=
-  ctrl-etal-number str.to.int 'ctrl.etal.number.int :=
+  ctrl-etal-number    str.to.int     'ctrl.etal.number.int     :=
+  ctrl-use-title      yes.no.to.bool 'ctrl.article.title.bool  :=
 }
 
 % Functions of each bibitem: tracking punctuation and transferring
@@ -5739,7 +5746,7 @@ FUNCTION { format.title } {
 }
 
 FUNCTION { format.title.article } {
-  ctrl.use.title.bool 
+  ctrl.article.title.bool 
     {
       title empty$
         { }
