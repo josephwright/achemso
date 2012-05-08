@@ -5227,7 +5227,10 @@ FUNCTION { control } {
   ctrl-chapter-title  yes.no.to.bool 'ctrl.chapter.title.bool  :=
   ctrl-etal-firstonly yes.no.to.bool 'ctrl.etal.firstonly.bool :=
   ctrl-etal-number    str.to.int     'ctrl.etal.number.int     :=
-  ctrl-use-title      yes.no.to.bool 'ctrl.article.title.bool  :=
+  ctrl-use-title empty$
+    'skip$
+    { ctrl-use-title yes.no.to.bool 'ctrl.article.title.bool  := }
+  if$
 }
 
 % Functions of each bibitem: tracking punctuation and transferring
