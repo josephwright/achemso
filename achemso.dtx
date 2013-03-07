@@ -1414,20 +1414,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %
-% The \pkg{mciteplus} package allows the construction of lists of
-% references with sub-letters. However, it might not be available, and
-% so it is only loaded if available: the \file{.bst} files should work
-% either way. There is also a patch to get cross-references correct
-% with the modified \cs{ref} macro used here.
-%    \begin{macrocode}
-\IfFileExists{mciteplus.sty}{%
-  \RequirePackage{mciteplus}
-%<*!package>
-  \def\@mciteSubRef[##1]##2{\plainref{\@mcitereflabelprefix:##1:##2}}
-%</!package>
-}{}
-%    \end{macrocode}
-%
 %\begin{macro}{\acs@bibliography}
 %\begin{macro}{\bibliography}
 % The \cs{bibliography} macro is now patched so that everything works
@@ -3189,6 +3175,21 @@ This work consists of the file  achemso.dtx
 \RequirePackage{natmove}
 %    \end{macrocode}  
 %\end{macro} 
+%\changes{v3.7f}{2013/03/07}{Moved loading of \textsf{mciteplus} after
+%  \pkg{natbib}}   
+% The \pkg{mciteplus} package allows the construction of lists of
+% references with sub-letters. However, it might not be available, and
+% so it is only loaded if available: the \file{.bst} files should work
+% either way. There is also a patch to get cross-references correct
+% with the modified \cs{ref} macro used here.
+%    \begin{macrocode}
+\IfFileExists{mciteplus.sty}{%
+  \RequirePackage{mciteplus}
+%<*!package>
+  \def\@mciteSubRef[##1]##2{\plainref{\@mcitereflabelprefix:##1:##2}}
+%</!package>
+}{}
+%    \end{macrocode}
 %
 %\begin{macro}{\acs@bibstyle}
 % The next step is to sort out bibliography formatting. With both the
