@@ -4013,11 +4013,14 @@ This work consists of the file  achemso.dtx
 \restylefloat{scheme}
 \floatstyle{plain}
 %</joceah>
+%    \end{macrocode}
+%\changes{v3.7g}{2013/03/27}{Print article titles for \emph{J.~Phys.~Chem.} papers}}
+%    \begin{macrocode}
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
   [2013/07/07 v3.7f achemso configuration: J. Phys. Chem. A]
 \def\acs@type@list{article,suppinfo}
-\setkeys{acs}{keywords = true}
+\setkeys{acs}{articletitle = true, keywords = true}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 %    \end{macrocode}
@@ -4029,7 +4032,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jpcbfk.cfg}
   [2013/07/07 v3.7f achemso configuration: J. Phys. Chem. B]
 \def\acs@type@list{article,suppinfo}
-\setkeys{acs}{keywords = true}
+\setkeys{acs}{articletitle = true, keywords = true}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 \g@addto@macro{\maketitle}{\newpage}
@@ -4038,7 +4041,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jpccck.cfg}
   [2013/07/07 v3.7f achemso configuration: J. Phys. Chem. C]
 \def\acs@type@list{article,suppinfo}
-\setkeys{acs}{keywords = true}
+\setkeys{acs}{articletitle = true, keywords = true}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 \g@addto@macro{\maketitle}{\newpage}
