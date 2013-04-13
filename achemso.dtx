@@ -112,47 +112,48 @@ This work consists of the file  achemso.dtx
           \file{achre4.cfg}{\from{\jobname.dtx}{achre4}}
           \file{acncdm.cfg}{\from{\jobname.dtx}{acncdm}}
           \file{acsccc.cfg}{\from{\jobname.dtx}{acsccc}}
+          \file{amlccd.cfg}{\from{\jobname.dtx}{amlccd}}
           \file{amclct.cfg}{\from{\jobname.dtx}{amclct}}
           \file{ancac3.cfg}{\from{\jobname.dtx}{ancac3}}
-          \file{ancham.cfg}{\from{\jobname.dtx}{ancham}}
 }
-\generate{\file{bichaw.cfg}{\from{\jobname.dtx}{bichaw}}
+\generate{\file{ancham.cfg}{\from{\jobname.dtx}{ancham}}
+          \file{bichaw.cfg}{\from{\jobname.dtx}{bichaw}}
           \file{bcches.cfg}{\from{\jobname.dtx}{bcches}}
           \file{bomaf6.cfg}{\from{\jobname.dtx}{bomaf6}}
           \file{bipret.cfg}{\from{\jobname.dtx}{bipret}}
           \file{crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
           \file{chreay.cfg}{\from{\jobname.dtx}{chreay}}
           \file{cmatex.cfg}{\from{\jobname.dtx}{cmatex}}
-          \file{cgdefu.cfg}{\from{\jobname.dtx}{cgdefu}}
 }
-\generate{\file{enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
+\generate{\file{cgdefu.cfg}{\from{\jobname.dtx}{cgdefu}}
+          \file{enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
           \file{esthag.cfg}{\from{\jobname.dtx}{esthag}}
           \file{iecred.cfg}{\from{\jobname.dtx}{iecred}}
           \file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
           \file{jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
           \file{jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
           \file{jceaax.cfg}{\from{\jobname.dtx}{jceaax}}
-          \file{jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
 }
-\generate{\file{jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
+\generate{\file{jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
+          \file{jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
           \file{jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
           \file{jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
           \file{jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
           \file{joceah.cfg}{\from{\jobname.dtx}{joceah}}
           \file{jpcafh.cfg}{\from{\jobname.dtx}{jpcafh}}
-          \file{jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}
-          \file{jpccck.cfg}{\from{\jobname.dtx}{jpccck}}    
+          \file{jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}   
 }
-\generate{\file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}    
+\generate{\file{jpccck.cfg}{\from{\jobname.dtx}{jpccck}} 
+          \file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}    
           \file{jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
           \file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
           \file{mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
           \file{mpohbp.cfg}{\from{\jobname.dtx}{mpohbp}}
           \file{nalefd.cfg}{\from{\jobname.dtx}{nalefd}}
           \file{orlef7.cfg}{\from{\jobname.dtx}{orlef7}}
-          \file{oprdfk.cfg}{\from{\jobname.dtx}{oprdfk}}
 }
-\generate{\file{orgnd7.cfg}{\from{\jobname.dtx}{orgnd7}}
+\generate{\file{oprdfk.cfg}{\from{\jobname.dtx}{oprdfk}}
+          \file{orgnd7.cfg}{\from{\jobname.dtx}{orgnd7}}
 }
 \usedir{bibtex/bst/achemso}
 \generate{
@@ -471,6 +472,7 @@ This work consists of the file  achemso.dtx
 %      Acc.\ Chem.\ Res.        & achre4  \\
 %      ACS Chem.\ Neurosci.     & acncdm  \\
 %      ACS Combinatorial Sci.   & acsccc  \\
+%      ACS Macro Lett.          & amlccd  \\
 %      ACS Med. Chem. Lett. .   & amclct  \\
 %      ACS Nano                 & ancac3  \\
 %      Anal.\ Chem.             & ancham  \\
@@ -3503,6 +3505,11 @@ This work consists of the file  achemso.dtx
 }
 \SectionNumbersOff
 %</acsccc>
+% \changes{v3.5g}{2103/04/13}{Support for \emph{ACS Macro Lett.}}
+%<*amlccd>
+\ProvidesFile{amlccd.cfg}
+  [2013/07/07 v3.7f achemso configuration: ACS Macro Lett.]
+%</amlccd>
 %<*amclct>
 \ProvidesFile{amclct.cfg}
   [2013/07/07 v3.7f achemso configuration: ACS Med. Chem. Lett.]
