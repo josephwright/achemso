@@ -13,7 +13,7 @@ See http://www.latex-project.org/lppl.txt
 
 The achemso bundle provides a LaTeX class file and BibTeX style
 file in accordance with the requirements of the American
-Chemical Society (ACS).  The files can be used for any documents, 
+Chemical Society (ACS).  The files can be used for any documents,
 but have been carefully designed and tested to be suitable for
 submission to ACS journals.
 
@@ -25,17 +25,17 @@ Installation
 ------------
 
 The package is supplied in dtx format and as a pre-extracted zip
-file, achemso.tds.zip. The later is most convenient for most 
-users: simply unzip this in your local texmf directory and run 
+file, achemso.tds.zip. The later is most convenient for most
+users: simply unzip this in your local texmf directory and run
 texhash to update the database of file locations. If you want to
 unpack the dtx yourself, running 'tex achemso.dtx' will extract
-the package whereas 'latex achemso.dtx will extract it and also 
+the package whereas 'latex achemso.dtx will extract it and also
 typeset the documentation.
 
 Typesetting the documentation requires a number of packages in
-addition to those needed to use the package. This is mainly 
-because of the number of demonstration items included in the 
-text. To compile the documentation without error, you will 
+addition to those needed to use the package. This is mainly
+because of the number of demonstration items included in the
+text. To compile the documentation without error, you will
 need the packages:
  - array
  - booktabs
@@ -69,10 +69,10 @@ See http://www.latex-project.org/lppl.txt
 \postamble
 
 Originally developed by Mats Dahlgren
-Copyright (C) 1996-1998 by Mats Dahlgren 
+Copyright (C) 1996-1998 by Mats Dahlgren
 Copyright (C) 2008-2011 by
   Joseph Wright <joseph.wright@morningstar2.co.uk>
-  
+ 
 Part of this bundle is derived from cite.sty, to which the
 following license applies:
   Copyright (C) 1989-2009 by Donald Arseneau
@@ -98,7 +98,7 @@ This work consists of the file  achemso.dtx
                                 achemso-demo.tex,
                                 natmove.sty and
                                 a number of configuration files.
-                                
+                               
 \endpostamble
 \usedir{tex/latex/achemso}
 \generate{
@@ -141,9 +141,9 @@ This work consists of the file  achemso.dtx
           \file{joceah.cfg}{\from{\jobname.dtx}{joceah}}
           \file{jpcafh.cfg}{\from{\jobname.dtx}{jpcafh}}
           \file{jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}
-          \file{jpccck.cfg}{\from{\jobname.dtx}{jpccck}}     
+          \file{jpccck.cfg}{\from{\jobname.dtx}{jpccck}}    
 }
-\generate{\file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}     
+\generate{\file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}    
           \file{jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
           \file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
           \file{mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
@@ -267,7 +267,7 @@ This work consists of the file  achemso.dtx
 %      natmovechars,
 %      phone
 %    }
-%  }^^A 
+%  }^^A
 %}
 %\newcommand*\LaTeXdemo@input{^^A
 %  \MakePercentComment
@@ -277,7 +277,7 @@ This work consists of the file  achemso.dtx
 %    \setkeys{lst}{
 %      SelectCharTable=\lst@ReplaceInput{\^\^I}{\lst@ProcessTabulator}
 %    }^^A
-%    \leavevmode 
+%    \leavevmode
 %      \input{\jobname.tmp}^^A
 %  \endgroup
 %  \MakePercentIgnore
@@ -323,7 +323,7 @@ This work consists of the file  achemso.dtx
 %\title{^^A
 %  \textsf{achemso} --- Support for submissions to American Chemical
 %    Society journals\thanks{^^A
-%    This file describes version \fileversion, last revised 
+%    This file describes version \fileversion, last revised
 %    \filedate.^^A
 %  }^^A
 %}
@@ -337,7 +337,7 @@ This work consists of the file  achemso.dtx
 %\changes{v1.0}{1998/06/01}{Initial release of package by Mats Dahlgren}
 %\changes{v2.0}{2007/01/17}{Re-write of package by Joseph Wright}
 %\changes{v3.0}{2008/07/20}{
-%  Second re-write, converting to a class and giving much tighter 
+%  Second re-write, converting to a class and giving much tighter
 %  integration with \textsc{acs} submission system
 %}
 %\changes{v3.1}{2009/04/21}{
@@ -352,12 +352,12 @@ This work consists of the file  achemso.dtx
 %\changes{v3.5c}{2010/10/11}{Bug fix for \cs{mciteSubRef} macro}
 %
 %\begin{abstract}
-% The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\ 
-% style file in accordance with the requirements of the American 
+% The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
+% style file in accordance with the requirements of the American
 % Chemical Society (\ACS).  The files can be used for any documents, but
-% have been carefully designed and tested to be suitable for submission 
+% have been carefully designed and tested to be suitable for submission
 % to \ACS\ journals.
-% 
+%
 % The bundle also includes the \pkg{natmove} package.  This package is
 % loaded by \pkg{achemso}, and provides automatic moving of superscript
 % citations after punctuation.
@@ -381,9 +381,9 @@ This work consists of the file  achemso.dtx
 % intended for use in submissions.  It is based on the standard
 % \pkg{article} class, but makes various changes to facilitate ease
 % of use.  The second part is the \LaTeX\ package.  The package contains
-% the parts of the bundle which are appropriate for use with other 
-% document classes.\footnote{For example, when writing a thesis.}  
-% Thirdly, two \BibTeX\ style files are included.  These are used by 
+% the parts of the bundle which are appropriate for use with other
+% document classes.\footnote{For example, when writing a thesis.} 
+% Thirdly, two \BibTeX\ style files are included.  These are used by
 % both the class and the package, but can be used directly if desired.
 % Finally, an example document is included; this is intended to act a
 % potential template for submission, and illustrates the use of the
@@ -396,13 +396,13 @@ This work consists of the file  achemso.dtx
 % zip file, \file{\jobname.tds.zip}. The later is most convenient for
 % most users: simply unzip this in your local texmf directory and
 % run \texttt{texhash} to update the database of file locations. If
-% you want to unpack the \file{dtx} yourself, running 
+% you want to unpack the \file{dtx} yourself, running
 % \texttt{tex \jobname.dtx} will extract the package whereas
 % \texttt{latex \jobname.dtx} will extract it and also typeset the
 % documentation.
-% 
+%
 % Typesetting the documentation requires a number of packages in
-% addition to those needed to use the package. This is mainly 
+% addition to those needed to use the package. This is mainly
 % because of the number of demonstration items included in the text. To
 % compile the documentation without error, you will need the packages:
 % \begin{itemize}
@@ -417,7 +417,7 @@ This work consists of the file  achemso.dtx
 %
 %\section{Requirements}
 %
-%\changes{v3.4}{2010/01/15}{Require \pkg{cleveref}, dropping 
+%\changes{v3.4}{2010/01/15}{Require \pkg{cleveref}, dropping
 %  \pkg{varioref} use}
 %\changes{v3.6}{2012/01/11}{Drop \pkg{cleverref} use}
 % The \pkg{achemso} class requires the following packages:
@@ -428,9 +428,9 @@ This work consists of the file  achemso.dtx
 %  \item \pkg{natbib}
 %  \item \pkg{setspace}
 %  \item \pkg{xkeyval}
-%\end{itemize} 
+%\end{itemize}
 % These are normally present in the current major \TeX{} distributions,
-% but are also available from \href{http://www.ctan.org}{The 
+% but are also available from \href{http://www.ctan.org}{The
 % Comprehensive TeX Archive Network}.
 %
 %\section{The class file}
@@ -521,17 +521,17 @@ This work consists of the file  achemso.dtx
 % the value of \opt{journal}.  The \opt{manuscript} option determines
 % whether sections and an abstract are valid.  The value
 % \opt{suppinfo} is also available for supporting information.
-% 
+%
 %\DescribeOption{layout}
 %\changes{v3.3}{2009/08/28}{New \texttt{layout} option}
-% The \pkg{achemso} class can produce drafts in two layout styles. The 
-% standard setting for the \opt{layout} option is \opt{traditional}, 
-% which produces a double-spaced single column manuscript. The 
-% alternative setting \opt{twocolumn} will use single spacing and 
-% print the text in two columns. The second option is obviously more 
+% The \pkg{achemso} class can produce drafts in two layout styles. The
+% standard setting for the \opt{layout} option is \opt{traditional},
+% which produces a double-spaced single column manuscript. The
+% alternative setting \opt{twocolumn} will use single spacing and
+% print the text in two columns. The second option is obviously more
 % compact. If the journal requires a particular style this option may
 % be ignored.
-% 
+%
 %\DescribeOption{email}
 %\changes{v3.2b}{2009/05/05}{New \texttt{email} option}
 %\changes{v3.2c}{2009/05/28}{Fix so that \texttt{email} option is turned
@@ -543,13 +543,13 @@ This work consists of the file  achemso.dtx
 % only printed if e-mail addresses are printed.
 %
 % Other options are provided by the package, but when used with the
-% class these are silently ignored. If you need to override the 
+% class these are silently ignored. If you need to override the
 % settings chosen by the class, inlcude the settings \emph{after}
 % the \cs{documentclass} line using \cs{setkeys}:
 %\begin{LaTeXdemo}[code only]
 %  \documentclass[journal = jacsat]{achemso}
 %  \setkeys{acs}{articletitle = true}
-%\end{LaTeXdemo} 
+%\end{LaTeXdemo}
 %
 %\subsection{Manuscript meta-data}
 %
@@ -558,7 +558,7 @@ This work consists of the file  achemso.dtx
 %\DescribeMacro{\alsoaffiliation}
 %\changes{v3.1}{2008/11/08}{Added \cs{alsoaffiliation} macro}
 %\DescribeMacro{\altaffiliation}
-%\changes{v3.3}{2008/08/28}{\cs{altaffiliation} macro checks for 
+%\changes{v3.3}{2008/08/28}{\cs{altaffiliation} macro checks for
 %  duplicate entries and uses only one footnote}
 %\DescribeMacro{\email}
 % Inspired by REV\TeX, the \pkg{achemso} class alters the method for
@@ -571,10 +571,10 @@ This work consists of the file  achemso.dtx
 % followed by an \cs{email} macro, containing contact details.  All
 % authors with an e-mail address are automatically marked with a
 % star.  The example manuscript demonstrates the use of all of these
-% macros. Notice that \cs{alsoaffiliation} is used when one (or more) 
+% macros. Notice that \cs{alsoaffiliation} is used when one (or more)
 % authors work at multiple institutions, while \cs{altaffiliation}
 % is intended for previous addresses (or other notes). Only
-% \cs{affiliation} applies to multiple authors: both 
+% \cs{affiliation} applies to multiple authors: both
 % \cs{alsoaffiliation} and \cs{altaffiliation} are set on a per
 % author basis.
 %\begin{LaTeXdemo}[code only]
@@ -592,7 +592,7 @@ This work consists of the file  achemso.dtx
 %  \alsoaffiliation{University of Somewhere, Sometown, USA}
 %\end{LaTeXdemo}
 % Repeated entries for \cs{affiliation} and \cs{alsoaffiliation} will
-% result in only one address being printed in the address list and 
+% result in only one address being printed in the address list and
 % footnotes. Repeated \cs{altaffiliation} entries only produce a single
 % footnote, and can therefore be used for entries such as
 %\begin{LaTeXdemo}[code only]
@@ -607,7 +607,7 @@ This work consists of the file  achemso.dtx
 %\changes{v3.2c}{2009/05/29}{Added \cs{fax} macro}
 %\DescribeMacro{\phone}
 %\changes{v3.2c}{2009/05/29}{Added \cs{phone} macro}
-% The class will recognise the optional information \cs{fax} and 
+% The class will recognise the optional information \cs{fax} and
 % \cs{phone}, which will be printed along with the lead authors
 % e-mail address. Note that this information is only used for authors
 % who have an e-mail address supplied.
@@ -625,10 +625,10 @@ This work consists of the file  achemso.dtx
 % The method used for setting the meta-data means that the normal
 % \cs{and} and \cs{thanks} macros are not appropriate in the \
 % pkg{achemso} class.  Both produce a warning if used.
-% 
-%\DescribeMacro{\title} 
+%
+%\DescribeMacro{\title}
 % The \cs{title} macro is extended to accept an optional argument.
-% This is intended for a shortened version of the journal title 
+% This is intended for a shortened version of the journal title
 % suitable for running headers. Some journals require that authors
 % supply this data: if it is needed then it will be printed in the
 % appropriate place.
@@ -647,18 +647,18 @@ This work consists of the file  achemso.dtx
 %\DescribeEnv{chart}
 %\DescribeEnv{graph}
 % The class defines three new floating environments: \texttt{scheme},
-% \texttt{chart} and \texttt{graph}. These can be used as expected to 
-% include graphical content.  The placement of these new floats and the 
-% standard \texttt{table} and \texttt{figure} floats is altered to be 
-% ``here'' if possible.  The contents of all floats is automatically 
+% \texttt{chart} and \texttt{graph}. These can be used as expected to
+% include graphical content.  The placement of these new floats and the
+% standard \texttt{table} and \texttt{figure} floats is altered to be
+% ``here'' if possible.  The contents of all floats is automatically
 % horizontally centred on the page.
-% 
+%
 %\subsection{Section headers}
 %
 %\DescribeMacro{\SectionNumbersOff}
 %\DescribeMacro{\SectionNumbersOn}
 %\changes{v3.2}{2009/04/20}{
-%  New functions \cs{SectionsOff}, \cs{SectionsOn}, 
+%  New functions \cs{SectionsOff}, \cs{SectionsOn},
 %  \cs{SectionNumbersOff} and \cs{SectionNumbersOn}
 %}
 % Some journals have no section numbering by default. This can be
@@ -666,14 +666,14 @@ This work consists of the file  achemso.dtx
 % individual users need to change the decision. The macros
 % \cs{SectionNumbersOff} and \cs{SectionNumbersOn} are therefore
 % available: these should be given in the preamble.
-% 
+%
 %\DescribeMacro{\SectionsOff}
 %\DescribeMacro{\SectionsOn}
 % More radically, the entire availability of sections can be turned on
 % and of. This is functionality is available to the user \emph{via} the
-% \cs{SectionsOn} and \cs{SectionsOff} macros, which again are 
+% \cs{SectionsOn} and \cs{SectionsOff} macros, which again are
 % preamble-only.
-%\DescribeMacro{\AbstractOff} 
+%\DescribeMacro{\AbstractOff}
 %\DescribeMacro{\AbstractOn}
 %\changes{v3.2}{2009/04/20}{
 %  New functions \cs{AbstractOff} and \cs{AbstractOn}
@@ -715,15 +715,15 @@ This work consists of the file  achemso.dtx
 %\end{LaTeXdemo}
 %
 %\section{The package file}
-% The \pkg{achemso} package is independent of the classs file, and 
-% contains parts of the bundle useful outside of submission to the 
+% The \pkg{achemso} package is independent of the classs file, and
+% contains parts of the bundle useful outside of submission to the
 % \ACS.
-% 
+%
 %\subsection{Package options}
 %
 % As with the class options, the package uses the key--value method
 % for option set up. These are used to control the output of citations
-% and bibliographic data. The same options are used when creating 
+% and bibliographic data. The same options are used when creating
 % journal configurations for the class: this is a task most users will
 % not need to undertake!
 %
@@ -732,12 +732,12 @@ This work consists of the file  achemso.dtx
 % reference markers.  The option switches this behaviour
 % on and off (and takes Boolean values: \opt{super=true} and
 % \opt{super=false} are valid).
-% 
+%
 %\DescribeOption{articletitle}
 % \changes{v3.7}{2012/04/30}{Rename \opt{usetitle} option to
 %   \opt{articletitle}}
-% The \opt{articletitle} option is a Boolean, and sets whether the title 
-% of a paper referenced appears in the bibliography.  The default is 
+% The \opt{articletitle} option is a Boolean, and sets whether the title
+% of a paper referenced appears in the bibliography.  The default is
 % \opt{articletitle=false} for the \file{achemso} style and
 % \opt{articletitle=true} for the \file{biochem} style.
 %
@@ -752,7 +752,7 @@ This work consists of the file  achemso.dtx
 %\changes{v3.3a}{2009/09/01}{New \texttt{etalmode} option}
 %\DescribeOption{maxauthors}
 % Many journals require that long lists of authors are shortened using
-% `et al.' in the references section. The behaviour of the \BibTeX\ 
+% `et al.' in the references section. The behaviour of the \BibTeX\
 % styles in this regard is controlled by two options, \opt{etalmode}
 % and \opt{maxauthors}. There are two possible ways to shorten a long
 % list of authors. Some journals require that only the first author
@@ -761,13 +761,13 @@ This work consists of the file  achemso.dtx
 %\begin{verbatim}
 %  Jones, A.N. et al.
 %\end{verbatim}
-% On the other hand, some journals request that the list of authors 
-% is truncated after $n$ authors. This is set up by the 
+% On the other hand, some journals request that the list of authors
+% is truncated after $n$ authors. This is set up by the
 % \opt{etalmode=truncate} option:
 %\begin{verbatim}
 %  Jones, A.N.; Bloggs, F.; Nobacon, D. et al.
 %\end{verbatim}
-% In both cases, the maximum number of authors permitted before 
+% In both cases, the maximum number of authors permitted before
 % introducing `et al.' is governed by the \opt{maxauthors} option.
 % This option recognises the sentinel value $0$, which indicates that
 % no shortening should occur at all.
@@ -792,14 +792,14 @@ This work consists of the file  achemso.dtx
 % default.\footnote{More accurately, the default built into the
 % \BibTeX\ style file is to use article titles with the
 % \emph{Biochemistry} style.}
-% 
+%
 %\subsection{Bibliography notes}
 %
 %\DescribeMacro{\bibnote}
 %\DescribeMacro{\bibnotemark}
 %\DescribeMacro{\bibnotetext}
 % \pkg{achemso} provides the \cs{bibnote} macro. This is intended for
-% addition of notes to the bibliography (references).  The macro 
+% addition of notes to the bibliography (references).  The macro
 % accepts a single argument, which is transferred to the bibliography by
 % \BibTeX. In analogy to \cs{footnote}, the macros \cs{bibnotemark} and
 % \cs{bibnotetext} are available for dividing up the marker for a
@@ -811,34 +811,34 @@ This work consists of the file  achemso.dtx
 % The functionality for bibnotes in \pkg{achemso} is based on that
 % in the \pkg{notes2bib} package. The \pkg{notes2bib} package can be
 % loaded with the \pkg{achemso} package, and no clash will occur. With
-% the class file, \pkg{notes2bib} will be ignored if requested, to 
+% the class file, \pkg{notes2bib} will be ignored if requested, to
 % prevent issues on submission to the \ACS.
-% 
+%
 %\section{The \texorpdfstring{\BibTeX}{BibTeX} style files}
 %
 % \pkg{achemso} is supplied with two style files, \file{achemso.bst} and
 % \file{biochem.bst}.  The direct use of these without the \pkg{achemso}
 % package file is not recommended, but is possible.  The style files
 % can be loaded in the usual way, with a \cs{bibliographystyle}
-% command.  The \pkg{natbib} package must be loaded by the \LaTeX\ file 
+% command.  The \pkg{natbib} package must be loaded by the \LaTeX\ file
 % concerned, if the \pkg{achemso} package is not in use.
-% 
+%
 % The style files are designed to use the \pkg{mciteplus} package if it
-% is available, but to work even if is not. When \pkg{mciteplus} is 
-% present, it is possible to automatically produce references of the 
+% is available, but to work even if is not. When \pkg{mciteplus} is
+% present, it is possible to automatically produce references of the
 % form
 %\begin{quotation}
 %  \noindent
-%  (5) (a) Arduengo,~A.~J.,~III; Dias,~H. V.~R.; Harlow,~R.~L.; 
-%  Kline,~M. \emph{{J}.~{A}m.\ {C}hem.\ {S}oc.} \textbf{1992}, 
-%  \emph{114}, 5530--5534; (b) Appelhans,~L.~N.; Zuccaccia,~D.; 
-%  Kovacevic,~A.; Chianese,~A.~R.; Miecznikowski,~J.~R.; Macchioni,~A.; 
-%  Clot,~E.; Eisenstein,~O.; Crabtree,~R.~H. \emph{{J}.~{A}m.\ {C}hem. 
-%  {S}oc.} \textbf{2005}, \emph{127}, 16299--16311; (c) 
+%  (5) (a) Arduengo,~A.~J.,~III; Dias,~H. V.~R.; Harlow,~R.~L.;
+%  Kline,~M. \emph{{J}.~{A}m.\ {C}hem.\ {S}oc.} \textbf{1992},
+%  \emph{114}, 5530--5534; (b) Appelhans,~L.~N.; Zuccaccia,~D.;
+%  Kovacevic,~A.; Chianese,~A.~R.; Miecznikowski,~J.~R.; Macchioni,~A.;
+%  Clot,~E.; Eisenstein,~O.; Crabtree,~R.~H. \emph{{J}.~{A}m.\ {C}hem.
+%  {S}oc.} \textbf{2005}, \emph{127}, 16299--16311; (c)
 %  Arduengo,~A.~J.,~III; Gamper,~S.~F.; Calabrese,~J.~C.; Davidson,~F.
 %  \emph{J.~Am.\ Chem.\ Soc.} \textbf{1994}, \emph{116}, 4391--4394.
 %\end{quotation}
-% as demonstrated in the example document. When \pkg{mciteplus} is 
+% as demonstrated in the example document. When \pkg{mciteplus} is
 % not present, this functionality is not available but the style files
 % will work normally.
 %
@@ -847,17 +847,17 @@ This work consists of the file  achemso.dtx
 % \cite{Coghill2006}.  By default, article titles are not included in
 % output using the \file{achemso.bst} file, but are with the
 % \file{biochem.bst} file.
-% 
-% The style used by the \ACS\ does not differentiate between 
+%
+% The style used by the \ACS\ does not differentiate between
 % \BibTeX\ \texttt{book}, \texttt{inbook}, \texttt{collection} and
-% \texttt{incollection} entries. As a result, the appearance of 
+% \texttt{incollection} entries. As a result, the appearance of
 % these entry types depends on the fields available. Named subdivisions
 % of a book (for example, chapters where each has a named author)
 % should be given in the \texttt{title} field, with the title of
-% the book itself in the \texttt{booktitle} field. The 
+% the book itself in the \texttt{booktitle} field. The
 % \texttt{chapter} field should be used for a chapter number, and
 % is printed as part of the pagination.
-% 
+%
 % One frequently asked question is why some people see an empty first
 % item in their bibliography when using the \pkg{achemso} package or
 % class. This is usually because they have downloaded the \LaTeX\ files
@@ -909,7 +909,7 @@ This work consists of the file  achemso.dtx
 % Loading the package and the class makes load-order awkward. Instead,
 % the two parts are done in one place. Sandwiching the common code are
 % two slices of dedicated material for the class and the package. Some
-% of this is needed ``early'', before the common material, whilst the 
+% of this is needed ``early'', before the common material, whilst the
 % rest is ``late''.
 %
 %\subsection{Early class-only code}
@@ -921,7 +921,7 @@ This work consists of the file  achemso.dtx
   [2013/07/07 v3.7f Submission to ACS journals]
 \LoadClass[12pt,letter]{article}
 %    \end{macrocode}
-%    
+%   
 %\begin{macro}{\acs@warning}
 % The code for a warning is created so that it works for the package too.
 %    \begin{macrocode}
@@ -932,8 +932,8 @@ This work consists of the file  achemso.dtx
 %
 %\subsection{Early package-only code}
 %
-% The package and the class should not both be loaded, as the two use 
-% the same internal macro names. On the other hand, if the class is 
+% The package and the class should not both be loaded, as the two use
+% the same internal macro names. On the other hand, if the class is
 % not in use a reminder is printed to use it if possible.
 %    \begin{macrocode}
 %<*package>
@@ -952,7 +952,7 @@ This work consists of the file  achemso.dtx
   }%
 }
 %    \end{macrocode}
-%    
+%   
 %\begin{macro}{\acs@warning}
 % The code for a warning is created so that it works for the class too.
 %    \begin{macrocode}
@@ -960,7 +960,7 @@ This work consists of the file  achemso.dtx
 %</package>
 %    \end{macrocode}
 %\end{macro}
-%    
+%   
 %\subsection{Common code}
 %
 %\begin{macro}{\acs@ifundefined}
@@ -979,11 +979,11 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %
-%\changes{v3.3}{2009/08/28}{Changed key code to be independent of 
+%\changes{v3.3}{2009/08/28}{Changed key code to be independent of
 %  \pkg{xkeyval} version}
 % The first stage needed is to read the package options given. Although
 % \pkg{xkeyval} was perhaps not the best choice, changing this now would
-% be rather risky. 
+% be rather risky.
 %    \begin{macrocode}
 \RequirePackage{xkeyval}
 %    \end{macrocode}
@@ -1087,7 +1087,7 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@etal@firstonly}
 %\begin{macro}{\acs@etal@truncate}
 % \changes{v3.7f}{2013/03/07}{Fix behaviour of \texttt{etalmode] option}
-% The setup for the \opt{etalmode} option is quite simple: just look 
+% The setup for the \opt{etalmode} option is quite simple: just look
 % for the appropriate macros.
 %    \begin{macrocode}
 \newif\ifacs@etal@truncate
@@ -1109,8 +1109,8 @@ This work consists of the file  achemso.dtx
 % \begin{macro}
 % \changes{v3.6}{2011/01/11}{Allow \opt{biblabel} option to work
 %   after class or package loading}
-% The \opt{biochemistry} option is an alias for \opt{biochem}. The 
-% \opt{biblabel} option is a choice, which is implemented using a 
+% The \opt{biochemistry} option is an alias for \opt{biochem}. The
+% \opt{biblabel} option is a choice, which is implemented using a
 % csname search. The group here prevents hash table pollution, whilst
 % the \pkg{xkeyval} method is avoided as it is more complex than it is
 % worth!
@@ -1165,7 +1165,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \ProcessOptionsX*<acs>
 %    \end{macrocode}
-%    
+%   
 %\begin{macro}{\acs@manuscript@communication}
 %\begin{macro}{\acs@manuscript@letter}
 %\begin{macro}{\acs@manuscript@note}
@@ -1184,21 +1184,21 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%    
+%   
 %\begin{macro}{\acs@niib@create}
 %\begin{macro}{bibnote}
-%\changes{v3.4f}{2010/04/13}{Only define bibnote counter if not done 
+%\changes{v3.4f}{2010/04/13}{Only define bibnote counter if not done
 %  elsewhere}
 %\begin{macro}{\thebibnote}
 %\begin{macro}{\bibnote}
 %\begin{macro}{\bibnotemark}
 %\begin{macro}{\bibnotetext}
 %\begin{macro}{\printbibnotes}
-% To avoid needing to load the \pkg{notes2bib} package, especially as 
-% the plan is to move that package to \LaTeX3 internal syntax, 
+% To avoid needing to load the \pkg{notes2bib} package, especially as
+% the plan is to move that package to \LaTeX3 internal syntax,
 % \pkg{achemso} provides a minimal version here. The first step is to
 % create macros which will need a guard against \pkg{notes2bib} already
-% having been loaded. To allow the package and class to behave 
+% having been loaded. To allow the package and class to behave
 % differently these are actually applied later.
 %    \begin{macrocode}
 \newcommand*\acs@niib@create{%
@@ -1306,7 +1306,7 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
-% 
+%
 %\begin{macro}{\nmv@natbib@detect}
 %\begin{macro}{\acs@nmv@activate}
 %\begin{macro}{\acs@autonote}
@@ -1417,7 +1417,7 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@bibliography}
 %\begin{macro}{\bibliography}
 % The \cs{bibliography} macro is now patched so that everything works
-% correctly. 
+% correctly.
 %    \begin{macrocode}
 \AtBeginDocument{%
   \let\acs@bibliography\bibliography
@@ -1471,18 +1471,18 @@ This work consists of the file  achemso.dtx
   {hyperref}
 \AtBeginDocument{\doublespacing}
 %    \end{macrocode}
-%    
+%   
 %\begin{macro}{\title}
-%\changes{v3.2}{2009/04/19}{Short title no longer used although 
-%  optional argument still accepted: removed internal \cs{@shorttitle} 
+%\changes{v3.2}{2009/04/19}{Short title no longer used although
+%  optional argument still accepted: removed internal \cs{@shorttitle}
 %  macro}
-%\changes{v3.2c}{2009/05/29}{Restored short title for some journals 
+%\changes{v3.2c}{2009/05/29}{Restored short title for some journals
 %  which do need this information}
 %\begin{macro}{\@title}
 %\begin{macro}{\acs@title@short}
 % For the meta-data, the REV\TeX\ bundle provides a good model for
 % the commands to give the author.  \cs{gdef} is used here to
-% avoid any odd grouping issues.  
+% avoid any odd grouping issues. 
 %    \begin{macrocode}
 \renewcommand*{\title}[2][]{%
   \gdef\acs@title@short{#1}%
@@ -1641,7 +1641,7 @@ This work consists of the file  achemso.dtx
 }
 \newcommand*\acs@affil@swap@aux{%
   \advance\@tempcntb\@ne\relax
-  \expandafter\ifnum\csname @author@affil@\@roman\@tempcntb\endcsname 
+  \expandafter\ifnum\csname @author@affil@\@roman\@tempcntb\endcsname
     = \acs@affil@cnt\relax
     \expandafter\xdef\csname @author@affil@\@roman\@tempcntb\endcsname{%
       \the\@tempcnta
@@ -1657,7 +1657,7 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\alsoaffiliation}
 %\begin{macro}{\acs@alsoaffil@find}
 % To allow complex affiliations , two commands are needed. The first
-% deals with affiliations that are in some way shared by several 
+% deals with affiliations that are in some way shared by several
 % authors. This is tracked on a per author basis.
 %    \begin{macrocode}
 \newcommand*\alsoaffiliation[2][\relax]{%
@@ -1744,7 +1744,7 @@ This work consists of the file  achemso.dtx
   \@tempcnta\z@\relax
   \ifnum\acs@affil@alt@cnt>\z@\relax
     \expandafter\acs@altaffil@ifdup@aux
-  \fi  
+  \fi 
   \if@tempswa
     \expandafter\@firstoftwo
   \else
@@ -2018,7 +2018,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@contact@details}
-%\changes{v3.2c}{2009/05/29}{Added phone and fax numbers to contact 
+%\changes{v3.2c}{2009/05/29}{Added phone and fax numbers to contact
 %  output}
 % A general contact details macro.
 %    \begin{macrocode}
@@ -2029,7 +2029,7 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\@thanks}
-%\changes{v3.1}{2008/08/29}{Moved footnote generation to \cs{@thanks} 
+%\changes{v3.1}{2008/08/29}{Moved footnote generation to \cs{@thanks}
 %  macro}
 %\begin{macro}{\@thanks@hook}
 % The \cs{@thanks} macro is used as a hook to generate the footnotes if
@@ -2077,8 +2077,8 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@author@footnotes}
 %\begin{macro}{\acs@author@list@main}
-% The main control macro for producing the author list iterates over 
-% each author on the list. The result is stored as 
+% The main control macro for producing the author list iterates over
+% each author on the list. The result is stored as
 % \cs{acs@author@listing}.
 %    \begin{macrocode}
 \newcommand*\acs@author@footnotes{}
@@ -2225,7 +2225,7 @@ This work consists of the file  achemso.dtx
 %\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
 % Alternative affiliations get the correct affiliation number back out
 % from the stored data. There are then two corrections: one for the
-% total number of main affiliations and a second in case there is a 
+% total number of main affiliations and a second in case there is a
 % footnote to the title.
 %    \begin{macrocode}
 \newcommand*\acs@author@affil@alt{%
@@ -2254,16 +2254,16 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \newcommand*\acs@author@fnsymbol[1]{%
   \ensuremath{%
-    \ifcase #1 *\or 
-      \dagger\or 
-        \ddagger\or 
+    \ifcase #1 *\or
+      \dagger\or
+        \ddagger\or
           \P\or
-            \S\or 
-              \|\or 
-                \bot\or 
-                  \#\or 
-                    @\or 
-                      \triangle\or 
+            \S\or
+              \|\or
+                \bot\or
+                  \#\or
+                    @\or
+                      \triangle\or
                         \nabla\else
                           #1%
     \fi
@@ -2273,7 +2273,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@address@list}
 %\begin{macro}{\acs@address@list@aux}
-% The main address block is rather less complex than the author 
+% The main address block is rather less complex than the author
 % printing: one print job per address.
 %    \begin{macrocode}
 \newcommand*\acs@address@list{%
@@ -2310,8 +2310,8 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@affil@list@aux}
 %\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
 % Footnotes are done in two stages.  First the main affiliation is
-% handled, then the possible alternative. There is a need to check for 
-% the possibility that there is only one main affiliation but one or 
+% handled, then the possible alternative. There is a need to check for
+% the possibility that there is only one main affiliation but one or
 % more alternative ones.
 %    \begin{macrocode}
 \newcommand*\acs@fnsymbol@org{}
@@ -2430,7 +2430,7 @@ This work consists of the file  achemso.dtx
   \begingroup
     \acs@number@list@aux@i{phone}%
     \let\@tempb\@tempa
-    \acs@number@list@aux@i{fax}%   
+    \acs@number@list@aux@i{fax}%  
     \ifx\@tempa\@empty\else
       \ifx\@tempb\@empty\else
         \protected@edef\@tempa{%
@@ -2487,11 +2487,11 @@ This work consists of the file  achemso.dtx
 \newcommand*\acs@maketitle@extras{%
   \acs@maketitle@extras@hook
   \ifacs@abbreviations
-    \acs@abbreviations@print 
+    \acs@abbreviations@print
     \par
   \fi
   \ifacs@keywords
-    \acs@keywords@print 
+    \acs@keywords@print
     \par
   \fi
 }
@@ -2506,7 +2506,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \g@addto@macro{\document}{\maketitle}
 %    \end{macrocode}
-%    
+%   
 %\begin{environment}{scheme}
 %\begin{environment}{chart}
 %\changes{v3.1}{2008/08/29}{Fixed scheme naming}
@@ -2566,12 +2566,12 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%    
+%   
 %\begin{macro}{\acs@section}
 %\begin{macro}{\acs@subsection}
 %\begin{macro}{\acs@subsubsection}
 %\begin{macro}{\acs@startsection}
-% Both the numbering and existence of section headers may need to be 
+% Both the numbering and existence of section headers may need to be
 % altered. Some generic functions are therefore provided to deal with
 % this cleanly. First, some original definitions are saved.
 %    \begin{macrocode}
@@ -2585,7 +2585,7 @@ This work consists of the file  achemso.dtx
 \let\acs@startsection\@startsection
 %    \end{macrocode}
 %\end{macro}
-%\end{macro}   
+%\end{macro}  
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@startsection@alt}
@@ -2635,7 +2635,7 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\SectionNumbersOff}
 %\begin{macro}{\SectionNumbersOn}
 % To macros to add or remove the section numbers. The standard setting
-% for the class has them on, but some configurations will turn them 
+% for the class has them on, but some configurations will turn them
 % off. The names of these functions are both in design space so that
 % users can change the decision easily.
 %    \begin{macrocode}
@@ -2671,7 +2671,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{environment}{acknowledgement}
 %\begin{environment}{suppinfo}
-%\changes{v3.2c}{2009/05/30}{Automatically includes sentence about 
+%\changes{v3.2c}{2009/05/30}{Automatically includes sentence about
 %  on-line supplementary information}
 % Simple named sections.
 %    \begin{macrocode}
@@ -2719,7 +2719,7 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@abstract@end}
 %\begin{macro}{\acs@abstract@iffalse}
 % Removing the abstract, if necessary, is done using a trick from the
-% \pkg{comment} package. However, it code is copied here to keep 
+% \pkg{comment} package. However, it code is copied here to keep
 % requirements down.
 %    \begin{macrocode}
 \newcommand*\acs@abstract{}
@@ -2780,7 +2780,7 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%    
+%   
 %\begin{macro}{\acs@collect@toks}
 %\begin{macro}{\acs@collect@content}
 %\begin{macro}{\acs@collect@content}
@@ -2844,10 +2844,10 @@ This work consists of the file  achemso.dtx
   \global\acs@collect@toks\expandafter{\the\acs@collect@toks#1}%
 }
 %    \end{macrocode}
-%\end{macro} 
 %\end{macro}
-%\end{macro} 
-%\end{macro} 
+%\end{macro}
+%\end{macro}
+%\end{macro}
 %\begin{macro}{\acs@abstract@print}
 % Delayed abstract printing works in a similar way, but with some
 % formatting `built-in'.
@@ -2863,8 +2863,8 @@ This work consists of the file  achemso.dtx
     #1%
     \if@restonecol
       \twocolumn
-    \else 
-      \newpage 
+    \else
+      \newpage
     \fi
   }%
   \AtEndDocument{\acs@abstract@text}%
@@ -2873,7 +2873,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@tocentry@print}
 %\begin{macro}{\acs@tocentry@text}
-% The same approach is taken for the graphical table of content 
+% The same approach is taken for the graphical table of content
 % printing. This is done in a box so that everything has a frame around
 % it.
 %    \begin{macrocode}
@@ -2899,8 +2899,8 @@ This work consists of the file  achemso.dtx
       \end{center}%
       \if@restonecol
         \twocolumn
-      \else 
-        \newpage 
+      \else
+        \newpage
       \fi
     }%
   \AtEndDocument{\acs@tocentry@text}%
@@ -2933,7 +2933,7 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
-%    
+%   
 %\begin{macro}{\acs@type@list}
 %\begin{macro}{\acs@type@default}
 %\begin{macro}{\acs@type@check}
@@ -2962,20 +2962,20 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%    
-% Although \pkg{achemso} avoids too much formatting, the class file 
-% makes a few changes to keep life simple.  The name of the 
-% bibliography should be ``Notes and References'' if any notes are 
+%   
+% Although \pkg{achemso} avoids too much formatting, the class file
+% makes a few changes to keep life simple.  The name of the
+% bibliography should be ``Notes and References'' if any notes are
 % added.
 %    \begin{macrocode}
 \def\refname{%
   \ifnum\the\value{bibnote}>\z@\relax
     Notes and
-  \fi 
+  \fi
   References%
 }
 %    \end{macrocode}
-%    
+%   
 %\changes{v3.2b}{2009/05/05}{Some back-compatibility functions added}
 % A few bits for older versions.
 %    \begin{macrocode}
@@ -2986,14 +2986,14 @@ This work consists of the file  achemso.dtx
   \def\acs@type@default{#1}%
   \def\acs@type@list{#2}%
 }
-%    \end{macrocode} 
-%  
-%\begin{macro}{\acs@par} 
+%    \end{macrocode}
+% 
+%\begin{macro}{\acs@par}
 % A saved paragraph.
 %    \begin{macrocode}
 \newcommand*\acs@par{}
 \let\acs@par\par
-%    \end{macrocode} 
+%    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\acs@layout@shared}
 %\begin{environment}{acknowledgement}
@@ -3041,7 +3041,7 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{environment}
-%\end{environment} 
+%\end{environment}
 %\end{macro}
 %\begin{macro}{\acs@suppinfo@aux}
 % A short spin out.
@@ -3054,7 +3054,7 @@ This work consists of the file  achemso.dtx
   \acs@collect\acs@suppinfo@print
 }
 %    \end{macrocode}
-%\end{macro}  
+%\end{macro} 
 %\begin{macro}{\acksize}
 %\begin{macro}{\suppsize}
 % More sizes.
@@ -3100,9 +3100,9 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%    
+%   
 % With all of the standard settings done, the journal configuration can
-% be loaded.    
+% be loaded.   
 %    \begin{macrocode}
 \InputIfFileExists{\acs@journal.cfg}{}{%
   \acs@warning{%
@@ -3111,9 +3111,9 @@ This work consists of the file  achemso.dtx
   }%
   \input{jacsat.cfg}%
 }
-%    \end{macrocode} 
-%  
-%\begin{macro}{\thepage}      
+%    \end{macrocode}
+% 
+%\begin{macro}{\thepage}     
 % Some changes that can always be applied if the manuscript type is
 % appropriate: this saves some repetition in the configuration files.
 %    \begin{macrocode}
@@ -3137,9 +3137,9 @@ This work consists of the file  achemso.dtx
       \renewcommand*\bibnumfmt[1]{(S#1)}%
     }
 \fi
-%    \end{macrocode}   
-%\end{macro} 
-% 
+%    \end{macrocode}  
+%\end{macro}
+%
 % Set up two column layout.
 %    \begin{macrocode}
 \begingroup
@@ -3153,15 +3153,15 @@ This work consists of the file  achemso.dtx
   \fi
 \endgroup
 %</class>
-%    \end{macrocode} 
+%    \end{macrocode}
 %
 %\subsection{Late shared code}
 %
-%\changes{v3.2b}{2009/05/05}{Moved loading of \textsf{natbib} to end of 
-%  class}    
+%\changes{v3.2b}{2009/05/05}{Moved loading of \textsf{natbib} to end of
+%  class}   
 %\begin{macro}{\citenumfont}
 % Changes to citations can now be made. The citation styles supplied
-% here require \pkg{natbib}, which is loaded with the appropriate 
+% here require \pkg{natbib}, which is loaded with the appropriate
 % options. This part applies to the package as well as the class: it is
 % here so that the load order is correct.
 %    \begin{macrocode}
@@ -3173,10 +3173,10 @@ This work consists of the file  achemso.dtx
   \def\citenumfont{\textit}
 \fi
 \RequirePackage{natmove}
-%    \end{macrocode}  
-%\end{macro} 
+%    \end{macrocode} 
+%\end{macro}
 %\changes{v3.7f}{2013/03/07}{Moved loading of \textsf{mciteplus} after
-%  \pkg{natbib}}   
+%  \pkg{natbib}}  
 % The \pkg{mciteplus} package allows the construction of lists of
 % references with sub-letters. However, it might not be available, and
 % so it is only loaded if available: the \file{.bst} files should work
@@ -3208,8 +3208,8 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@bibliographystyle}
 %\begin{macro}{\bibliographystyle}
-% The original \cs{bibliographystyle} macro is now disabled: the 
-% underlying command is repeated otherwise problems cop up with 
+% The original \cs{bibliographystyle} macro is now disabled: the
+% underlying command is repeated otherwise problems cop up with
 % \pkg{chapterbib}.
 %    \begin{macrocode}
 \newcommand*\acs@bibliographystyle{}
@@ -3222,7 +3222,7 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%    
+%   
 %\subsection{Late package-only code}
 %
 % The \pkg{notes2bib} code may or may not be activated.
@@ -3235,9 +3235,9 @@ This work consists of the file  achemso.dtx
 }
 %</package>
 %    \end{macrocode}
-%    
+%   
 %\subsection{Moving citations with \pkg{natbib}}
-% 
+%
 % The code for moving citations is created as a separate package, as
 % the code needed is the same in both cases.
 %    \begin{macrocode}
@@ -3246,7 +3246,7 @@ This work consists of the file  achemso.dtx
   [2010/01/15 v1.1a Automatic citation moving with natbib]
 \RequirePackage{natbib}
 %    \end{macrocode}
-% 
+%
 %\begin{macro}{\nmv@ifmtarg}
 %\begin{macro}{\nmv@xifmtarg}
 % To keep down dependence on other packages, the very short code block
@@ -3271,7 +3271,7 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\nmv@citex}
-% Using the flag, either the new internal macro, or the \pkg{natbib} 
+% Using the flag, either the new internal macro, or the \pkg{natbib}
 % original, can be called.
 %    \begin{macrocode}
 \newcommand*\nmv@citex{%
@@ -3395,7 +3395,7 @@ This work consists of the file  achemso.dtx
 % The swap has to be done at the beginning of the document. The
 % internal flag from \pkg{natbib} is used, but under the
 % circumstances we should be safe.  \cs{cite} is also patched to make
-% the system active. 
+% the system active.
 %    \begin{macrocode}
 \newcommand*\nmv@citex@nat{}
 \newcommand*\nmv@activate{%
@@ -3447,8 +3447,8 @@ This work consists of the file  achemso.dtx
 %\subsection{The configuration files}
 %
 % The configuration files for different journals are not very complex.
-% Keeping everything separate simply helps with maintenance. 
-% 
+% Keeping everything separate simply helps with maintenance.
+%
 %    \begin{macrocode}
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
@@ -3554,18 +3554,18 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \def\acs@author@fnsymbol#1{%
   \ensuremath{%
-    \ifcase #1 *\or 
-      \dagger\or 
-        \ddagger\or 
+    \ifcase #1 *\or
+      \dagger\or
+        \ddagger\or
           \S\or
             \parallel\or
               \perp\or
                 \P\or
-                  \|\or 
-                    \bot\or 
-                      \#\or 
-                        @\or 
-                          \triangle\or 
+                  \|\or
+                    \bot\or
+                      \#\or
+                        @\or
+                          \triangle\or
                             \nabla\else
                               #1%
     \fi
@@ -3695,9 +3695,9 @@ This work consists of the file  achemso.dtx
   \SectionsOff
 \fi
 %</inoraj>
-%    \end{macrocode}   
-% 
-% The \emph{J.~Am.\ Chem.\ Soc.}~configuration is rather more 
+%    \end{macrocode}  
+%
+% The \emph{J.~Am.\ Chem.\ Soc.}~configuration is rather more
 % complicated as there is the need to construct a ``galley-like''
 % layout for communications.
 %    \begin{macrocode}
@@ -3719,7 +3719,7 @@ This work consists of the file  achemso.dtx
 \SectionsOff
 \acs@layout@nine
 %    \end{macrocode}
-%       
+%      
 %\begin{environment}{abstract}
 % The abstract appears at the start of the document, with lines around
 % it.s
@@ -3792,7 +3792,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\ps@plain}
 %\begin{macro}{\ps@jacs}
-% The header styles are done the hard way, to keep down the number of 
+% The header styles are done the hard way, to keep down the number of
 % packages loaded.
 %    \begin{macrocode}
 \def\ps@plain{%
@@ -3909,7 +3909,7 @@ This work consists of the file  achemso.dtx
 }
 %</jacsat>
 %    \end{macrocode}
-%    
+%   
 %    \begin{macrocode}
 %<*jafcau>
 \ProvidesFile{jafcau.cfg}
@@ -3986,7 +3986,7 @@ This work consists of the file  achemso.dtx
 \def\refname{%
   \ifnum\the\value{bibnote}>\z@\relax
     NOTES AND
-  \fi 
+  \fi
   REFERENCES%
 }
 \captionsetup{
@@ -4001,7 +4001,7 @@ This work consists of the file  achemso.dtx
 }
 %</jnprdf>
 %<*joceah>
-%\changes{v3.3e}{2009/11/18}{Formatting for \emph{J.\ Org.\ Chem}.\ 
+%\changes{v3.3e}{2009/11/18}{Formatting for \emph{J.\ Org.\ Chem}.\
 %  schemes corrected}
 \ProvidesFile{joceah.cfg}
   [2013/07/07 v3.7f achemso configuration: J. Org. Chem.]
@@ -4024,7 +4024,7 @@ This work consists of the file  achemso.dtx
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 %    \end{macrocode}
-% Title 
+% Title
 %    \begin{macrocode}
 \g@addto@macro{\maketitle}{\newpage}
 %</jpcafh>
@@ -4118,7 +4118,7 @@ This work consists of the file  achemso.dtx
 \SectionNumbersOff
 %</orgnd7>
 %    \end{macrocode}
-% 
+%
 %\Finale
 %
 %\iffalse
@@ -4159,7 +4159,7 @@ This work consists of the file  achemso.dtx
 %% Each author should be given as a separate \author command.
 %%
 %% Corresponding authors should have an e-mail given after the author
-%% name as an \email command. Phone and fax numbers can be given 
+%% name as an \email command. Phone and fax numbers can be given
 %% using \phone and \fax, respectively; this information is optional.
 %%
 %% The affiliation of authors is given after the authors; each
@@ -4203,12 +4203,12 @@ Germany}
 %% optional argument to \title.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title[An \textsf{achemso} demo]
-  {A demonstration of the \textsf{achemso} \LaTeX\ 
+  {A demonstration of the \textsf{achemso} \LaTeX\
    class\footnote{A footnote for the title}}
-   
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Some journals require a list of abbreviations or keywords to be
-%% supplied. These should be set up here, and will be printed after 
+%% supplied. These should be set up here, and will be printed after
 %% the title and author information, if needed.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \abbreviations{IR,NMR,UV}
@@ -4231,7 +4231,7 @@ Germany}
   This is an abstract for the \textsf{achemso} document class
   demonstration document.  An abstract is only allowed for certain
   manuscript types.  The selection of \texttt{journal} and
-  \texttt{manuscript} will determine if an abstract is valid.  If 
+  \texttt{manuscript} will determine if an abstract is valid.  If
   not, the class will issue an appropriate error.
 \end{abstract}
 
@@ -4261,9 +4261,9 @@ handled.  The class loads \textsf{natbib}, and also the
 appropriate bibliography style.  References can be made using
 the normal method; the citation should be placed before any
 punctuation, as the class will move it if using a superscript
-citation style 
+citation style
 \cite{Mena2000,Abernethy2003,Friedman-Hill2003,EuropeanCommission2008}.
-The use of \textsf{natbib} allows the use of the various citation 
+The use of \textsf{natbib} allows the use of the various citation
 commands of that package: \citeauthor{Abernethy2003} have shown
 something, in \citeyear{Cotton1999}, or as given by
 Ref.~\citenum{Mena2000}.  Long lists of authors will be
@@ -4271,17 +4271,17 @@ automatically truncated in most article formats, but not in
 supplementary information or reviews \cite{Pople2003}. If you
 encounter problems with the citation macros, please check that
 your copy of \textsf{natbib} is up to date. The demonstration
-database file \texttt{achemso-demo.bib} shows how to complete 
+database file \texttt{achemso-demo.bib} shows how to complete
 entries correctly.
 
 Multiple citations to be combined into a list can be given as
 a single citation.  This uses the \textsf{mciteplus} package
-\cite{Johnson1972,*Arduengo1992,*Eisenstein2005,*Arduengo1994}.  
-Citations other than the first of the list should be indicated 
-with a star. If the \textsf{mciteplus} package is not installed, 
-the standard bibliography tools will still work but starred 
+\cite{Johnson1972,*Arduengo1992,*Eisenstein2005,*Arduengo1994}. 
+Citations other than the first of the list should be indicated
+with a star. If the \textsf{mciteplus} package is not installed,
+the standard bibliography tools will still work but starred
 references will be ignored. Individual references can be referred
-to using \texttt{\textbackslash mciteSubRef}: 
+to using \texttt{\textbackslash mciteSubRef}:
 ``ref.~\mciteSubRef{Eisenstein2005}''.
 
 The class also handles notes to be added to the bibliography.  These
@@ -4359,7 +4359,7 @@ rather than the bottom, a minipage may be used.
 
 The usual experimental details should appear here.  This could
 include a table, which can be referenced as Table~\ref{tbl:example}.
-Notice that the caption is positioned at the top of the table. 
+Notice that the caption is positioned at the top of the table.
 \begin{table}
   \caption{An example table}
   \label{tbl:example}
@@ -4396,8 +4396,8 @@ method is to generate these using the basic
 \end{table}
 
 The example file also loads the optional \textsf{mhchem} package, so
-that formulas are easy to input: \texttt{\textbackslash ce\{H2SO4\}} 
-gives \ce{H2SO4}.  See the use in the bibliography file (when using 
+that formulas are easy to input: \texttt{\textbackslash ce\{H2SO4\}}
+gives \ce{H2SO4}.  See the use in the bibliography file (when using
 titles in the references section).
 
 The use of new commands should be limited to simple things which will
@@ -4438,7 +4438,7 @@ authors would like to thank \ldots''.
 The author thanks Mats Dahlgren for version one of \textsf{achemso},
 and Donald Arseneau for the code taken from \textsf{cite} to move
 citations after punctuation. Many users have provided feedback on the
-class, which is reflected in all of the different demonstrations 
+class, which is reflected in all of the different demonstrations
 shown in this document.
 
 \end{acknowledgement}
@@ -4450,7 +4450,7 @@ shown in this document.
 \begin{suppinfo}
 
 This will usually read something like: ``Experimental procedures and
-characterization data for all new compounds. The class will 
+characterization data for all new compounds. The class will
 automatically add a sentence pointing to the information on-line:
 
 \end{suppinfo}
@@ -4471,19 +4471,19 @@ automatically add a sentence pointing to the information on-line:
 
 Some journals require a graphical entry for the Table of Contents.
 This should be laid out ``print ready'' so that the sizing of the
-text is correct. 
+text is correct.
 
 Inside the \texttt{tocentry} environment, the font used is Helvetica
-8\,pt, as required by \emph{Journal of the American Chemical 
+8\,pt, as required by \emph{Journal of the American Chemical
 Society}.
 
-The surrounding frame is 9\,cm by 3.5\,cm, which is the maximum 
+The surrounding frame is 9\,cm by 3.5\,cm, which is the maximum
 permitted for  \emph{Journal of the American Chemical Society}
 graphical table of content entries. The box will not resize if the
 content is too big: instead it will overflow the edge of the box.
 
-This box and the associated title will always be printed on a 
-separate page at the end of the document. 
+This box and the associated title will always be printed on a
+separate page at the end of the document.
 
 \end{tocentry}
 
@@ -4492,7 +4492,7 @@ separate page at the end of the document.
 %<*bst>
 % Database entries
 
-ENTRY 
+ENTRY
   {
     address
     author
@@ -4530,7 +4530,7 @@ ENTRY
     label
     short.names
   }
-  
+ 
 % Generic logic functions, from the core BibTeX styles
 
 FUNCTION { and } {
@@ -4539,13 +4539,13 @@ FUNCTION { and } {
       pop$
       #0
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { not } {
     { #0 }
     { #1 }
-  if$  
+  if$ 
 }
 
 FUNCTION { or } {
@@ -4554,15 +4554,15 @@ FUNCTION { or } {
       #1
     }
     { }
-  if$  
+  if$ 
 }
 
 FUNCTION { xor } {
     { not }
     { }
-  if$  
+  if$ 
 }
-  
+ 
 % Generic functions for basic manipulations: many of these
 % come from the core BibTeX styles or 'Tame the BeaST'
 
@@ -4581,31 +4581,31 @@ FUNCTION { chr.to.value } {
   duplicate$
   #0 <
     { chr.to.value.error }
-    { 
+    {
       duplicate$
       #9 >
         { chr.to.value.error }
         { }
-      if$  
+      if$ 
     }
-  if$  
+  if$ 
 }
 
-STRINGS { 
+STRINGS {
   extract.input.str
   extract.output.str
 }
 
 FUNCTION { is.a.digit } {
-  duplicate$ 
+  duplicate$
   "" =
     {
-      pop$ 
+      pop$
       #0
     }
     {
       chr.to.int$
-      #48 - 
+      #48 -
       duplicate$
      #0 < swap$ #9 > or not
    }
@@ -4614,38 +4614,38 @@ FUNCTION { is.a.digit } {
 
 FUNCTION{ is.a.number } {
   {
-    duplicate$ 
-    #1 #1 substring$ 
-    is.a.digit 
+    duplicate$
+    #1 #1 substring$
+    is.a.digit
   }
     { #2 global.max$ substring$ }
   while$
   "" =
 }
 
-FUNCTION { extract.number } { 
-  duplicate$ 
+FUNCTION { extract.number } {
+  duplicate$
   'extract.input.str :=
   "" 'extract.output.str :=
   { extract.input.str empty$ not }
-    { 
+    {
       extract.input.str #1 #1 substring$
       extract.input.str #2 global.max$ substring$ 'extract.input.str :=
-      duplicate$ 
+      duplicate$
       is.a.number
         { extract.output.str swap$ * 'extract.output.str := }
-        { 
-          pop$ 
-          "" 'extract.input.str := 
+        {
+          pop$
+          "" 'extract.input.str :=
         }
       if$
     }
   while$
   extract.output.str empty$
     { }
-    { 
-      pop$ 
-      extract.output.str 
+    {
+      pop$
+      extract.output.str
     }
   if$
 }
@@ -4670,14 +4670,14 @@ FUNCTION { multiply } {
   'multiply.a.int :=
   'multiply.b.int :=
   multiply.b.int #0 <
-    { 
+    {
       #-1
       #0 multiply.b.int - 'multiply.b.int :=
     }
     { #1 }
   if$
   #0
-  { multiply.b.int #0 > }  
+  { multiply.b.int #0 > } 
     {
       multiply.a.int +
       multiply.b.int #1 - 'multiply.b.int :=
@@ -4686,7 +4686,7 @@ FUNCTION { multiply } {
   swap$
     { }
     { #0 swap$ - }
-  if$  
+  if$ 
 }
 
 INTEGERS { str.conversion.int }
@@ -4701,7 +4701,7 @@ FUNCTION { str.to.int.aux.ii } {
       #10 multiply 'str.conversion.int :=
       duplicate$
       #1 #1 substring$
-      chr.to.value 
+      chr.to.value
       str.conversion.int +
       swap$
       #2 global.max$ substring$
@@ -4714,14 +4714,14 @@ FUNCTION { str.to.int.aux.i } {
   duplicate$
   #1 #1 substring$
   "-" =
-   { 
+   {
       #1 swap$
       #2 global.max$ substring$
     }
-    { 
+    {
       #0 swap$
     }
-  if$  
+  if$ 
   #0
   swap$
   str.to.int.aux.ii
@@ -4734,16 +4734,16 @@ FUNCTION { str.to.int.aux.i } {
 FUNCTION { str.to.int } {
   duplicate$
   empty$
-    { 
+    {
       pop$
       #0
     }
     { str.to.int.aux.i }
-  if$  
+  if$ 
 }
 
 FUNCTION { tie.or.space.connect } {
- duplicate$ 
+ duplicate$
  text.length$ #3 <
     { "~" }
     { " " }
@@ -4754,18 +4754,18 @@ FUNCTION { tie.or.space.connect } {
 FUNCTION { yes.no.to.bool } {
   duplicate$
   empty$
-    { 
+    {
       pop$
-      #0 
+      #0
     }
     {
       "l" change.case$
       "yes" =
         { #1 }
         { #0 }
-      if$  
+      if$ 
     }
-  if$  
+  if$ 
 }
 
 % Functions of formatting
@@ -4773,7 +4773,7 @@ FUNCTION { yes.no.to.bool } {
 FUNCTION { bold } {
   duplicate$
   empty$
-    { 
+    {
       pop$
       ""
     }
@@ -4784,7 +4784,7 @@ FUNCTION { bold } {
 FUNCTION { emph } {
   duplicate$
   empty$
-    { 
+    {
       pop$
       ""
     }
@@ -4796,7 +4796,7 @@ FUNCTION { emph } {
 FUNCTION { paren } {
   duplicate$
   empty$
-    { 
+    {
       pop$
       ""
     }
@@ -4856,12 +4856,12 @@ FUNCTION { hyphen.to.dash } {
   'pages.str :=
   ""
   { pages.str empty$ not }
-    { 
+    {
       pages.str #1 #1 substring$
       "-" =
-        { 
+        {
           "--" *
-          { 
+          {
             pages.str #1 #1 substring$
             "-" =
           }
@@ -4869,7 +4869,7 @@ FUNCTION { hyphen.to.dash } {
           while$
         }
         {
-          pages.str #1 #1 substring$ 
+          pages.str #1 #1 substring$
           *
           pages.str #2 global.max$ substring$ 'pages.str :=
         }
@@ -4883,16 +4883,16 @@ INTEGERS { multiresult.bool }
 FUNCTION { multi.page.check } {
   'pages.str :=
   #0 'multiresult.bool :=
-  { 
+  {
     multiresult.bool not
     pages.str empty$ not
     and
   }
-    { 
+    {
       pages.str #1 #1 substring$
-      duplicate$ 
-      "-" = swap$ duplicate$ 
-      "," = swap$ 
+      duplicate$
+      "-" = swap$ duplicate$
+      "," = swap$
       "+" =
       or or
         { #1 'multiresult.bool := }
@@ -4932,7 +4932,7 @@ FUNCTION { full.format.names } {
           swap$ add.comma swap$
           remaining.names.int #1 >
             { }
-            { 
+            {
               duplicate$
               "others" =
                 { bbl.etal }
@@ -4944,7 +4944,7 @@ FUNCTION { full.format.names } {
           *
         }
         { }
-      if$    
+      if$   
       remaining.names.int #1 - 'remaining.names.int :=
       current.name.int #1 + 'current.name.int :=
     }
@@ -4955,7 +4955,7 @@ FUNCTION { full.author } {
   author empty$
     { "" }
     { author full.format.names }
-  if$  
+  if$ 
 }
 
 FUNCTION { full.author.editor } {
@@ -4964,17 +4964,17 @@ FUNCTION { full.author.editor } {
       editor empty$
         { "" }
         { editor full.format.names }
-      if$ 
+      if$
     }
     { author full.format.names }
-  if$  
+  if$ 
 }
 
 FUNCTION { full.editor } {
   editor empty$
     { "" }
     { editor full.format.names }
-  if$  
+  if$ 
 }
 
 FUNCTION { short.format.names } {
@@ -4983,19 +4983,19 @@ FUNCTION { short.format.names } {
   names.str num.names$
   duplicate$
   #2 >
-    { 
+    {
       pop$
       add.space bbl.etal *
     }
-    { 
+    {
       #2 <
         { }
         {
           names.str #2 "{ff }{vv }{ll}{ jj}" format.name$
           "others" =
             { add.space bbl.etal * }
-            { 
-              add.space 
+            {
+              add.space
               bbl.and add.space
               *
               names.str #2 "{vv~}{ll}" format.name$
@@ -5003,9 +5003,9 @@ FUNCTION { short.format.names } {
             }
           if$
         }
-      if$  
+      if$ 
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { short.author.key } {
@@ -5014,10 +5014,10 @@ FUNCTION { short.author.key } {
       key empty$
         { cite$ #1 #3 substring$ }
         { key }
-      if$  
+      if$ 
     }
     { author short.format.names }
-  if$  
+  if$ 
 }
 
 FUNCTION { short.author.editor.key } {
@@ -5028,13 +5028,13 @@ FUNCTION { short.author.editor.key } {
           key empty$
             { cite$ #1 #3 substring$ }
             { key }
-          if$  
+          if$ 
         }
         { editor short.format.names }
       if$
     }
     { author short.format.names }
-  if$ 
+  if$
 }
 
 FUNCTION { short.author.key.organization } {
@@ -5044,21 +5044,21 @@ FUNCTION { short.author.key.organization } {
         {
           organization empty$
             { cite$ #1 #3 substring$ }
-            { 
+            {
               organization #1 #4 substring$
               "The " =
                 { organization }
                 { organization #5 global.max$ substring$ }
-              if$ 
+              if$
               #3 text.prefix$
             }
-          if$  
+          if$ 
         }
         { key }
-      if$  
+      if$ 
     }
     { author short.format.names }
-  if$  
+  if$ 
 }
 
 FUNCTION { short.editor.key.organization } {
@@ -5068,21 +5068,21 @@ FUNCTION { short.editor.key.organization } {
         {
           organization empty$
             { cite$ #1 #3 substring$ }
-            { 
+            {
               organization #1 #4 substring$
               "The " =
                 { organization }
                 { organization #5 global.max$ substring$ }
-              if$ 
+              if$
               #3 text.prefix$
             }
-          if$  
+          if$ 
         }
         { key }
-      if$  
+      if$ 
     }
     { editor short.format.names }
-  if$  
+  if$ 
 }
 
 FUNCTION { calculate.full.names } {
@@ -5094,7 +5094,7 @@ FUNCTION { calculate.full.names } {
       type$ "proceedings" =
         { full.editor }
         { full.author }
-      if$  
+      if$ 
     }
   if$
 }
@@ -5111,9 +5111,9 @@ FUNCTION { calculate.short.names } {
           type$ "manual" =
             { short.author.key.organization }
             { short.author.key }
-          if$  
+          if$ 
         }
-      if$  
+      if$ 
     }
   if$
   'short.names :=
@@ -5149,7 +5149,7 @@ FUNCTION { begin.bib } {
     { }
     {
       preamble$ write$
-      newline$ 
+      newline$
     }
   if$
   "\providecommand*\mcitethebibliography{\thebibliography}" write$
@@ -5157,7 +5157,7 @@ FUNCTION { begin.bib } {
   "\csname @ifundefined\endcsname{endmcitethebibliography}" write$
   "  {\let\endmcitethebibliography\endthebibliography}{}" write$
   newline$
-  "\begin{mcitethebibliography}{" 
+  "\begin{mcitethebibliography}{"
     entries.int int.to.str$  * "}" * write$
   newline$
   "\providecommand*\natexlab[1]{#1}" write$
@@ -5191,16 +5191,16 @@ FUNCTION { begin.bib } {
   "  {\relax}" write$
   newline$
   "  {\relax}" write$
-  newline$     
+  newline$    
 }
 
 FUNCTION { end.bib } {
   newline$
-  "\end{mcitethebibliography}" write$ 
+  "\end{mcitethebibliography}" write$
   newline$
 }
 
-% Functions used for the special "control" entry type, to pass data 
+% Functions used for the special "control" entry type, to pass data
 % from LaTeX to BibTeX
 
 INTEGERS {
@@ -5237,7 +5237,7 @@ FUNCTION { control } {
 % items to the .bbl file
 
 INTEGERS {
-  next.punct.comma 
+  next.punct.comma
   next.punct.period
   next.punct.semicolon
   next.punct.space
@@ -5259,21 +5259,21 @@ FUNCTION { output } {
     {
       next.punct.int next.punct.space =
         { add.space }
-        { 
+        {
           next.punct.int next.punct.comma =
             { add.comma }
-            { 
+            {
               next.punct.int next.punct.semicolon =
                 { add.semicolon }
                 { add.period }
-              if$  
+              if$ 
             }
-          if$  
+          if$ 
         }
-      if$ 
+      if$
       write$
     }
-  if$   
+  if$  
   next.punct.comma 'next.punct.int :=
 }
 
@@ -5288,7 +5288,7 @@ FUNCTION { begin.bibitem } {
   short.names =
     { pop$ }
     { * }
-  if$  
+  if$ 
   "[" swap$ * "]" * write$
   "{" cite$ * "}" * write$
   newline$
@@ -5311,22 +5311,22 @@ FUNCTION { would.add.period } {
 }
 
 FUNCTION { end.bibitem } {
-  would.add.period 
-    { 
-      "\relax" * write$ 
+  would.add.period
+    {
+      "\relax" * write$
       newline$
-      "\mciteBstWouldAddEndPuncttrue" write$ 
+      "\mciteBstWouldAddEndPuncttrue" write$
       newline$
       "\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}" write$
       newline$
       "{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax"
     }
-    { 
-      "\relax" * write$ 
+    {
+      "\relax" * write$
       newline$
       "\mciteBstWouldAddEndPunctfalse" write$
        newline$
-      "\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}" write$ 
+      "\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}" write$
       newline$
       "{}{\mcitedefaultseppunct}\relax"
     }
@@ -5336,7 +5336,7 @@ FUNCTION { end.bibitem } {
   "\EndOfBibitem" write$
 }
 
-% Formatting names: authors and editors are not quite the same, 
+% Formatting names: authors and editors are not quite the same,
 % and there is the question of how to handle 'et al.'
 
 FUNCTION { initialize.name.separator } {
@@ -5352,32 +5352,32 @@ FUNCTION { format.names.loop } {
       'current.name.str :=
       current.name.int #1 >
         {
-          duplicate$ 
+          duplicate$
           "others," =
-            { 
+            {
               bbl.etal
               add.space
               remaining.names.int #1 - 'remaining.names.int :=
             }
-            {  
+            { 
               swap$
               names.separate.comma.bool
                 { add.comma }
-                { add.semicolon }  
+                { add.semicolon } 
               if$
 %<*bio>
               remaining.names.int #1 >
                 { }
                 { bbl.and add.space * }
-              if$  
+              if$ 
 %</bio>s
               swap$
               *
             }
-          if$   
+          if$  
         }
         { }
-      if$    
+      if$   
       remaining.names.int #1 - 'remaining.names.int :=
       current.name.int #1 + 'current.name.int :=
     }
@@ -5393,8 +5393,8 @@ FUNCTION { format.names.etal } {
   ctrl.etal.firstonly.bool
     { #1 'remaining.names.int := }
     { ctrl.etal.number.int 'remaining.names.int := }
-  if$  
-  format.names.loop 
+  if$ 
+  format.names.loop
   current.name.str "others," =
     { }
     {
@@ -5403,9 +5403,9 @@ FUNCTION { format.names.etal } {
       add.space
       *
     }
-  if$  
+  if$ 
 }
- 
+
 FUNCTION { format.names } {
   'names.separate.comma.bool :=
   'names.str :=
@@ -5416,10 +5416,10 @@ FUNCTION { format.names } {
       ctrl.etal.number.int #0 =
         { format.names.all }
         { format.names.etal }
-      if$  
+      if$ 
     }
     { format.names.all }
-  if$  
+  if$ 
 }
 
 % Converting editions into their fixed representations
@@ -5453,7 +5453,7 @@ FUNCTION { make.ordinal } {
   *
   #-2 #1 substring$
   "1" =
-    { 
+    {
       bbl.th *
     }
     {
@@ -5461,28 +5461,28 @@ FUNCTION { make.ordinal } {
       #-1 #1 substring$
       duplicate$
       "1" =
-        { 
+        {
           pop$
           bbl.st *
         }
-        { 
+        {
           duplicate$
           "2" =
-            { 
+            {
               pop$
               bbl.nd *
             }
-            { 
+            {
               "3" =
                 { bbl.rd * }
                 { bbl.th * }
-              if$  
+              if$ 
             }
           if$
         }
       if$
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { convert.to.ordinal } {
@@ -5491,18 +5491,18 @@ FUNCTION { convert.to.ordinal } {
   ord.input.str "first" = ord.input.str "1" = or
     { bbl.first 'ord.output.str := }
     {
-      ord.input.str "second" = ord.input.str "2" = or 
+      ord.input.str "second" = ord.input.str "2" = or
         { bbl.second 'ord.output.str := }
         {
           ord.input.str "third" = ord.input.str "3" = or
             { bbl.third 'ord.output.str := }
-            { 
+            {
               ord.input.str "fourth" = ord.input.str "4" = or
                 { bbl.fourth 'ord.output.str := }
-                { 
+                {
                   ord.input.str "fifth" = ord.input.str "5" = or
                     { bbl.fifth 'ord.output.str := }
-                    { 
+                    {
                       ord.input.str #1 #1 substring$
                       is.a.number
                         { ord.input.str make.ordinal }
@@ -5510,16 +5510,16 @@ FUNCTION { convert.to.ordinal } {
                       if$
                       'ord.output.str :=
                     }
-                   if$ 
+                   if$
                 }
-              if$  
+              if$ 
             }
-          if$  
+          if$ 
         }
-      if$  
+      if$ 
     }
-  if$ 
-  ord.output.str 
+  if$
+  ord.output.str
 }
 
 % Functions for each type of entry
@@ -5547,7 +5547,7 @@ FUNCTION { format.authors } {
       output
       next.punct.space 'next.punct.int :=
     }
-  if$    
+  if$   
 }
 
 FUNCTION { format.editors } {
@@ -5559,19 +5559,19 @@ FUNCTION { format.editors } {
       editor num.names$ #1 >
         { bbl.editors }
         { bbl.editor }
-      if$  
+      if$ 
       *
       output
       next.punct.semicolon 'next.punct.int :=
-    }  
-  if$  
+    } 
+  if$ 
 }
 
 FUNCTION { format.authors.or.editors } {
   author empty$
     { format.editors }
     { format.authors }
-  if$  
+  if$ 
   next.punct.space 'next.punct.int :=
 }
 
@@ -5580,7 +5580,7 @@ FUNCTION { format.chapter } {
     { }
     {
       bbl.chapter add.space
-      chapter 
+      chapter
       *
       output
     }
@@ -5596,12 +5596,12 @@ FUNCTION { format.doi } {
 FUNCTION { format.edition } {
   edition empty$
     { }
-    { 
+    {
       edition convert.to.ordinal
       add.space bbl.edition *
       output
     }
-  if$  
+  if$ 
   next.punct.semicolon 'next.punct.int :=
 }
 
@@ -5609,18 +5609,18 @@ FUNCTION { format.group.address } {
   duplicate$
   empty$
     { pop$ }
-    { 
+    {
       address empty$
         { }
         {
-          add.colon 
+          add.colon
           address
           *
         }
-      if$  
+      if$ 
       output
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { format.howpublished } {
@@ -5648,10 +5648,10 @@ FUNCTION { format.note } {
   note empty$
     { }
     {
-      note 
-      output 
+      note
+      output
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { format.number.series } {
@@ -5661,15 +5661,15 @@ FUNCTION { format.number.series } {
       series
       number empty$
         { }
-        { 
+        {
           add.space
           number *
         }
-      if$  
+      if$ 
       output
       next.punct.semicolon 'next.punct.int :=
     }
-  if$  
+  if$ 
 }
 
 
@@ -5678,10 +5678,10 @@ FUNCTION { format.organization } {
     { }
     {
       organization paren
-      output 
+      output
       next.punct.period 'next.punct.int :=
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { format.organization.address } {
@@ -5691,10 +5691,10 @@ FUNCTION { format.organization.address } {
 FUNCTION { format.pages } {
   pages empty$
     { }
-    { 
+    {
       pages multi.page.check
-        { 
-          bbl.pages 
+        {
+          bbl.pages
           pages hyphen.to.dash
         }
         { bbl.page pages }
@@ -5708,8 +5708,8 @@ FUNCTION { format.pages } {
 FUNCTION { format.pages.article } {
   pages empty$
     { }
-    { 
-      pages hyphen.to.dash 
+    {
+      pages hyphen.to.dash
       output
     }
   if$
@@ -5719,23 +5719,23 @@ FUNCTION { format.publisher.address } {
   publisher format.group.address
 }
 
-FUNCTION { format.school.address } {  
-  school 
+FUNCTION { format.school.address } { 
+  school
   duplicate$
   empty$
     { pop$ }
-    { 
+    {
       address empty$
         { }
         {
-          add.comma 
+          add.comma
           address
           *
         }
-      if$  
+      if$ 
       output
     }
-  if$ 
+  if$
 }
 
 FUNCTION { format.title } {
@@ -5750,7 +5750,7 @@ FUNCTION { format.title } {
 }
 
 FUNCTION { format.title.article } {
-  ctrl.article.title.bool 
+  ctrl.article.title.bool
     {
       title empty$
         { }
@@ -5758,8 +5758,8 @@ FUNCTION { format.title.article } {
           title
           output
           next.punct.period 'next.punct.int :=
-        } 
-      if$  
+        }
+      if$ 
     }
     { }
   if$
@@ -5784,7 +5784,7 @@ FUNCTION { format.title.booktitle } {
       output
       next.punct.period 'next.punct.int :=
     }
-  if$  
+  if$ 
   booktitle empty$
     { }
     {
@@ -5792,25 +5792,25 @@ FUNCTION { format.title.booktitle } {
       output
       next.punct.period 'next.punct.int :=
     }
-  if$    
+  if$   
 }
 
 
-FUNCTION { format.chapter.title } { 
+FUNCTION { format.chapter.title } {
 }
 
 
-STRINGS { 
-  book.title 
+STRINGS {
+  book.title
   chapter.title
 }
 
-FUNCTION { format.title.booktitle.book } { 
+FUNCTION { format.title.booktitle.book } {
   "" 'chapter.title :=
   booktitle empty$
     {
       "" 'chapter.title :=
-      title 'book.title := 
+      title 'book.title :=
     }
     {
       ctrl.chapter.title.bool
@@ -5825,39 +5825,39 @@ FUNCTION { format.title.booktitle.book } {
       maintitle empty$
         { booktitle 'book.title := }
         { maintitle add.period booktitle * 'book.title := }
-      if$  
+      if$ 
     }
   if$
   chapter.title empty$
     { }
-    { 
+    {
       chapter.title
       output
       next.punct.period 'next.punct.int :=
     }
-  if$  
+  if$ 
   book.title emph
   chapter.title empty$
-    { 
+    {
       author empty$
         { }
         {
           editor empty$
             { }
             { bbl.in add.space swap$ * }
-          if$   
+          if$  
         }
-      if$  
+      if$ 
     }
     { bbl.in add.space swap$ * }
-  if$  
+  if$ 
   output
 }
 
 FUNCTION { format.type } {
   type empty$
     { }
-    { 
+    {
       pop$
       type
     }
@@ -5868,12 +5868,12 @@ FUNCTION { format.type } {
 FUNCTION { format.type.number } {
   type empty$
     { }
-    { 
+    {
       type
       number empty$
         { }
         { number tie.or.space.connect }
-      if$  
+      if$ 
       output
     }
   if$
@@ -5886,18 +5886,18 @@ FUNCTION { format.url } {
       "\url{" url * "}" *
       output
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { format.year } {
-  year empty$ 
+  year empty$
     { }
     {
       year
       output
       next.punct.semicolon 'next.punct.int :=
     }
-  if$  
+  if$ 
 }
 
 FUNCTION { format.year.article } {
@@ -5925,8 +5925,8 @@ FUNCTION { format.version } {
       version
       *
       output
-    }  
-  if$  
+    } 
+  if$ 
 }
 
 FUNCTION { format.volume.article } {
@@ -5944,7 +5944,7 @@ FUNCTION { format.volume } {
       output
       next.punct.semicolon 'next.punct.int :=
     }
-  if$    
+  if$   
 }
 
 % The functions to deal with each entry type
@@ -6007,15 +6007,15 @@ FUNCTION { inpress } {
   format.authors
   format.journal.unpub
   doi empty$
-    { 
+    {
       bbl.inpress
       output
     }
-    { 
+    {
       format.year
       format.doi
     }
-  if$  
+  if$ 
   format.note
   end.bibitem
 }
@@ -6115,17 +6115,17 @@ FUNCTION { unpublished } {
   format.journal.unpub
   doi empty$
     { format.howpublished }
-    { 
+    {
       format.year
       format.doi
     }
-  if$  
+  if$ 
   format.note
   end.bibitem
 }
 
 FUNCTION { default.type } { misc }
-  
+ 
 % Macros containing pre-defined short cuts
 
 MACRO { jan } { "Jan." }
@@ -6180,7 +6180,7 @@ MACRO { nalefd } { "Nano Lett." }
 MACRO { orlef7 } { "Org.\ Lett." }
 MACRO { oprdfk } { "Org.\ Proc.\ Res.\ Dev." }
 MACRO { orgnd7 } { "Organometallics" }
-  
+ 
 % Construction of bibliography: reading of data, construction of
 % labels, output of formatted bibliography
 
@@ -6303,13 +6303,13 @@ EXECUTE { end.bib }
   title          = {Writing Rules in Jess},
   edition        = {1},
   year           = {2003}
-} 
+}
 
 @PATENT{Johnson1972,
   author       = {Johnson, Alexander Lawrence},
   organization = {E.~I.~du Pont de Nemours},
   number       = {3637731},
-  title        = {1-(Alkylsubstituted phenyl)imidazoles useful in ACTH 
+  title        = {1-(Alkylsubstituted phenyl)imidazoles useful in ACTH
     reverse assay},
   type         = {US~Patent},
   year         = {1972}
