@@ -1454,12 +1454,12 @@ This work consists of the file  achemso.dtx
 % standard support packages can now be loaded.
 %    \begin{macrocode}
 \acs@niib@create
-\RequirePackage[T1]{fontenc}
 \RequirePackage[margin=2.54cm]{geometry}
 \RequirePackage[scaled=0.90]{helvet}
+\RequirePackage{courier}
+\RequirePackage[T1]{fontenc}
 \RequirePackage{
   caption,
-  courier,
   float,
   graphicx,
   setspace,
@@ -3510,6 +3510,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{amlccd.cfg}
   [2013/07/07 v3.7f achemso configuration: ACS Macro Lett.]
 \def\acs@type@list{communcication,letter,suppinfo}
+\SectionsOff
 %</amlccd>
 %<*amclct>
 \ProvidesFile{amclct.cfg}
