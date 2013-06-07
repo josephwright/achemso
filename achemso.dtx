@@ -5593,7 +5593,8 @@ FUNCTION { format.chapter } {
 }
 
 FUNCTION { format.doi } {
-  bbl.doi add.space *
+  next.punct.comma 'next.punct.int :=
+  bbl.doi add.space
   doi *
   output
 }
@@ -6011,6 +6012,7 @@ FUNCTION { inpress } {
   begin.bibitem
   format.authors
   format.journal.unpub
+  doi top$
   doi empty$
     {
       bbl.inpress
