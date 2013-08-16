@@ -710,6 +710,17 @@ This work consists of the file  achemso.dtx
 %  \end{tocentry}
 %\end{LaTeXdemo}
 %
+% \subsection{Miscellaneous commands}
+% 
+% \DescribeMacro{\latin}
+% \changeS{v3.8}{2013/08/16}{Introduce \cs{latin} command to support
+%   \emph{ACS Nano} requirements}
+%   
+% The command \cs{latin} is provided by the class to format Latin phrases
+% such as ``et al.'' Most ACS journals do not make these italic, but
+% some (for example \emph{ACS Nano}) do. By providing a command, the formatting
+% is left flexible.
+%
 %\section{The package file}
 % The \pkg{achemso} package is independent of the classs file, and
 % contains parts of the bundle useful outside of submission to the
@@ -1421,10 +1432,20 @@ This work consists of the file  achemso.dtx
     \acs@bibliography{acs-\jobname,#1}%
   }%
 }
-%</package|class>
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
+%
+% \begin{macro}{\latin}
+%   The journal \emph{ACS Nano} formats Latin phrases differently from
+%   every other ACS journal: we provide a \cs{latin} command to cover this.
+%    \begin{macrocode}
+\AtBeginDocument{
+  \providecommand{\latin}[1]{#1}
+}
+%</package|class>
+%    \end{macrocode}
+% \end{macro}
 %
 %\subsection{Late class-only code}
 %
@@ -3527,6 +3548,7 @@ This work consists of the file  achemso.dtx
   maxauthors   = 10
 }
 \def\acs@type@list{article,perspective,suppinfo}
+\newcommand*{\latin}[1]{\emph{#1}}
 \SectionNumbersOff
 %</ancac3>
 %<*ancham>
@@ -4277,7 +4299,8 @@ supplementary information or reviews \cite{Pople2003}. If you
 encounter problems with the citation macros, please check that
 your copy of \textsf{natbib} is up to date. The demonstration
 database file \texttt{achemso-demo.bib} shows how to complete
-entries correctly.
+entries correctly. Notice that ``\latin{et al.}'' is auto-formatted
+using the \texttt{\textbackslash latin} command.
 
 Multiple citations to be combined into a list can be given as
 a single citation.  This uses the \textsf{mciteplus} package
@@ -4835,7 +4858,7 @@ FUNCTION { bbl.editors } { "Eds." }
 
 FUNCTION { bbl.edition } { "ed." }
 
-FUNCTION { bbl.etal }    { "et~al." }
+FUNCTION { bbl.etal }    { "\latin{et~al.}" }
 
 FUNCTION { bbl.in }      { "In" }
 
@@ -5157,6 +5180,8 @@ FUNCTION { begin.bib } {
       newline$
     }
   if$
+  "\providecommand{\latin}[1]{#1}" write$
+  newline$
   "\providecommand*\mcitethebibliography{\thebibliography}" write$
   newline$
   "\csname @ifundefined\endcsname{endmcitethebibliography}" write$
