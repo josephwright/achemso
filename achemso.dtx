@@ -1853,18 +1853,22 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \newcommand*\acs@abbreviations@print{%
   \ifx\@abbreviations\@empty\else
-    ABBREVIATIONS: \@abbreviations
+    \section*{Abbreviations}
+    \@abbreviations
     \par
   \fi
 }
 \newcommand*\acs@keywords@print{%
   \ifx\@keywords\@empty\else
-    KEYWORDS: \@keywords
+    \section*{Keywords}
+    \@abbreviations
     \par
   \fi
 }
 \newcommand*\acs@title@short@print{%
-  RUNNING HEADER: \acs@title@short
+  \section*{Running header}
+  \acs@title@short
+  \par
 }
 %    \end{macrocode}
 %\end{macro}
