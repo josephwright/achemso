@@ -3239,6 +3239,7 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\changes{v3.7f}{2013/03/07}{Moved loading of \textsf{mciteplus} after
 %  \pkg{natbib}}  
+% \changes{v3.8}{2013/08/19}{Fix behaviour of \cs{citenum}}  
 % The \pkg{mciteplus} package allows the construction of lists of
 % references with sub-letters. However, it might not be available, and
 % so it is only loaded if available: the \file{.bst} files should work
@@ -3247,6 +3248,11 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \IfFileExists{mciteplus.sty}{%
   \RequirePackage{mciteplus}
+  \@ifpackagelater{mciteplus}{2008/09/31}
+    {}
+    {%
+      \edef\@mciteNatbibCiteCmdList{\@mciteNatbibCiteCmdList,citenum}%
+    }
 %<*!package>
   \def\@mciteSubRef[##1]##2{\plainref{\@mcitereflabelprefix:##1:##2}}
 %</!package>
