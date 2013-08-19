@@ -2268,30 +2268,71 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\acs@author@fnsymbol}
-%\changes{v3.1}{2008/09/04}{Extended symbols available}
+% \begin{macro}{\acs@author@fnsymbol}
+% \begin{macro}{\acs@author@fnsymbol@aux}
+% \begin{macro}{\acs@author@fnsymbol@loop}
+% \begin{macro}{\acs@author@fnsymbol@loop@aux@i}
+% \begin{macro}{\acs@author@fnsymbol@loop@aux@ii}
+% \begin{macro}{\acs@author@fnsymbol@loop@aux@m}
+% \begin{macro}{\acs@author@fnsymbol@loop@aux@Q}
+% \begin{macro}{\acs@author@fnsymbol@symbol}
+% \changes{v3.1}{2008/09/04}{Extended symbols available}
+% \changes{v3.8}{2013/08/19}{Extended author symbols to up to 99
+%   authors}
 % The ACS have an extended list of symbols.  The star appears at the
 % special position zero.
 %    \begin{macrocode}
-\newcommand*\acs@author@fnsymbol[1]{%
+\newcommand*{\acs@author@fnsymbol}[1]{%
   \ensuremath{%
-    \ifcase #1 *\or
-      \dagger\or
-        \ddagger\or
-          \P\or
-            \S\or
-              \|\or
-                \bot\or
-                  \#\or
-                    @\or
-                      \triangle\or
-                        \nabla\else
-                          #1%
-    \fi
+    \expandafter\acs@author@fnsymbol@aux\expandafter{\number#1 }%
   }%
 }
+\newcommand*{\acs@author@fnsymbol@aux}[1]{%
+  \ifnum#1>10 %
+    \expandafter\acs@author@fnsymbol@loop
+  \else
+    \expandafter\acs@author@fnsymbol@symbol
+  \fi
+    {#1}%
+}
+\newcommand*{\acs@author@fnsymbol@loop}[1]{%
+   \acs@author@fnsymbol@loop@aux@i#1%
+}
+\newcommand*{\acs@author@fnsymbol@loop@aux@i}[2]{%
+  \acs@author@fnsymbol@symbol{\ifnum#2=0 10\else #2\fi}%
+  \expandafter\acs@author@fnsymbol@loop@aux@ii\romannumeral #1000Q{}%
+    {\acs@author@fnsymbol@symbol{\ifnum#2=0 10\else #2\fi}}%
+}
+\newcommand*{\acs@author@fnsymbol@loop@aux@ii}[1]{%
+  \@nameuse{acs@author@fnsymbol@loop@aux@#1}%
+}
+\def\acs@author@fnsymbol@loop@aux@m#1Q#2#3{%
+  \acs@author@fnsymbol@loop@aux@ii#1Q{#2#3}{#3}%
+}
+\newcommand*{\acs@author@fnsymbol@loop@aux@Q}[2]{#1}
+\newcommand*{\acs@author@fnsymbol@symbol}[1]{%
+  \ifcase #1 *\or
+    \dagger\or
+      \ddagger\or
+        \P\or
+          \S\or
+            \|\or
+              \bot\or
+                \#\or
+                  @\or
+                    \triangle\or
+                      \nabla
+    \fi
+}
 %    \end{macrocode}
-%\end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
 %\begin{macro}{\acs@address@list}
 %\begin{macro}{\acs@address@list@aux}
 % The main address block is rather less complex than the author
