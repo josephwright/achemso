@@ -2540,12 +2540,14 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%\begin{macro}{\acs@maketitle@extras}
-%\begin{macro}{\acs@maketitle@extras@hook}
-% A couple of things might need to be added to \cs{maketitle}.
+% \begin{macro}{\endabstract}
+% \begin{macro}{\acs@abstract@extras}
+% \changes{v3.8}{2013/08/19}{Print keywords at end of abstract}
 %    \begin{macrocode}
-\newcommand*\acs@maketitle@extras{%
-  \acs@maketitle@extras@hook
+\g@addto@macro\endabstract{%
+  \aftergroup\acs@abstract@extras
+}
+\newcommand*{\acs@abstract@extras}{%
   \ifacs@abbreviations
     \acs@abbreviations@print
     \par
@@ -2554,6 +2556,17 @@ This work consists of the file  achemso.dtx
     \acs@keywords@print
     \par
   \fi
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%\begin{macro}{\acs@maketitle@extras}
+%\begin{macro}{\acs@maketitle@extras@hook}
+% A couple of things might need to be added to \cs{maketitle}.
+%    \begin{macrocode}
+\newcommand*\acs@maketitle@extras{%
+  \acs@maketitle@extras@hook
 }
 \newcommand*\acs@maketitle@extras@hook{}
 \g@addto@macro{\maketitle}{\acs@maketitle@extras}
