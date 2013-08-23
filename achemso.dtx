@@ -986,8 +986,6 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %
-%\changes{v3.3}{2009/08/28}{Changed key code to be independent of
-%  \pkg{xkeyval} version}
 % The first stage needed is to read the package options given. Although
 % \pkg{xkeyval} was perhaps not the best choice, changing this now would
 % be rather risky.
@@ -1093,7 +1091,6 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\ifacs@etal@truncate}
 %\begin{macro}{\acs@etal@firstonly}
 %\begin{macro}{\acs@etal@truncate}
-% \changes{v3.7f}{2013/03/07}{Fix behaviour of \texttt{etalmode} option}
 % The setup for the \opt{etalmode} option is quite simple: just look
 % for the appropriate macros.
 %    \begin{macrocode}
@@ -1114,8 +1111,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 % \begin{macro}{\acs@activate@biblabel}
-% \changes{v3.6}{2011/01/11}{Allow \opt{biblabel} option to work
-%   after class or package loading}
 % The \opt{biochemistry} option is an alias for \opt{biochem}. The
 % \opt{biblabel} option is a choice, which is implemented using a
 % csname search. The group here prevents hash table pollution, whilst
@@ -1194,8 +1189,6 @@ This work consists of the file  achemso.dtx
 %   
 %\begin{macro}{\acs@niib@create}
 %\begin{macro}{bibnote}
-%\changes{v3.4f}{2010/04/13}{Only define bibnote counter if not done
-%  elsewhere}
 %\begin{macro}{\thebibnote}
 %\begin{macro}{\bibnote}
 %\begin{macro}{\bibnotemark}
@@ -1375,8 +1368,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@bib@write}
-%\changes{v3.2b}{2009/05/05}{Force \cs{AtBeginDocument} so first citation
-%  is for control}
 %\begin{macro}{\acs@bib@write@aux}
 % The control information for \BibTeX\ needs to be written to a special
 % file. The main writing macro is quite simple. Actually writing the
@@ -1464,8 +1455,6 @@ This work consists of the file  achemso.dtx
   super         = true
 }
 %    \end{macrocode}
-% \changes{v3.7e}{2013/02/13}{Drop loading \pkg{mathptmx}}
-% \changes{v3.8}{2013/08/19}{Drop loading \pkg{hevlet} and \pkg{courier}}
 % When using the class, \pkg{notes2bib} is always emulated. Other
 % standard support packages can now be loaded.
 %    \begin{macrocode}
@@ -1488,11 +1477,6 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %   
 %\begin{macro}{\title}
-%\changes{v3.2}{2009/04/19}{Short title no longer used although
-%  optional argument still accepted: removed internal \cs{@shorttitle}
-%  macro}
-%\changes{v3.2c}{2009/05/29}{Restored short title for some journals
-%  which do need this information}
 %\begin{macro}{\@title}
 %\begin{macro}{\acs@title@short}
 % For the meta-data, the REV\TeX\ bundle provides a good model for
@@ -1533,7 +1517,6 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-%\changes{v3.1}{2008/09/28}{Meta-data system redesigned}
 %\begin{macro}{\author}
 % The author macro stores the current author details and sets the
 % affiliation of the author to the current one. Everything is
@@ -1603,8 +1586,6 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\acs@affil@ifdup}
-%\changes{v3.2a}{2009/04/28}{Fixed mistake in definition for \cs{@tempb}
-%  to ensure check actually works.}
 %\begin{macro}{\acs@affil@ifdup@aux}
 % A short test for two addresses being identical.
 %    \begin{macrocode}
@@ -1719,9 +1700,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\altaffiliation}
-%\changes{v3.3}{2009/08/28}{\cs{altaffiliation} code modified to check
-%  for repeated entries}
-%\changes{v3.3d}{2009/11/07}{Bug fix for storing data}
 % For the alternative affiliation, a second count is kept, and the
 % affiliation is ``attached'' to the author. The way these are stored
 % means that the appropriate affiliation number can be recovered later,
@@ -1939,10 +1917,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\@maketitle}
 %\begin{macro}{\@maketitle@title@hook}
-%\changes{v3.0a}{2008/08/21}{Skips footnotes for a single institution}
-%\changes{v3.1}{2008/08/28}{Slightly simplified code}
-%\changes{v3.2c}{2008/05/29}{Uses same footnote symbols as author list}
-%\changes{v3.2c}{2008/05/29}{Spacing and fonts made general}
 % With the changes outlined above in place, a new \cs{@maketitle}
 % macro is needed.  This is partially a copy of the existing, but
 % rather heavily modified.
@@ -2037,8 +2011,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@contact@details}
-%\changes{v3.2c}{2009/05/29}{Added phone and fax numbers to contact
-%  output}
 % A general contact details macro.
 %    \begin{macrocode}
 \newcommand*\acs@contact@details{%
@@ -2048,8 +2020,6 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\@thanks}
-%\changes{v3.1}{2008/08/29}{Moved footnote generation to \cs{@thanks}
-%  macro}
 %\begin{macro}{\@thanks@hook}
 % The \cs{@thanks} macro is used as a hook to generate the footnotes if
 % needed.
@@ -2069,10 +2039,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@author@list}
-%\changes{v3.0a}{2008/08/21}{Skips footnotes for a single institution}
-%\changes{v3.2}{2009/04/20}{Logic made clearer with more sub-macros}
-%\changes{v3.2c}{2009/05/28}{Includes a footnote to go with star for
-%  corresponding authors}
 %\begin{macro}{\acs@author@list@star}
 % Printing the author list needs to do several things. The appropriate
 % separators between authors are created and the author names
@@ -2124,8 +2090,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@author@list@and}
 %\begin{macro}{\acs@author@list@comma}
-%\changes{v3.3c}{2009/10/32}{Removed spurious comma when only two names
-%  present}
 % Simple checks to add an ``and'' and a comma.
 %    \begin{macrocode}
 \newcommand*\acs@author@list@and{%
@@ -2146,8 +2110,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@author@star}
-%\changes{v3.2c}{2009/05/29}{Tracking added so that the need for a star
-%  is recorded}
 %\begin{macro}{\acs@author@star@aux}
 % A check for an e-mail for an author: if so, add a star.
 %    \begin{macrocode}
@@ -2173,8 +2135,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@author@affil}
 %\begin{macro}{\acs@author@affil@aux}
-%\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
-%\changes{v3.3b}{2009/10/16}{Bug fix: wrong macro redefined!}
 % The main affiliation of the author is checked for, and assuming one
 % is found the appropriate symbol is added to the list.
 %    \begin{macrocode}
@@ -2215,7 +2175,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@author@affil@also}
 %\begin{macro}{\acs@author@affil@also@aux}
-%\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
 % The ``also'' affiliations are generated by a loop as there may be more
 % than one.
 %    \begin{macrocode}
@@ -2241,7 +2200,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@author@affil@alt}
 %\begin{macro}{\acs@author@affil@alt@aux}
-%\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
 % Alternative affiliations get the correct affiliation number back out
 % from the stored data. There are then two corrections: one for the
 % total number of main affiliations and a second in case there is a
@@ -2274,9 +2232,6 @@ This work consists of the file  achemso.dtx
 % \begin{macro}{\acs@author@fnsymbol@loop@aux@m}
 % \begin{macro}{\acs@author@fnsymbol@loop@aux@Q}
 % \begin{macro}{\acs@author@fnsymbol@symbol}
-% \changes{v3.1}{2008/09/04}{Extended symbols available}
-% \changes{v3.8}{2013/08/19}{Extended author symbols to up to 99
-%   authors}
 % The ACS have an extended list of symbols.  The star appears at the
 % special position zero.
 %    \begin{macrocode}
@@ -2363,12 +2318,8 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@fnsymbol@org}
-%\changes{v3.0a}{2008/08/21}{Fixed bugs in printing affiliations
-%  correctly}
 %\begin{macro}{\acs@affil@list}
-%\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
 %\begin{macro}{\acs@affil@list@aux}
-%\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
 % Footnotes are done in two stages.  First the main affiliation is
 % handled, then the possible alternative. There is a need to check for
 % the possibility that there is only one main affiliation but one or
@@ -2412,7 +2363,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@affil@alt@list}
 %\begin{macro}{\acs@affil@alt@lista@aux}
-%\changes{v3.2c}{2009/05/29}{Extended to allow for footnotes to title}
 % The secondary loop for alternative affiliations is similar.
 %    \begin{macrocode}
 \newcommand*\acs@affil@alt@list{%
@@ -2437,7 +2387,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acs@email@list@font}
 %\begin{macro}{\acs@email@list}
-%\changes{v3.0a}{2008/08/21}{Fixed error if only one address is given}
 %\begin{macro}{\acs@email@list@aux}
 % The final piece of meta-data to print is the e-mail address list.
 % The total number of e-mail addresses given it counted in
@@ -2542,7 +2491,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 % \begin{macro}{\endabstract}
 % \begin{macro}{\acs@abstract@extras}
-% \changes{v3.8}{2013/08/19}{Print keywords at end of abstract}
 %    \begin{macrocode}
 \g@addto@macro\endabstract{%
   \aftergroup\acs@abstract@extras
@@ -2582,7 +2530,6 @@ This work consists of the file  achemso.dtx
 %   
 %\begin{environment}{scheme}
 %\begin{environment}{chart}
-%\changes{v3.1}{2008/08/29}{Fixed scheme naming}
 %\begin{environment}{graph}
 % Three new float types are provided, \texttt{scheme}, \texttt{chart}
 % and \texttt{graph}.  These are the most obvious types; for graphs,
@@ -2628,10 +2575,7 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\plainref}
-%\changes{v3.4}{2010/01/15}{New macro}
 %\begin{macro}{\ref}
-%\changes{v3.4}{2010/01/15}{Redefined to use \pkg{cleveref}}
-%\changes{v3.6}{2012/01/11}{Drop \pkg{cleveref}}
 % For legacy support.
 %    \begin{macrocode}
 \newcommand*\plainref{}
@@ -2744,8 +2688,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{environment}{acknowledgement}
 %\begin{environment}{suppinfo}
-%\changes{v3.2c}{2009/05/30}{Automatically includes sentence about
-%  on-line supplementary information}
 % Simple named sections.
 %    \begin{macrocode}
 \newenvironment{acknowledgement}{%
@@ -2770,7 +2712,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\begin{macro}{\acknowledgementname}
 %\begin{macro}{\bibsection}
-%\changes{v3.2b}{2009/05/05}{Move redefinition to \cs{AtEndOfClass}}
 %\begin{macro}{\suppinfoname}
 % A few macros need to get around the changes.
 %    \begin{macrocode}
@@ -2986,7 +2927,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{environment}{tocentry}
-%\changes{v3.4}{2010/01/15}{New TOC printing routine}
 % Actually creating the entry is pretty easy.
 %    \begin{macrocode}
 \newenvironment{tocentry}{\acs@collect\acs@tocentry@print}{}
@@ -3049,7 +2989,6 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %   
-%\changes{v3.2b}{2009/05/05}{Some back-compatibility functions added}
 % A few bits for older versions.
 %    \begin{macrocode}
 \newcommand*\acs@setkeys{\setkeys{acs}}
@@ -3230,8 +3169,6 @@ This work consists of the file  achemso.dtx
 %
 %\subsection{Late shared code}
 %
-%\changes{v3.2b}{2009/05/05}{Moved loading of \textsf{natbib} to end of
-%  class}   
 %\begin{macro}{\citenumfont}
 % Changes to citations can now be made. The citation styles supplied
 % here require \pkg{natbib}, which is loaded with the appropriate
@@ -3248,9 +3185,6 @@ This work consists of the file  achemso.dtx
 \RequirePackage{natmove}
 %    \end{macrocode} 
 %\end{macro}
-%\changes{v3.7f}{2013/03/07}{Moved loading of \textsf{mciteplus} after
-%  \pkg{natbib}}  
-% \changes{v3.8}{2013/08/19}{Fix behaviour of \cs{citenum}}  
 % The \pkg{mciteplus} package allows the construction of lists of
 % references with sub-letters. However, it might not be available, and
 % so it is only loaded if available: the \file{.bst} files should work
@@ -3407,8 +3341,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\nmv@citex@punct}
-%\changes{v3.4}{2009/01/15}{Move code for double periods to a separate
-%  macro}
 %\begin{macro}{\nmv@citex@punct@undouble}
 %\begin{macro}{\nmv@citex@loop}
 % The working macro for moving the punctuation.  This is very much
@@ -3436,7 +3368,6 @@ This work consists of the file  achemso.dtx
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\nmv@citex@punct@aux}
-%\changes{v3.4}{2009/01/15}{Safer loop, as in \pkg{}}
 % The final part of the punctuation moving system.
 %    \begin{macrocode}
 \newcommand*\nmv@citex@punct@aux[1]{%
@@ -3582,7 +3513,6 @@ This work consists of the file  achemso.dtx
 }
 \SectionNumbersOff
 %</acsccc>
-% \changes{v3.5g}{2103/04/13}{Support for \emph{ACS Macro Lett.}}
 %<*amlccd>
 \ProvidesFile{amlccd.cfg}
   [2013/06/07 v3.7h achemso configuration: ACS Macro Lett.]
@@ -3680,14 +3610,6 @@ This work consists of the file  achemso.dtx
 \SectionNumbersOff
 %</bcches>
 %<*bomaf6>
-%\changes{v3.4a}{2010/01/28}{Extend range of manuscript types for
-%  \emph{Biomacromolecules}}
-%\changes{v3.4c}{2010/02/07}{Always use sections for
-%  \emph{Biomacromolecules}}
-%\changes{v3.4c}{2010/02/07}{Superscript citations for
-%  \emph{Biomacromolecules}}
-%\changes{v3.4e}{2010/03/13}{No article titles for
-%  \emph{Biomacromolecules}}
 \ProvidesFile{bomaf6.cfg}
   [2013/06/07 v3.7h achemso configuration: Biomacromolecules]
 \def\acs@type@list{article,comment,communication,note,review,suppinfo}
@@ -4090,8 +4012,6 @@ This work consists of the file  achemso.dtx
 }
 %</jnprdf>
 %<*joceah>
-%\changes{v3.3e}{2009/11/18}{Formatting for \emph{J.\ Org.\ Chem}.\
-%  schemes corrected}
 \ProvidesFile{joceah.cfg}
   [2013/06/07 v3.7h achemso configuration: J. Org. Chem.]
 \ifx\acs@manuscript\acs@manuscript@communication
@@ -4103,7 +4023,6 @@ This work consists of the file  achemso.dtx
 \floatstyle{plain}
 %</joceah>
 %    \end{macrocode}
-%\changes{v3.7g}{2013/03/27}{Print article titles for \emph{J.~Phys.~Chem.} papers}
 %    \begin{macrocode}
 %<*jpcafh>
 \ProvidesFile{jpcafh.cfg}
@@ -4136,8 +4055,6 @@ This work consists of the file  achemso.dtx
 \g@addto@macro{\maketitle}{\newpage}
 %</jpccck>
 %    \end{macrocode}
-%\changes{v3.3c}{2009/01/11}{New configuration for \emph{J.~Phys.\
-%  Chem.\ Lett.}}
 %    \begin{macrocode}
 %<*jpclcd>
 \ProvidesFile{jpclcd.cfg}
