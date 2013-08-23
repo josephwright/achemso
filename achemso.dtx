@@ -335,22 +335,48 @@ This work consists of the file  achemso.dtx
 %
 %\maketitle
 %
-%\changes{v1.0}{1998/06/01}{Initial release of package by Mats Dahlgren}
-%\changes{v2.0}{2007/01/17}{Re-write of package by Joseph Wright}
-%\changes{v3.0}{2008/07/20}{
-%  Second re-write, converting to a class and giving much tighter
-%  integration with \textsc{acs} submission system
-%}
-%\changes{v3.1}{2009/04/21}{
-%  Re-ordered code to reduce or remove dependency on other packages
-%}
-%\changes{v3.5}{2010/06/25}{
-%  New BibTeX style file.
-%}
-%\changes{v3.5a}{2010/08/05}{Modify JACS Communication to print
-%  abstract}
-%\changes{v3.5c}{2010/10/11}{Update \emph{Org.~Lett.}\ style}
-%\changes{v3.5c}{2010/10/11}{Bug fix for \cs{mciteSubRef} macro}
+% \changes{v1.0}{1998/06/01}{Initial release of package by Mats Dahlgren}
+% \changes{v2.0}{2007/01/17}{Re-write of package by Joseph Wright}
+% \changes{v3.0}{2008/07/20}{^^A
+%   Second re-write, converting to a class and giving much tighter
+%   integration with \textsc{acs} submission system^^A
+% }
+% \changes{v3.1}{2009/04/21}{^^A
+%   Re-ordered code to reduce or remove dependency on other packages^^A
+% }
+% \changes{v3.1}{2008/11/08}{Added \cs{alsoaffiliation} macro}
+% \changes{v3.2}{2009/04/20}{^^A
+%   New functions \cs{SectionsOff}, \cs{SectionsOn},
+%   \cs{SectionNumbersOff} and \cs{SectionNumbersOn}
+% }
+% \changes{v3.2}{2009/04/21}{New \texttt{tocentry} section}
+% \changes{v3.2}{2009/04/20}{^^A
+%   New functions \cs{AbstractOff} and \cs{AbstractOn}^^A
+% }
+% \changes{v3.2c}{2009/05/29}{Added \cs{fax} macro}
+% \changes{v3.2c}{2009/05/29}{Added \cs{phone} macro}
+% \changes{v3.2b}{2009/05/05}{New \texttt{email} option}
+% \changes{v3.2c}{2009/05/28}{Fix so that \texttt{email} option is turned
+%   on by default}
+% \changes{v3.3}{2008/08/28}{\cs{altaffiliation} macro checks for
+%   duplicate entries and uses only one footnote}
+% \changes{v3.3}{2009/08/28}{New \texttt{layout} option}
+% \changes{v3.3a}{2009/09/01}{New \texttt{etalmode} option}
+% \changes{v3.4}{2010/01/15}{More detail on installation}
+% \changes{v3.5}{2010/06/25}{New \BibTeX{} style file}
+% \changes{v3.5a}{2010/08/05}{Modify JACS Communication to print
+%   abstract}
+% \changes{v3.5c}{2010/10/11}{Update \emph{Org.~Lett.}\ style}
+% \changes{v3.5c}{2010/10/11}{Bug fix for \cs{mciteSubRef} macro}
+% \changes{v3.4}{2010/01/15}{Require \pkg{cleveref}, dropping
+%   \pkg{varioref} use}
+% \changes{v3.6}{2012/01/11}{Drop \pkg{cleverref} use}
+% \changes{v3.7}{2012/04/30}{Rename \opt{usetitle} option to
+%   \opt{articletitle}}
+% \changes{v3.7}{2012/04/30}{New \opt{chaptertitle} option for bibliography}
+% \changes{v3.8}{2013/08/23}{Extend journal list to current ACS range}
+% \changes{v3.8}{2013/08/16}{Introduce \cs{latin} command to support
+%   \emph{ACS Nano} requirements}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -392,7 +418,6 @@ This work consists of the file  achemso.dtx
 %
 %\section{Installation}
 %
-%\changes{v3.4}{2010/01/15}{More detail on installation}
 % The package is supplied in \file{dtx} format and as a pre-extracted
 % zip file, \file{\jobname.tds.zip}. The later is most convenient for
 % most users: simply unzip this in your local texmf directory and
@@ -418,9 +443,6 @@ This work consists of the file  achemso.dtx
 %
 %\section{Requirements}
 %
-%\changes{v3.4}{2010/01/15}{Require \pkg{cleveref}, dropping
-%  \pkg{varioref} use}
-%\changes{v3.6}{2012/01/11}{Drop \pkg{cleverref} use}
 % The \pkg{achemso} class requires the following packages:
 %\begin{itemize}
 %  \item \pkg{caption}
@@ -530,7 +552,6 @@ This work consists of the file  achemso.dtx
 % \opt{suppinfo} is also available for supporting information.
 %
 %\DescribeOption{layout}
-%\changes{v3.3}{2009/08/28}{New \texttt{layout} option}
 % The \pkg{achemso} class can produce drafts in two layout styles. The
 % standard setting for the \opt{layout} option is \opt{traditional},
 % which produces a double-spaced single column manuscript. The
@@ -540,9 +561,6 @@ This work consists of the file  achemso.dtx
 % be ignored.
 %
 %\DescribeOption{email}
-%\changes{v3.2b}{2009/05/05}{New \texttt{email} option}
-%\changes{v3.2c}{2009/05/28}{Fix so that \texttt{email} option is turned
-%  on by default}
 % It may be desirable to omit e-mail addresses from the front page of
 % a manuscript. The printing of e-mail addresses can be disabled using
 % the \opt{email} option, which takes Boolean values only. The default
@@ -563,10 +581,7 @@ This work consists of the file  achemso.dtx
 %\DescribeMacro{\author}
 %\DescribeMacro{\affiliation}
 %\DescribeMacro{\alsoaffiliation}
-%\changes{v3.1}{2008/11/08}{Added \cs{alsoaffiliation} macro}
 %\DescribeMacro{\altaffiliation}
-%\changes{v3.3}{2008/08/28}{\cs{altaffiliation} macro checks for
-%  duplicate entries and uses only one footnote}
 %\DescribeMacro{\email}
 % Inspired by REV\TeX, the \pkg{achemso} class alters the method for
 % adding author information to the manuscript.  Each author should be
@@ -611,9 +626,7 @@ This work consists of the file  achemso.dtx
 % if required.
 %
 %\DescribeMacro{\fax}
-%\changes{v3.2c}{2009/05/29}{Added \cs{fax} macro}
 %\DescribeMacro{\phone}
-%\changes{v3.2c}{2009/05/29}{Added \cs{phone} macro}
 % The class will recognise the optional information \cs{fax} and
 % \cs{phone}, which will be printed along with the lead authors
 % e-mail address. Note that this information is only used for authors
@@ -664,10 +677,6 @@ This work consists of the file  achemso.dtx
 %
 %\DescribeMacro{\SectionNumbersOff}
 %\DescribeMacro{\SectionNumbersOn}
-%\changes{v3.2}{2009/04/20}{
-%  New functions \cs{SectionsOff}, \cs{SectionsOn},
-%  \cs{SectionNumbersOff} and \cs{SectionNumbersOn}
-%}
 % Some journals have no section numbering by default. This can be
 % set up in the appropriate configuration file, but it may be that
 % individual users need to change the decision. The macros
@@ -682,9 +691,6 @@ This work consists of the file  achemso.dtx
 % preamble-only.
 %\DescribeMacro{\AbstractOff}
 %\DescribeMacro{\AbstractOn}
-%\changes{v3.2}{2009/04/20}{
-%  New functions \cs{AbstractOff} and \cs{AbstractOn}
-%}
 % Similar functions are available for the abstract: \cs{AbstractOff} and
 % \cs{AbstractOn}.
 %
@@ -707,7 +713,6 @@ This work consists of the file  achemso.dtx
 %\end{LaTeXdemo}
 %
 %\DescribeEnv{tocentry}
-%\changes{v3.2}{2009/04/21}{New \texttt{tocentry} section}
 % For generating an entry for the graphical table of content, required
 % by some journals, the environment \texttt{tocentry} is available. This
 % prints its content in an appropriately sized box on a separate page.
@@ -724,8 +729,6 @@ This work consists of the file  achemso.dtx
 % \subsection{Miscellaneous commands}
 % 
 % \DescribeMacro{\latin}
-% \changes{v3.8}{2013/08/16}{Introduce \cs{latin} command to support
-%   \emph{ACS Nano} requirements}
 %   
 % The command \cs{latin} is provided by the class to format Latin phrases
 % such as ``et al.'' Most ACS journals do not make these italic, but
@@ -752,22 +755,18 @@ This work consists of the file  achemso.dtx
 % \opt{super=false} are valid).
 %
 %\DescribeOption{articletitle}
-% \changes{v3.7}{2012/04/30}{Rename \opt{usetitle} option to
-%   \opt{articletitle}}
 % The \opt{articletitle} option is a Boolean, and sets whether the title
 % of a paper referenced appears in the bibliography.  The default is
 % \opt{articletitle=false} for the \file{achemso} style and
 % \opt{articletitle=true} for the \file{biochem} style.
 %
 % \DescribeOption{chaptertitle}
-% \changes{v3.7}{2012/04/30}{New \opt{chaptertitle} option for bibliography}
 % The option boolean \opt{chaptertitle} option is provided to allow flexibility
 % for the inclusion of chapter titles for \texttt{book} and
 % related entries. The standard setting is \opt{false}: setting
 % it to \opt{true} will cause chapter titles to be included.
 %
 %\DescribeOption{etalmode}
-%\changes{v3.3a}{2009/09/01}{New \texttt{etalmode} option}
 %\DescribeOption{maxauthors}
 % Many journals require that long lists of authors are shortened using
 % `et al.' in the references section. The behaviour of the \BibTeX\
