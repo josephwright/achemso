@@ -377,6 +377,8 @@ This work consists of the file  achemso.dtx
 % \changes{v3.8}{2013/08/23}{Extend journal list to current ACS range}
 % \changes{v3.8}{2013/08/16}{Introduce \cs{latin} command to support
 %   \emph{ACS Nano} requirements}
+% \changes{v3.8a}{2013/09/04}{Minor style improvements for some
+%  journals}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -3721,20 +3723,14 @@ This work consists of the file  achemso.dtx
 %<*esthag>
 \ProvidesFile{esthag.cfg}
   [2013/08/23 v3.8 achemso configuration: Environ. Sci. Technol.]
-\setkeys{acs}{
-  articletitle = true,
-  super        = false
-}
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</esthag>
 %<*estlcu>
 \ProvidesFile{estlcu.cfg}
   [2013/08/23 v3.8 achemso configuration: Environ. Sci. Technol. Lett.]
-\setkeys{acs}{
-  articletitle = true,
-  super        = false
-}
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{letter,suppinfo}
 \SectionNumbersOff
 %</estlcu>
