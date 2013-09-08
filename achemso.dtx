@@ -4074,7 +4074,12 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jpcafh.cfg}
   [2013/09/04 v3.8a achemso configuration: J. Phys. Chem. A]
 \def\acs@type@list{article,suppinfo}
-\setkeys{acs}{articletitle = true, keywords = true}
+\setkeys{acs}{
+  articletitle = true,
+  etalmode     = truncate,
+  maxauthors   = 10,
+  keywords     = true
+}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 %    \end{macrocode}
@@ -4086,7 +4091,12 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jpcbfk.cfg}
   [2013/09/04 v3.8a achemso configuration: J. Phys. Chem. B]
 \def\acs@type@list{article,suppinfo}
-\setkeys{acs}{articletitle = true, keywords = true}
+\setkeys{acs}{
+  articletitle = true,
+  etalmode     = truncate,
+  maxauthors   = 10,
+  keywords     = true
+}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 \g@addto@macro{\maketitle}{\newpage}
@@ -4095,7 +4105,12 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jpccck.cfg}
   [2013/09/04 v3.8a achemso configuration: J. Phys. Chem. C]
 \def\acs@type@list{article,suppinfo}
-\setkeys{acs}{articletitle = true, keywords = true}
+\setkeys{acs}{
+  articletitle = true,
+  etalmode     = truncate,
+  maxauthors   = 10,
+  keywords     = true
+}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 \g@addto@macro{\maketitle}{\newpage}
@@ -4105,7 +4120,11 @@ This work consists of the file  achemso.dtx
 %<*jpclcd>
 \ProvidesFile{jpclcd.cfg}
   [2013/09/04 v3.8a achemso configuration: J. Phys. Chem. Lett.]
-\setkeys{acs}{articletitle = true, etalmode = truncate, maxauthors = 10}
+\setkeys{acs}{
+  articletitle = true,
+  etalmode     = truncate,
+  maxauthors   = 10
+}
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
