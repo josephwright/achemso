@@ -47,9 +47,9 @@ PACKAGEROOT := latex/$(PACKAGE)
 # Details of source files                                    #
 ##############################################################
 
-DTX      = $(PACKAGE).dtx
-DTXFILES = $(PACKAGE)
-UNPACK   = $(PACKAGE).dtx
+DTX      = $(subst ,,$(notdir $(wildcard *.dtx)))
+DTXFILES = $(subst .dtx,,$(notdir $(wildcard *.dtx)))
+UNPACK   = $(DTX)
 
 ##############################################################
 # Clean-up information                                       #
@@ -89,10 +89,7 @@ CLEAN = \
 # PDF Settings                                                 #
 ################################################################
 
-PDFSETTINGS = \
-	\pdfminorversion=5  \
-	\pdfcompresslevel=9 \
-	\pdfobjcompresslevel=2
+PDFSETTINGS = \AtBeginDocument{\OnlyDescription}
 	
 ################################################################
 # File building: default actions                               #
@@ -101,17 +98,17 @@ PDFSETTINGS = \
 %.pdf: %.dtx
 	NAME=`basename $< .dtx` ; \
 	echo "Typesetting $$NAME" ; \
-	pdflatex -draftmode -interaction=nonstopmode "$(PDFSETTINGS) \AtBeginDocument{\OnlyDescription} \input $<" &> /dev/null ; \
+	pdflatex -draftmode -interaction=batchmode "$(PDFSETTINGS) \input $<" &> /dev/null ; \
 	if [ $$? = 0 ] ; then  \
 	  bibtex8 --wolfgang $$NAME.aux &> /dev/null ; \
-	  makeindex -s gglo.ist -o $$NAME.gls $$NAME.glo &> /dev/null ; \
-	  makeindex -s gind.ist -o $$NAME.ind $$NAME.idx &> /dev/null ; \
-	  pdflatex -interaction=nonstopmode "$(PDFSETTINGS) \AtBeginDocument{\OnlyDescription} \input $<" &> /dev/null ; \
-	  makeindex -s gglo.ist -o $$NAME.gls $$NAME.glo &> /dev/null ; \
-	  makeindex -s gind.ist -o $$NAME.ind $$NAME.idx &> /dev/null ; \
-	  pdflatex -interaction=nonstopmode "$(PDFSETTINGS) \AtBeginDocument{\OnlyDescription} \input $<" &> /dev/null ; \
+	  makeindex -q -s gglo.ist -o $$NAME.gls $$NAME.glo ; \
+	  makeindex -q -s gind.ist -o $$NAME.ind $$NAME.idx ; \
+	  pdflatex -interaction=batchmode "$(PDFSETTINGS) \input $<" &> /dev/null ; \
+	  makeindex -q -s gglo.ist -o $$NAME.gls $$NAME.glo ; \
+	  makeindex -q -s gind.ist -o $$NAME.ind $$NAME.idx ; \
+	  pdflatex -interaction=batchmode "$(PDFSETTINGS) \input $<" &> /dev/null ; \
 	else \
-	  echo "  Complilation failed" ; \
+	  echo "  Compilation failed" ; \
 	fi ; \
 	for I in $(AUXFILES) ; do \
 	  rm -f $$NAME.$$I ; \
@@ -123,13 +120,13 @@ PDFSETTINGS = \
 
 achemso-demo.pdf:
 	echo "Typesetting achemso-demo" ; \
-	pdflatex -draftmode -interaction=nonstopmode "$(PDFSETTINGS) \input achemso-demo" &> /dev/null ; \
+	pdflatex -draftmode -interaction=nonstopmode achemso-demo &> /dev/null ; \
 	if [ $$? = 0 ] ; then  \
 	  bibtex8 --wolfgang achemso-demo.aux &> /dev/null ; \
-	  pdflatex -interaction=nonstopmode "$(PDFSETTINGS) \input achemso-demo" &> /dev/null ; \
-	  pdflatex -interaction=nonstopmode "$(PDFSETTINGS) \input achemso-demo" &> /dev/null ; \
+	  pdflatex -interaction=batchmode achemso-demo &> /dev/null ; \
+	  pdflatex -interaction=batchmode achemso-demo &> /dev/null ; \
 	else \
-	  echo "  Complilation failed" ; \
+	  echo "  Compilation failed" ; \
 	fi ; \
 	for I in $(AUXFILES) ; do \
 	  rm -f achemso-demo.$$I ; \
@@ -160,23 +157,21 @@ ctan: tds
 	mkdir -p $(CTANDIR)/
 	rm -rf $(CTANDIR)/*
 	cp -f *.dtx $(CTANDIR)/ ; \
-	cp -f *.ins $(CTANDIR)/ ; \
 	for I in $(INCLUDEPDF) ; do \
 	  cp -f $$I.pdf $(CTANDIR)/ ; \
 	done ; \
 	for I in $(INCLUDETEX); do \
-	  cp -f $$I.pdf $(CTANDIR)/ ; \
 	  cp -f $$I.tex $(CTANDIR)/ ; \
 	done ; \
 	for I in $(INCLUDETXT); do \
 	  cp -f $$I.txt $(CTANDIR)/; \
 	  mv $(CTANDIR)/$$I.txt $(CTANDIR)/$$I ; \
 	done ; \
-	cp $(PACKAGE).tds.zip $(CTANDIR)/ 
-	cd $(CTANDIR) ; \
+	cp $(PACKAGE).tds.zip $(CTANROOT)/ 
+	cd $(CTANROOT) ; \
 	zip -ll -q -r -X $(PACKAGE).zip .
-	cp $(CTANDIR)/$(PACKAGE).zip ./
-	rm -rf $(CTANROOT)/
+	cp $(CTANROOT)/$(PACKAGE).zip ./
+	rm -rf $(CTANROOT)
 	
 doc: \
 	$(foreach FILE,$(INCLUDEPDF),$(FILE).pdf) \
