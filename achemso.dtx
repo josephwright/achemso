@@ -2897,47 +2897,49 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
-%\begin{macro}{\acs@tocentry@print}
-%\begin{macro}{\acs@tocentry@text}
+% \begin{macro}{\acs@tocentry@print}
+% \begin{macro}{\acs@tocentry@print@aux}
+% \begin{macro}{\acs@tocentry@text}
 % The same approach is taken for the graphical table of content
 % printing. This is done in a box so that everything has a frame around
 % it.
 %    \begin{macrocode}
 \newcommand\acs@tocentry@print[1]{%
-  \global\long\def\acs@tocentry@text
-    {%
-      \if@twocolumn
-        \@restonecoltrue\onecolumn
-      \else
-        \@restonecolfalse\newpage
-      \fi
-      \acs@section*{\tocentryname}%
-      \tocsize
-      \sffamily
-      \singlespacing
-      \begin{center}
-        \fbox
-          {%
-            \begin{minipage}{\acs@tocentry@height}
-              \vbox to \acs@tocentry@width{#1}%
-            \end{minipage}%
-          }%
-      \end{center}%
-      \if@restonecol
-        \twocolumn
-      \else
-        \newpage
-      \fi
-    }%
-  \AtEndDocument{\acs@tocentry@text}%
+  \gdef\acs@tocentry@text{#1}%
+  \AtEndDocument{\acs@tocentry@print@aux}%
 }
+\newcommand*{\acs@tocentry@print@aux}{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse\newpage
+    \fi
+    \acs@section*{\tocentryname}%
+    \tocsize
+    \sffamily
+    \singlespacing
+    \begin{center}
+      \fbox
+        {%
+          \begin{minipage}{\acs@tocentry@height}
+            \vbox to \acs@tocentry@width{\acs@tocentry@text}%
+          \end{minipage}%
+        }%
+    \end{center}%
+    \if@restonecol
+      \twocolumn
+    \else
+      \newpage
+    \fi
+  }
 \newlength{\acs@tocentry@height}
 \newlength{\acs@tocentry@width}
 \setlength{\acs@tocentry@height}{9 cm}
 \setlength{\acs@tocentry@width}{3.5 cm}
 %    \end{macrocode}
-%\end{macro}
-%\end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
 %\begin{environment}{tocentry}
 % Actually creating the entry is pretty easy.
 %    \begin{macrocode}
