@@ -2904,16 +2904,23 @@ This work consists of the file  achemso.dtx
 % printing. This is done in a box so that everything has a frame around
 % it.
 %    \begin{macrocode}
-\newcommand\acs@tocentry@print[1]{%
+\newcommand{\acs@tocentry@print}[1]{%
   \gdef\acs@tocentry@text{#1}%
-  \AtEndDocument{\acs@tocentry@print@aux}%
-}
-\newcommand*{\acs@tocentry@print@aux}{%
+  \AtEndDocument{%
     \if@twocolumn
       \@restonecoltrue\onecolumn
     \else
       \@restonecolfalse\newpage
     \fi
+    \acs@tocentry@print@aux
+    \if@restonecol
+      \twocolumn
+    \else
+      \newpage
+    \fi
+  }%
+}
+\newcommand*{\acs@tocentry@print@aux}{%
     \acs@section*{\tocentryname}%
     \tocsize
     \sffamily
@@ -2926,11 +2933,6 @@ This work consists of the file  achemso.dtx
           \end{minipage}%
         }%
     \end{center}%
-    \if@restonecol
-      \twocolumn
-    \else
-      \newpage
-    \fi
   }
 \newlength{\acs@tocentry@height}
 \newlength{\acs@tocentry@width}
@@ -4125,13 +4127,22 @@ This work consists of the file  achemso.dtx
 \setkeys{acs}{
   articletitle = true,
   etalmode     = truncate,
-  maxauthors   = 10
+  maxauthors   = 10,
+  keywords     = true
 }
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
 \SectionNumbersOff
 \captionsetup[table]{labelfont=bf,textfont=bf}
 \g@addto@macro{\maketitle}{\newpage}
+\renewcommand{\acs@tocentry@print}[1]{%
+  \gdef\acs@tocentry@text{#1}%
+}
+\renewcommand*{\acs@abstract@extras}{%
+  \acs@tocentry@print@aux
+  \acs@keywords@print
+  \newpage
+}
 %</jpclcd>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
