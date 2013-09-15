@@ -34,7 +34,7 @@
   rem created. The files named here will be typeset (looking for source files
   rem in the order .dtx, .tex, .ltx).
 
-  set INCLUDEPDF=%PACKAGE%
+  set INCLUDEPDF=%PACKAGE% %PACKAGE%-demo
 
   rem Plain text files to be included in the archives: the .txt extension is
   rem automatically stripped when creating the archive.
@@ -52,7 +52,7 @@
 
   rem Sets the order for searching for source files for pdfs
 
-  set PDFSOURCES=dtx
+  set PDFSOURCES=dtx tex
 
   rem The file types for inclusion in the archive files: note that a CTAN
   rem archive should not contain "unpacked" files. Typeset files and their
@@ -66,6 +66,10 @@
   set CTANROOT=ctan
   set CTANDIR=%CTANROOT%\%PACKAGE%
   set TDSROOT=tds
+  
+  rem PDF Compilation settings
+  
+  set PDFSETTINGS=\AtBeginDocument{\OnlyDescription}
 
   cd /d "%~dp0"
 
@@ -138,9 +142,10 @@
 
   set SOURCES=
 
+  echo.
+
   for %%I in (%INCLUDEPDF%) do (
     for %%J in (%PDFSOURCES%) do (
-      echo.
       if exist %%I.%%J call :typeset-%%J %%I.%%J
     )
   )
@@ -235,34 +240,37 @@
 
 :typeset-dtx
 
-  echo Typesetting %1
+  echo Typesetting %~n1
 
-  pdflatex -draftmode -interaction=nonstopmode "\AtBeginDocument{\OnlyDescription} \input %1" > nul
+  pdflatex -draftmode -interaction=batchmode "%PDFSETTINGS% \input %1" > nul
   if ERRORLEVEL 1 (
     echo ! Compilation failed
   ) else (
-    makeindex -q -s gglo.ist -o %~n1.gls %~n1.glo > nul
-    makeindex -q -s gind.ist -o %~n1.ind %~n1.idx > nul
+    makeindex -q -s gglo.ist -o %~n1.gls %~n1.glo
+    makeindex -q -s gind.ist -o %~n1.ind %~n1.idx
     bibtex8 --wolfgang %~n1.aux > nul
-    pdflatex -interaction=nonstopmode "\AtBeginDocument{\OnlyDescription} \input %1" > nul
-    makeindex -q -s gind.ist -o %~n1.ind %~n1.idx > nul
-    pdflatex -interaction=nonstopmode "\AtBeginDocument{\OnlyDescription} \input %1" > nul 
+    pdflatex -interaction=batchmode "%PDFSETTINGS% \input %1" > nul
+    makeindex -q -s gglo.ist -o %~n1.gls %~n1.glo
+    makeindex -q -s gind.ist -o %~n1.ind %~n1.idx
+    pdflatex -interaction=batchmode "%PDFSETTINGS% \input %1" > nul 
   )
 
   goto :EOF
 
 :typeset-tex
 
-  echo Typesetting %1
+  echo Typesetting %~n1
 
   set SOURCES=%SOURCES% %1
 
-  pdflatex -interaction=nonstopmode -draftmode %1 > nul
+  pdflatex -interaction=batchmode -draftmode %1 > nul
   if ERRORLEVEL 1 (
     echo ! Compilation failed
+  ) else (
+    bibtex8 --wolfgang %~n1.aux > nul
+    pdflatex -interaction=batchmode %1 > nul
+    pdflatex -interaction=batchmode %1 > nul
   )
-  pdflatex -interaction=nonstopmode %1 > nul
-  pdflatex -interaction=nonstopmode %1 > nul
 
   goto :EOF
 
