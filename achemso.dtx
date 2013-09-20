@@ -3576,11 +3576,15 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{apchd5.cfg}
   [2013/09/15 v3.8b achemso configuration: ACS Photon.]
 \def\acs@type@list{article,letter,perspective,review,suppinfo}
+\setkeys{acs}{articletitle = true, keywords = true}
+\ifx\acs@manuscript\acs@manuscript@letter
+  \SectionNumbersOff
+\fi
 %</apchd5>
 %<*ascecg>
 \ProvidesFile{ascecg.cfg}
   [2013/09/15 v3.8b achemso configuration: ACS Sustainable Chem Eng.]
-\setkeys{articletitle = true, biblabel = fullstop}
+\setkeys{acs}{articletitle = true, biblabel = fullstop}
 \SectionNumbersOff
 \def\acs@type@list{article,feature,letter,perspective,review,suppinfo}
 %</ascecg>
