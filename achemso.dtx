@@ -382,6 +382,7 @@ This work consists of the file  achemso.dtx
 % \changes{v3.8b}{2013/09/15}{Improve output ordering for \emph{J.~Phys.\
 %   Chem.\ Lett.}}
 % \changes{v3.8c}{2013/09/20}{Improve \emph{ACS Photonics} style}
+% \changes{v3.8d}{2013/10/04}{Fix bug in keyword printing}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -1852,7 +1853,7 @@ This work consists of the file  achemso.dtx
 \newcommand*\acs@keywords@print{%
   \ifx\@keywords\@empty\else
     \section*{Keywords}
-    \@abbreviations
+    \@keywords
     \par
   \fi
 }
