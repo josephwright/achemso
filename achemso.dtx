@@ -3212,10 +3212,14 @@ This work consists of the file  achemso.dtx
 % references with sub-letters. However, it might not be available, and
 % so it is only loaded if available: the \file{.bst} files should work
 % either way. There is also a patch to get cross-references correct
-% with the modified \cs{ref} macro used here.
+% with the modified \cs{ref} macro used here. The reason for ensuring
+% that \cs{@mciteNatbibCiteCmdList} is defined is that it allows for
+% the case where people prevent \pkg{mciteplus} being loaded using
+% \cs{ver@mciteplus.sty}.
 %    \begin{macrocode}
 \IfFileExists{mciteplus.sty}{%
   \RequirePackage{mciteplus}
+  \providecommand*{\@mciteNatbibCiteCmdList}{}%
   \edef\@tempa{\noexpand\in@{citenum}{\@mciteNatbibCiteCmdList}}%
   \@tempa
   \ifin@
