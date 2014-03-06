@@ -385,7 +385,7 @@ This work consists of the file  achemso.dtx
 % \changes{v3.8d}{2013/10/04}{Fix bug in keyword printing}
 % \changes{v3.8e}{2014/01/08}{Minor style changes for \emph{J.~Med.~Chem.}
 %  and \emph{ACS Appl.~Mater.}}
-% \changes{v3.8f}{2014/01/23}{Track changes in \pkg{mciteplus}}
+% \changes{v3.8g}{2014/03/06}{Fix issue with \emph{J.~Phys.\ Chem.} formatting}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -4158,7 +4158,9 @@ This work consists of the file  achemso.dtx
   \gdef\acs@tocentry@text{#1}%
 }
 \renewcommand*{\acs@abstract@extras}{%
-  \acs@tocentry@print@aux
+  \begingroup
+    \acs@tocentry@print@aux
+  \endgroup
   \acs@keywords@print
   \newpage
 }
