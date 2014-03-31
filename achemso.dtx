@@ -3693,9 +3693,15 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{crtoec.cfg}
   [2014/01/08 v3.8e achemso configuration: Chem. Res. Toxicol.]
 \setkeys{acs}{
-  articletitle = true,
-  biochem      = true,
-  super        = false
+  abbreviations = true,
+  articletitle  = true,
+  biochem       = true,
+  keywords      = true,
+  super         = false
+}
+\def\acs@maketitle@extras@hook{%
+  \par
+  \acs@title@short@print
 }
 \def\acs@type@list{%
   article,perspective,profile,review,suppinfo%
