@@ -119,35 +119,34 @@ This work consists of the file  achemso.dtx
           \file{bcches.cfg}{\from{\jobname.dtx}{bcches}}
           \file{bomaf6.cfg}{\from{\jobname.dtx}{bomaf6}}
 }
-\generate{\file{bipret.cfg}{\from{\jobname.dtx}{bipret}}
-          \file{crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
+\generate{\file{crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
           \file{chreay.cfg}{\from{\jobname.dtx}{chreay}}
           \file{cmatex.cfg}{\from{\jobname.dtx}{cmatex}}
           \file{cgdefu.cfg}{\from{\jobname.dtx}{cgdefu}}
           \file{enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
           \file{esthag.cfg}{\from{\jobname.dtx}{esthag}}
           \file{estlcu.cfg}{\from{\jobname.dtx}{estlcu}}
+          \file{iecred.cfg}{\from{\jobname.dtx}{iecred}}
 }
-\generate{\file{iecred.cfg}{\from{\jobname.dtx}{iecred}}
-          \file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
+\generate{\file{inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
           \file{jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
           \file{jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
           \file{jceaax.cfg}{\from{\jobname.dtx}{jceaax}}
           \file{jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
           \file{jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
-          \file{jctcce.cfg}{\from{\jobname.dtx}{jctcce}} 
+          \file{jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
+          \file{jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
 }
-\generate{\file{jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
-          \file{jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
+\generate{\file{jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
           \file{joceah.cfg}{\from{\jobname.dtx}{joceah}}
           \file{jpcafh.cfg}{\from{\jobname.dtx}{jpcafh}}
           \file{jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}  
           \file{jpccck.cfg}{\from{\jobname.dtx}{jpccck}} 
           \file{jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}    
           \file{jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
+          \file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
 }
-\generate{\file{langd5.cfg}{\from{\jobname.dtx}{langd5}}
-          \file{mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
+\generate{\file{mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
           \file{mpohbp.cfg}{\from{\jobname.dtx}{mpohbp}}
           \file{nalefd.cfg}{\from{\jobname.dtx}{nalefd}}
           \file{orlef7.cfg}{\from{\jobname.dtx}{orlef7}}
@@ -385,10 +384,11 @@ This work consists of the file  achemso.dtx
 % \changes{v3.8d}{2013/10/04}{Fix bug in keyword printing}
 % \changes{v3.8e}{2014/01/08}{Minor style changes for \emph{J.~Med.~Chem.}
 %  and \emph{ACS Appl.~Mater.}}
-% \changes{v3.8g}{2014/03/06}{Fix issue with \emph{J.~Phys.\ Chem.} formatting}
-% \changes{v3.8i}{2014/05/14}{Fix issue with \emph{Chem.\ Res.\ Toxicol.} formatting}
+% \changes{v3.8g}{2014/03/06}{Fix issue with \emph{J.~Phys.\ Chem.}\ formatting}
+% \changes{v3.8i}{2014/05/14}{Fix issue with \emph{Chem.\ Res.\ Toxicol.}\ formatting}
 % \changes{v3.8j}{2014/06/12}{Update article title requirements for all journals}
 % \changes{v3.8j}{2014/06/12}{Update keyword requirements for all journals}
+% \changes{v3.8j}{2014/06/12}{Remove \emph{Biotechnol.\ Prog.}\ configuration}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -533,20 +533,19 @@ This work consists of the file  achemso.dtx
 %      J.~Proteome Res.                & jprobs \\
 %      Biomacromolecules               & bomaf6 &
 %      J.~Am.\ Chem.\ Soc.             & jacsat \\
-%      Biotechnol.\ Prog.              & bipret &
-%      Langmuir                        & langd5 \\
-%      Chem.\ Res.\ Toxicol.           & crtoec &
+%      Langmuir                        & langd5 &
 %      Macromolecules                  & mamobx \\
-%      Chem.\ Rev.                     & chreay &
+%      Chem.\ Res.\ Toxicol.           & crtoec &
 %      Mol.\ Pharm.                    & mpohbp \\
-%      Chem.\ Mater.                   & cmatex &
+%      Chem.\ Rev.                     & chreay &
 %      Nano Lett.                      & nalefd \\
-%      Cryst.\ Growth Des.             & cgdefu &
+%      Chem.\ Mater.                   & cmatex &
 %      Org.\ Lett.                     & orlef7 \\
-%      Energy Fuels                    & enfuem &
+%      Cryst.\ Growth Des.             & cgdefu &
 %      Org.\ Proc.\ Res.\ Dev.         & oprdfk \\
-%      Environ.\ Sci.\ Technol.        & esthag &
+%      Energy Fuels                    & enfuem &
 %      Organometallics                 & orgnd7 \\
+%      Environ.\ Sci.\ Technol.        & esthag &
 %      Environ.\ Sci.\ Technol.\ Lett. & estlcu \\
 %    \bottomrule
 %  \end{tabular}
@@ -3690,16 +3689,6 @@ This work consists of the file  achemso.dtx
 \SectionNumbersOff
 \AtEndOfClass{\SectionsOn}
 %</bomaf6>
-%<*bipret>
-\ProvidesFile{bipret.cfg}
-  [2014/05/14 v3.8i achemso configuration: Biotechnol. Prog.]
-\setkeys{acs}{
-  articletitle = true,
-  super        = false
-}
-\def\acs@type@list{article,review,suppinfo}
-\SectionNumbersOff
-%</bipret>
 %<*crtoec>
 \ProvidesFile{crtoec.cfg}
   [2014/05/14 v3.8i achemso configuration: Chem. Res. Toxicol.]
