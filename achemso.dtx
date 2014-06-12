@@ -387,6 +387,8 @@ This work consists of the file  achemso.dtx
 %  and \emph{ACS Appl.~Mater.}}
 % \changes{v3.8g}{2014/03/06}{Fix issue with \emph{J.~Phys.\ Chem.} formatting}
 % \changes{v3.8i}{2014/05/14}{Fix issue with \emph{Chem.\ Res.\ Toxicol.} formatting}
+% \changes{v3.8j}{2014/06/12}{Update article title requirements for all journals}
+% \changes{v3.8j}{2014/06/12}{Update keyword requirements for all journals}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -3493,7 +3495,10 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{aamick.cfg}
   [2014/05/14 v3.8i achemso configuration: ACS Appl. Mater. Interfaces]
 \def\acs@type@list{article,letter,suppinfo}
-\setkeys{acs}{articletitle = true, keywords = true}
+\setkeys{acs}{
+  articletitle = true,
+  keywords     = true
+}
 %</aamick>
 %<*acbcct>
 \ProvidesFile{acbcct.cfg}
@@ -3510,9 +3515,7 @@ This work consists of the file  achemso.dtx
 %<*acbcct>
 \ProvidesFile{accacs.cfg}
   [2014/05/14 v3.8i achemso configuration: ACS Catal.]
-\setkeys{acs}{
- keywords = true,
-}
+\setkeys{acs}{keywords = true}
 \def\acs@type@list{article,letter,perspective,review,viewpoints,suppinfo}
 \SectionNumbersOff
 %</acbcct>
@@ -3572,7 +3575,8 @@ This work consists of the file  achemso.dtx
   articletitle = true,
   biblabel     = fullstop,
   etalmode     = truncate,
-  maxauthors   = 10
+  maxauthors   = 10,
+  keywords     = true
 }
 \def\acs@type@list{article,perspective,suppinfo}
 \newcommand*{\latin}[1]{\emph{#1}}
@@ -3588,7 +3592,10 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{apchd5.cfg}
   [2014/05/14 v3.8i achemso configuration: ACS Photon.]
 \def\acs@type@list{article,letter,perspective,review,suppinfo}
-\setkeys{acs}{articletitle = true, keywords = true}
+\setkeys{acs}{
+  articletitle = true,
+  keywords     = true
+}
 \ifx\acs@manuscript\acs@manuscript@letter
   \SectionNumbersOff
 \fi
@@ -3596,7 +3603,11 @@ This work consists of the file  achemso.dtx
 %<*ascecg>
 \ProvidesFile{ascecg.cfg}
   [2014/05/14 v3.8i achemso configuration: ACS Sustainable Chem Eng.]
-\setkeys{acs}{articletitle = true, biblabel = fullstop}
+\setkeys{acs}{
+  articletitle = true,
+  biblabel     = fullstop,
+  keywords     = true
+}
 \SectionNumbersOff
 \def\acs@type@list{article,feature,letter,perspective,review,suppinfo}
 %</ascecg>
@@ -3621,7 +3632,6 @@ This work consists of the file  achemso.dtx
   articletitle  = true,
   biblabel      = fullstop,
   biochem       = true,
-  keywords      = true,
   super         = false
 }
 \SectionNumbersOff
@@ -3722,6 +3732,7 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \ProvidesFile{cmatex.cfg}
   [2014/05/14 v3.8i achemso configuration: Chem. Mater.]
+\setkeys{acs}{keywords = true}
 \SectionNumbersOff
 \ifx\acs@manuscript\acs@manuscript@communication
   \AbstractOff
@@ -3731,6 +3742,7 @@ This work consists of the file  achemso.dtx
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
   [2014/05/14 v3.8i achemso configuration: Cryst. Growth Des.]
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{%
   article,communication,perspective,suppinfo%
 }
@@ -3744,6 +3756,7 @@ This work consists of the file  achemso.dtx
 %<*enfuem>
 \ProvidesFile{enfuem.cfg}
   [2014/05/14 v3.8i achemso configuration: Energy Fuels]
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
 %</enfuem>
@@ -4000,6 +4013,7 @@ This work consists of the file  achemso.dtx
   [2014/05/14 v3.8i achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   articletitle = true,
+  keywords     = true,
   super        = false
 }
 \def\acs@type@list{article,suppinfo}
@@ -4008,9 +4022,7 @@ This work consists of the file  achemso.dtx
 %<*jceaax>
 \ProvidesFile{jceaax.cfg}
   [2014/05/14 v3.8i achemso configuration: J. Chem. Eng. Data]
-\setkeys{acs}{
-  articletitle = true
-}
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{article,suppinfo}
 \def\refname{Literature Cited}
 \SectionNumbersOff
@@ -4018,19 +4030,18 @@ This work consists of the file  achemso.dtx
 %<*jceda8>
 \ProvidesFile{jceda8.cfg}
   [2014/05/14 v3.8i achemso configuration: J. Chem. Ed.]
-\SectionNumbersOff
 \setkeys{acs}{
-  articletitle = true
+  articletitle = true,
+  keywords     = true
 }
+\SectionNumbersOff
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</jceda8>
 %<*jcisd8>
 \ProvidesFile{jcisd8.cfg}
   [2014/05/14 v3.8i achemso configuration: J. Chem. Inf. Model.]
-\setkeys{acs}{
-  articletitle = true
-}
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</jcisd8>
@@ -4045,9 +4056,7 @@ This work consists of the file  achemso.dtx
 %<*jmcmar>
 \ProvidesFile{jmcmar.cfg}
   [2014/05/14 v3.8i achemso configuration: J. Med. Chem.]
-\setkeys{acs}{
-  articletitle = true
-}
+\setkeys{acs}{articletitle = true}
 \def\acs@type@list{article,letter,perspective,suppinfo}
 \SectionNumbersOff
 \setlength{\acs@tocentry@height}{5.5cm}
@@ -4175,7 +4184,8 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{jprobs.cfg}
   [2014/05/14 v3.8i achemso configuration: J. Proteome Res.]
 \setkeys{acs}{
-  articletitle = true
+  articletitle = true,
+  keywords     = true
 }
 \def\acs@type@list{article,review,suppinfo}
 \SectionNumbersOff
@@ -4195,7 +4205,10 @@ This work consists of the file  achemso.dtx
 %<*mpohbp>
 \ProvidesFile{mamobx.cfg}
   [2014/05/14 v3.8i achemso configuration: Mol. Pharm.]
-\setkeys{acs}{articletitle = true}
+\setkeys{acs}{
+  articletitle = true,
+  keywords     = true
+}
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
 %</mpohbp>
@@ -4227,6 +4240,7 @@ This work consists of the file  achemso.dtx
 \ProvidesFile{orgnd7.cfg}
   [2014/05/14 v3.8i achemso configuration: Organometallics]
 \SectionNumbersOff
+\setkeys{acs}{articletitle = true}
 %</orgnd7>
 %    \end{macrocode}
 %
