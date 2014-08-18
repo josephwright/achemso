@@ -389,6 +389,8 @@ This work consists of the file  achemso.dtx
 % \changes{v3.8j}{2014/06/12}{Update article title requirements for all journals}
 % \changes{v3.8j}{2014/06/12}{Update keyword requirements for all journals}
 % \changes{v3.8j}{2014/06/12}{Remove \emph{Biotechnol.\ Prog.}\ configuration}
+% \changes{v3.8k}{2014/08/18}{Format date correctly for in press bibliography
+%   entries}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -6127,15 +6129,19 @@ FUNCTION { incollection } { book }
 FUNCTION { inpress } {
   begin.bibitem
   format.authors
+%<*bio>
+  format.year.article
+%</bio>
   format.journal.unpub
-  doi top$
   doi empty$
     {
       bbl.inpress
       output
     }
     {
-      format.year
+%<*!bio>
+      format.year.article
+%</!bio>
       format.doi
     }
   if$ 
