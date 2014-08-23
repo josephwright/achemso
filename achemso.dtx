@@ -391,6 +391,7 @@ This work consists of the file  achemso.dtx
 % \changes{v3.8j}{2014/06/12}{Remove \emph{Biotechnol.\ Prog.}\ configuration}
 % \changes{v3.8k}{2014/08/18}{Format date correctly for in press bibliography
 %   entries}
+% \changes{v3.8l}{2014/08/23}{Fix printing of phone/fax numbers}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -2463,7 +2464,9 @@ This work consists of the file  achemso.dtx
     \acs@number@list@aux@i{phone}%
     \let\@tempb\@tempa
     \acs@number@list@aux@i{fax}%  
-    \ifx\@tempa\@empty\else
+    \ifx\@tempa\@empty
+      \let\@tempa\@tempb
+    \else
       \ifx\@tempb\@empty\else
         \protected@edef\@tempa{%
           \@tempb.\space\@tempa
