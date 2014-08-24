@@ -4148,6 +4148,8 @@ This work consists of the file  achemso.dtx
 \g@addto@macro{\maketitle}{\newpage}
 %</jpccck>
 %    \end{macrocode}
+% \changes{v3.8m}{2014/08/24}{\emph{J.~Phys.\ Chem.\ Lett.}\ uses a
+% non-standard size for the TOC graphic}
 %    \begin{macrocode}
 %<*jpclcd>
 \ProvidesFile{jpclcd.cfg}
@@ -4173,6 +4175,8 @@ This work consists of the file  achemso.dtx
   \acs@keywords@print
   \newpage
 }
+\setlength\acs@tocentry@height{2in}
+\setlength\acs@tocentry@width{2in}
 %</jpclcd>
 %<*jprobs>
 \ProvidesFile{jprobs.cfg}
