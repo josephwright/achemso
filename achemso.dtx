@@ -64,7 +64,7 @@ See http://www.latex-project.org/lppl.txt
 
 Originally developed by Mats Dahlgren
 Copyright (C) 1996-1998 by Mats Dahlgren
-Copyright (C) 2008-2014 by
+Copyright (C) 2008-2015 by
   Joseph Wright <joseph.wright@morningstar2.co.uk>
  
 Part of this bundle is derived from cite.sty, to which the
@@ -393,6 +393,7 @@ This work consists of the file  achemso.dtx
 % \changes{v3.8k}{2014/08/18}{Format date correctly for in press bibliography
 %   entries}
 % \changes{v3.8l}{2014/08/23}{Fix printing of phone/fax numbers}
+% \changes{v3.9}{2015/02/01}{New \texttt{doi} option}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -776,8 +777,15 @@ This work consists of the file  achemso.dtx
 % \opt{articletitle=false} for the \file{achemso} style and
 % \opt{articletitle=true} for the \file{biochem} style.
 %
+% \DescribeOption{doi}
+% The boolean \opt{doi} option is provided to allow a \textsc{doi}
+% (Digital Object Identifier) to be included for bibliography entries
+% even where other identification such as page numbers is available.
+%  The standard setting is \opt{false}: setting it to \opt{true} will
+%  cause \textsc{doi} numbers to be printed if available.
+%
 % \DescribeOption{chaptertitle}
-% The option boolean \opt{chaptertitle} option is provided to allow flexibility
+% The boolean \opt{chaptertitle} option is provided to allow flexibility
 % for the inclusion of chapter titles for \texttt{book} and
 % related entries. The standard setting is \opt{false}: setting
 % it to \opt{true} will cause chapter titles to be included.
@@ -1035,6 +1043,7 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\ifacs@articletitle}
 %\begin{macro}{\ifacs@biochem}
 %\begin{macro}{\ifacs@chaptertitle}
+%\begin{macro}{\ifacs@doi}
 %\begin{macro}{\ifacs@email}
 %\begin{macro}{\ifacs@hyperref}
 %\begin{macro}{\ifacs@keywords}
@@ -1045,6 +1054,7 @@ This work consists of the file  achemso.dtx
 \newif\ifacs@abbreviations
 \newif\ifacs@articletitle
 \newif\ifacs@biochem
+\newif\ifacs@doi
 \newif\ifacs@chaptertitle
 \newif\ifacs@email
 \newif\ifacs@hyperref
@@ -1058,6 +1068,9 @@ This work consists of the file  achemso.dtx
 }
 \define@key{acs}{biochem}[true]{%
   \acs@keyval@bool{biochem}{#1}%
+}
+\define@key{acs}{doi}[true]{%
+  \acs@keyval@bool{doi}{#1}%
 }
 \define@key{acs}{chaptertitle}[true]{%
   \acs@keyval@bool{chaptertitle}{#1}%
@@ -1078,6 +1091,7 @@ This work consists of the file  achemso.dtx
   \acs@keyval@bool{articletitle}{#1}%
 }
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -1421,6 +1435,10 @@ This work consists of the file  achemso.dtx
       \@tempa{ctrl-chapter-title\space}{%
         \ifacs@chaptertitle yes\else no\fi
       }%
+      \@tempa{ctrl-doi\space\space\space\space\space\space\space
+        \space\space\space\space}{%
+        \ifacs@doi yes\else no\fi
+      }%
       \@tempa{ctrl-etal-number\space\space\space}{\acs@maxauthors}%
       \@tempa{ctrl-etal-firstonly}{%
         \ifacs@etal@truncate no\else yes\fi
@@ -1475,6 +1493,7 @@ This work consists of the file  achemso.dtx
   articletitle  = false,
   biblabel      = brackets,
   biochem       = false,
+  doi           = false,
   etalmode      = firstonly,
   keywords      = false,
   maxauthors    = 15,
@@ -4642,6 +4661,7 @@ ENTRY
     chapter
     ctrl-article-title
     ctrl-chapter-title
+    ctrl-doi
     ctrl-etal-firstonly
     ctrl-etal-number
     ctrl-use-title
@@ -5350,6 +5370,7 @@ FUNCTION { end.bib } {
 INTEGERS {
   ctrl.article.title.bool
   ctrl.chapter.title.bool
+  ctrl.doi.bool
   ctrl.etal.firstonly.bool
   ctrl.etal.number.int
 }
@@ -5362,6 +5383,7 @@ FUNCTION { initialize.control.values } {
   #0 'ctrl.article.title.bool :=
 %</!bio>
   #0 'ctrl.chapter.title.bool :=
+  #0 'ctrl.doi.bool :=
   #1 'ctrl.etal.firstonly.bool :=
   #15 'ctrl.etal.number.int :=
 }
@@ -5369,6 +5391,7 @@ FUNCTION { initialize.control.values } {
 FUNCTION { control } {
   ctrl-article-title  yes.no.to.bool 'ctrl.article.title.bool  :=
   ctrl-chapter-title  yes.no.to.bool 'ctrl.chapter.title.bool  :=
+  ctrl-doi yes.no.to.bool 'ctrl.doi.bool :=
   ctrl-etal-firstonly yes.no.to.bool 'ctrl.etal.firstonly.bool :=
   ctrl-etal-number    str.to.int     'ctrl.etal.number.int     :=
   ctrl-use-title empty$
@@ -5732,10 +5755,14 @@ FUNCTION { format.chapter } {
 }
 
 FUNCTION { format.doi } {
-  next.punct.comma 'next.punct.int :=
-  bbl.doi add.space
-  doi *
-  output
+  doi empty$
+    'skip$
+    {
+      bbl.doi add.space
+      doi *
+      output
+    }
+  if$
 }
 
 FUNCTION { format.edition } {
@@ -5848,6 +5875,10 @@ FUNCTION { format.pages } {
       output
     }
   if$
+  ctrl.doi.bool
+    { format.doi }
+    'skip$
+  if$
 }
 
 FUNCTION { format.pages.article } {
@@ -5857,6 +5888,10 @@ FUNCTION { format.pages.article } {
       pages hyphen.to.dash
       output
     }
+  if$
+  ctrl.doi.bool
+    { format.doi }
+    'skip$
   if$
 }
 
@@ -6158,6 +6193,7 @@ FUNCTION { inpress } {
 %<*!bio>
       format.year.article
 %</!bio>
+      next.punct.comma 'next.punct.int :=
       format.doi
     }
   if$ 
@@ -6262,6 +6298,7 @@ FUNCTION { unpublished } {
     { format.howpublished }
     {
       format.year
+      next.punct.comma 'next.punct.int :=
       format.doi
     }
   if$ 
