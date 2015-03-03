@@ -3582,7 +3582,7 @@ This work consists of the file  achemso.dtx
 \def\acs@type@list{article,review,suppinfo}
 \setkeys{acs}{
   articletitle = true,
-  biochem      = true
+  doi          = true
 }
 \SectionNumbersOff
 %</acscii>
@@ -5392,7 +5392,7 @@ FUNCTION { initialize.control.values } {
 FUNCTION { control } {
   ctrl-article-title  yes.no.to.bool 'ctrl.article.title.bool  :=
   ctrl-chapter-title  yes.no.to.bool 'ctrl.chapter.title.bool  :=
-  ctrl-doi yes.no.to.bool 'ctrl.doi.bool :=
+  ctrl-doi            yes.no.to.bool 'ctrl.doi.bool            :=
   ctrl-etal-firstonly yes.no.to.bool 'ctrl.etal.firstonly.bool :=
   ctrl-etal-number    str.to.int     'ctrl.etal.number.int     :=
   ctrl-use-title empty$
