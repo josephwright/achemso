@@ -3222,6 +3222,8 @@ This work consists of the file  achemso.dtx
 %\subsection{Late shared code}
 %
 %\begin{macro}{\citenumfont}
+% \changes{v3.9b}{2015/03/22}{Allow for setting \opt{super} after
+%   loading}
 % Changes to citations can now be made. The citation styles supplied
 % here require \pkg{natbib}, which is loaded with the appropriate
 % options. This part applies to the package as well as the class: it is
@@ -3234,6 +3236,17 @@ This work consists of the file  achemso.dtx
   \RequirePackage[sort&compress,numbers,round]{natbib}
   \def\citenumfont{\textit}
 \fi
+\define@key{acs}{super}[true]{%
+  \def\@tempa{#1}%
+  \def\@tempb{true}%
+  \ifx\@tempa\@tempb
+    \setcitestyle{super,open={},close={}}%
+    \renewcommand*\citenumfont{}%
+  \else
+    \setcitestyle{round}%
+    \renewcommand*\citenumfont{\textit}
+  \fi
+}
 \RequirePackage{natmove}
 %    \end{macrocode} 
 %\end{macro}
