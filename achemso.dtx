@@ -396,6 +396,7 @@ This work consists of the file  achemso.dtx
 % \changes{v3.9}{2015/02/01}{New \texttt{doi} option}
 % \changes{v3.10}{2015/04/07}{Update address printing to reflect new
 %   ACS style}
+% \changes{v3.10}{2015/04/07}{Add starred (subs)sections to TOC}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -2635,7 +2636,7 @@ This work consists of the file  achemso.dtx
 %\begin{macro}{\acs@section}
 %\begin{macro}{\acs@subsection}
 %\begin{macro}{\acs@subsubsection}
-%\begin{macro}{\acs@startsection}
+%\begin{macro}{\acs@startsection@orig}
 % Both the numbering and existence of section headers may need to be
 % altered. Some generic functions are therefore provided to deal with
 % this cleanly. First, some original definitions are saved.
@@ -2646,35 +2647,42 @@ This work consists of the file  achemso.dtx
 \let\acs@subsection\subsection
 \newcommand*\acs@subsubsection{}
 \let\acs@subsubsection\subsubsection
-\newcommand*\acs@startsection{}
-\let\acs@startsection\@startsection
+\newcommand*\acs@startsection@orig{}
+\let\acs@startsection@orig\@startsection
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}  
 %\end{macro}
+%\end{macro}
+%\begin{macro}{\acs@startsection}
+%  A version of \cs{@startsection} which adds unnumbered sections to
+%  the TOC: modelled on \pkg{amsart}. This is active as standard.
+%    \begin{macrocode}
+\newcommand\acs@startsection[6]{%
+ \if@noskipsec \leavevmode \fi
+ \par \@tempskipa #4\relax
+ \@afterindenttrue
+ \ifdim \@tempskipa <\z@ \@tempskipa -\@tempskipa \@afterindentfalse\fi
+ \if@nobreak \everypar{}\else
+     \addpenalty\@secpenalty\addvspace\@tempskipa\fi
+ \@ifstar{\@dblarg{\@sect{#1}{\@m}{#3}{#4}{#5}{#6}}}%
+         {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}%
+}
+\let\@startsection\acs@startsection
+%    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\acs@startsection@alt}
 % An alternative version of \cs{@startsection} which never adds numbers.
 %    \begin{macrocode}
 \newcommand*\acs@startsection@alt[6]{%
   \if@noskipsec \leavevmode \fi
-  \par
-  \@tempskipa #4\relax
+  \par \@tempskipa #4\relax
   \@afterindenttrue
-  \ifdim\@tempskipa<\z@\relax
-    \@tempskipa -\@tempskipa \@afterindentfalse
-  \fi
-  \if@nobreak
-    \everypar{}%
-  \else
-    \addpenalty\@secpenalty
-    \addvspace\@tempskipa
-  \fi
-  \@ifstar{%
-    \@ssect{#3}{#4}{#5}{#6}%
-  }{%
-    \@ssect{#3}{#4}{#5}{#6}%
-  }%
+ \ifdim \@tempskipa <\z@ \@tempskipa -\@tempskipa \@afterindentfalse\fi
+ \if@nobreak \everypar{}\else
+     \addpenalty\@secpenalty\addvspace\@tempskipa\fi
+  \@ifstar{\@ssect{#3}{#4}{#5}{#6}}
+          {\@ssect{#3}{#4}{#5}{#6}}%
 }
 %    \end{macrocode}
 %\end{macro}
@@ -2734,15 +2742,30 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
+% \begin{macro}{\tableofcontents}
+%   Never print TOC in itself.
+%    \begin{macrocode}
+\begingroup
+  \toks@=\expandafter{\tableofcontents}
+  \xdef\tableofcontents{%
+    \begingroup
+      \let\noexpand\@startsection\noexpand\acs@startsection@orig
+      \the\toks@
+    \endgroup
+  }
+\endgroup
+%    \end{macrocode}
+% \end{macro}
+%\end{macro}
 %\begin{environment}{acknowledgement}
 %\begin{environment}{suppinfo}
 % Simple named sections.
 %    \begin{macrocode}
 \newenvironment{acknowledgement}{%
-  \acs@subsection*{\acknowledgementname}%
+  \acs@section*{\acknowledgementname}%
 }{}
 \newenvironment{suppinfo}{%
-  \acs@subsection*{\suppinfoname}%
+  \acs@section*{\suppinfoname}%
   \acs@collect\acs@suppinfo@print
 }{}
 %    \end{macrocode}
@@ -2766,7 +2789,7 @@ This work consists of the file  achemso.dtx
 \newcommand*\acknowledgementname{Acknowledgement}
 \AtEndOfClass{%
   \def\bibsection{%
-    \acs@subsection*{\refname}%
+    \acs@section*{\refname}%
   }%
 }
 \newcommand*\suppinfoname{Supporting Information Available}
@@ -2957,6 +2980,8 @@ This work consists of the file  achemso.dtx
   }%
 }
 \newcommand*{\acs@tocentry@print@aux}{%
+  \begingroup
+    \let\@startsection\acs@startsection@orig
     \acs@section*{\tocentryname}%
     \tocsize
     \sffamily
@@ -2969,7 +2994,8 @@ This work consists of the file  achemso.dtx
           \end{minipage}%
         }%
     \end{center}%
-  }
+  \endgroup
+}
 \newlength{\acs@tocentry@height}
 \newlength{\acs@tocentry@width}
 \setlength{\acs@tocentry@height}{9 cm}
@@ -3087,7 +3113,7 @@ This work consists of the file  achemso.dtx
       \vspace{6pt}%
       \textbf{\acknowledgementname}%
     \else
-      \acs@subsection*{\acknowledgementname}%
+      \acs@section*{\acknowledgementname}%
     \fi
   }{%
     \acs@par
@@ -3097,7 +3123,7 @@ This work consists of the file  achemso.dtx
     \ifx\@currenvir\@tempa
       \expandafter\acs@suppinfo@aux
     \else
-      \acs@subsection*{\suppinfoname}%
+      \acs@section*{\suppinfoname}%
     \fi
   }{%
     \acs@par
