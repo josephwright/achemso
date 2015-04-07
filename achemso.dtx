@@ -394,6 +394,7 @@ This work consists of the file  achemso.dtx
 %   entries}
 % \changes{v3.8l}{2014/08/23}{Fix printing of phone/fax numbers}
 % \changes{v3.9}{2015/02/01}{New \texttt{doi} option}
+% \changes{v3.9b}{2015/03/22}{Update \emph{J. Agric. Food Chem.} style}
 % \changes{v3.10}{2015/04/07}{Update address printing to reflect new
 %   ACS style}
 % \changes{v3.10}{2015/04/07}{Add starred (subs)sections to TOC}
@@ -3248,6 +3249,8 @@ This work consists of the file  achemso.dtx
 %\subsection{Late shared code}
 %
 %\begin{macro}{\citenumfont}
+% \changes{v3.9b}{2015/03/22}{Allow for setting \opt{super} after
+%   loading}
 % Changes to citations can now be made. The citation styles supplied
 % here require \pkg{natbib}, which is loaded with the appropriate
 % options. This part applies to the package as well as the class: it is
@@ -3260,6 +3263,17 @@ This work consists of the file  achemso.dtx
   \RequirePackage[sort&compress,numbers,round]{natbib}
   \def\citenumfont{\textit}
 \fi
+\define@key{acs}{super}[true]{%
+  \def\@tempa{#1}%
+  \def\@tempb{true}%
+  \ifx\@tempa\@tempb
+    \setcitestyle{super,open={},close={}}%
+    \renewcommand*\citenumfont{}%
+  \else
+    \setcitestyle{round}%
+    \renewcommand*\citenumfont{\textit}
+  \fi
+}
 \RequirePackage{natmove}
 %    \end{macrocode} 
 %\end{macro}
@@ -4066,8 +4080,7 @@ This work consists of the file  achemso.dtx
   [2015/04/07 v3.10 achemso configuration: J. Agric. Food Chem.]
 \setkeys{acs}{
   articletitle = true,
-  keywords     = true,
-  super        = false
+  keywords     = true
 }
 \def\acs@type@list{article,suppinfo}
 \SectionNumbersOff
@@ -4319,6 +4332,7 @@ This work consists of the file  achemso.dtx
 %% servers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage[T1]{fontenc}       % Use modern font encodings
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If issues arise when submitting your manuscript, you may want to
