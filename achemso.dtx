@@ -394,6 +394,8 @@ This work consists of the file  achemso.dtx
 %   entries}
 % \changes{v3.8l}{2014/08/23}{Fix printing of phone/fax numbers}
 % \changes{v3.9}{2015/02/01}{New \texttt{doi} option}
+% \changes{v3.10}{2015/04/07}{Update address printing to reflect new
+%   ACS style}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -1984,7 +1986,7 @@ This work consists of the file  achemso.dtx
           \let\footnote\acs@title@footnote
           \acs@maketitle@suppinfo \@title
           \acs@title@footnote@check
-          \global\acs@footnote@cnt\c@footnote\relax
+          \global\acs@footnote@cnt\c@footnote
           \@maketitle@title@hook
           \par
         }%
@@ -2037,19 +2039,20 @@ This work consists of the file  achemso.dtx
 %    \begin{macrocode}
 \newcommand*\acs@title@footnote[1]{%
   \footnotemark
-  \g@addto@macro\@thanks@hook{%
-    \footnotetext{#1}%
-  }%
+  \g@addto@macro\@thanks{\footnotetext{#1}}%
 }
 \newcommand\acs@title@footnote@check{%
-  \ifx\@thanks@hook\@empty\else
-    \expandafter\gdef\expandafter\@thanks@hook\expandafter{%
-      \expandafter\begingroup
-        \expandafter\let\expandafter\@fnsymbol\expandafter
-          \acs@author@fnsymbol
-        \@thanks@hook
-      \endgroup
-    }%
+  \ifx\@thanks\@empty
+  \else
+    \begingroup
+      \toks@=\expandafter{\@thanks}%
+      \xdef\@thanks{%
+        \begingroup
+          \let\noexpand\@fnsymbol\noexpand\acs@author@fnsymbol
+          \the\toks@
+        \endgroup
+      }%
+    \endgroup
   \fi
 }
 %    \end{macrocode}
@@ -2065,26 +2068,14 @@ This work consists of the file  achemso.dtx
 %    \end{macrocode}
 %\end{macro}
 %\begin{macro}{\@thanks}
-%\begin{macro}{\@thanks@hook}
 % The \cs{@thanks} macro is used as a hook to generate the footnotes if
 % needed.
 %    \begin{macrocode}
-\def\@thanks{%
-  \@thanks@hook
-  \ifnum\acs@affil@cnt>\@ne\relax
-    \expandafter\acs@affil@list
-  \else
-    \ifnum\acs@affil@alt@cnt>\z@\relax
-      \expandafter\expandafter\expandafter\acs@affil@list
-    \fi
-  \fi
-}
-\newcommand*\@thanks@hook{}
+\let\@thanks\@empty
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@author@list}
-%\begin{macro}{\acs@author@list@star}
 % Printing the author list needs to do several things. The appropriate
 % separators between authors are created and the author names
 % themselves are printed.
@@ -2094,16 +2085,8 @@ This work consists of the file  achemso.dtx
   \ifnum\acs@author@cnt=\z@\relax\else
     \expandafter\acs@author@list@main
   \fi
-  \acs@author@list@star
-}
-\newcommand*\acs@author@list@star{%
-  \g@addto@macro\@thanks@hook{%
-      \setcounter{footnote}{1}%
-    \footnotetext{To whom correspondence should be addressed}%
-  }%
 }
 %    \end{macrocode}
-%\end{macro}
 %\end{macro}
 %\begin{macro}{\acs@author@footnotes}
 %\begin{macro}{\acs@author@list@main}
@@ -2331,37 +2314,55 @@ This work consists of the file  achemso.dtx
 % \end{macro}
 % \end{macro}
 % \end{macro}
-%\begin{macro}{\acs@address@list}
-%\begin{macro}{\acs@address@list@aux}
-% The main address block is rather less complex than the author
-% printing: one print job per address.
+% \begin{macro}{\acs@address@list}
+% \begin{macro}{\acs@address@list@auxi}
+% \begin{macro}{\acs@address@list@auxii}
+%   Loop over the addresses and any extra affiliations and print them
+%   all: if there is only one, omit the marker entirely. There is also a
+%   need to watch out for any footnotes from the title.
 %    \begin{macrocode}
 \newcommand*\acs@address@list{%
-  \@tempcnta\z@\relax
-  \ifnum\acs@affil@cnt>\z@\relax
-    \acs@address@list@aux
+  \ifnum\acs@affil@cnt>\z@
+    \expandafter\acs@address@list@auxi
   \else
-    \acs@warning{%
-      No affiliations: at least one affiliation is needed%
-    }%
+    \acs@warning{No affiliations: at least one affiliation is needed}%
   \fi
 }
-\newcommand*\acs@address@list@aux{%
-  \advance\@tempcnta\@ne\relax
-  \ifnum\acs@affil@cnt>\@ne\relax
-    \ifnum\@tempcnta=\acs@affil@cnt\relax
-      and
-    \fi
+\newcommand*\acs@address@list@auxi{%
+  \ifnum0%
+    \ifnum\acs@affil@cnt>\@ne    1\fi
+    \ifnum\acs@affil@alt@cnt>\z@ 1\fi
+      >\z@
+    \expandafter\acs@address@list@auxii
+  \else
+    \@address@i\par
   \fi
-  \@nameuse{@address@\@roman\@tempcnta}%
-  \ifnum\@tempcnta<\acs@affil@cnt\relax
-    ,
-    \expandafter\acs@address@list@aux
-  \fi
+}
+\newcommand*\acs@address@list@auxii{%
+  \@tempcnta\z@
+  \acs@affil@marker@cnt\acs@footnote@cnt
+  \loop\ifnum\@tempcnta<\acs@affil@cnt
+    \advance\@tempcnta\@ne
+    \advance\acs@affil@marker@cnt\@ne
+    \acs@author@fnsymbol{\acs@affil@marker@cnt}%
+    \@nameuse{@address@\@roman\@tempcnta}\par
+  \repeat
+  \@tempcnta\z@
+  \loop\ifnum\@tempcnta<\acs@affil@cnt
+    \advance\@tempcnta\@ne
+    \advance\acs@affil@marker@cnt\@ne
+    \acs@ifundefined{@altaffil@\@roman\@tempcnta}
+      {}
+      {%
+        \acs@author@fnsymbol{\acs@affil@marker@cnt}%
+        \@nameuse{@altaffil@\@roman\@tempcnta}\par
+      }%
+  \repeat
 }
 %    \end{macrocode}
-%\end{macro}
-%\end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
 %\begin{macro}{\acs@fnsymbol@org}
 %\begin{macro}{\acs@affil@list}
 %\begin{macro}{\acs@affil@list@aux}
@@ -3702,8 +3703,9 @@ This work consists of the file  achemso.dtx
   }%
 }
 \def\@maketitle@title@hook{%
-  \ifnum\acs@footnote@cnt>\@ne\relax\else
-    \global\acs@footnote@cnt\@ne\relax
+  \ifnum\acs@footnote@cnt>\@ne
+  \else
+    \global\acs@footnote@cnt\@ne
   \fi
 }
 %    \end{macrocode}
@@ -3979,12 +3981,9 @@ This work consists of the file  achemso.dtx
 }
 %    \end{macrocode}
 %\end{macro}
-%\begin{macro}{\acs@author@list@star}
 %\begin{macro}{\acs@maketitle@extras}
-% No star in the footnotes in \emph{J.~Am.\ Chem.\ Soc.}, and no
-% keywords or abbreviations.
+% No keywords or abbreviations for \emph{J.~Am.\ Chem.\ Soc.}.
 %    \begin{macrocode}
-\let\acs@author@list@star\relax
 \let\acs@maketitle@extras\relax
 %    \end{macrocode}
 %\end{macro}
