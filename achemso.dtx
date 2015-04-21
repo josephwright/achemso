@@ -399,6 +399,8 @@ This work consists of the file  achemso.dtx
 % \changes{v3.10}{2015/04/07}{Update address printing to reflect new
 %   ACS style}
 % \changes{v3.10}{2015/04/07}{Add starred (subs)sections to TOC}
+% \changes{v3.10a}{2015/04/21}{Add article titles for \emph{Chem.\ Mater.}
+%   and \emph{Chem. Rev.}}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -3793,6 +3795,7 @@ This work consists of the file  achemso.dtx
   [2015/04/07 v3.10 achemso configuration: Chem. Rev.]
 \def\acs@type@default{review}
 \def\acs@type@list{review}
+\setkeys{acs}{articletitle = true}
 %    \end{macrocode}
 % The references section is numbered in \emph{Chem.\ Rev.}
 %    \begin{macrocode}
@@ -3808,6 +3811,7 @@ This work consists of the file  achemso.dtx
   \AbstractOff
   \SectionsOff
 \fi
+\setkeys{acs}{articletitle = true}
 %</cmatex>
 %<*cgdefu>
 \ProvidesFile{cgdefu.cfg}
