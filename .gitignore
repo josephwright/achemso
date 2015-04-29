@@ -1,6 +1,3 @@
-*.acn
-*.acr
-*.alg
 *.aux
 *.bbl
 *.blg
@@ -8,8 +5,6 @@
 *.bst
 *.cfg
 *.cls
-*.dvi
-*.fdb_latexmk
 *.glg
 *.glo
 *.gls
@@ -18,28 +13,16 @@
 *.ilg
 *.ind
 *.ins
-*.ist
-*.lof
 *.log
-*.lot
-*.maf
-*.md
-*.mtc
-*.mtc0
-*.nav
-*.nlo
 *.out
 *.pdf
-*.pdfsync
-*.ps
-*.snm
 *.sty
 *.synctex.gz
 *.toc
 *.tmp
 *.txt
-*.vrb
-*.xdy
-*.tdo
+*.zip
 
 achemso-demo.*
+
+build/*
