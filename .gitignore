@@ -1,7 +1,6 @@
 *.aux
 *.bbl
 *.blg
-*.bib
 *.bst
 *.cfg
 *.cls
@@ -22,7 +21,5 @@
 *.tmp
 *.txt
 *.zip
-
-achemso-demo.*
 
 build/*
