@@ -2959,6 +2959,7 @@ This work consists of the files achemso.dtx,
 % \begin{macro}{\acs@tocentry@print}
 % \begin{macro}{\acs@tocentry@print@aux}
 % \begin{macro}{\acs@tocentry@text}
+% \changes{v3.10b}{2015/06/24}{Define \cs{acs@tocentry@text} in all cases}
 % The same approach is taken for the graphical table of content
 % printing. This is done in a box so that everything has a frame around
 % it.
@@ -2996,6 +2997,7 @@ This work consists of the files achemso.dtx,
     \end{center}%
   \endgroup
 }
+\newcommand*\acs@tocentry@text{TOC ENTRY REQUIRED}
 \newlength{\acs@tocentry@height}
 \newlength{\acs@tocentry@width}
 \setlength{\acs@tocentry@height}{9 cm}
