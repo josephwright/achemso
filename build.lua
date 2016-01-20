@@ -19,6 +19,25 @@ typsetcmds = [[
   \\ifdefined\\OnlyDescription\\AtBeginDocument{\\OnlyDescription}\\fi
 ]]
 
+-- Detail how to set the version automatically
+function setversion_update_line (line, date, version)
+  local date = string.gsub(date, "%-", "/")
+  -- LaTeX part
+  if string.match(
+    line, "^  %[%d%d%d%d/%d%d/%d%d v%d%.%d+%w? [^%]]*%]$"
+  ) then
+    line = string.gsub(line, "%d%d%d%d/%d%d/%d%d", date)
+    line = string.gsub(line, "%d%.%d+%w?", version)
+  end
+  -- BibTeX part
+  if string.match(
+    line, "^  \"achemso %d%d%d%d/%d%d/%d%d v%d%.%d+%w?\" top%$$"
+  ) then
+    line = "  \"achemso " .. date .. " v" .. version .. "\" top$"
+  end
+  return line
+end
+
 -- Release a TDS-style zip
 packtdszip  = true
 
