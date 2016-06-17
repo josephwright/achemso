@@ -404,6 +404,7 @@ This work consists of the files achemso.dtx,
 %   and \emph{Chem. Rev.}}
 % \changes{v3.10c}{2016/05/10}{Add support for \emph{ACS Omega} and
 %   \emph{ACS Energy Lett.}}
+% \changes{v3.10d}{2016/06/17}{Improve handling of \textsc{doi} values}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -763,6 +764,19 @@ This work consists of the files achemso.dtx,
 % such as ``et al.'' Most ACS journals do not make these italic, but
 % some (for example \emph{ACS Nano}) do. By providing a command, the formatting
 % is left flexible.
+%
+% \DescribeMacro{\doi}
+%
+% The bibliography style prints any \textsc{doi} values as the
+% argument to the command \cs{doi}. The default definition will allow
+% printing of special characters but does not create hyperlinks. A
+% more sophisticated version of the command may be set up if \pkg{hyperref}
+% is loaded, for example
+%\begin{LaTeXdemo}[code only]
+%  \begin{tocentry}
+%    \newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+%  \end{tocentry}
+%\end{LaTeXdemo}
 %
 %\section{The package file}
 % The \pkg{achemso} package is independent of the class file, and
@@ -5009,6 +5023,18 @@ FUNCTION { begin.bib } {
   if$
   "\providecommand{\latin}[1]{#1}" write$
   newline$
+  "\makeatletter" write$
+  newline$
+  "\providecommand{\doi}" write$
+  newline$
+  "  {\begingroup\let\do\@makeother\dospecials" write$
+  newline$
+  "  \catcode`\{=1 \catcode`\}=2\doi@aux}" write$
+  newline$
+  "\providecommand{\doi@aux}[1]{\endgroup\texttt{#1}}" write$
+   newline$
+  "\makeatother" write$
+  newline$
   "\providecommand*\mcitethebibliography{\thebibliography}" write$
   newline$
   "\csname @ifundefined\endcsname{endmcitethebibliography}" write$
@@ -5452,7 +5478,7 @@ FUNCTION { format.doi } {
     'skip$
     {
       bbl.doi add.space
-      doi *
+      "\doi{" * doi * "}" *
       output
     }
   if$
