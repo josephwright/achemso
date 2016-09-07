@@ -360,6 +360,7 @@ This work consists of the files achemso.dtx,
 %   \emph{ACS Energy Lett.}}
 % \changes{v3.10d}{2016/06/17}{Improve handling of \textsc{doi} values}
 % \changes{v3.10e}{2016/08/31}{Tweak \emph{Macromolecules} formatting}
+% \changes{v3.10f}{2016/09/07}{Various formatting updates}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -2742,21 +2743,11 @@ This work consists of the files achemso.dtx,
 }{}
 \newenvironment{suppinfo}{%
   \acs@section*{\suppinfoname}%
-  \acs@collect\acs@suppinfo@print
+  The following files are available free of charge.
 }{}
 %    \end{macrocode}
 %\end{environment}
 %\end{environment}
-%\begin{macro}{\acs@suppinfo@print}
-% A simple macro to print the supporting information.
-%    \begin{macrocode}
-\newcommand\acs@suppinfo@print[1]{%
-  #1
-  This material is available free of charge via the Internet at
-  \url{http://pubs.acs.org/}.
-}
-%    \end{macrocode}
-%\end{macro}
 %\begin{macro}{\acknowledgementname}
 %\begin{macro}{\bibsection}
 %\begin{macro}{\suppinfoname}
@@ -3032,19 +3023,6 @@ This work consists of the files achemso.dtx,
 %\end{macro}
 %\end{macro}
 %   
-% Although \pkg{achemso} avoids too much formatting, the class file
-% makes a few changes to keep life simple.  The name of the
-% bibliography should be ``Notes and References'' if any notes are
-% added.
-%    \begin{macrocode}
-\def\refname{%
-  \ifnum\the\value{bibnote}>\z@\relax
-    Notes and
-  \fi
-  References%
-}
-%    \end{macrocode}
-%   
 % A few bits for older versions.
 %    \begin{macrocode}
 \newcommand*\acs@setkeys{\setkeys{acs}}
@@ -3096,33 +3074,11 @@ This work consists of the files achemso.dtx,
   }{%
     \acs@par
   }%
-  \renewenvironment{suppinfo}{%
-    \def\@tempa{suppinfo}%
-    \ifx\@currenvir\@tempa
-      \expandafter\acs@suppinfo@aux
-    \else
-      \acs@section*{\suppinfoname}%
-    \fi
-  }{%
-    \acs@par
-  }%
 }
 %    \end{macrocode}
 %\end{environment}
 %\end{environment}
 %\end{macro}
-%\begin{macro}{\acs@suppinfo@aux}
-% A short spin out.
-%    \begin{macrocode}
-\newcommand*\acs@suppinfo@aux{%
-  \let\par\relax
-  \suppsize
-  \vspace{6pt}%
-  \textbf{\suppinfoname:}
-  \acs@collect\acs@suppinfo@print
-}
-%    \end{macrocode}
-%\end{macro} 
 %\begin{macro}{\acksize}
 %\begin{macro}{\suppsize}
 % More sizes.
@@ -3628,6 +3584,7 @@ This work consists of the files achemso.dtx,
 \SectionsOff
 \setlength{\acs@tocentry@height}{8 cm}
 \setlength{\acs@tocentry@width}{4 cm}
+\setkeys{acs}{articletitle = true}
 %</amlccd>
 %<*amclct>
 \ProvidesFile{achemso-amclct.cfg}
@@ -3857,6 +3814,7 @@ This work consists of the files achemso.dtx,
   \AbstractOff
   \SectionsOff
 \fi
+\setkeys{articletitle = true, doi = true}
 %</inoraj>
 %    \end{macrocode}  
 %
@@ -4139,21 +4097,10 @@ This work consists of the files achemso.dtx,
   \AbstractOff
   \SectionsOff
 \fi
-\def\refname{%
-  \ifnum\the\value{bibnote}>\z@\relax
-    NOTES AND
-  \fi
-  REFERENCES%
-}
+\def\refname{REFERENCES}
 \captionsetup{
   labelfont = bf,
   labelsep  = period
-}
-\renewcommand\acs@suppinfo@print[1]{%
-  \textbf{Supporting Information}%
-  #1
-  This material is available free of charge via the Internet at
-  \url{http://pubs.acs.org/}.
 }
 %</jnprdf>
 %<*joceah>
@@ -4223,8 +4170,7 @@ This work consists of the files achemso.dtx,
 \setkeys{acs}{
   articletitle = true,
   etalmode     = truncate,
-  maxauthors   = 10,
-  keywords     = true
+  maxauthors   = 10
 }
 \def\acs@type@default{letter}
 \def\acs@type@list{letter}
@@ -4265,7 +4211,7 @@ This work consists of the files achemso.dtx,
 \ProvidesFile{achemso-mamobx.cfg}
   [2016/08/31 v3.10e achemso configuration: Macromolecules]
 \SectionNumbersOff
-\setkeys{acs}{articletitle=true}
+\setkeys{acs}{articletitle=true, doi = true}
 %</mamobx>
 %<*mpohbp>
 \ProvidesFile{achemso-mpohbp.cfg}
