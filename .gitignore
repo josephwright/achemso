@@ -1,25 +1,4 @@
-*.aux
-*.bbl
-*.blg
-*.bst
-*.cfg
-*.cls
-*.glg
-*.glo
-*.gls
-*.hd
-*.idx
-*.ilg
-*.ind
-*.ins
-*.log
-*.out
 *.pdf
-*.sty
-*.synctex.gz
-*.toc
-*.tmp
-*.txt
 *.zip
 
 build/*
