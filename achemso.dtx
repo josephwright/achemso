@@ -61,6 +61,7 @@ This work consists of the files achemso.dtx,
 }
 \usedir{tex/latex/achemso/config}
 \generate{\file{achemso-aamick.cfg}{\from{\jobname.dtx}{aamick}}
+          \file{achemso-abseba.cfg}{\from{\jobname.dtx}{abseba}}
           \file{achemso-acbcct.cfg}{\from{\jobname.dtx}{acbcct}}
           \file{achemso-accacs.cfg}{\from{\jobname.dtx}{accacs}}
           \file{achemso-achre4.cfg}{\from{\jobname.dtx}{achre4}}
@@ -69,52 +70,53 @@ This work consists of the files achemso.dtx,
           \file{achemso-asccii.cfg}{\from{\jobname.dtx}{acscii}}
           \file{achemso-acsodf.cfg}{\from{\jobname.dtx}{acsodf}}
 }
-\generate{\file{achemso-aelccp.cfg}{\from{\jobname.dtx}{aelccp}}
+\generate{\file{achemso-acsodf.cfg}{\from{\jobname.dtx}{acsodf}}
+          \file{achemso-aelccp.cfg}{\from{\jobname.dtx}{aelccp}}
           \file{achemso-amlccd.cfg}{\from{\jobname.dtx}{amlccd}}
           \file{achemso-amclct.cfg}{\from{\jobname.dtx}{amclct}}
           \file{achemso-ancac3.cfg}{\from{\jobname.dtx}{ancac3}}
           \file{achemso-ancham.cfg}{\from{\jobname.dtx}{ancham}}
           \file{achemso-apchd5.cfg}{\from{\jobname.dtx}{apchd5}}
-          \file{achemso-ascecg.cfg}{\from{\jobname.dtx}{ascecg}}
-          \file{achemso-asbcd6.cfg}{\from{\jobname.dtx}{asbcd6}}
+          \file{achemso-ascecg.cfg}{\from{\jobname.dtx}{ascecg}}    
 }
-\generate{\file{achemso-bichaw.cfg}{\from{\jobname.dtx}{bichaw}}
+\generate{\file{achemso-asbcd6.cfg}{\from{\jobname.dtx}{asbcd6}}
+          \file{achemso-bichaw.cfg}{\from{\jobname.dtx}{bichaw}}
           \file{achemso-bcches.cfg}{\from{\jobname.dtx}{bcches}}
           \file{achemso-bomaf6.cfg}{\from{\jobname.dtx}{bomaf6}}
           \file{achemso-crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
           \file{achemso-chreay.cfg}{\from{\jobname.dtx}{chreay}}
           \file{achemso-cmatex.cfg}{\from{\jobname.dtx}{cmatex}}
           \file{achemso-cgdefu.cfg}{\from{\jobname.dtx}{cgdefu}}
-          \file{achemso-enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
 }
-\generate{\file{achemso-esthag.cfg}{\from{\jobname.dtx}{esthag}}
+\generate{\file{achemso-enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
+          \file{achemso-esthag.cfg}{\from{\jobname.dtx}{esthag}}
           \file{achemso-estlcu.cfg}{\from{\jobname.dtx}{estlcu}}
           \file{achemso-iecred.cfg}{\from{\jobname.dtx}{iecred}}
           \file{achemso-inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
           \file{achemso-jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
           \file{achemso-jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
           \file{achemso-jceaax.cfg}{\from{\jobname.dtx}{jceaax}}
-          \file{achemso-jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
 }
-\generate{\file{achemso-jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
+\generate{\file{achemso-jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
+          \file{achemso-jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
           \file{achemso-jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
           \file{achemso-jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
           \file{achemso-jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
           \file{achemso-joceah.cfg}{\from{\jobname.dtx}{joceah}}
           \file{achemso-jpcafh.cfg}{\from{\jobname.dtx}{jpcafh}}
           \file{achemso-jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}
-          \file{achemso-jpccck.cfg}{\from{\jobname.dtx}{jpccck}}
 }
-\generate{\file{achemso-jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}
+\generate{\file{achemso-jpccck.cfg}{\from{\jobname.dtx}{jpccck}}
+          \file{achemso-jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}
           \file{achemso-jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
           \file{achemso-langd5.cfg}{\from{\jobname.dtx}{langd5}}
           \file{achemso-mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
           \file{achemso-mpohbp.cfg}{\from{\jobname.dtx}{mpohbp}}
           \file{achemso-nalefd.cfg}{\from{\jobname.dtx}{nalefd}}
           \file{achemso-orlef7.cfg}{\from{\jobname.dtx}{orlef7}}
-          \file{achemso-oprdfk.cfg}{\from{\jobname.dtx}{oprdfk}}
 }
-\generate{\file{achemso-orgnd7.cfg}{\from{\jobname.dtx}{orgnd7}}
+\generate{\file{achemso-oprdfk.cfg}{\from{\jobname.dtx}{oprdfk}}
+          \file{achemso-orgnd7.cfg}{\from{\jobname.dtx}{orgnd7}}
 }
 \usedir{bibtex/bst/achemso}
 \generate{
@@ -361,6 +363,7 @@ This work consists of the files achemso.dtx,
 % \changes{v3.10d}{2016/06/17}{Improve handling of \textsc{doi} values}
 % \changes{v3.10e}{2016/08/31}{Tweak \emph{Macromolecules} formatting}
 % \changes{v3.10f}{2016/09/07}{Various formatting updates}
+% \changes{v3.10h}{2017/01/14}{Add style for \emph{ACS Biomater.\ Sci.\ Eng.}}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -475,52 +478,53 @@ This work consists of the files achemso.dtx,
 %    \midrule
 %      ACS Appl.\ Mater.\ Interfaces   & aamick &
 %      Environ.\ Sci.\ Technol.        & esthag \\
-%      ACS Chem.\ Biol.                & acbcct &
+%      ACS Biomater.\ Sci.\ Eng.       & abseba &
 %      Ind.\ Eng.\ Chem.\ Res.         & iecred \\
-%      ACS Catal.                      & accacs &
+%      ACS Chem.\ Biol.                & acbcct &
 %      Inorg.\ Chem.                   & inoraj \\
-%      ACS Central Sci.                & acscii &
+%      ACS Catal.                      & accacs &
 %      J.~Agric.\ Food Chem.           & jafcau \\
-%      ACS Omega                       & acsodf &
+%      ACS Central Sci.                & acscii &
 %      J.~Chem.\ Eng.\ Data            & jceaax \\
-%      Acc.\ Chem.\ Res.               & achre4 &
+%      ACS Omega                       & acsodf &
 %      J.~Chem.\ Ed.                   & jceda8 \\
-%      ACS Chem.\ Neurosci.            & acncdm &
+%      Acc.\ Chem.\ Res.               & achre4 &
 %      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
-%      ACS Combinatorial Sci.          & acsccc &
+%      ACS Chem.\ Neurosci.            & acncdm &
 %      J.~Chem.\ Theory Comput.        & jctcce \\
-%      ACS Energy Lett.                & aelccp &
+%      ACS Combinatorial Sci.          & acsccc &
 %      J.~Med.\ Chem.                  & jmcmar \\
-%      ACS Macro Lett.                 & amlccd &
+%      ACS Energy Lett.                & aelccp &
 %      J.~Nat.\ Prod.                  & jnprdf \\
-%      ACS Med.\ Chem.\ Lett.          & amclct &
+%      ACS Macro Lett.                 & amlccd &
 %      J.~Org.\ Chem.                  & joceah \\
-%      ACS Nano                        & ancac3 &
+%      ACS Med.\ Chem.\ Lett.          & amclct &
 %      J.~Phys.\ Chem.~A               & jpcafh \\
-%      ACS Photon.                     & apchd5 &
+%      ACS Nano                        & ancac3 &
 %      J.~Phys.\ Chem.~B               & jpcbfk \\
-%      ACS Sustainable Chem.\ Eng.     & ascecg &
+%      ACS Photon.                     & apchd5 &
 %      J.~Phys.\ Chem.~C               & jpccck \\
-%      ACS Synth.\ Biol.               & asbcd6 &
+%      ACS Sustainable Chem.\ Eng.     & ascecg &
 %      J.~Phys.\ Chem.\ Lett.          & jpclcd \\
-%      Anal.\ Chem.                    & ancham &
+%      ACS Synth.\ Biol.               & asbcd6 &
 %      J.~Proteome Res.                & jprobs \\
-%      Biochemistry                    & bichaw &
+%      Anal.\ Chem.                    & ancham &
 %      J.~Am.\ Chem.\ Soc.             & jacsat \\
-%      Bioconjugate Chem.              & bcches &
+%      Biochemistry                    & bichaw &
 %      Langmuir                        & langd5 \\
-%      Biomacromolecules               & bomaf6 &
+%      Bioconjugate Chem.              & bcches &
 %      Macromolecules                  & mamobx \\
-%      Chem.\ Res.\ Toxicol.           & crtoec &
+%      Biomacromolecules               & bomaf6 &
 %      Mol.\ Pharm.                    & mpohbp \\
-%      Chem.\ Rev.                     & chreay &
+%      Chem.\ Res.\ Toxicol.           & crtoec &
 %      Nano Lett.                      & nalefd \\
-%      Chem.\ Mater.                   & cmatex &
+%      Chem.\ Rev.                     & chreay &
 %      Org.\ Lett.                     & orlef7 \\
-%      Cryst.\ Growth Des.             & cgdefu &
+%      Chem.\ Mater.                   & cmatex &
 %      Org.\ Proc.\ Res.\ Dev.         & oprdfk \\
-%      Energy Fuels                    & enfuem &
+%      Cryst.\ Growth Des.             & cgdefu &
 %      Organometallics                 & orgnd7 \\
+%      Energy Fuels                    & enfuem &
 %      Environ.\ Sci.\ Technol.\ Lett. & estlcu \\
 %    \bottomrule
 %  \end{tabular}
@@ -3499,6 +3503,15 @@ This work consists of the files achemso.dtx,
   keywords     = true
 }
 %</aamick>
+%<*abseba>
+\ProvidesFile{achemso-abseba.cfg}
+  [2016/10/04 v3.10g achemso configuration: ACS Biomater. Sci. Eng.]
+\setkeys{acs}{
+  articletitle = true,
+  keywords     = true
+}
+\def\acs@type@list{article,review,suppinfo}
+%</abseba>
 %<*acbcct>
 \ProvidesFile{achemso-acbcct.cfg}
   [2016/10/04 v3.10g achemso configuration: ACS Chem. Biol.]
