@@ -373,6 +373,7 @@ This work consists of the files achemso.dtx,
 %   Comput.}}
 % \changes{v3.10h}{2017/01/20}{Update supplementary information text}
 % \changes{v3.10i}{2017/02/09}{Style update for \emph{Biochemistry}}
+% \changes{v3.10i}{2017/05/18}{Fix issue with \cs{doi} command}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -4980,7 +4981,7 @@ FUNCTION { begin.bib } {
   newline$
   "  {\begingroup\let\do\@makeother\dospecials" write$
   newline$
-  "  \catcode`\{=1 \catcode`\}=2\doi@aux}" write$
+  "  \catcode`\{=1 \catcode`\}=2 \doi@aux}" write$
   newline$
   "\providecommand{\doi@aux}[1]{\endgroup\texttt{#1}}" write$
    newline$
