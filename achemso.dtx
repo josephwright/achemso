@@ -2945,12 +2945,13 @@ This work consists of the files achemso.dtx,
 % \begin{macro}{\acs@tocentry@print@aux}
 % \begin{macro}{\acs@tocentry@text}
 % \changes{v3.10b}{2015/06/24}{Define \cs{acs@tocentry@text} in all cases}
+% \changes{v3.11a}{2018/04/02}{Print abstract at full size}
 % The same approach is taken for the graphical table of content
 % printing. This is done in a box so that everything has a frame around
 % it.
 %    \begin{macrocode}
 \newcommand{\acs@tocentry@print}[1]{%
-  \gdef\acs@tocentry@text{#1}%
+  \gdef\acs@tocentry@text{\normalsize#1}%
   \AtEndDocument{%
     \if@twocolumn
       \@restonecoltrue\onecolumn
