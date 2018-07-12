@@ -20,25 +20,18 @@ typsetcmds = [[
 ]]
 
 -- Detail how to set the version automatically
-function setversion_update_line (line, date, version)
-  local date = string.gsub(date, "%-", "/")
-  -- LaTeX part
-  if string.match(
-    line, "^  %[%d%d%d%d/%d%d/%d%d v%d%.%d+%w? [^%]]*%]$"
-  ) then
-    -- Skip the natmove version line, which is independent of achemso
-    if not string.match(line, "natbib") then
-      line = string.gsub(line, "%d%d%d%d/%d%d/%d%d", date)
-      line = string.gsub(line, "%d%.%d+%w?", version)
-    end
+function update_tag(file,content,tagname,tagdate)
+  local tagdate = string.gsub(tagdate,"%-","/")
+  local format = "%d%d%d%d/%d%d/%d%d v%d%.%d+%w?"
+  -- The presence of natmove means we have to be a bit careful
+  for _,term in pairs({"Submission","Support","achemso"}) do
+    content = string.gsub(content,
+       format .. " " .. term,
+       tagdate .. " " .. tagname ..  " " .. term)
   end
-  -- BibTeX part
-  if string.match(
-    line, "^  \"achemso %d%d%d%d/%d%d/%d%d v%d%.%d+%w?\" top%$$"
-  ) then
-    line = "  \"achemso " .. date .. " v" .. version .. "\" top$"
-  end
-  return line
+  return string.gsub(content,
+    "achemso " .. format,
+    "achemso " .. tagdate .. " " .. tagname) 
 end
 
 -- Release a TDS-style zip
