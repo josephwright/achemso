@@ -378,6 +378,8 @@ This work consists of the files achemso.dtx,
 % \changes{v3.10i}{2017/05/18}{Fix issue with \cs{doi} command}
 % \changes{v3.10i}{2017/05/18}{Updates for \emph{Org.\ Lett.}}
 % \changes{v3.11}{2018/01/07}{Print article titles for all journals}
+% \changes{v3.11b}{2018/07/12}{Correct handling of \texttt{and others} in
+%   bibliography}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -5127,6 +5129,8 @@ FUNCTION { format.names.loop } {
           duplicate$
           "others," =
             {
+              pop$
+              add.space
               bbl.etal
               add.space
               remaining.names.int #1 - 'remaining.names.int :=
