@@ -380,6 +380,7 @@ This work consists of the files achemso.dtx,
 % \changes{v3.11}{2018/01/07}{Print article titles for all journals}
 % \changes{v3.11b}{2018/07/12}{Correct handling of \texttt{and others} in
 %   bibliography}
+% \changes{v3.11c}{2018/07/12}{Further work on bibliography}
 %
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
@@ -5130,7 +5131,7 @@ FUNCTION { format.names.loop } {
           "others," =
             {
               pop$
-              add.space
+              add.space *
               bbl.etal
               add.space
               remaining.names.int #1 - 'remaining.names.int :=
