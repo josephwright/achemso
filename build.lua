@@ -21,8 +21,7 @@ typsetcmds = [[
 
 -- Detail how to set the version automatically
 function update_tag(file,content,tagname,tagdate)
-  local tagdate = string.gsub(tagdate,"%-","/")
-  local format = "%d%d%d%d/%d%d/%d%d v%d%.%d+%w?"
+  local format = "%d%d%d%d%-%d%d%-%d%d v%d%.%d+%w?"
   -- The presence of natmove means we have to be a bit careful
   for _,term in pairs({"Submission","Support","achemso"}) do
     content = string.gsub(content,
