@@ -4006,6 +4006,7 @@ This work consists of the files achemso.dtx,
 \SectionNumbersOff
 %</jprobs>
 %    \end{macrocode}
+% \changes{v3.12a}{2019-02-14}{\emph{J.~Am.\ Chem.\ Soc.}\ now requires titles}
 % The \emph{J.~Am.\ Chem.\ Soc.}~configuration is rather more
 % complicated as there is the need to construct a ``galley-like''
 % layout for communications.
@@ -4017,6 +4018,7 @@ This work consists of the files achemso.dtx,
 \ifx\acs@manuscript\acs@manuscript@communication\else
   \expandafter\endinput
 \fi
+\setkeys{acs}{articletitle = true}
 %    \end{macrocode}
 % Everything from here onward applies only to communications. Some
 % adjustments are now made using the existing tools.
