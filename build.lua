@@ -10,9 +10,6 @@ installfiles = {"*.cfg", "*.cls", "*.sty"}
 -- Typeset the demo as well as source
 typesetfiles = {"*.dtx", "*.tex"}
 
--- All-in-one .dtx file
-unpackfiles  = {"*.dtx"}
-
 -- Only typeset the user part of the .dtx
 -- To avoid an issue with the .tex file, a bit of TeX coding
 typsetcmds = [[

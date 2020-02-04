@@ -1,152 +1,29 @@
 % \iffalse meta-comment
-%<*internal>
-\def\nameofplainTeX{plain}
-\ifx\fmtname\nameofplainTeX\else
-  \expandafter\begingroup
-\fi
-%</internal>
-%<*install>
-\input docstrip.tex
-\keepsilent
-\askforoverwritefalse
-\preamble
-----------------------------------------------------------------
-achemso --- Support for submissions to American Chemical Society
-  journals
-E-mail: joseph.wright@morningstar2.co.uk
-Released under the LaTeX Project Public License v1.3c or later
-See http://www.latex-project.org/lppl.txt
-----------------------------------------------------------------
-
-\endpreamble
-\postamble
-
-Originally developed by Mats Dahlgren
-Copyright (C) 1996-1998 by Mats Dahlgren
-Copyright (C) 2008-2019 by
-  Joseph Wright <joseph.wright@morningstar2.co.uk>
- 
-Part of this bundle is derived from cite.sty, to which the
-following license applies:
-  Copyright (C) 1989-2009 by Donald Arseneau
-  These macros may be freely transmitted, reproduced, or
-  modified provided that this notice is left intact.
-
-It may be distributed and/or modified under the conditions of
-the LaTeX Project Public License (LPPL), either version 1.3c of
-this license or (at your option) any later version.  The latest
-version of this license is in the file:
-
-   http://www.latex-project.org/lppl.txt
-
-This work is "maintained" (as per LPPL maintenance status) by
-  Joseph Wright.
-
-This work consists of the files achemso.dtx,
-                                achemso-demo.bib and
-                                achemso-demo.tex,
-          and the derived files achemso.cls,
-                                achemso.ins,
-                                achemso.pdf,
-                                achemso.sty,
-                                natmove.sty and
-                                a number of configuration files.
-                               
-\endpostamble
-\usedir{tex/latex/achemso}
-\generate{
-  \file{\jobname.cls}{\from{\jobname.dtx}{class}}
-  \file{\jobname.sty}{\from{\jobname.dtx}{package}}
-  \file{natmove.sty}{\from{\jobname.dtx}{natmove}}
-}
-\usedir{tex/latex/achemso/config}
-\generate{\file{achemso-aaembp.cfg}{\from{\jobname.dtx}{aaembp}}
-          \file{achemso-aaemcq.cfg}{\from{\jobname.dtx}{aaemcq}}
-          \file{achemso-aamick.cfg}{\from{\jobname.dtx}{aamick}}
-          \file{achemso-aanmf6.cfg}{\from{\jobname.dtx}{aanmf6}}
-          \file{achemso-aapmcd.cfg}{\from{\jobname.dtx}{aapmcd}}
-          \file{achemso-abseba.cfg}{\from{\jobname.dtx}{abseba}}
-          \file{achemso-accacs.cfg}{\from{\jobname.dtx}{accacs}}
-          \file{achemso-achre4.cfg}{\from{\jobname.dtx}{achre4}}
-}
-\generate{\file{achemso-acscii.cfg}{\from{\jobname.dtx}{acscii}}
-          \file{achemso-acbcct.cfg}{\from{\jobname.dtx}{acbcct}}
-          \file{achemso-acncdm.cfg}{\from{\jobname.dtx}{acncdm}}
-          \file{achemso-acsccc.cfg}{\from{\jobname.dtx}{acsccc}}
-          \file{achemso-aesccq.cfg}{\from{\jobname.dtx}{aesccq}}
-          \file{achemso-aelccp.cfg}{\from{\jobname.dtx}{aelccp}}
-          \file{achemso-ascefj.cfg}{\from{\jobname.dtx}{ascefj}}
-          \file{achemso-amlccd.cfg}{\from{\jobname.dtx}{amlccd}}
-}
-\generate{\file{achemso-amlcef.cfg}{\from{\jobname.dtx}{amlcef}}
-          \file{achemso-amclct.cfg}{\from{\jobname.dtx}{amclct}}
-          \file{achemso-ancac3.cfg}{\from{\jobname.dtx}{ancac3}}
-          \file{achemso-acsodf.cfg}{\from{\jobname.dtx}{acsodf}}
-          \file{achemso-apchd5.cfg}{\from{\jobname.dtx}{apchd5}}
-          \file{achemso-aidcbc.cfg}{\from{\jobname.dtx}{aidcbc}}
-          \file{achemso-ascecg.cfg}{\from{\jobname.dtx}{ascecg}}
-          \file{achemso-asbcd6.cfg}{\from{\jobname.dtx}{asbcd6}}
-}
-\generate{\file{achemso-ancham.cfg}{\from{\jobname.dtx}{ancham}}
-          \file{achemso-bichaw.cfg}{\from{\jobname.dtx}{bichaw}}
-          \file{achemso-bcches.cfg}{\from{\jobname.dtx}{bcches}}
-          \file{achemso-bomaf6.cfg}{\from{\jobname.dtx}{bomaf6}}
-          \file{achemso-crtoec.cfg}{\from{\jobname.dtx}{crtoec}}
-          \file{achemso-chreay.cfg}{\from{\jobname.dtx}{chreay}}
-          \file{achemso-cmatex.cfg}{\from{\jobname.dtx}{cmatex}}
-          \file{achemso-cgdefu.cfg}{\from{\jobname.dtx}{cgdefu}}
-}
-\generate{\file{achemso-enfuem.cfg}{\from{\jobname.dtx}{enfuem}}
-          \file{achemso-esthag.cfg}{\from{\jobname.dtx}{esthag}}
-          \file{achemso-estlcu.cfg}{\from{\jobname.dtx}{estlcu}}
-          \file{achemso-iecred.cfg}{\from{\jobname.dtx}{iecred}}
-          \file{achemso-inoraj.cfg}{\from{\jobname.dtx}{inoraj}}
-          \file{achemso-jafcau.cfg}{\from{\jobname.dtx}{jafcau}}
-          \file{achemso-jceda8.cfg}{\from{\jobname.dtx}{jceda8}}
-          \file{achemso-jceaax.cfg}{\from{\jobname.dtx}{jceaax}}
-}
-\generate{\file{achemso-jcisd8.cfg}{\from{\jobname.dtx}{jcisd8}}
-          \file{achemso-jctcce.cfg}{\from{\jobname.dtx}{jctcce}}
-          \file{achemso-jmcmar.cfg}{\from{\jobname.dtx}{jmcmar}}
-          \file{achemso-jnprdf.cfg}{\from{\jobname.dtx}{jnprdf}}
-          \file{achemso-joceah.cfg}{\from{\jobname.dtx}{joceah}}
-          \file{achemso-jpcafh.cfg}{\from{\jobname.dtx}{jpcafh}}
-          \file{achemso-jpcbfk.cfg}{\from{\jobname.dtx}{jpcbfk}}
-          \file{achemso-jpccck.cfg}{\from{\jobname.dtx}{jpccck}}
-}
-\generate{\file{achemso-jpclcd.cfg}{\from{\jobname.dtx}{jpclcd}}
-          \file{achemso-jprobs.cfg}{\from{\jobname.dtx}{jprobs}}
-          \file{achemso-jacsat.cfg}{\from{\jobname.dtx}{jacsat}}
-          \file{achemso-langd5.cfg}{\from{\jobname.dtx}{langd5}}
-          \file{achemso-mamobx.cfg}{\from{\jobname.dtx}{mamobx}}
-          \file{achemso-mpohbp.cfg}{\from{\jobname.dtx}{mpohbp}}
-          \file{achemso-nalefd.cfg}{\from{\jobname.dtx}{nalefd}}
-          \file{achemso-orlef7.cfg}{\from{\jobname.dtx}{orlef7}}
-}
-\generate{\file{achemso-oprdfk.cfg}{\from{\jobname.dtx}{oprdfk}}
-          \file{achemso-orgnd7.cfg}{\from{\jobname.dtx}{orgnd7}}
-}
-\usedir{bibtex/bst/achemso}
-\generate{
-  \file{achemso.bst}{\from{\jobname.dtx}{bst}}
-  \file{biochem.bst}{\from{\jobname.dtx}{bst,bio}}
-}
-%</install>
-%<install>\endbatchfile
-%<*internal>
-\usedir{source/latex/achemso}
-\generate{
-  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
-}
-\ifx\fmtname\nameofplainTeX
-  \expandafter\endbatchfile
-\else
-  \expandafter\endgroup
-\fi
-%</internal>
-%<*package|class|natmove>
-\NeedsTeXFormat{LaTeX2e}
-%</package|class|natmove>
+%
+% File: achemso.dtx Copyright (C) 2008-2020 Joseph Wright
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version.  The latest version
+% of this license is in the file
+%
+%    https://www.latex-project.org/lppl.txt
+%
+% This file is part of the "achemso bundle" (The Work in LPPL)
+% and all files in that bundle must be distributed together.
+%
+% The released version of this bundle is available from CTAN.
+%
+% -----------------------------------------------------------------------
+%
+% The development version of the bundle can be found at
+%
+%    https://github.com/josephwright/achemso
+%
+% for those people who are interested.
+%
+% -----------------------------------------------------------------------
+%
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
 \usepackage{achemso,array,booktabs,lmodern}
