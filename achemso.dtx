@@ -177,92 +177,6 @@
 %
 %\maketitle
 %
-% \changes{v1.0}{1998/06/01}{Initial release of package by Mats Dahlgren}
-% \changes{v2.0}{2007/01/17}{Re-write of package by Joseph Wright}
-% \changes{v3.0}{2008/07/20}{^^A
-%   Second re-write, converting to a class and giving much tighter
-%   integration with \textsc{acs} submission system^^A
-% }
-% \changes{v3.1}{2009/04/21}{^^A
-%   Re-ordered code to reduce or remove dependency on other packages^^A
-% }
-% \changes{v3.1}{2008/11/08}{Added \cs{alsoaffiliation} macro}
-% \changes{v3.2}{2009/04/20}{^^A
-%   New functions \cs{SectionsOff}, \cs{SectionsOn},
-%   \cs{SectionNumbersOff} and \cs{SectionNumbersOn}
-% }
-% \changes{v3.2}{2009/04/21}{New \texttt{tocentry} section}
-% \changes{v3.2}{2009/04/20}{^^A
-%   New functions \cs{AbstractOff} and \cs{AbstractOn}^^A
-% }
-% \changes{v3.2c}{2009/05/29}{Added \cs{fax} macro}
-% \changes{v3.2c}{2009/05/29}{Added \cs{phone} macro}
-% \changes{v3.2b}{2009/05/05}{New \texttt{email} option}
-% \changes{v3.2c}{2009/05/28}{Fix so that \texttt{email} option is turned
-%   on by default}
-% \changes{v3.3}{2008/08/28}{\cs{altaffiliation} macro checks for
-%   duplicate entries and uses only one footnote}
-% \changes{v3.3}{2009/08/28}{New \texttt{layout} option}
-% \changes{v3.3a}{2009/09/01}{New \texttt{etalmode} option}
-% \changes{v3.4}{2010/01/15}{More detail on installation}
-% \changes{v3.5}{2010/06/25}{New \BibTeX{} style file}
-% \changes{v3.5a}{2010/08/05}{Modify JACS Communication to print
-%   abstract}
-% \changes{v3.5c}{2010/10/11}{Update \emph{Org.~Lett.}\ style}
-% \changes{v3.5c}{2010/10/11}{Bug fix for \cs{mciteSubRef} macro}
-% \changes{v3.4}{2010/01/15}{Require \pkg{cleveref}, dropping
-%   \pkg{varioref} use}
-% \changes{v3.6}{2012/01/11}{Drop \pkg{cleverref} use}
-% \changes{v3.7}{2012/04/30}{Rename \opt{usetitle} option to
-%   \opt{articletitle}}
-% \changes{v3.7}{2012/04/30}{New \opt{chaptertitle} option for bibliography}
-% \changes{v3.8}{2013/08/23}{Extend journal list to current ACS range}
-% \changes{v3.8}{2013/08/16}{Introduce \cs{latin} command to support
-%   \emph{ACS Nano} requirements}
-% \changes{v3.8a}{2013/09/04}{Minor style improvements for some
-%  journals}
-% \changes{v3.8b}{2013/09/15}{Improve output ordering for \emph{J.~Phys.\
-%   Chem.\ Lett.}}
-% \changes{v3.8c}{2013/09/20}{Improve \emph{ACS Photonics} style}
-% \changes{v3.8d}{2013/10/04}{Fix bug in keyword printing}
-% \changes{v3.8e}{2014/01/08}{Minor style changes for \emph{J.~Med.~Chem.}
-%  and \emph{ACS Appl.~Mater.}}
-% \changes{v3.8g}{2014/03/06}{Fix issue with \emph{J.~Phys.\ Chem.}\ formatting}
-% \changes{v3.8i}{2014/05/14}{Fix issue with \emph{Chem.\ Res.\ Toxicol.}\ formatting}
-% \changes{v3.8j}{2014/06/12}{Update article title requirements for all journals}
-% \changes{v3.8j}{2014/06/12}{Update keyword requirements for all journals}
-% \changes{v3.8j}{2014/06/12}{Remove \emph{Biotechnol.\ Prog.}\ configuration}
-% \changes{v3.8k}{2014/08/18}{Format date correctly for in press bibliography
-%   entries}
-% \changes{v3.8l}{2014/08/23}{Fix printing of phone/fax numbers}
-% \changes{v3.9}{2015/02/01}{New \texttt{doi} option}
-% \changes{v3.9a}{2015/03/03}{Update style for \emph{ACS Central Sci.}}
-% \changes{v3.9b}{2015/03/22}{Update \emph{J. Agric. Food Chem.} style}
-% \changes{v3.10}{2015/04/07}{Update address printing to reflect new
-%   ACS style}
-% \changes{v3.10}{2015/04/07}{Add starred (subs)sections to TOC}
-% \changes{v3.10a}{2015/04/21}{Add article titles for \emph{Chem.\ Mater.}
-%   and \emph{Chem. Rev.}}
-% \changes{v3.10c}{2016/05/10}{Add support for \emph{ACS Omega} and
-%   \emph{ACS Energy Lett.}}
-% \changes{v3.10d}{2016/06/17}{Improve handling of \textsc{doi} values}
-% \changes{v3.10e}{2016/08/31}{Tweak \emph{Macromolecules} formatting}
-% \changes{v3.10f}{2016/09/07}{Various formatting updates}
-% \changes{v3.10h}{2017/01/14}{Add style for \emph{ACS Biomater.\ Sci.\ Eng.}}
-% \changes{v3.10h}{2017/01/20}{Add style for \emph{ACS Earth Space Chem.}}
-% \changes{v3.10h}{2017/01/20}{Add style for \emph{ACS Infect.\ Dis.}}
-% \changes{v3.10h}{2017/01/20}{Add style for \emph{ACS Sensors}}
-% \changes{v3.10h}{2017/01/20}{Style update for \emph{J.~Chem.\ Theory.\
-%   Comput.}}
-% \changes{v3.10h}{2017/01/20}{Update supplementary information text}
-% \changes{v3.10i}{2017/02/09}{Style update for \emph{Biochemistry}}
-% \changes{v3.10i}{2017/05/18}{Fix issue with \cs{doi} command}
-% \changes{v3.10i}{2017/05/18}{Updates for \emph{Org.\ Lett.}}
-% \changes{v3.11}{2018/01/07}{Print article titles for all journals}
-% \changes{v3.11b}{2018/07/12}{Correct handling of \texttt{and others} in
-%   bibliography}
-% \changes{v3.11c}{2018/07/12}{Further work on bibliography}
-%
 %\begin{abstract}
 % The \pkg{achemso} bundle provides a \LaTeX\ class file and \BibTeX\
 % style file in accordance with the requirements of the American
@@ -2830,8 +2744,6 @@
 % \begin{macro}{\acs@tocentry@print}
 % \begin{macro}{\acs@tocentry@print@aux}
 % \begin{macro}{\acs@tocentry@text}
-% \changes{v3.10b}{2015/06/24}{Define \cs{acs@tocentry@text} in all cases}
-% \changes{v3.11a}{2018/04/02}{Print abstract at full size}
 % The same approach is taken for the graphical table of content
 % printing. This is done in a box so that everything has a frame around
 % it.
@@ -3087,8 +2999,6 @@
 %\subsection{Late shared code}
 %
 %\begin{macro}{\citenumfont}
-% \changes{v3.9b}{2015/03/22}{Allow for setting \opt{super} after
-%   loading}
 % Changes to citations can now be made. The citation styles supplied
 % here require \pkg{natbib}, which is loaded with the appropriate
 % options. This part applies to the package as well as the class: it is
@@ -3508,7 +3418,6 @@
 \setlength{\acs@tocentry@height}{8 cm}
 \setlength{\acs@tocentry@width}{4 cm}
 %</amlccd>
-% \changes{v3.12a}{2019-02-14}{New \texttt{amlcef} configuration}
 %<*amlcef>
 \ProvidesFile{achemso-amlcef.cfg}
   [2019-02-14 v3.12a achemso configuration: ACS Mater. Lett.]
@@ -3521,8 +3430,6 @@
 \def\acs@type@list{article,letter,perspective,suppinfo}
 \SectionNumbersOff
 %</amclct>
-% \changes{v3.8n}{2015/01/13}{\emph{ACS Nano} want abbreviations}
-% \changes{v3.11}{2018/04/02}{Change \emph{ACS Nano} truncation}
 %<*ancac3>
 \ProvidesFile{achemso-ancac3.cfg}
   [2019-02-14 v3.12a achemso configuration: ACS Nano]
@@ -3719,7 +3626,6 @@
 \def\acs@type@list{letter,suppinfo}
 \SectionNumbersOff
 %</estlcu>
-% \changes{v3.8m}{2014/11/24}{Fixes for \emph{Ind.\ Eng.\ Chem.\ Res.}\ style}
 %<*iecred>
 \ProvidesFile{achemso-iecred.cfg}
   [2019-02-14 v3.12a achemso configuration: Ind. Eng. Chem. Res.]
@@ -3813,8 +3719,6 @@
 \renewcommand*\acs@type@list{article,communication,note,perspective,review,suppinfo}
 %</joceah>
 %    \end{macrocode}
-% \changes{v3.8n}{2015/01/13}{Drop use of keywords for \emph{J.~Phys.\ Chem.}\
-%   A, B and C}
 %    \begin{macrocode}
 %<*jpcafh>
 \ProvidesFile{achemso-jpcafh.cfg}
@@ -3856,8 +3760,6 @@
 \g@addto@macro{\maketitle}{\newpage}
 %</jpccck>
 %    \end{macrocode}
-% \changes{v3.8m}{2014/08/24}{\emph{J.~Phys.\ Chem.\ Lett.}\ uses a
-% non-standard size for the TOC graphic}
 %    \begin{macrocode}
 %<*jpclcd>
 \ProvidesFile{achemso-jpclcd.cfg}
@@ -3892,7 +3794,6 @@
 \SectionNumbersOff
 %</jprobs>
 %    \end{macrocode}
-% \changes{v3.12a}{2019-02-14}{\emph{J.~Am.\ Chem.\ Soc.}\ now requires titles}
 % The \emph{J.~Am.\ Chem.\ Soc.}~configuration is rather more
 % complicated as there is the need to construct a ``galley-like''
 % layout for communications.
