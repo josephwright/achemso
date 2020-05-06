@@ -11,6 +11,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 - Split `.ins` file out from `.dtx`
 
+### Fixed
+- Corrected standard TOC height and width (see #30 and #34)
+
 ## [v3.12a] - 2019-02-14
 ### Added
 - Style for _ACS Mater. Lett._ (`amlcef`)
