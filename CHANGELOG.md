@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [v3.13]
 ### Added
 - Style for _ACT ES&T Eng._ (`aeecco`)
 - Style for _ACT ES&T Water_ (`aewcaa`)
@@ -451,7 +451,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.12a...HEAD
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13...HEAD
+[v3.13]: https://github.com/josephwright/achemso/compare/v3.12a...v3.13
 [v3.12a]: https://github.com/josephwright/achemso/compare/v3.12...v3.12a
 [v3.12]: https://github.com/josephwright/achemso/compare/v3.11b...v3.12
 [v3.11b]: https://github.com/josephwright/achemso/compare/v3.11a...v3.11b
