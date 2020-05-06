@@ -6,6 +6,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- Style for _ACT ES&T Eng._ (`aeecco`)
+- Style for _ACT ES&T Water_ (`aewcaa`)
 - Changelog as separate file
 
 ### Changed

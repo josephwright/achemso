@@ -289,62 +289,64 @@
 %      Journal & \rmfamily Setting & Journal & \rmfamily Setting \\
 %    \midrule
 %      Acc.\ Chem.\ Res.               & achre4 &
-%      Chem.\ Res.\ Toxicol.           & crtoec \\
+%      Chem.\ Mater.                   & cmatex \\
 %      ACS Appl.\ Energy Mater.        & aaemcq &
-%      Chem.\ Rev.                     & chreay \\
+%      Chem.\ Res.\ Toxicol.           & crtoec \\
 %      ACS Appl.\ Electron.\ Mater.    & aaembp &
-%      Cryst.\ Growth Des.             & cgdefu \\
+%      Chem.\ Rev.                     & chreay \\
 %      ACS Appl.\ Mater.\ Interfaces   & aamick &
-%      Energy Fuels                    & enfuem \\
+%      Cryst.\ Growth Des.             & cgdefu \\
 %      ACS Appl.\ Nano Mater.          & aanmf6 &
 %      Environ.\ Sci.\ Technol.        & esthag \\
 %      ACS Appl.\ Polym.\ Mater.       & aapmcd &
-%      Environ.\ Sci.\ Technol.\ Lett. & estlcu \\
+%      Energy Fuels                    & enfuem \\
 %      ACS Biomater.\ Sci.\ Eng.       & abseba &
-%      Ind.\ Eng.\ Chem.\ Res.         & iecred \\
+%      Environ.\ Sci.\ Technol.\ Lett. & estlcu \\
 %      ACS Catal.                      & accacs &
-%      Inorg.\ Chem.                   & inoraj \\
+%      Ind.\ Eng.\ Chem.\ Res.         & iecred \\
 %      ACS Central Sci.                & acscii &
-%      J.~Agric.\ Food Chem.           & jafcau \\
+%      Inorg.\ Chem.                   & inoraj \\
 %      ACS Chem.\ Biol.                & acbcct &
-%      J.~Chem.\ Ed.                   & jceda8 \\
+%      J.~Agric.\ Food Chem.           & jafcau \\
 %      ACS Chem.\ Neurosci.            & acncdm &
-%      J.~Chem.\ Eng.\ Data            & jceaax \\
+%      J.~Chem.\ Ed.                   & jceda8 \\
 %      ACS Combinatorial Sci.          & acsccc &
-%      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
+%      J.~Chem.\ Eng.\ Data            & jceaax \\
 %      ACS Earth Space Chem.           & aesccq &
-%      J.~Chem.\ Theory Comput.        & jctcce \\
+%      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
 %      ACS Energy Lett.                & aelccp &
+%      J.~Chem.\ Theory Comput.        & jctcce \\
+%      ACS ES\&T Eng.                  & aeecco &
 %      J.~Med.\ Chem.                  & jmcmar \\
-%      ACS Infect.\ Dis.               & ascefj &
+%      ACS ES\&T Water                 & aewcaa &
 %      J.~Nat.\ Prod.                  & jnprdf \\
-%      ACS Macro Lett.                 & amlccd &
+%      ACS Infect.\ Dis.               & ascefj &
 %      J.~Org.\ Chem.                  & joceah \\
-%      ACS Mater.\ Lett.               & amlcef \\
+%      ACS Macro Lett.                 & amlccd &
 %      J.~Phys.\ Chem.~A               & jpcafh \\
-%      ACS Med.\ Chem.\ Lett.          & amclct &
+%      ACS Mater.\ Lett.               & amlcef &
 %      J.~Phys.\ Chem.~B               & jpcbfk \\
-%      ACS Nano                        & ancac3 &
+%      ACS Med.\ Chem.\ Lett.          & amclct &
 %      J.~Phys.\ Chem.~C               & jpccck \\
-%      ACS Omega                       & acsodf &
+%      ACS Nano                        & ancac3 &
 %      J.~Phys.\ Chem.\ Lett.          & jpclcd \\
-%      ACS Photon.                     & apchd5 &
+%      ACS Omega                       & acsodf &
 %      J.~Proteome Res.                & jprobs \\
-%      ACS Sensors                     & ascefj &
+%      ACS Photon.                     & apchd5 &
 %      J.~Am.\ Chem.\ Soc.             & jacsat \\
-%      ACS Sustainable Chem.\ Eng.     & ascecg &
+%      ACS Sensors                     & ascefj &
 %      Langmuir                        & langd5 \\
-%      ACS Synth.\ Biol.               & asbcd6 &
+%      ACS Sustainable Chem.\ Eng.     & ascecg &
 %      Macromolecules                  & mamobx \\
-%      Anal.\ Chem.                    & ancham &
+%      ACS Synth.\ Biol.               & asbcd6 &
 %      Mol.\ Pharm.                    & mpohbp \\
-%      Biochemistry                    & bichaw &
+%      Anal.\ Chem.                    & ancham &
 %      Nano Lett.                      & nalefd \\
-%      Bioconjugate Chem.              & bcches &
+%      Biochemistry                    & bichaw &
 %      Org.\ Lett.                     & orlef7 \\
-%      Biomacromolecules               & bomaf6 &
+%      Bioconjugate Chem.              & bcches &
 %      Organometallics                 & orgnd7 \\
-%      Chem.\ Mater.                   & cmatex \\
+%      Biomacromolecules               & bomaf6 \\
 %    \bottomrule
 %  \end{tabular}
 %  \caption{Values for \opt{journal} option}
@@ -3403,6 +3405,16 @@
 \def\acs@type@list{letter,perspective,review,viewpoint,focus}
 \SectionsOff
 %</aelccp>
+%<*aeecco>
+\ProvidesFile{achemso-aeecco.cfg}
+  [2019-02-14 v3.12a achemso configuration: ACS ES&T Eng.]
+\def\acs@type@list{article,feature,perspective,review,viewpoint}
+%</aeecco>
+%<*aewcaa>
+\ProvidesFile{achemso-aewcaa.cfg}
+  [2019-02-14 v3.12a achemso configuration: ACS ES&T Water]
+\def\acs@type@list{article,feature,perspective,review,viewpoint}
+%</aewcaa>
 %<*ascefj>
 \ProvidesFile{achemso-ascefj.cfg}
   [2019-02-14 v3.12a achemso configuration: ACS Infect. Dis.]
