@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v3.13a]
+## Fixed
+- Swap TOC height and width to give landscape output
+
 ## [v3.13]
 ### Added
 - Style for _ACT ES&T Eng._ (`aeecco`)
