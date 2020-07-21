@@ -289,13 +289,15 @@
 %      Journal & \rmfamily Setting & Journal & \rmfamily Setting \\
 %    \midrule
 %      Acc.\ Chem.\ Res.               & achre4 &
-%      Chem.\ Mater.                   & cmatex \\
+%      Biomacromolecules               & bomaf6 \\
 %      Acc.\ Mater.\ Res.              & amrcda &
-%      Chem.\ Res.\ Toxicol.           & crtoec \\
-%      ACS Appl.\ Energy Mater.        & aaemcq &
+%      Chem.\ Mater.                   & cmatex \\
+%      ACS Agri.\ Sci. Tech.           & aastgj &
 %      Chem.\ Rev.                     & chreay \\
-%      ACS Appl.\ Electron.\ Mater.    & aaembp &
+%      ACS Appl.\ Energy Mater.        & aaemcq &
 %      Cryst.\ Growth Des.             & cgdefu \\
+%      ACS Appl.\ Electron.\ Mater.    & aaembp &
+%      Chem.\ Res.\ Toxicol.           & crtoec \\
 %      ACS Appl.\ Mater.\ Interfaces   & aamick &
 %      Environ.\ Sci.\ Technol.        & esthag \\
 %      ACS Appl.\ Nano Mater.          & aanmf6 &
@@ -346,8 +348,7 @@
 %      Org.\ Lett.                     & orlef7 \\
 %      Biochemistry                    & bichaw &
 %      Organometallics                 & orgnd7 \\
-%      Bioconjugate Chem.              & bcches &
-%      Biomacromolecules               & bomaf6 \\
+%      Bioconjugate Chem.              & bcches \\
 %    \bottomrule
 %  \end{tabular}
 %  \caption{Values for \opt{journal} option}
@@ -3345,6 +3346,12 @@
 \def\acs@type@list{article,letter,suppinfo}
 \setkeys{acs}{keywords = true}
 %</aapmcd>
+%<*aastgj>
+\ProvidesFile{achemso-aastgj.cfg}
+  [2020-05-27 v3.13a achemso configuration: ACS Agri. Sci. Tech.]
+\def\acs@type@list{account,article,letter,retraction,review,viewpoint,suppinfo}
+\setkeys{acs}{keywords = true}
+%</aastgj>
 %<*abseba>
 \ProvidesFile{achemso-abseba.cfg}
   [2020-05-27 v3.13a achemso configuration: ACS Biomater. Sci. Eng.]
