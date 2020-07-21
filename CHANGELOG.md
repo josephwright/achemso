@@ -9,7 +9,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 - Style for _Acc. Mater. Res._ (`amrcda`)
 
 ## [v3.13a]
-## Fixed
+### Fixed
 - Swap TOC height and width to give landscape output
 
 ## [v3.13]
