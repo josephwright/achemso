@@ -459,7 +459,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13a...HEAD
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13b...HEAD
+[v3.13b]: https://github.com/josephwright/achemso/compare/v3.13...v3.13b
 [v3.13a]: https://github.com/josephwright/achemso/compare/v3.13...v3.13a
 [v3.13]: https://github.com/josephwright/achemso/compare/v3.12a...v3.13
 [v3.12a]: https://github.com/josephwright/achemso/compare/v3.12...v3.12a
