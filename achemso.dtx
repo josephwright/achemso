@@ -289,40 +289,42 @@
 %      Journal & \rmfamily Setting & Journal & \rmfamily Setting \\
 %    \midrule
 %      Acc.\ Chem.\ Res.               & achre4 &
-%      Biomacromolecules               & bomaf6 \\
+%      Bioconjugate Chem.              & bcches \\
 %      Acc.\ Mater.\ Res.              & amrcda &
-%      Chem.\ Mater.                   & cmatex \\
+%      Biomacromolecules               & bomaf6 \\
 %      ACS Agri.\ Sci. Tech.           & aastgj &
-%      Chem.\ Rev.                     & chreay \\
+%      Chem.\ Mater.                   & cmatex \\
 %      ACS Appl.\ Energy Mater.        & aaemcq &
-%      Cryst.\ Growth Des.             & cgdefu \\
+%      Chem.\ Rev.                     & chreay \\
 %      ACS Appl.\ Electron.\ Mater.    & aaembp &
-%      Chem.\ Res.\ Toxicol.           & crtoec \\
+%      Cryst.\ Growth Des.             & cgdefu \\
 %      ACS Appl.\ Mater.\ Interfaces   & aamick &
-%      Environ.\ Sci.\ Technol.        & esthag \\
+%      Chem.\ Res.\ Toxicol.           & crtoec \\
 %      ACS Appl.\ Nano Mater.          & aanmf6 &
-%      Energy Fuels                    & enfuem \\
+%      Environ.\ Sci.\ Technol.        & esthag \\
 %      ACS Appl.\ Polym.\ Mater.       & aapmcd &
-%      Environ.\ Sci.\ Technol.\ Lett. & estlcu \\
+%      Energy Fuels                    & enfuem \\
 %      ACS Biomater.\ Sci.\ Eng.       & abseba &
-%      Ind.\ Eng.\ Chem.\ Res.         & iecred \\
+%      Environ.\ Sci.\ Technol.\ Lett. & estlcu \\
 %      ACS Catal.                      & accacs &
-%      Inorg.\ Chem.                   & inoraj \\
+%      Ind.\ Eng.\ Chem.\ Res.         & iecred \\
 %      ACS Central Sci.                & acscii &
-%      J.~Agric.\ Food Chem.           & jafcau \\
+%      Inorg.\ Chem.                   & inoraj \\
 %      ACS Chem.\ Biol.                & acbcct &
-%      J.~Chem.\ Ed.                   & jceda8 \\
+%      J.~Agric.\ Food Chem.           & jafcau \\
 %      ACS Chem.\ Neurosci.            & acncdm &
-%      J.~Chem.\ Eng.\ Data            & jceaax \\
+%      J.~Chem.\ Ed.                   & jceda8 \\
 %      ACS Combinatorial Sci.          & acsccc &
-%      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
+%      J.~Chem.\ Eng.\ Data            & jceaax \\
 %      ACS Earth Space Chem.           & aesccq &
-%      J.~Chem.\ Theory Comput.        & jctcce \\
+%      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
 %      ACS Energy Lett.                & aelccp &
-%      J.~Med.\ Chem.                  & jmcmar \\
+%      J.~Chem.\ Theory Comput.        & jctcce \\
 %      ACS ES\&T Eng.                  & aeecco &
-%      J.~Nat.\ Prod.                  & jnprdf \\
+%      J.~Med.\ Chem.                  & jmcmar \\
 %      ACS ES\&T Water                 & aewcaa &
+%      J.~Nat.\ Prod.                  & jnprdf \\
+%      ACS Food Sci. Tech.             & afsthl &
 %      J.~Org.\ Chem.                  & joceah \\
 %      ACS Infect.\ Dis.               & ascefj &
 %      J.~Phys.\ Chem.~A               & jpcafh \\
@@ -348,7 +350,6 @@
 %      Org.\ Lett.                     & orlef7 \\
 %      Biochemistry                    & bichaw &
 %      Organometallics                 & orgnd7 \\
-%      Bioconjugate Chem.              & bcches \\
 %    \bottomrule
 %  \end{tabular}
 %  \caption{Values for \opt{journal} option}
@@ -3423,6 +3424,12 @@
   [2020-05-27 v3.13a achemso configuration: ACS ES&T Water]
 \def\acs@type@list{article,feature,perspective,review,viewpoint}
 %</aewcaa>
+%<*afsthl>
+\ProvidesFile{achemso-afsthl.cfg}
+  [2020-05-27 v3.13a achemso configuration: ACS Food Sci. Tech.]
+\def\acs@type@list{account,article,perspective,retraction,review,viewpoint}
+\setkeys{acs}{keywords = true}
+%</afsthl>
 %<*ascefj>
 \ProvidesFile{achemso-ascefj.cfg}
   [2020-05-27 v3.13a achemso configuration: ACS Infect. Dis.]

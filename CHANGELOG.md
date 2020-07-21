@@ -10,6 +10,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Style for _Acc. Mater. Res._ (`amrcda`)
 - Style for _ACS Agr. Sci. Tech._ (`aastgj`)
+- Style for _ACS Food Sci. Tech._ (`afsthl`)
 
 ## [v3.13a]
 ### Fixed
