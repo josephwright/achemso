@@ -1,4 +1,20 @@
-*.pdf
+build/*
+
 *.zip
 
-build/*
+*.pdf
+
+*.aux
+*.bbl
+*.glo
+*.gz
+*.hd
+*.idx
+*.ilg
+*.ind
+*.log
+*.out
+*.toc
+*.tmp
+
+acs-achemso.bib
