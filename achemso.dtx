@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% File: achemso.dtx Copyright (C) 2008-2020 Joseph Wright
+% File: achemso.dtx Copyright (C) 2008-2021 Joseph Wright
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -311,44 +311,45 @@
 %      ACS Central Sci.                & acscii &
 %      Inorg.\ Chem.                   & inoraj \\
 %      ACS Chem.\ Biol.                & acbcct &
-%      J.~Agric.\ Food Chem.           & jafcau \\
+%      JACS Au                         & jaaucr \\
 %      ACS Chem.\ Neurosci.            & acncdm &
-%      J.~Chem.\ Ed.                   & jceda8 \\
+%      J.~Agric.\ Food Chem.           & jafcau \\
 %      ACS Combinatorial Sci.          & acsccc &
-%      J.~Chem.\ Eng.\ Data            & jceaax \\
+%      J.~Chem.\ Ed.                   & jceda8 \\
 %      ACS Earth Space Chem.           & aesccq &
-%      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
+%      J.~Chem.\ Eng.\ Data            & jceaax \\
 %      ACS Energy Lett.                & aelccp &
-%      J.~Chem.\ Theory Comput.        & jctcce \\
+%      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
 %      ACS ES\&T Eng.                  & aeecco &
-%      J.~Med.\ Chem.                  & jmcmar \\
+%      J.~Chem.\ Theory Comput.        & jctcce \\
 %      ACS ES\&T Water                 & aewcaa &
-%      J.~Nat.\ Prod.                  & jnprdf \\
+%      J.~Med.\ Chem.                  & jmcmar \\
 %      ACS Food Sci. Tech.             & afsthl &
-%      J.~Org.\ Chem.                  & joceah \\
+%      J.~Nat.\ Prod.                  & jnprdf \\
 %      ACS Infect.\ Dis.               & ascefj &
-%      J.~Phys.\ Chem.~A               & jpcafh \\
+%      J.~Org.\ Chem.                  & joceah \\
 %      ACS Macro Lett.                 & amlccd &
-%      J.~Phys.\ Chem.~B               & jpcbfk \\
+%      J.~Phys.\ Chem.~A               & jpcafh \\
 %      ACS Mater.\ Lett.               & amlcef &
-%      J.~Phys.\ Chem.~C               & jpccck \\
+%      J.~Phys.\ Chem.~B               & jpcbfk \\
 %      ACS Med.\ Chem.\ Lett.          & amclct &
-%      J.~Phys.\ Chem.\ Lett.          & jpclcd \\
+%      J.~Phys.\ Chem.~C               & jpccck \\
 %      ACS Nano                        & ancac3 &
-%      J.~Proteome Res.                & jprobs \\
+%      J.~Phys.\ Chem.\ Lett.          & jpclcd \\
 %      ACS Omega                       & acsodf &
-%      J.~Am.\ Chem.\ Soc.             & jacsat \\
+%      J.~Proteome Res.                & jprobs \\
 %      ACS Photon.                     & apchd5 &
-%      Langmuir                        & langd5 \\
+%      J.~Am.\ Chem.\ Soc.             & jacsat \\
 %      ACS Sensors                     & ascefj &
-%      Macromolecules                  & mamobx \\
+%      Langmuir                        & langd5 \\
 %      ACS Sustainable Chem.\ Eng.     & ascecg &
-%      Mol.\ Pharm.                    & mpohbp \\
+%      Macromolecules                  & mamobx \\
 %      ACS Synth.\ Biol.               & asbcd6 &
-%      Nano Lett.                      & nalefd \\
+%      Mol.\ Pharm.                    & mpohbp \\
 %      Anal.\ Chem.                    & ancham &
-%      Org.\ Lett.                     & orlef7 \\
+%      Nano Lett.                      & nalefd \\
 %      Biochemistry                    & bichaw &
+%      Org.\ Lett.                     & orlef7 \\
 %      Organometallics                 & orgnd7 \\
 %    \bottomrule
 %  \end{tabular}
@@ -3676,6 +3677,11 @@
 \fi
 \setkeys{acs}{doi = true}
 %</inoraj>
+%<*jaaucr>
+\ProvidesFile{achemso-jaaucr.cfg}
+  [2020-07-21 v3.13b achemso configuration: JACS Au]
+\def\acs@type@list{spotlight,account,article,communication,letter,perspective,suppinfo}
+%</jaaucr>
 %<*jafcau>
 \ProvidesFile{achemso-jafcau.cfg}
   [2020-07-21 v3.13b achemso configuration: J. Agric. Food Chem.]
