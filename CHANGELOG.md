@@ -6,6 +6,15 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- Style for _ACS Bio. Med. Chem. Au_ (`abmcb8`)
+- Style for _ACS Eng. Au_ (`aeacb3`)
+- Style for _ACS Env. Au_ (`aeacc4`)
+- Style for _ACS Mater. Au_ (`amacgu`)
+- Style for _ACS Meas. Au_ (`amachv`)
+- Style for _ACS Nanosci. Au_ (`anaccx`)
+- Style for _ACS Org. Inorg. Au_ (`aoiab5`)
+- Style for _ACS Phys. Chem. Au_ (`apcach`)
+- Style for _ACS Polym. Au_ (`appccd`)
 - Style for _JACS Au_ (`jaaucr`)
 
 ### Changes
