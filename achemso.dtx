@@ -275,87 +275,12 @@
 % The class supports a limited number of options, which are
 % specifically-targeted at submission.  The class uses the
 % \pkg{keyval} system for options, in the form \opt{key=value}. The
-% most important option is \opt{journal}.  This is the name of the
-% target journal for the publication.  The package is designed such
-% that the choice of journal will set up the correct bibliography
-% style and so on.  The journals currently recognised by the package
-% are summarised in Table~\ref{tab:journal}.  If an unknown journal
-% is specified, the package will fall-back on the
+% most important option is \opt{journal}.  This is an identifier
+% for the target journal: from \url{https://pubs.acs.org/}, the identifier
+% is the part of the URL after \texttt{https://pubs.acs.org/journal/},
+% \emph{e.g.}~for \emph{J.\ Org.\ Chem.}\ it would be \texttt{joceah}.
+% If an unknown journal is specified, the package will fall-back on the
 % \opt{journal=jacsat} option.
-%\begin{table}
-%  \centering
-%  \begin{tabular}{@{}>{\itshape}l>{\ttfamily}l>{\itshape}l>{\ttfamily}l@{}}
-%    \toprule
-%      Journal & \rmfamily Setting & Journal & \rmfamily Setting \\
-%    \midrule
-%      Acc.\ Chem.\ Res.               & achre4 &
-%      Bioconjugate Chem.              & bcches \\
-%      Acc.\ Mater.\ Res.              & amrcda &
-%      Biomacromolecules               & bomaf6 \\
-%      ACS Agri.\ Sci. Tech.           & aastgj &
-%      Chem.\ Mater.                   & cmatex \\
-%      ACS Appl.\ Energy Mater.        & aaemcq &
-%      Chem.\ Rev.                     & chreay \\
-%      ACS Appl.\ Electron.\ Mater.    & aaembp &
-%      Cryst.\ Growth Des.             & cgdefu \\
-%      ACS Appl.\ Mater.\ Interfaces   & aamick &
-%      Chem.\ Res.\ Toxicol.           & crtoec \\
-%      ACS Appl.\ Nano Mater.          & aanmf6 &
-%      Environ.\ Sci.\ Technol.        & esthag \\
-%      ACS Appl.\ Polym.\ Mater.       & aapmcd &
-%      Energy Fuels                    & enfuem \\
-%      ACS Biomater.\ Sci.\ Eng.       & abseba &
-%      Environ.\ Sci.\ Technol.\ Lett. & estlcu \\
-%      ACS Catal.                      & accacs &
-%      Ind.\ Eng.\ Chem.\ Res.         & iecred \\
-%      ACS Central Sci.                & acscii &
-%      Inorg.\ Chem.                   & inoraj \\
-%      ACS Chem.\ Biol.                & acbcct &
-%      JACS Au                         & jaaucr \\
-%      ACS Chem.\ Neurosci.            & acncdm &
-%      J.~Agric.\ Food Chem.           & jafcau \\
-%      ACS Combinatorial Sci.          & acsccc &
-%      J.~Chem.\ Ed.                   & jceda8 \\
-%      ACS Earth Space Chem.           & aesccq &
-%      J.~Chem.\ Eng.\ Data            & jceaax \\
-%      ACS Energy Lett.                & aelccp &
-%      J.~Chem.\ Inf.\ Model.          & jcisd8 \\
-%      ACS ES\&T Eng.                  & aeecco &
-%      J.~Chem.\ Theory Comput.        & jctcce \\
-%      ACS ES\&T Water                 & aewcaa &
-%      J.~Med.\ Chem.                  & jmcmar \\
-%      ACS Food Sci. Tech.             & afsthl &
-%      J.~Nat.\ Prod.                  & jnprdf \\
-%      ACS Infect.\ Dis.               & ascefj &
-%      J.~Org.\ Chem.                  & joceah \\
-%      ACS Macro Lett.                 & amlccd &
-%      J.~Phys.\ Chem.~A               & jpcafh \\
-%      ACS Mater.\ Lett.               & amlcef &
-%      J.~Phys.\ Chem.~B               & jpcbfk \\
-%      ACS Med.\ Chem.\ Lett.          & amclct &
-%      J.~Phys.\ Chem.~C               & jpccck \\
-%      ACS Nano                        & ancac3 &
-%      J.~Phys.\ Chem.\ Lett.          & jpclcd \\
-%      ACS Omega                       & acsodf &
-%      J.~Proteome Res.                & jprobs \\
-%      ACS Photon.                     & apchd5 &
-%      J.~Am.\ Chem.\ Soc.             & jacsat \\
-%      ACS Sensors                     & ascefj &
-%      Langmuir                        & langd5 \\
-%      ACS Sustainable Chem.\ Eng.     & ascecg &
-%      Macromolecules                  & mamobx \\
-%      ACS Synth.\ Biol.               & asbcd6 &
-%      Mol.\ Pharm.                    & mpohbp \\
-%      Anal.\ Chem.                    & ancham &
-%      Nano Lett.                      & nalefd \\
-%      Biochemistry                    & bichaw &
-%      Org.\ Lett.                     & orlef7 \\
-%      Organometallics                 & orgnd7 \\
-%    \bottomrule
-%  \end{tabular}
-%  \caption{Values for \opt{journal} option}
-%  \label{tab:journal}
-%\end{table}
 %
 %\DescribeOption{manuscript}
 % The second option is the \opt{manuscript} option. This specifies
