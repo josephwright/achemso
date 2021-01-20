@@ -5,6 +5,8 @@ The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+
+## [v3.13c]
 ### Added
 - Style for _ACS Bio. Med. Chem. Au_ (`abmcb8`)
 - Style for _ACS Eng. Au_ (`aeacb3`)
@@ -477,8 +479,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13b...HEAD
-[v3.13b]: https://github.com/josephwright/achemso/compare/v3.13...v3.13b
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13bc..HEAD
+[v3.13b]: https://github.com/josephwright/achemso/compare/v3.13b...v3.13c
+[v3.13b]: https://github.com/josephwright/achemso/compare/v3.13a...v3.13b
 [v3.13a]: https://github.com/josephwright/achemso/compare/v3.13...v3.13a
 [v3.13]: https://github.com/josephwright/achemso/compare/v3.12a...v3.13
 [v3.12a]: https://github.com/josephwright/achemso/compare/v3.12...v3.12a
