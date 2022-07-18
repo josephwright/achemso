@@ -6,6 +6,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- Height and width values for `amlccd` style
+
 ## [v3.13c]
 ### Added
 - Style for _ACS Bio. Med. Chem. Au_ (`abmcb8`)
