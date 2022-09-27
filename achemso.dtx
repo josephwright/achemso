@@ -1124,6 +1124,18 @@
 %\end{macro}
 %\end{macro}
 %
+% Ensure \pkg{bibentry} works
+%    \begin{macrocode}
+\AtBeginDocument{
+  \@ifpackageloaded{bibentry}
+    {%
+      \patchcmd{\BR@nobib}{thebibliography}{mcitethebibliography}
+        {}{}%
+    }
+    {}%
+}
+%    \end{macrocode}
+%
 %\begin{macro}{\acs@bib@file}
 %\begin{macro}{\acs@bib@message}
 %\begin{macro}{\acs@bib@name}
@@ -1239,6 +1251,7 @@
 \RequirePackage[margin=2.54cm]{geometry}
 \RequirePackage{
   caption,
+  etoolbox,
   float,
   graphicx,
   setspace,
@@ -4937,7 +4950,9 @@ FUNCTION { end.bibitem } {
   if$
   write$
   newline$
-  "\EndOfBibitem" write$
+  "\EndOfBibitem{}" write$
+  newline$
+  newline$
 }
 
 % Formatting names: authors and editors are not quite the same,

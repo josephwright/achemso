@@ -6,6 +6,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- Support for the `bibentry` package
+
 ### Fixed
 - Height and width values for `amlccd` style
 
