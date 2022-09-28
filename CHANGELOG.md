@@ -6,6 +6,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [v3.13d]
 ### Added
 - Support for the `bibentry` package
 
@@ -485,8 +486,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13bc..HEAD
-[v3.13b]: https://github.com/josephwright/achemso/compare/v3.13b...v3.13c
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13d..HEAD
+[v3.13d]: https://github.com/josephwright/achemso/compare/v3.13c...v3.13d
+[v3.13c]: https://github.com/josephwright/achemso/compare/v3.13b...v3.13c
 [v3.13b]: https://github.com/josephwright/achemso/compare/v3.13a...v3.13b
 [v3.13a]: https://github.com/josephwright/achemso/compare/v3.13...v3.13a
 [v3.13]: https://github.com/josephwright/achemso/compare/v3.12a...v3.13
