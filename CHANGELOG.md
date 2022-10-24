@@ -6,6 +6,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [v3.13e]
 ### Removed
 - Revert support for `bibentry` package due to resulting issues
 ## [v3.13d]
@@ -488,7 +489,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13d..HEAD
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13e..HEAD
+[v3.13e]: https://github.com/josephwright/achemso/compare/v3.13d...v3.13e
 [v3.13d]: https://github.com/josephwright/achemso/compare/v3.13c...v3.13d
 [v3.13c]: https://github.com/josephwright/achemso/compare/v3.13b...v3.13c
 [v3.13b]: https://github.com/josephwright/achemso/compare/v3.13a...v3.13b
