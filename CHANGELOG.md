@@ -6,6 +6,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+
+## [v3.13f] - 2022-11-25
 ### Fixed
 - Formatting of corporate names in bibliography
 
@@ -493,7 +495,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13e..HEAD
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13f..HEAD
+[v3.13f]: https://github.com/josephwright/achemso/compare/v3.13e...v3.13f
 [v3.13e]: https://github.com/josephwright/achemso/compare/v3.13d...v3.13e
 [v3.13d]: https://github.com/josephwright/achemso/compare/v3.13c...v3.13d
 [v3.13c]: https://github.com/josephwright/achemso/compare/v3.13b...v3.13c
