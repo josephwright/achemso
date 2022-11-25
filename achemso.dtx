@@ -4951,7 +4951,7 @@ FUNCTION { initialize.name.separator } {
 FUNCTION { format.names.loop } {
   { remaining.names.int #0 > }
     {
-      names.str current.name.int "{vv~}{ll,}{~f.}{,~jj}" format.name$
+      names.str current.name.int "{vv~}{ll}{,~f.}{,~jj}" format.name$
       duplicate$
       'current.name.str :=
       current.name.int #1 >

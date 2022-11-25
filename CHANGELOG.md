@@ -6,9 +6,13 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- Formatting of corporate names in bibliography
+
 ## [v3.13e]
 ### Removed
 - Revert support for `bibentry` package due to resulting issues
+
 ## [v3.13d]
 ### Added
 - Support for the `bibentry` package
