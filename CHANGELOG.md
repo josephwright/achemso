@@ -6,6 +6,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- Suppress spurious class warnings (see issue \#42)
 
 ## [v3.13f] - 2022-11-25
 ### Fixed
