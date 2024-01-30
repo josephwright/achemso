@@ -6,6 +6,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [v3.13g] - 2024-01-30
 ### Fixed
 - Suppress spurious class warnings (see issue \#42)
 
@@ -497,7 +498,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13f..HEAD
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13g..HEAD
+[v3.13g]: https://github.com/josephwright/achemso/compare/v3.13f...v3.13g
 [v3.13f]: https://github.com/josephwright/achemso/compare/v3.13e...v3.13f
 [v3.13e]: https://github.com/josephwright/achemso/compare/v3.13d...v3.13e
 [v3.13d]: https://github.com/josephwright/achemso/compare/v3.13c...v3.13d
