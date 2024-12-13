@@ -3602,11 +3602,18 @@
 %<*chreay>
 \ProvidesFile{achemso-chreay.cfg}
   [2024-01-30 v3.13g achemso configuration: Chem. Rev.]
+  \setkeys{acs}{
+    etalmode      = truncate,
+    maxauthors    = 10
+  }
 \def\acs@type@default{review}
 \def\acs@type@list{review}
 %    \end{macrocode}
 % The references section is numbered in \emph{Chem.\ Rev.}
 %    \begin{macrocode}
+\floatstyle{plaintop}
+\restylefloat{scheme}
+\floatstyle{plain}
 \def\bibsection{\acs@section{\refname}}
 %</chreay>
 %<*cmatex>
