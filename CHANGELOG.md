@@ -6,6 +6,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- TOC size for _J. Med. Chem._ (see issue \#50)
+
 ## [v3.13g] - 2024-01-30
 ### Fixed
 - Suppress spurious class warnings (see issue \#42)
