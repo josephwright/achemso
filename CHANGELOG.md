@@ -6,6 +6,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [v3.13h] - 2025-01-29
 ### Fixed
 - TOC size for _J. Med. Chem._ (see issue \#50)
 
