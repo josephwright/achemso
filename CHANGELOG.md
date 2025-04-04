@@ -7,7 +7,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Fixed
-- Minor fixes for _Enviorn. Sci. Tech._ (see issue \#51)
+- Minor fixes for _Enviorn. Sci. Tech._ (see issues \#51 and \#52)
 
 ## [v3.13h] - 2025-01-29
 ### Fixed
