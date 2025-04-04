@@ -6,6 +6,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [v3.13i] - 2025-04-04
 ### Fixed
 - Minor fixes for _Enviorn. Sci. Tech._ (see issues \#51 and \#52)
 
@@ -505,7 +506,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13g..HEAD
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13i..HEAD
+[v3.13i]: https://github.com/josephwright/achemso/compare/v3.13h...v3.13i
+[v3.13h]: https://github.com/josephwright/achemso/compare/v3.13g...v3.13h
 [v3.13g]: https://github.com/josephwright/achemso/compare/v3.13f...v3.13g
 [v3.13f]: https://github.com/josephwright/achemso/compare/v3.13e...v3.13f
 [v3.13e]: https://github.com/josephwright/achemso/compare/v3.13d...v3.13e
