@@ -3469,6 +3469,19 @@
 \newcommand*{\latin}[1]{\emph{#1}}
 \SectionNumbersOff
 %</ancac3>
+%<*anmafm>
+\ProvidesFile{achemso-anmafm.cfg}
+  [2025-04-04 v3.13i achemso configuration: ACS Nano Med.]
+\setkeys{acs}{
+  abbreviations = true,
+  articletitle  = true,
+  biblabel      = fullstop,
+  etalmode      = truncate,
+  maxauthors    = 20,
+  keywords      = true
+}
+\def\acs@type@list{editorial,viewpoint,perspective,review,articlen,suppinfo}
+%</anmafm>
 %<*acsodf>
 \ProvidesFile{achemso-acsodf.cfg}
   [2025-04-04 v3.13i achemso configuration: ACS Omega.]

@@ -6,6 +6,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- Style for _ACS Nano Med._ (`anmafm`)
+
 ## [v3.13i] - 2025-04-04
 ### Fixed
 - Minor fixes for _Enviorn. Sci. Tech._ (see issues \#51 and \#52)
