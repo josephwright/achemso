@@ -6,6 +6,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [v3.13j] - 2025-04-11
 ### Added
 - Style for _ACS Nano Med._ (`anmafm`)
 
@@ -509,7 +510,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release of package by Mats Dahlgren
 
-[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13i..HEAD
+[Unreleased]: https://github.com/josephwright/achemso/compare/v3.13j..HEAD
+[v3.13j]: https://github.com/josephwright/achemso/compare/v3.13i...v3.13j
 [v3.13i]: https://github.com/josephwright/achemso/compare/v3.13h...v3.13i
 [v3.13h]: https://github.com/josephwright/achemso/compare/v3.13g...v3.13h
 [v3.13g]: https://github.com/josephwright/achemso/compare/v3.13f...v3.13g
