@@ -6,6 +6,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- Typo in _ACS Nano Med._ style
+
 ## [v3.13j] - 2025-04-11
 ### Added
 - Style for _ACS Nano Med._ (`anmafm`)
