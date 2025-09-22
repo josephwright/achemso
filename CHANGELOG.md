@@ -5,6 +5,8 @@ The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Changed
+- Mark bundle as historical support
 
 ### Fixed
 - Typo in _ACS Nano Med._ style

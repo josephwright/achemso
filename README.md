@@ -1,15 +1,16 @@
-# `achemso` - Support for submissions to American Chemical Society journals
+# `achemso` - American Chemical Society journal style
 
 ## Description
 
-The `achemso` bundle provides a LaTeX class file and BibTeX style file in
-accordance with the requirements of the American Chemical Society (ACS). The
-files can be used for any documents, but have been carefully designed and
-tested to be suitable for submission to ACS journals.
+The `achemso` bundle provides a BibTeX style file following the requirements of
+the American Chemical Society (ACS), and a package to pass settings to the
+BibTeX style. It also includes a class which was used for submission support in
+the past.
 
-The bundle also includes the `natmove` package. This package is loaded by
-`achemso`, and provides automatic moving of superscript citations after
-punctuation.
+All of this material is largely of historical interest and is retained for
+stability. For new material, the `biblatex` style `chem-acs` is available for
+bibliographies, and a short template for the ACS website is better suited to
+submission.
 
 ## Author
 
